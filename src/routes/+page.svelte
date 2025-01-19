@@ -15,5 +15,5 @@
     });
   </script>
   
-  <h1>Welcome to SvelteKit</h1>
+  <h1>Welcome to SvelteKit!</h1>
   <p>{message ? message : 'Loading...'}</p>
