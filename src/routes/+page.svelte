@@ -6,8 +6,13 @@
   
     onMount(async () => {
       try {
-        const response = await axios.get('https://scanlytics2-be.fly.dev/');
-        message = response.data.Hello;
+        const response = await axios.get('https://scanlytics2-be.fly.dev/surrealdb');
+        // Extract the text from the nested JSON structure
+        const result = response.data[0]?.result[0]?.text;
+        
+        // Assign the extracted text to the message variable
+        message = result || 'No message found';
+
       } catch (error) {
         console.error('Error fetching data:', error);
         message = 'Error fetching data';
