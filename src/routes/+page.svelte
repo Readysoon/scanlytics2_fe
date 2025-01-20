@@ -8,12 +8,9 @@
       try {
         const response = await axios.get('https://scanlytics2-be.fly.dev/surrealdb');
         console.log('Response data:', response.data); // Log the response data
-        
+
         // Extract the text from the nested JSON structure
-        const result = response.data[0]?.result[0]?.text;
-        
-        // Assign the extracted text to the message variable
-        message = result || 'No message found';
+        message = response.data[0].text || 'No message found';
 
       } catch (error) {
         console.error('Error fetching data:', error);
