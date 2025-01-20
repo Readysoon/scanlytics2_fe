@@ -7,6 +7,8 @@
     onMount(async () => {
       try {
         const response = await axios.get('https://scanlytics2-be.fly.dev/surrealdb');
+        console.log('Response data:', response.data); // Log the response data
+        
         // Extract the text from the nested JSON structure
         const result = response.data[0]?.result[0]?.text;
         
