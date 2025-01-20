@@ -18,18 +18,31 @@
       const formData = new FormData();
       formData.append('file', selectedFile);
   
-      try {
+        try {
         const response = await axios.post('https://scanlytics2-be.fly.dev/surrealdb', formData, {
-          headers: {
+            headers: {
             'Content-Type': 'multipart/form-data'
-          }
+            }
         });
+
         console.log('Response data:', response.data); // Log the response data
-        message = response.data.message || 'Upload successful';
-      } catch (error) {
+
+        // Extract the text from the response data
+        if (response.data && response.data.length > 0) {
+            const result = response.data[0].result;
+            if (result && result.length > 0) {
+            message = result[0].text || 'No text found';
+            } else {
+            message = 'No result found';
+            }
+        } else {
+            message = 'No data found';
+        }
+        
+        } catch (error) {
         console.error('Error uploading file:', error);
         message = 'Error uploading file';
-      }
+        }
     };
   </script>
   
