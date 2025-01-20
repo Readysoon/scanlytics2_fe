@@ -29,7 +29,7 @@
 
         // Extract the text from the response data
         if (response.data && response.data.length > 0) {
-            message = response.data || 'No text found';
+            message = response.data[0].text || 'No text found';
         } else {
             message = 'No data found';
         }
