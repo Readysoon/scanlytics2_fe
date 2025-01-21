@@ -55,7 +55,7 @@
       formData.append('file', mlSelectedFile);
   
       try {
-        const response = await axios.post('https://scanlytics2-ml.fly.dev/', formData, {
+        const response = await axios.post('https://scanlytics2-be.fly.dev/ml', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
