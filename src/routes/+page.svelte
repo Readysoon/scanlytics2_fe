@@ -1,5 +1,4 @@
 <script>
-    import { onMount } from 'svelte';
     import axios from 'axios';
 
     let mlMessage = '';
@@ -26,6 +25,8 @@
         });
   
         console.log('ML Response data:', response.data);
+
+        console.log(typeof response.data)
   
         if (response.data) {
           mlMessage = JSON.stringify(response.data);
@@ -38,7 +39,7 @@
         mlMessage = 'Error uploading file to ML';
       }
     };
-    
+
   </script>
   
   <h1>Welcome to Scanlytics!</h1>
