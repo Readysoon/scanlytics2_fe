@@ -26,10 +26,9 @@
   
         console.log('ML Response data:', response.data);
 
-        console.log(typeof response.data)
-  
-        if (response.data) {
-          mlMessage = JSON.stringify(response.data);
+        if (Array.isArray(response.data) && response.data.length > 0) {
+          // Access the first element and its 'text' property
+          mlMessage = response.data[0].text;
         } else {
           mlMessage = 'No data found';
         }
