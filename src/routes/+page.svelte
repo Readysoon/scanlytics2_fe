@@ -30,7 +30,7 @@
           // Access the first element and its 'text' property
           mlMessage = response.data[0].text;
         } else {
-          mlMessage = 'No data found';
+          mlMessage = 'No data found.';
         }
   
       } catch (error) {
