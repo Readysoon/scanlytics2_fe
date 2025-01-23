@@ -16,8 +16,6 @@
   }
 </script>
 
-<Header name="Scanlytics" />
-
 <div class="container">
   <div class="box">
     <ImageUploader onUploadSuccess={handleUploadSuccess} />
