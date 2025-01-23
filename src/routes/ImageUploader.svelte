@@ -1,5 +1,6 @@
 <script>
   import axios from 'axios';
+  export let onUploadSuccess;
 
   let imageUrl = '';
   let mlMessage = '';
@@ -31,6 +32,8 @@
       console.log('ML Response data:', response.data);
 
       if (Array.isArray(response.data) && response.data.length > 0) {
+        const parsedTexts = response.data.map(item => parseText(item.text));
+        onUploadSuccess(parsedTexts);
         mlMessage = 'File uploaded successfully!';
       } else {
         mlMessage = 'No data found.';
@@ -41,6 +44,12 @@
       mlMessage = 'Error uploading file to ML';
     }
   };
+
+  function parseText(text) {
+    return text.replace(/\[dropdown:([^\]]+)\]/g, (match, options) => {
+      return options.split(',')[0];
+    });
+  }
 </script>
 
 <div class="image-uploader">
