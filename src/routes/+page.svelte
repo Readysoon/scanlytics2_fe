@@ -25,7 +25,9 @@
   }
 </script>
 
-<p>{isMobile ? 'Scanlytics Mobile' : 'Scanlytics Desktop'}</p>
+<h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl">
+  Scanlytics
+</h1>
 
 <div class={`container ${isMobile ? 'mobile' : 'desktop'}`}>
   <div class="box">
