@@ -25,13 +25,9 @@
   }
 </script>
 
-{#if isMobile}
-  <p>Scanlytics Mobile</p>
-{:else}
-  <p>Scanlytics Desktop</p>
-{/if}
+<p>{isMobile ? 'Scanlytics Mobile' : 'Scanlytics Desktop'}</p>
 
-<div class="container">
+<div class={`container ${isMobile ? 'mobile' : 'desktop'}`}>
   <div class="box">
     <ImageUploader onUploadSuccess={handleUploadSuccess} />
   </div>
@@ -44,9 +40,14 @@
 </div>
 
 <style>
-  .container {
+  .container.desktop {
     display: flex;
     justify-content: space-between;
+  }
+
+  .container.mobile {
+    display: flex;
+    flex-direction: column; /* Stack components vertically on mobile */
   }
   .box {
     flex: 1;
