@@ -5,6 +5,15 @@
 
   let texts = [];
   let selectedText = '';
+  let isMobile = false;
+
+  if (typeof window !== 'undefined') {
+    isMobile = window.innerWidth <= 600;
+    window.addEventListener('resize', () => {
+      isMobile = window.innerWidth <= 600;
+    });
+  }
+  
 
   function handleSelect(text) {
     selectedText += (selectedText ? '\n' : '') + text;
@@ -15,6 +24,12 @@
     texts = parsedTexts;
   }
 </script>
+
+{#if isMobile}
+  <p>Scanlytics Mobile</p>
+{:else}
+  <p>Scanlytics Desktop</p>
+{/if}
 
 <div class="container">
   <div class="box">
