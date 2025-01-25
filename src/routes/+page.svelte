@@ -29,59 +29,87 @@
   <title>Scanlytics</title>
 </head>
 
-
-<div class="header">
-  <div class="logo-container">
-    <img src="/logo.png" alt="Logo" class="logo">
-    <div class="title">Scanlytics</div>
-  </div>
-  <div class="menu-icon">
-    &#9776; <!-- Unicode for the hamburger menu icon -->
-  </div>
-</div>
-
-<div class="welcome-section">
-  <h2 class="welcome-title">Welcome to Scanlytics</h2>
-  <p class="welcome-description">Automatic Xray interpretation</p>
-</div>
-
-<div class={`container ${isMobile ? 'mobile' : 'desktop'}`}>
-  <div class="box">
-    <ImageUploader onUploadSuccess={handleUploadSuccess} />
-  </div>
-  <div class="box">
-    <TextEditor bind:text={selectedText} />
-  </div>
-  <div class="box">
-    <TextList {texts} onSelect={handleSelect} />
-  </div>
-</div>
-
-<footer>
-  <div class="footer-content">
-    <div class="footer-left">
-      <p>© 2025 Scanlytics | Version 0.1</p>
-      <nav>
-        <a href="/">Privacy Policy</a> | 
-        <a href="/">Terms of Use</a> | 
-        <a href="/">Contact</a> | 
-        <a href="/">Products</a>
-      </nav>
+<div class="page-container">
+  <div class="header">
+    <div class="logo-container">
+      <img src="/logo.png" alt="Logo" class="logo">
+      <div class="title">Scanlytics</div>
     </div>
-    <div class="footer-center">
-      <p>For clinical usage, appropriate clinical qualification is required, and users must ensure they have the necessary credentials and permissions to access and interpret medical images.</p>
-    </div>
-    <div class="footer-right">
-      <select>
-        <option>English</option>
-        <option>German</option>
-        <option>French</option>
-      </select>
+    <div class="menu-icon">
+      &#9776; <!-- Unicode for the hamburger menu icon -->
     </div>
   </div>
-</footer>
+
+  <div class="content">
+    <div class="welcome-section">
+      <h2 class="welcome-title">Welcome to Scanlytics</h2>
+      <p class="welcome-description">Automatic Xray interpretation</p>
+    </div>
+
+    <div class={`container ${isMobile ? 'mobile' : 'desktop'}`}>
+      <div class="box">
+        <ImageUploader onUploadSuccess={handleUploadSuccess} />
+      </div>
+      <div class="box">
+        <TextEditor bind:text={selectedText} />
+      </div>
+      <div class="box">
+        <TextList {texts} onSelect={handleSelect} />
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <p>© 2025 Scanlytics | Version 0.1</p>
+        <nav>
+          <a href="/">Privacy Policy</a> | 
+          <a href="/">Terms of Use</a> | 
+          <a href="/">Contact</a> | 
+          <a href="/">Products</a>
+        </nav>
+      </div>
+      <div class="footer-center">
+        <p>For clinical usage, appropriate clinical qualification is required, and users must ensure they have the necessary credentials and permissions to access and interpret medical images.</p>
+      </div>
+      <div class="footer-right">
+        <select>
+          <option>English</option>
+          <option>German</option>
+          <option>French</option>
+        </select>
+      </div>
+    </div>
+  </footer>
+</div>
 
 <style>
+  /* Apply box-sizing to all elements */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Remove default margin and padding from HTML and body */
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full height of the viewport */
+  }
+
+  .content {
+    flex: 1; /* Allow content to grow and fill space */
+    display: flex;
+    flex-direction: column;
+  }
+
   .menu-icon {
     font-size: 2rem;
     cursor: pointer;
@@ -136,12 +164,15 @@
   .container.desktop {
     display: flex;
     justify-content: space-between;
+    flex-grow: 1; /* Ensure it grows to fill available space */
   }
 
   .container.mobile {
     display: flex;
     flex-direction: column; /* Stack components vertically on mobile */
+    flex-grow: 1; /* Ensure it grows to fill available space */
   }
+
   .box {
     flex: 1;
     margin: 10px;
@@ -150,6 +181,7 @@
   }
 
   footer {
+    height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
