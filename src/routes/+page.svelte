@@ -71,7 +71,7 @@
         </nav>
       </div>
       <div class="footer-center">
-        <p>For clinical usage, appropriate clinical qualification is required, and users must ensure they have the necessary credentials and permissions to access and interpret medical images.</p>
+        <p>For clinical usage, appropriate clinical qualification is required, <br> and users must ensure they have the necessary credentials and permissions <br>to access and interpret medical images.</p>
       </div>
       <div class="footer-right">
         <select>
@@ -181,7 +181,7 @@
   }
 
   footer {
-    height: 60px;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -193,6 +193,7 @@
   .footer-content {
     display: flex;
     justify-content: space-between;
+    align-items: center; /* Ensures vertical centering */
     width: 100%;
   }
 
@@ -202,14 +203,34 @@
     align-items: flex-start;
   }
 
+  .footer-left,
+  .footer-right {
+    flex: 1; /* Allows these sections to take up equal space */
+  }
+
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start; /* Aligns content to the top */
+  }
+
   .footer-center {
-    align-items: center;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
     text-align: center;
   }
 
   .footer-right {
+    display: flex;
+    flex-direction: column;
     align-items: flex-end;
+    justify-content: center; /* Centers content vertically */
   }
+
 
   nav a {
     margin: 0 5px;
