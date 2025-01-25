@@ -25,6 +25,8 @@
   }
 </script>
 
+<title>Scanlytics</title>
+
 <h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl">
   Scanlytics
 </h1>
