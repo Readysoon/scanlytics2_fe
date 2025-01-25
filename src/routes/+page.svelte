@@ -30,9 +30,12 @@
 </head>
 
 
-<h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl">
-  Scanlytics
-</h1>
+<div class="header">
+  <div class="logo-container">
+    <img src="/logo.png" alt="Logo" class="logo">
+    <div class="title">Scanlytics</div>
+  </div>
+</div>
 
 <div class={`container ${isMobile ? 'mobile' : 'desktop'}`}>
   <div class="box">
@@ -47,6 +50,30 @@
 </div>
 
 <style>
+    .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    width: 50px; /* Adjust as needed */
+    height: auto;
+    margin-right: 10px; /* Space between logo and text */
+  }
+
+  .title {
+    font-size: 2.5rem; /* Equivalent to text-4xl */
+    font-weight: 800; /* Equivalent to font-extrabold */
+    letter-spacing: -0.025em; /* Equivalent to tracking-tight */
+  }
+
+
   .container.desktop {
     display: flex;
     justify-content: space-between;
