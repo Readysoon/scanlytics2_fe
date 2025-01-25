@@ -40,8 +40,9 @@
   </div>
 </div>
 
-<div>
-  
+<div class="welcome-section">
+  <h2 class="welcome-title">Willkommen bei Scanlytics</h2>
+  <p class="welcome-description">Scanlytics unterstützt dich bei der Auswertung deiner Röntgenbilder.</p>
 </div>
 
 <div class={`container ${isMobile ? 'mobile' : 'desktop'}`}>
@@ -92,6 +93,21 @@
     letter-spacing: -0.025em; /* Equivalent to tracking-tight */
   }
 
+  .welcome-section {
+    text-align: center;
+    margin: 40px 0; /* Adds space above and below the welcome section */
+  }
+
+  .welcome-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .welcome-description {
+    font-size: 1rem;
+    color: #666; /* A lighter color for the description */
+  }
 
   .container.desktop {
     display: flex;
