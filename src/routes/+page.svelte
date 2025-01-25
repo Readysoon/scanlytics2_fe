@@ -35,6 +35,9 @@
     <img src="/logo.png" alt="Logo" class="logo">
     <div class="title">Scanlytics</div>
   </div>
+  <div class="menu-icon">
+    &#9776; <!-- Unicode for the hamburger menu icon -->
+  </div>
 </div>
 
 <div class={`container ${isMobile ? 'mobile' : 'desktop'}`}>
@@ -50,10 +53,19 @@
 </div>
 
 <style>
-    .header {
+  .menu-icon {
+    font-size: 2rem;
+    cursor: pointer;
+    margin-left: auto; /* Pushes the menu icon to the right */
+    margin-right: 1%;
+  }
+
+  .header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 20px;
+    width: 100%; /* Ensures the header spans the full width */
   }
 
   .logo-container {
@@ -65,6 +77,7 @@
     width: 50px; /* Adjust as needed */
     height: auto;
     margin-right: 10px; /* Space between logo and text */
+    margin-left: 3%;
   }
 
   .title {
