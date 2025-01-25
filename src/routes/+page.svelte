@@ -40,6 +40,10 @@
   </div>
 </div>
 
+<div>
+  
+</div>
+
 <div class={`container ${isMobile ? 'mobile' : 'desktop'}`}>
   <div class="box">
     <ImageUploader onUploadSuccess={handleUploadSuccess} />
@@ -66,6 +70,8 @@
     justify-content: space-between;
     margin-bottom: 20px;
     width: 100%; /* Ensures the header spans the full width */
+    border-bottom: 1px solid #000000; /* Adds a bottom border */
+    padding-bottom: 10px; /* Optional: Adds some space below the content in the header */
   }
 
   .logo-container {
