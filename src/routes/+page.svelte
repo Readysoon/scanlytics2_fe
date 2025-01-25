@@ -27,7 +27,6 @@
 
 <head>
   <title>Scanlytics</title>
-  <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
 </head>
 
 
