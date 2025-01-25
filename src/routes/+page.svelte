@@ -25,7 +25,12 @@
   }
 </script>
 
-<title>Scanlytics</title>
+<head>
+  <title>Scanlytics</title>
+
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+
 
 <h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl">
   Scanlytics
