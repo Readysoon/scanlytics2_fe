@@ -90,14 +90,6 @@
     box-sizing: border-box;
   }
 
-  /* Remove default margin and padding from HTML and body */
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-  }
-
   .page-container {
     display: flex;
     flex-direction: column;
@@ -161,17 +153,27 @@
     color: #666; /* A lighter color for the description */
   }
 
-  .container.desktop {
-    display: flex;
-    justify-content: space-between;
-    flex-grow: 1; /* Ensure it grows to fill available space */
-  }
-
   .container.mobile {
     display: flex;
     flex-direction: column; /* Stack components vertically on mobile */
     flex-grow: 1; /* Ensure it grows to fill available space */
   }
+  .container.desktop {
+  display: flex;
+  justify-content: center; /* Centers the boxes within the container */
+  gap: 20px; /* Adds space between the boxes */
+}
+
+.container.desktop .box {
+  flex: none; /* Disable flex-grow to allow fixed width */
+  width: 30%; /* Set each box to take up 30% of the container width */
+  max-width: 300px; /* Set a maximum width for each box */
+}
+
+.container.mobile .box {
+  width: 100%; /* Full width for mobile view */
+  max-width: none; /* Remove any max-width restrictions for mobile */
+}
 
   .box {
     flex: 1;
