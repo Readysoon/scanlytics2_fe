@@ -65,7 +65,16 @@
 
 <style>
   .image-uploader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%; /* Extend to full height of the container */
   }
   img {
     max-width: 100%;
@@ -80,3 +89,5 @@
     color: red;
   }
 </style>
+
+

@@ -159,21 +159,21 @@
     flex-grow: 1; /* Ensure it grows to fill available space */
   }
   .container.desktop {
-  display: flex;
-  justify-content: center; /* Centers the boxes within the container */
-  gap: 20px; /* Adds space between the boxes */
-}
+    display: flex;
+    justify-content: center; /* Centers the boxes within the container */
+    gap: 20px; /* Adds space between the boxes */
+  }
 
-.container.desktop .box {
-  flex: none; /* Disable flex-grow to allow fixed width */
-  width: 30%; /* Set each box to take up 30% of the container width */
-  max-width: 300px; /* Set a maximum width for each box */
-}
+  .container.desktop .box {
+    flex: none; /* Disable flex-grow to allow fixed width */
+    width: 30%; /* Set each box to take up 30% of the container width */
+    max-width: 300px; /* Set a maximum width for each box */
+  }
 
-.container.mobile .box {
-  width: 100%; /* Full width for mobile view */
-  max-width: none; /* Remove any max-width restrictions for mobile */
-}
+  .container.mobile .box {
+    width: 100%; /* Full width for mobile view */
+    max-width: none; /* Remove any max-width restrictions for mobile */
+  }
 
   .box {
     flex: 1;
@@ -232,7 +232,6 @@
     align-items: flex-end;
     justify-content: center; /* Centers content vertically */
   }
-
 
   nav a {
     margin: 0 5px;
