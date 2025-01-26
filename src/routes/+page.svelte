@@ -43,7 +43,7 @@
   <div class="content">
     <div class="welcome-section">
       <h2 class="welcome-title">Welcome to Scanlytics</h2>
-      <p class="welcome-description">Automatic Xray interpretation</p>
+      <p class="welcome-description">Scanlytics generates medical reports based on Xrays.</p>
     </div>
 
     <div class={`container ${isMobile ? 'mobile' : 'desktop'}`}>
