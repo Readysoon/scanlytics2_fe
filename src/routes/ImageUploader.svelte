@@ -5,6 +5,7 @@
   let imageUrl = '';
   let mlMessage = '';
   let mlSelectedFile = null;
+  let currentStep = 1;
 
   function handleFileChange(event) {
     mlSelectedFile = event.target.files[0];
@@ -35,6 +36,7 @@
         const parsedTexts = response.data.map(item => parseText(item.text));
         onUploadSuccess(parsedTexts);
         mlMessage = 'File uploaded successfully!';
+        goToNextStep(); // Move to the next step
       } else {
         mlMessage = 'No data found.';
       }
@@ -50,6 +52,15 @@
       return options.split(',')[0];
     });
   }
+
+  function goToNextStep() {
+    if (currentStep === 1) {
+      document.getElementById('step-1').classList.remove('active');
+      currentStep = 2;
+      document.getElementById('step-2').classList.add('active');
+    }
+  }
+
 </script>
 
 <div class="image-uploader">
