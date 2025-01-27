@@ -1,18 +1,28 @@
 <script>
-    export let texts = [];
-    export let onSelect;
-  
-    function handleClick(text) {
-      onSelect(text);
+  export let texts = [];
+  export let onSelect;
+  let currentStep = 2; // Assuming the current step is managed globally
+
+  function handleClick(text) {
+    onSelect(text);
+    if (currentStep === 2) {
+      goToStepThree();
     }
-    
-    // left this here, for when a solution is found how to handle 
-    // the dropdown menus in the TextEditor.svelte
-    function parseText(text) {
-      return text.replace(/\[dropdown:([^\]]+)\]/g, (match, options) => {
-        return options.split(',')[0];
-      });
-    }
+  }
+
+  function goToStepThree() {
+    document.getElementById('step-2').classList.remove('active');
+    currentStep = 3;
+    document.getElementById('step-3').classList.add('active');
+  }
+
+  // Left this here, for when a solution is found how to handle 
+  // the dropdown menus in the TextEditor.svelte
+  function parseText(text) {
+    return text.replace(/\[dropdown:([^\]]+)\]/g, (match, options) => {
+      return options.split(',')[0];
+    });
+  }
   </script>
   
   <div class="text-list">
