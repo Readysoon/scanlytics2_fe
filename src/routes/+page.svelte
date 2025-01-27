@@ -64,7 +64,7 @@
       <span class="circle">1</span>
       <div class="text">
         <span class="headline">Select Image</span>
-        <p>Select an image to upload. JPG, JPEG, GIF, PNG (DICOM soon) are possible</p>
+        <p>Select an image to upload. JPG, JPEG, GIF, PNG (DICOM soon) are possible.</p>
       </div>
     </div>
     <div class="step" id="step-2">
