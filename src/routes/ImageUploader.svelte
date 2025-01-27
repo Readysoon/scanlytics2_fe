@@ -54,7 +54,7 @@
   }
 
   function goToNextStep() {
-    if (currentStep === 1) {
+    if (currentStep === 1 || currentStep === 4) {
       document.getElementById('step-1').classList.remove('active');
       currentStep = 2;
       document.getElementById('step-2').classList.add('active');
