@@ -1,11 +1,4 @@
-<div class="audio-recorder">
-    <button onclick="toggleRecording()" disabled={isUploading}>
-      {isRecording ? 'Stop and Upload Recording' : 'Start Recording'}
-    </button>
-    <div id="transcription-result"></div>
-  </div>
-  
-  <script>
+<script>
     let mediaRecorder;
     let audioChunks = [];
     let audioBlob;
@@ -81,6 +74,13 @@
       resultDiv.textContent = text || 'No transcription available';
     }
   </script>
+  
+  <div class="audio-recorder">
+    <button on:click={toggleRecording} disabled={isUploading}>
+      {isRecording ? 'Stop and Upload Recording' : 'Start Recording'}
+    </button>
+    <div id="transcription-result"></div>
+  </div>
   
   <style>
     .audio-recorder {
