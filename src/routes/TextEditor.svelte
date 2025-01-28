@@ -1,4 +1,6 @@
 <script>
+  import AudioRecorder from './AudioRecorder.svelte';
+
   export let text = '';
   let currentStep = 3; // Assuming the current step is managed globally
 
@@ -13,6 +15,7 @@
   
   <div class="text-editor">
     <textarea bind:value={text} on:focus={goToStepFour}></textarea>
+    <AudioRecorder />
   </div>
   
   <style>
