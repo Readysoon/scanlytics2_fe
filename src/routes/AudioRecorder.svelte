@@ -1,4 +1,11 @@
-<script>
+<div class="audio-recorder">
+    <button onclick="toggleRecording()" disabled={isUploading}>
+      {isRecording ? 'Stop and Upload Recording' : 'Start Recording'}
+    </button>
+    <div id="transcription-result"></div>
+  </div>
+  
+  <script>
     let mediaRecorder;
     let audioChunks = [];
     let audioBlob;
@@ -50,12 +57,14 @@
       formData.append('audio', audioBlob, 'recording.wav');
   
       try {
-        const response = await fetch('https://scanlytics2-be.fly.dev/whisper', {
+        const response = await fetch('https://scanlytics2-whisper.fly.dev/transcribe/', {
           method: 'POST',
           body: formData,
         });
   
         if (response.ok) {
+          const result = await response.json();
+          displayTranscription(result.transcription);
           console.log('Audio uploaded successfully');
         } else {
           console.error('Failed to upload audio');
@@ -66,13 +75,12 @@
         isUploading = false;
       }
     }
-  </script>
   
-  <div class="audio-recorder">
-    <button on:click={toggleRecording} disabled={isUploading}>
-      {isRecording ? 'Stop and Upload Recording' : 'Start Recording'}
-    </button>
-  </div>
+    function displayTranscription(text) {
+      const resultDiv = document.getElementById('transcription-result');
+      resultDiv.textContent = text || 'No transcription available';
+    }
+  </script>
   
   <style>
     .audio-recorder {
@@ -83,6 +91,12 @@
       margin: 10px 0;
       padding: 0px 10px;
       font-size: 1.2em;
+    }
+  
+    #transcription-result {
+      margin-top: 10px;
+      font-size: 1em;
+      color: #333;
     }
   </style>
   
