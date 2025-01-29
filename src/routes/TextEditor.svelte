@@ -11,20 +11,23 @@
       document.getElementById('step-4').classList.add('active');
     }
   }
-  </script>
-  
-  <div class="text-editor">
-    <textarea bind:value={text} on:focus={goToStepFour}></textarea>
-    <AudioRecorder />
-  </div>
-  
-  <style>
-    .text-editor {
-      padding: 10px;
-    }
-    textarea {
-      width: 100%;
-      height: 300px;
-    }
-  </style>
-  
+
+  function appendTranscription(transcription) {
+    text += (text ? '\n' : '') + transcription;
+  }
+</script>
+
+<div class="text-editor">
+  <textarea bind:value={text} on:focus={goToStepFour}></textarea>
+  <AudioRecorder onTranscription={appendTranscription} />
+</div>
+
+<style>
+  .text-editor {
+    padding: 10px;
+  }
+  textarea {
+    width: 100%;
+    height: 300px;
+  }
+</style>
