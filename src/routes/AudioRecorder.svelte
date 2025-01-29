@@ -65,7 +65,9 @@
   
         if (response.ok) {
           const result = await response.json();
-          displayTranscription(result.text);
+          if (onTranscription) {
+            onTranscription(result.text);
+          }
           console.log('Audio uploaded successfully');
         } else {
           console.error('Failed to upload audio');
@@ -82,7 +84,6 @@
     <button on:click={toggleRecording} disabled={isUploading}>
       {isRecording ? 'Stop and Upload Recording' : 'Start Recording'}
     </button>
-    <div id="transcription-result"></div>
   </div>
   
   <style>
@@ -94,12 +95,6 @@
       margin: 10px 0;
       padding: 0px 10px;
       font-size: 1.2em;
-    }
-  
-    #transcription-result {
-      margin-top: 10px;
-      font-size: 1em;
-      color: #333;
     }
   </style>
   
