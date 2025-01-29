@@ -38,7 +38,7 @@
         mlMessage = 'File uploaded successfully!';
         goToNextStep(); // Move to the next step
       } else {
-        mlMessage = 'No data found.';
+        mlMessage = 'Server starting... Please generate again.';
       }
 
     } catch (error) {

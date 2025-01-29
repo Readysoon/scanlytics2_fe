@@ -82,7 +82,11 @@
   
   <div class="audio-recorder">
     <button on:click={toggleRecording} disabled={isUploading}>
-      {isRecording ? 'Stop and Upload Recording' : 'Audio transcription'}
+      {#if isRecording}
+        Stop and Upload Recording
+      {:else}
+        <img src="/mic.png" alt="Microphone" class="mic-icon" />
+      {/if}
     </button>
   </div>
   
@@ -93,8 +97,16 @@
   
     button {
       margin: 10px 0;
-      padding: 0px 10px;
+      padding: 2px 2px;
       font-size: 1.2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .mic-icon {
+      width: 24px;
+      height: 24px;
     }
   </style>
   
