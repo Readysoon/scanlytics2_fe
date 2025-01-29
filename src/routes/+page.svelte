@@ -43,7 +43,7 @@
   <div class="content">
     <div class="welcome-section">
       <h2 class="welcome-title">Welcome to Scanlytics</h2>
-      <p class="welcome-description">Scanlytics ordnet dein Röntgenbild einer unser bisherigen 8 Kategorien zu und schlägt dir<br> die dafür kuratierten Befundtexte vor, welche du dann anpassen und weiterverwenden kannst.<br>Im Gegensatz zu den meisten anderen Xray-Interpretationslösungen setzt Scanlytics<br> nicht auf fremde KI oder gar ausländische Server. <br>Wenn du mehr über Scanlytics und die Menschen dahinter erfahren willst, klicke hier.<br>Du hast Fragen oder Anregungen? Sende mir eine Mail:<br><a href="mailto:p.gallaschik@gmail.com">philipp.gallaschik@code.berlin</a></p>
+      <p class="welcome-description">Scanlytics assigns your X-ray image to one of our existing 8 categories and suggests<br> curated diagnosis texts that you can then customize and use further. Unlike most other <br>X-ray interpretation solutions, Scanlytics does not rely on third-party AI or even foreign servers. <br>If you want to learn more about Scanlytics and the people behind it, click here. <br>Do you have questions or suggestions? Send me an email:<br><a href="mailto:p.gallaschik@gmail.com">philipp.gallaschik@code.berlin</a></p>
     </div>
 
     <div class={`container ${isMobile ? 'mobile' : 'desktop'}`}>
