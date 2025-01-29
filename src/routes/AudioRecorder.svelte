@@ -76,14 +76,6 @@
         isUploading = false;
       }
     }
-  
-    function displayTranscription(text) {
-      const resultDiv = document.getElementById('transcription-result');
-      resultDiv.textContent = text;
-      if (onTranscription) {
-        onTranscription(text);
-      }
-    }
   </script>
   
   <div class="audio-recorder">
