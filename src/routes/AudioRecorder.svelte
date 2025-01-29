@@ -77,7 +77,7 @@
 
     function displayTranscription(text) {
     const resultDiv = document.getElementById('transcription-result');
-    resultDiv.textContent = text || 'No transcription available';
+    resultDiv.textContent = text;
     }
 
   </script>
