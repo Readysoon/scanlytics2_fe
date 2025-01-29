@@ -8,66 +8,76 @@
     let recordingTimeout;
   
     async function toggleRecording() {
-      if (!isRecording) {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        mediaRecorder = new MediaRecorder(stream);
-  
-        mediaRecorder.ondataavailable = (event) => {
-          audioChunks.push(event.data);
-        };
-  
-        mediaRecorder.onstop = async () => {
-          audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-          audioUrl = URL.createObjectURL(audioBlob);
-          audioChunks = [];
-          await uploadAudio();
-        };
-  
-        mediaRecorder.start();
-        isRecording = true;
-  
-        recordingTimeout = setTimeout(() => {
-          if (isRecording) {
+        if (!isRecording) {
+            console.log("Starting recording...");
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+
+            mediaRecorder.ondataavailable = (event) => {
+            console.log("Data available:", event.data);
+            audioChunks.push(event.data);
+            };
+
+            mediaRecorder.onstop = async () => {
+            console.log("Recording stopped.");
+            audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            console.log("Audio Blob created:", audioBlob);
+            audioUrl = URL.createObjectURL(audioBlob);
+            audioChunks = [];
+            await uploadAudio();
+            };
+
+            mediaRecorder.start();
+            isRecording = true;
+
+            recordingTimeout = setTimeout(() => {
+            if (isRecording) {
+                mediaRecorder.stop();
+                isRecording = false;
+            }
+            }, 10000); // 10 seconds
+        } else {
+            console.log("Stopping recording...");
+            clearTimeout(recordingTimeout);
             mediaRecorder.stop();
             isRecording = false;
-          }
-        }, 10000); // 10 seconds
-      } else {
-        clearTimeout(recordingTimeout);
-        mediaRecorder.stop();
-        isRecording = false;
-      }
-    }
-  
-    async function uploadAudio() {
-      if (!audioBlob) {
-        console.error('No audio recorded');
-        return;
-      }
-  
-      isUploading = true;
-      const formData = new FormData();
-      formData.append('audio', audioBlob, 'recording.wav');
-  
-      try {
-        const response = await fetch('https://scanlytics2-whisper.fly.dev/transcribe/', {
-          method: 'POST',
-          body: formData,
-        });
-  
-        if (response.ok) {
-          const result = await response.json();
-          displayTranscription(result.transcription);
-          console.log('Audio uploaded successfully');
-        } else {
-          console.error('Failed to upload audio');
         }
-      } catch (error) {
-        console.error('Error uploading audio:', error);
-      } finally {
-        isUploading = false;
-      }
-    }
+        }
+
+    async function uploadAudio() {
+        if (!audioBlob) {
+            console.error('No audio recorded');
+            return;
+        }
+
+        isUploading = true;
+        const formData = new FormData();
+        formData.append('audio', audioBlob, 'recording.wav');
+
+        console.log("Uploading audio...");
+
+        try {
+            const response = await fetch('https://scanlytics2-whisper.fly.dev/transcribe/', {
+            method: 'POST',
+            body: formData,
+            });
+
+            console.log("Response status:", response.status);
+
+            if (response.ok) {
+            const result = await response.json();
+            displayTranscription(result.transcription);
+            console.log('Audio uploaded successfully');
+            } else {
+            console.error('Failed to upload audio');
+            }
+        } catch (error) {
+            console.error('Error uploading audio:', error);
+        } finally {
+            isUploading = false;
+        }
+        }
+
   
     function displayTranscription(text) {
       const resultDiv = document.getElementById('transcription-result');
