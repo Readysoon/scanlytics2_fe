@@ -11,7 +11,7 @@
         if (!isRecording) {
             console.log("Starting recording...");
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
 
             mediaRecorder.ondataavailable = (event) => {
             console.log("Data available:", event.data);
@@ -20,7 +20,7 @@
 
             mediaRecorder.onstop = async () => {
             console.log("Recording stopped.");
-            audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
             console.log("Audio Blob created:", audioBlob);
             audioUrl = URL.createObjectURL(audioBlob);
             audioChunks = [];
@@ -42,7 +42,8 @@
             mediaRecorder.stop();
             isRecording = false;
         }
-        }
+    }
+
 
     async function uploadAudio() {
         if (!audioBlob) {
