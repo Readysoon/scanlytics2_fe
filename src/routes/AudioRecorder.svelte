@@ -82,7 +82,7 @@
   
   <div class="audio-recorder">
     <button on:click={toggleRecording} disabled={isUploading}>
-      {isRecording ? 'Stop and Upload Recording' : 'Start Recording'}
+      {isRecording ? 'Stop and Upload Recording' : 'Audio transcription'}
     </button>
   </div>
   

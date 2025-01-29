@@ -68,7 +68,7 @@
   {#if imageUrl}
     <img src={imageUrl} alt="Uploaded image" />
   {/if}
-  <button on:click={uploadToML}>Upload to ML</button>
+  <button on:click={uploadToML}>Generate Report</button>
   {#if mlMessage}
     <p>{mlMessage}</p>
   {/if}
