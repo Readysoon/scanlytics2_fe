@@ -2,6 +2,7 @@
   import ImageUploader from './ImageUploader.svelte';
   import TextList from './TextList.svelte';
   import TextEditor from './TextEditor.svelte';
+  import { onMount } from 'svelte';
 
   let texts = [];
   let selectedText = '';
@@ -13,7 +14,36 @@
       isMobile = window.innerWidth <= 600;
     });
   }
+
+  onMount(async () => {
+    try {
+      const response = await fetch('https://scanlytics2-whisper.fly.dev/', {
+        method: 'POST'
+      });
+      console.log('Pinging whisper server... ');
+      if (response.ok) {
+        console.log('Whisper server started successfully');
+      } else {
+        console.error('Failed to start server', response.status);
+      }
+    } catch (error) {
+      console.error('Error starting server', error);
+    }
   
+    try {
+      const response = await fetch('https://scanlytics2-ml.fly.dev/', {
+        method: 'POST'
+      });
+      console.log('Pinging ml server... ');
+      if (response.ok) {
+        console.log('Ml server started successfully');
+      } else {
+        console.error('Failed to start server', response.status);
+      }
+    } catch (error) {
+      console.error('Error starting server', error);
+    }
+  });
 
   function handleSelect(text) {
     selectedText += (selectedText ? '\n' : '') + text;
