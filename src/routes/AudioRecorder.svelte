@@ -81,12 +81,8 @@ async function uploadAudio(audioBlob) {
 </script>
   
 
-<button on:click={toggleRecording} disabled={isUploading}>
-{#if isRecording}
-    Stop and Upload Recording
-{:else}
+<button on:click={toggleRecording} disabled={isUploading} class:is-recording={isRecording}>
     <img src="/mic.png" alt="Microphone" class="mic-icon" />
-{/if}
 </button>
 
 <style>
@@ -98,6 +94,11 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+button.is-recording {
+    background-color: rgb(69, 212, 255);
+    color: white;
 }
 
 .mic-icon {

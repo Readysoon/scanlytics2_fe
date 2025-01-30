@@ -17,12 +17,12 @@
 
   onMount(async () => {
     try {
-      console.log('Pinging whisper server... ');
-      const response = await fetch('https://scanlytics2-whisper.fly.dev/', {
+      const response = await fetch('https://scanlytics2-ml.fly.dev/', {
         method: 'GET'
       });
+      console.log('Pinging ml server... ');
       if (response.ok) {
-        console.log('Whisper server started successfully');
+        console.log('Ml server started successfully');
       } else {
         console.error('Failed to start server', response.status);
       }
@@ -30,15 +30,15 @@
       console.error('Error starting server', error);
     }
   });
-  
+
   onMount(async () => {
     try {
-      const response = await fetch('https://scanlytics2-ml.fly.dev/', {
+      console.log('Pinging whisper server... ');
+      const response = await fetch('https://scanlytics2-whisper.fly.dev/', {
         method: 'GET'
       });
-      console.log('Pinging ml server... ');
       if (response.ok) {
-        console.log('Ml server started successfully');
+        console.log('Whisper server started successfully');
       } else {
         console.error('Failed to start server', response.status);
       }
