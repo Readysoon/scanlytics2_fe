@@ -17,10 +17,10 @@
 
   onMount(async () => {
     try {
-      const response = await fetch('https://scanlytics2-whisper.fly.dev/', {
-        method: 'POST'
-      });
       console.log('Pinging whisper server... ');
+      const response = await fetch('https://scanlytics2-whisper.fly.dev/', {
+        method: 'GET'
+      });
       if (response.ok) {
         console.log('Whisper server started successfully');
       } else {
@@ -29,10 +29,12 @@
     } catch (error) {
       console.error('Error starting server', error);
     }
+  });
   
+  onMount(async () => {
     try {
       const response = await fetch('https://scanlytics2-ml.fly.dev/', {
-        method: 'POST'
+        method: 'GET'
       });
       console.log('Pinging ml server... ');
       if (response.ok) {
