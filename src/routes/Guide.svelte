@@ -7,7 +7,7 @@
       <span class="circle">1</span>
       <div class="text">
         <span class="headline">Select Image</span>
-        <p>Select an image to upload. JPG, JPEG, GIF, PNG (DICOM soon) are possible.</p>
+        <p>Select an image to upload. JPG, JPEG, GIF, PNG are possible.</p>
       </div>
     </div>
     <div class="step" id="step-2">
@@ -28,7 +28,7 @@
       <span class="circle">4</span>
       <div class="text">
         <span class="headline">Complete Report</span>
-        <p>Complete and review your report in the middle window.</p>
+        <p>Complete and review your report in the middle window. You can use our Audio transcription to do so.</p>
       </div>
     </div>
   </div>
