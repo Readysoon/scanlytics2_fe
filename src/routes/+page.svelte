@@ -172,6 +172,7 @@
     flex-direction: column; /* Stack components vertically on mobile */
     flex-grow: 1; /* Ensure it grows to fill available space */
   }
+
   .container.desktop {
     display: flex;
     justify-content: center; /* Centers the boxes within the container */
@@ -194,118 +195,5 @@
     margin: 10px;
     padding: 10px;
     border: 1px solid #ccc;
-  }
-
-  .guide-steps {
-    display: flex;
-    justify-content: center; /* Center the steps */
-    align-items: flex-start;
-    margin-top: 20px;
-    padding: 20px 0;
-  }
-
-  .step {
-    display: flex;
-    align-items: flex-start;
-    padding: 10px;
-    transition: background-color 0.3s ease;
-    width: 200px; /* Fixed width for each step */
-    margin: 0 10px; /* Space between steps */
-  }
-
-  .circle {
-    width: 30px;
-    height: 30px;
-    min-width: 30px; /* Prevent compression */
-    min-height: 30px; /* Prevent compression */
-    border-radius: 50%;
-    background-color: #4CAF50;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
-  }
-
-  .text {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .headline {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-
-  .step.active .circle {
-    background-color: #2196F3;
-  }
-
-
-  footer {
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    border-top: 1px solid #ccc;
-    background-color: #f9f9f9;
-  }
-
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Ensures vertical centering */
-    width: 100%;
-  }
-
-  .footer-left, .footer-center, .footer-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .footer-left,
-  .footer-right {
-    flex: 1; /* Allows these sections to take up equal space */
-  }
-
-  .footer-left {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start; /* Aligns content to the top */
-  }
-
-  .footer-center {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centers content vertically */
-    align-items: center; /* Centers content horizontally */
-    text-align: center;
-  }
-
-  .footer-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center; /* Centers content vertically */
-  }
-
-  nav a {
-    margin: 0 5px;
-    text-decoration: none;
-    color: #333;
-  }
-
-  nav a:hover {
-    text-decoration: underline;
-  }
-
-  select {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
   }
 </style>
