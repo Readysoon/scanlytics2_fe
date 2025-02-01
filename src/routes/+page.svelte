@@ -3,6 +3,7 @@
   import TextList from './TextList.svelte';
   import TextEditor from './TextEditor.svelte';
   import Guide from './Guide.svelte';
+  import Footer from './Footer.svelte';
   import { onMount } from 'svelte';
 
   let texts = [];
@@ -94,29 +95,7 @@
 
   <Guide {isMobile} />
 
-  <footer>
-    <div class="footer-content">
-      <div class="footer-left">
-        <p>© 2025 Scanlytics | Version 0.1</p>
-        <nav>
-          <a href="/">Privacy Policy</a> | 
-          <a href="/">Terms of Use</a> | 
-          <a href="/">Contact</a> | 
-          <a href="/">Products</a>
-        </nav>
-      </div>
-      <div class="footer-center">
-        <p>For clinical usage, appropriate clinical qualification is required, <br> and users must ensure they have the necessary credentials and permissions <br>to access and interpret medical images.</p>
-      </div>
-      <div class="footer-right">
-        <select>
-          <option>English</option>
-          <option>German</option>
-          <option>French</option>
-        </select>
-      </div>
-    </div>
-  </footer>
+  <Footer {isMobile} />
 </div>
 
 <style>
