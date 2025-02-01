@@ -28,7 +28,7 @@
       <span class="circle">4</span>
       <div class="text">
         <span class="headline">Complete Report</span>
-        <p>Complete and review your report in the middle window. You can use our Audio transcription to do so.</p>
+        <p>Complete and review your report in the middle window. You can use our Audio transcription to do so (not supported by every browser/mobile version).</p>
       </div>
     </div>
   </div>
