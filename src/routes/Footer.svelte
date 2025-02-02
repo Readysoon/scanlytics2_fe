@@ -54,11 +54,15 @@
       align-items: center;
     }
   
-    .footer-left, .footer-center, .footer-right {
+    .footer-left, .footer-right {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       margin: 10px 0;
+    }
+
+    .footer-center {
+        align-items: flex-start;
     }
   
     .footer.desktop .footer-left, .footer.desktop .footer-right {
