@@ -74,21 +74,23 @@
 </head>
 
 <div class="page-container">
-  <div class="header">
-    <div class="logo-container">
-      <img src="/logo.png" alt="Logo" class="logo">
-      <div class="title">Scanlytics</div>
-    </div>
-    <div class="menu-icon">
-      &#9776; <!-- Unicode for the hamburger menu icon -->
-    </div>
-  </div>
+  <nav>
+		<div class="logoArea">
+			<img src="/logo.png" alt="Logo" height="30" width="28" />
+			<h2>Scanlytics</h2>
+		</div>
+		<div class="navbar">
+			<a href="/" class="homeBtn">Home</a>
+			<a href="/About/">About</a>
+			<a href="/Demo/" class="DemoBtn">Technology</a>
+			<a href="/Services/">Services</a>
+
+			<div class="bookCallBtn"><a href="/Booking /" class="bookCalllable">Book a Call</a></div>
+		</div>
+	</nav>
 
   <div class="content">
-    <div class="welcome-section">
-      <h2 class="welcome-title">Welcome to Scanlytics</h2>
-      <p class="welcome-description">Scanlytics assigns your X-ray image to one of our existing 8 categories and suggests<br> curated diagnosis texts that you can then customize and use further. Unlike most other <br>X-ray interpretation solutions, Scanlytics does not rely on third-party AI or even foreign servers. <br>If you want to learn more about Scanlytics and the people behind it, click here. <br>Do you have questions or suggestions? Send me an email:<br><a href="mailto:p.gallaschik@gmail.com">philipp.gallaschik@code.berlin</a></p>
-    </div>
+   
 
     <div class={`container ${isMobile ? 'mobile' : 'desktop'}`}>
       <div class="box">
@@ -128,6 +130,7 @@
     flex: 1; /* Allow content to grow and fill space */
     display: flex;
     flex-direction: column;
+    margin-top: 5%;
   }
 
   .menu-icon {
@@ -209,5 +212,42 @@
     margin: 10px;
     padding: 10px;
     border: 1px solid #ccc;
+  }
+
+  nav {
+		display: flex;
+		width: '100%';
+		height: 35px;
+		align-items: center;
+		justify-content: space-between;
+	}
+  .logoArea {
+		height: 100%;
+		width: 8%;
+		display: flex;
+		align-items: center;
+		gap: 8%;
+		padding-left: 1%;
+		font-family: system-ui;
+	}
+
+	.navbar {
+		width: 27%;
+		height: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-right: 1%;
+	}
+
+	a {
+		text-decoration: none;
+		color: rgb(77, 77, 77);
+		font-weight: 500;
+		font-family: system-ui;
+	}
+
+  .DemoBtn{
+    color: black
   }
 </style>
