@@ -34,7 +34,7 @@
       align-items: center;
       padding: 10px 20px;
       border-top: 1px solid #ccc;
-      background-color: #f9f9f9;
+      background-color:rgb(255, 0, 0);
       flex-direction: column; /* Default to column for mobile */
     }
   
