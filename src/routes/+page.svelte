@@ -9,7 +9,7 @@
 	<nav>
 		<div class="logoArea">
 			<img src="/logow.jpg" alt="Logo" height="30" width="28" />
-			<h2 >Scanlytics</h2>
+			<h2>Scanlytics</h2>
 		</div>
 		<div class="navbar">
 			<a href="/" class="homeBtn">Home</a>
@@ -53,16 +53,28 @@
 			</div>
 
 			<div class="rightContentSecitonInLeft">
-				<img src="me5.gif" alt="Brain GIF" width="70%"  height="700"/>
+				<img src="me5.gif" alt="Brain GIF" width="70%" height="700" />
 			</div>
 		</div>
-		 <div class="footerSection">	
-		 footer
-		 
-		 </div>
-	
 	</div>
 </body>
+<footer class="footerSection">
+	<div class="footer-content">
+		<div class="footer-left">
+			<p class="footer-left-text">© 2025 Scanlytics | Version 0.1</p>
+		
+		</div>
+		<div class="footer-center">
+		 <div class="footer-center-box">
+			<p class="footer-center-text">
+				For clinical usage, appropriate clinical qualification is required, <br /> and users must
+				ensure they have the necessary credentials and permissions <br />to access and interpret
+				medical images.
+			</p>
+			</div>
+		</div>
+	</div>
+</footer>
 
 <style>
 	body {
@@ -131,7 +143,7 @@
 		color: white;
 	}
 	.mainSection {
-		height: 690px;
+		height: 700px;
 		margin-top: 30px;
 	}
 
@@ -140,15 +152,13 @@
 		height: 100%;
 	}
 
-	.rightContentSecitonInLeft{
+	.rightContentSecitonInLeft {
 		width: 1200px;
-		position: absolute; 
-		top: 11%; 
+		position: absolute;
+		top: 11%;
 		left: 50%;
 		opacity: 0.8;
-		zIndex: -3;
-		
-
+		zindex: -3;
 	}
 
 	.leftContentHeader {
@@ -236,4 +246,56 @@
 	.leftappointmentbtn {
 		color: white;
 	}
+	.footerSection {
+		width: 100%;
+		height: 100%;
+
+	}
+	.footer-content{
+		width: 100%;
+		height: 100px;
+		display: flex;
+		justify-content: space-between;
+
+
+	}
+	.footer-left{
+		color: black;
+		width: 40%;
+		height: 100%;
+		display: flex; 
+		flex-direction: column; 
+		justify-content: flex-end;
+	}
+	.footer-left-text{
+		color: white;
+		font-family: system-ui;
+		font-size: 12px;
+		opacity: 0.4;
+
+	
+	}
+	.footer-center{
+		color: black;
+		width: 30%;
+		display: flex; 
+		flex-direction: column; 
+		justify-content: flex-end;
+		align-items: end;
+
+
+	}
+	
+
+	.footer-center-text{
+		color: white;
+		font-family: system-ui;
+		font-size: 12px;
+		opacity: 0.4;
+		text-align: end;
+
+
+	}
+
+
 </style>
