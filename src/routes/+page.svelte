@@ -8,8 +8,8 @@
 <body>
 	<nav>
 		<div class="logoArea">
-			<img src="/logo.png" alt="Logo" height="30" width="28" />
-			<h2>Scanlytics</h2>
+			<img src="/logow.jpg" alt="Logo" height="30" width="28" />
+			<h2 >Scanlytics</h2>
 		</div>
 		<div class="navbar">
 			<a href="/" class="homeBtn">Home</a>
@@ -31,47 +31,47 @@
 
 			<div class="middleContentSection">
 				<div class="middleContentTitleArea">
-					<div class="mainTitle">Revolutionizing Healthcare with AI</div>
+					<div class="mainTitle">Revolutionizing Medical Reporting with AI</div>
 				</div>
 
 				<div class="middleContentSubTextArea">
 					<div class="subtext">
-						Artificial intelligence is transforming radiology, enhancing accuracy, efficiency, and
-						patient care. AI-powered algorithms can analyze medical images with remarkable
-						precision, detecting abnormalities such as tumors and fractures faster than ever before.
-						This not only speeds up diagnosis but also reduces human error, supporting radiologists
-						in making more informed decisions. By automating routine tasks, AI allows healthcare
-						professionals to focus more on complex cases and patient interactions. As AI continues
-						to evolve, it promises to revolutionize radiology, leading to earlier disease detection,
-						personalized treatment plans, and improved healthcare outcomes worldwide.
+						Scanlytics is an AI-powered solution designed to streamline medical reporting, enhance
+						efficiency, and empower healthcare professionals to spend more time with patients.
+					</div>
+				</div>
+
+				<div class="leftContentBtnArea">
+					<div class="leftBtnSection">
+						<div class="leftBtn_1"><a href="/Booking /" class="bookCalllable">Book a Call</a></div>
+
+						<div class="leftBtn_2">
+							<a href="/Booking /" class="leftappointmentbtn">Appointment</a>
+						</div>
 					</div>
 				</div>
 			</div>
 
-      <div class="leftContentBtnArea">
-          
-          <div class="leftBtnSection">
-          
-          
-          	<div class="leftBtn_1"><a href="/Booking /" class="bookCalllable">Book a Call</a></div>
-
-            <div class="leftBtn_2"><a href="/Booking /" class="leftappointmentbtn">Appointment</a></div>
-
-          </div>
+			<div class="rightContentSecitonInLeft">
+				<img src="me5.gif" alt="Brain GIF" width="70%"  height="700"/>
 			</div>
 		</div>
-
-		<div class="rightContentSeciton"></div>
+		 <div class="footerSection">	
+		 footer
+		 
+		 </div>
+	
 	</div>
 </body>
 
 <style>
 	body {
-		background-color: rgb(186, 200, 213);
+		background-color: rgb(0, 0, 0);
 		flex: 1;
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
+		overflow: hidden;
 	}
 
 	nav {
@@ -81,10 +81,7 @@
 		align-items: center;
 		justify-content: space-between;
 	}
-	.mainSection {
-		height: 690px;
-		margin-top: 30px;
-	}
+
 	.logoArea {
 		height: 100%;
 		width: 8%;
@@ -93,6 +90,7 @@
 		gap: 8%;
 		padding-left: 1%;
 		font-family: system-ui;
+		color: white;
 	}
 
 	.navbar {
@@ -112,13 +110,13 @@
 	}
 
 	.bookCalllable {
-		color: white;
+		color: black;
 		font-size: 14px;
 		font-weight: 400;
 		font-family: system-ui;
 	}
 	.bookCallBtn {
-		background-color: rgb(0, 0, 0);
+		background-color: rgb(255, 255, 255);
 		width: 20%;
 		height: 80%;
 		display: flex;
@@ -130,12 +128,27 @@
 	}
 
 	.homeBtn {
-		color: black;
+		color: white;
+	}
+	.mainSection {
+		height: 690px;
+		margin-top: 30px;
 	}
 
 	.leftContentSection {
-		width: 60%;
+		width: 70%;
 		height: 100%;
+	}
+
+	.rightContentSecitonInLeft{
+		width: 1200px;
+		position: absolute; 
+		top: 11%; 
+		left: 50%;
+		opacity: 0.8;
+		zIndex: -3;
+		
+
 	}
 
 	.leftContentHeader {
@@ -164,15 +177,14 @@
 
 	.middleContentTitleArea {
 		width: 100%;
-		height: 76%;
+		height: 70%;
 	}
 
 	.middleContentSubTextArea {
 		width: 70%;
 		height: 24%;
-		color: rgb(48, 48, 48);
-    padding: 1%;
-
+		color: white;
+		padding: 1%;
 	}
 	.mainTitle {
 		width: 70%;
@@ -180,39 +192,27 @@
 		padding-left: 1%;
 		font-size: 100px;
 		font-family: system-ui;
-		color: black;
+		color: white;
 	}
 
-  .leftContentBtnArea{
+	.leftContentBtnArea {
 		width: 70%;
 		height: 13%;
 		color: rgb(48, 48, 48);
-    padding: 1%;
-  }
+		padding: 1%;
+	}
 
-  .leftBtnSection{
+	.leftBtnSection {
 		width: 70%;
 		height: 100%;
 		color: rgb(48, 48, 48);
-    display: flex; 
-    align-items: center;
-    gap: 5%
-
-  }
-
-  .leftBtn_1{
-    	background-color: rgb(0, 0, 0);
-		width: 30%;
-		height: 38%;
 		display: flex;
-		justify-content: center;
 		align-items: center;
-		border: 1px solid black;
-		border-radius: 40px;
-		color: white;
-  }
+		gap: 5%;
+	}
 
-  .leftBtn_2{
+	.leftBtn_1 {
+		background-color: rgb(255, 255, 255);
 		width: 30%;
 		height: 38%;
 		display: flex;
@@ -221,10 +221,19 @@
 		border: 1px solid black;
 		border-radius: 40px;
 		color: black;
-  }
-  .leftappointmentbtn{
-    		color: black;
-        
+	}
 
-  }
+	.leftBtn_2 {
+		width: 30%;
+		height: 38%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid white;
+		border-radius: 40px;
+		color: black;
+	}
+	.leftappointmentbtn {
+		color: white;
+	}
 </style>

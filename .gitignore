@@ -1,6 +1,8 @@
 node_modules
 
+
 # Output
+
 .output
 .vercel
 .netlify
@@ -17,6 +19,7 @@ Thumbs.db
 .env.*
 !.env.example
 !.env.test
+*.gif
 
 # Vite
 vite.config.js.timestamp-*
