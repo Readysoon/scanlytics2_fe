@@ -77,19 +77,18 @@
 </footer>
 
 <style>
-	body {
+	html, body {
 		background-color: rgb(0, 0, 0);
-		flex: 1;
+		height: 100vh;
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
 		overflow: hidden;
 	}
 
 	nav {
 		display: flex;
 		width: '100%';
-		height: 35px;
+		height: 5%;
 		align-items: center;
 		justify-content: space-between;
 	}
@@ -143,7 +142,7 @@
 		color: white;
 	}
 	.mainSection {
-		height: 700px;
+		height: 80%;
 		margin-top: 30px;
 	}
 
@@ -248,7 +247,9 @@
 	}
 	.footerSection {
 		width: 100%;
-		height: 100%;
+		height: 10%;
+		margin-top: 5px;
+
 
 	}
 	.footer-content{
