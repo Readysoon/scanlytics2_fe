@@ -2,7 +2,7 @@
   import AudioRecorder from './AudioRecorder.svelte';
 
   export let text = '';
-  let currentStep = 3; // Assuming the current step is managed globally
+  let currentStep= 3; // Assuming the current step is managed globally
 
   function goToStepFour() {
     if (currentStep === 3) {

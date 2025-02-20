@@ -1,67 +1,10 @@
 <script>
-  import ImageUploader from './ImageUploader.svelte';
-  import TextList from './TextList.svelte';
-  import Guide from './Guide.svelte';
-  import Footer from './Footer.svelte';
-  import { onMount } from 'svelte';
-  import TextEditor from './TextEditor.svelte';
 
-  let texts = [];
-  let selectedText = '';
-  let isMobile = false;
+	function printprompt(){ 
+		console.log('hello in pro');
 
-  if (typeof window !== 'undefined') {
-    isMobile = window.innerWidth <= 600;
-    window.addEventListener('resize', () => {
-      isMobile = window.innerWidth <= 600;
-    });
-  }
-
- 
-
-  onMount(async () => {
-    try {
-      const response = await fetch('https://scanlytics2-ml.fly.dev/', {
-        method: 'GET'
-      });
-      console.log('Pinging ml server... ');
-      if (response.ok) {
-        console.log('Ml server started successfully');
-      } else {
-        console.error('Failed to start server', response.status);
-      }
-    } catch (error) {
-      console.error('Error starting server', error);
-    }
-  });
-
- 
-
-  onMount(async () => {
-    try {
-      console.log('Pinging whisper server... ');
-      const response = await fetch('https://scanlytics2-whisper.fly.dev/', {
-        method: 'GET'
-      });
-      if (response.ok) {
-        console.log('Whisper server started successfully');
-      } else {
-        console.error('Failed to start server', response.status);
-      }
-    } catch (error) {
-      console.error('Error starting server', error);
-    }
-  });
-
-  function handleSelect(text) {
-    selectedText += (selectedText ? '\n' : '') + text;
-    texts = texts.filter(t => t !== text);
-  }
-
-
-//   function handleUploadSuccess(parsedTexts) {
-//     texts = parsedTexts;
-//   }
+	}
+	
 </script>
 
 <head>
@@ -75,13 +18,13 @@
 			<h2>Scanlytics</h2>
 		</div>
 		<div class="navbar">
-			<a href="/" >Home</a>
-			<a href="/Vision/">Vision</a>
-			<a href="/Technology/" class="technologyBtn">Technology</a>
+			<a href="/">Home</a>
+			<a href="/Vision/" class="visonBtn" >Vision</a>
+			<a href="/Technology/">Technology</a>
 			<a href="/Services/">Services</a>
 
 
-			<button class="bookCallBtn" on:click={() => console.log('in btn')}>Book a Call</button>
+			<button class="bookCallBtn" on:click={printprompt}>Book a Call</button>
 		</div>
 	</nav>
 
@@ -90,30 +33,9 @@
 	<div class="mainSection">
 		<div class="mainLeftContentSection">
 
-			<div class="boxArea">
-
-				<div class="box">
-				  <!-- <ImageUploader onUploadSuccess={handleUploadSuccess} /> -->
-				</div>
-
-				<div class="box">
-				  <TextEditor bind:text={selectedText} />
-				</div>
-
-				<div class="box">
-				  <TextList {texts} onSelect={handleSelect} />
-				</div>
-			</div>
-
-
-			 
-		  <div class="explainArea">
-			<Guide {isMobile} />
-
-		  </div>
-		  
-
-		
+			
+			
+			
 		</div>
 	</div>
 
@@ -148,29 +70,6 @@
 		flex-direction: column; */
 		overflow: hidden;
 	}
-
-	.boxArea{
-		/* background-color: rgb(65, 167, 47); */
-
-		display: flex;
-		height: 88%;
-	}
-	.box {
-    flex: 1;
-    margin: 80px;
-	height: 89%;
-    /* padding: 10px; */
-	width: 5px;
-	background-color: rgb(211, 210, 209);
-
-    border: 1px solid #ccc;
-  }
-
-  .explainArea{
-	/* background-color: rgba(87, 167, 47, 0.421); */
-	height: 25%;
-
-  }
 
 	nav {
 		display: flex;
@@ -207,7 +106,12 @@
 		font-family: system-ui;
 	}
 
-	
+	.bookCalllable {
+		color: black;
+		font-size: 14px;
+		font-weight: 400;
+		font-family: system-ui;
+	}
 	.bookCallBtn {
 		/* background-color: rgb(255, 255, 255); */
 		width: 20%;
@@ -223,7 +127,7 @@
 
 	}
 
-	.technologyBtn {
+	.visonBtn {
 		color: white;
 	}
 	.mainSection {
@@ -233,13 +137,115 @@
 	}
 
 	.mainLeftContentSection {
-		/* background-color: rgb(255, 23, 193); */
+		background-color: rgb(23, 108, 255);
 		width: 100%;
 		height: 100%;
-		position: relative;
+	}
+
+	.rightContentSecitonInLeft {
+		width: 1200px;
+		position: absolute;
+		top: 11%;
+		left: 50%;
+		opacity: 0.8;
+		zindex: -3;
+	}
+
+	.headerMainContentSection {
+		width: 100%;
+		height: 7%;
+		display: flex;
+		align-items: center;
+	}
+	.leftContentHeaderArea {
+		background-color: rgb(226, 241, 252);
+		width: 20%;
+		height: 60%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid black;
+		border-radius: 40px;
+		color: black;
+		margin-left: 1%;
 	}
 
 
+
+	.middleMainContentSection{
+		/* background-color: rgb(11, 139, 111); */
+
+		width: 100%;
+		height: 86%;
+	}
+
+	.middleContentTitleArea {
+		/* background-color: rgb(139, 84, 11); */
+
+		width: 100%;
+		height: 80%;
+	}
+
+	.middleContentSubTextArea {
+		/* background-color: rgb(29, 38, 44); */
+		width: 70%;
+		height: 20%;
+		color: white;
+		padding: 1%;
+	}
+	.mainTitle {
+		/* background-color: rgb(37, 139, 11); */
+		width: 70%;
+		height: 100%;
+		padding-left: 1%;
+		font-size: 100px;
+		font-family: system-ui;
+		color: white;
+	}
+
+	.ButtomMainContentSection {
+		/* background-color: rgb(139, 11, 11); */
+
+		width: 70%;
+		height: 7%;
+		color: rgb(48, 48, 48);
+		padding: 1%;
+	}
+
+	.leftBtnSection {
+		width: 70%;
+		height: 100%;
+		color: rgb(48, 48, 48);
+		display: flex;
+		align-items: center;
+		gap: 5%;
+	}
+
+	.leftBtn_1 {
+		background-color: rgb(255, 255, 255);
+		width: 30%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid black;
+		border-radius: 40px;
+		color: black;
+	}
+
+	.leftBtn_2 {
+		width: 30%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid white;
+		border-radius: 40px;
+		color: black;
+	}
+	.leftappointmentbtn {
+		color: white;
+	}
 	.footerSection {
 		width: 100%;
 		height: 13%;

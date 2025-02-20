@@ -78,6 +78,10 @@
     .text {
       display: flex;
       flex-direction: column;
+      color: white;
+      font-family: system-ui;
+
+      font-size: 12px;
     }
   
     .headline {

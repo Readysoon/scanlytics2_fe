@@ -19,7 +19,7 @@
 		</div>
 		<div class="navbar">
 			<a href="/" class="homeBtn">Home</a>
-			<a href="/About/">About</a>
+			<a href="/Vision/">Vision</a>
 			<a href="/Technology/">Technology</a>
 			<a href="/Services/">Services</a>
 
