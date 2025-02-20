@@ -193,7 +193,7 @@
 		align-items: center;
 	}
 	.leftContentHeaderArea {
-		/* background-color: rgb(226, 241, 252); */
+		background-color: rgb(226, 241, 252);
 		width: 20%;
 		height: 60%;
 		display: flex;

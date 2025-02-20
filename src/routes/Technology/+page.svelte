@@ -1,11 +1,74 @@
 <script>
+  import ImageUploader from './ImageUploader.svelte';
+  import TextList from './TextList.svelte';
+  import Guide from './Guide.svelte';
+  import Footer from './Footer.svelte';
+  import { onMount } from 'svelte';
+  import TextEditor from './TextEditor.svelte';
+
+  let texts = [];
+  let selectedText = '';
+  let isMobile = false;
+
+  if (typeof window !== 'undefined') {
+    isMobile = window.innerWidth <= 600;
+    window.addEventListener('resize', () => {
+      isMobile = window.innerWidth <= 600;
+    });
+  }
+
+ 
+
+  onMount(async () => {
+    try {
+      const response = await fetch('https://scanlytics2-ml.fly.dev/', {
+        method: 'GET'
+      });
+      console.log('Pinging ml server... ');
+      if (response.ok) {
+        console.log('Ml server started successfully');
+      } else {
+        console.error('Failed to start server', response.status);
+      }
+    } catch (error) {
+      console.error('Error starting server', error);
+    }
+  });
+
+ 
+
+  onMount(async () => {
+    try {
+      console.log('Pinging whisper server... ');
+      const response = await fetch('https://scanlytics2-whisper.fly.dev/', {
+        method: 'GET'
+      });
+      if (response.ok) {
+        console.log('Whisper server started successfully');
+      } else {
+        console.error('Failed to start server', response.status);
+      }
+    } catch (error) {
+      console.error('Error starting server', error);
+    }
+  });
+
+  function handleSelect(text) {
+    selectedText += (selectedText ? '\n' : '') + text;
+    texts = texts.filter(t => t !== text);
+  }
+
+
+//   function handleUploadSuccess(parsedTexts) {
+//     texts = parsedTexts;
+//   }
 </script>
 
 <head>
 	<title>Scanlytics</title>
 </head>
 
-<body>
+<main>
 	<nav>
 		<div class="logoArea">
 			<img src="/logow.jpg" alt="Logo" height="30" width="28" />
@@ -14,41 +77,68 @@
 		<div class="navbar">
 			<a href="/" >Home</a>
 			<a href="/About/">About</a>
-			<a href="/Technology/" class="TechnologyBtn">Technology</a>
+			<a href="/Technology/" class="technologyBtn">Technology</a>
 			<a href="/Services/">Services</a>
 
-			<div class="bookCallBtn"><a href="/Booking /" class="bookCalllable">Book a Call</a></div>
+
+			<button class="bookCallBtn" on:click={() => console.log('in btn')}>Book a Call</button>
 		</div>
 	</nav>
 
+	
+
 	<div class="mainSection">
-		
-	</div>
-</body>
-<footer class="footerSection">
-	<div class="footer-content">
-		<div class="footer-left">
-			<p class="footer-left-text">© 2025 Scanlytics | Version 0.1</p>
+		<div class="mainLeftContentSection">
+				<div class="box">
+				  <!-- <ImageUploader onUploadSuccess={handleUploadSuccess} /> -->
+				</div>
+
+				<div class="box">
+				  <TextEditor bind:text={selectedText} />
+				</div>
+
+				<div class="box">
+				  <TextList {texts} onSelect={handleSelect} />
+				</div>
+
+			 
+		  
+			<Guide {isMobile} />
+		  
+
 		
 		</div>
-		<div class="footer-center">
-		 <div class="footer-center-box">
-			<p class="footer-center-text">
-				For clinical usage, appropriate clinical qualification is required, <br /> and users must
-				ensure they have the necessary credentials and permissions <br />to access and interpret
-				medical images.
-			</p>
+	</div>
+
+
+
+
+	<footer class="footerSection">
+		<div class="footer-content">
+			<div class="footer-left">
+				<p class="footer-left-text">© 2025 Scanlytics | Version 0.1</p>
+			
+			</div>
+			<div class="footer-center">
+			 <div class="footer-center-box">
+				<p class="footer-center-text">
+					For clinical usage, appropriate clinical qualification is required, <br /> and users must
+					ensure they have the necessary credentials and permissions <br />to access and interpret
+					medical images.
+				</p>
+				</div>
 			</div>
 		</div>
-	</div>
-</footer>
+	</footer>
+</main>
+
 
 <style>
-	html, body {
+	main {
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
-		display: flex;
-		flex-direction: column;
+		/* display: flex;
+		flex-direction: column; */
 		overflow: hidden;
 	}
 
@@ -87,39 +177,45 @@
 		font-family: system-ui;
 	}
 
-	.bookCalllable {
-		color: black;
-		font-size: 14px;
-		font-weight: 400;
-		font-family: system-ui;
-	}
+	
 	.bookCallBtn {
-		background-color: rgb(255, 255, 255);
+		/* background-color: rgb(255, 255, 255); */
 		width: 20%;
-		height: 80%;
+		height: 50%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		border: 1px solid black;
 		border-radius: 40px;
-		color: white;
+		color: rgb(10, 9, 9);
+		font-family: system-ui;
+		font-size: 12px;
+
 	}
 
-	
-  .TechnologyBtn{
-    color: white;
-  }
+	.technologyBtn {
+		color: white;
+	}
 	.mainSection {
-    background-color: rgb(190, 39, 39);
-		height: 80%;
+		/* background-color: rgb(36, 34, 34); */
+		height: 77%;
 		margin-top: 30px;
+	}
+
+	.mainLeftContentSection {
+		background-color: rgb(255, 23, 193);
+		width: 100%;
+		height: 100%;
 	}
 
 
 	.footerSection {
 		width: 100%;
-		height: 10%;
-		margin-top: 5px;
+		height: 13%;
+		/* background-color: rgba(209, 78, 78, 0.673); */
+
+		padding: 1em;		
+		/* margin-top: 5px; */
 
 
 	}
