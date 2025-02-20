@@ -1,5 +1,5 @@
 <script>
-  import AudioRecorder from './AudioRecorder.svelte';
+  import AudioRecorder from '../AudioRecorder.svelte';
 
   export let text = '';
   let currentStep = 3; // Assuming the current step is managed globally
