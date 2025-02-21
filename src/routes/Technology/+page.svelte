@@ -7,6 +7,12 @@
 	import TextEditor from './TextEditor.svelte';
 	import Selectpage from './selectpage.svelte';
 
+
+	function redirectUser(){ 
+		window.location.href = 'https://calendly.com/philipp-gallaschik-code/30min';
+
+	}
+
 	let texts = [];
 	let selectedText = '';
 	let isMobile = false;
@@ -84,9 +90,9 @@
 			<a href="/">Home</a>
 			<a href="/Vision/">Vision</a>
 			<a href="/Technology/" class="technologyBtn">Technology</a>
-			<a href="/Services/">Services</a>
+			<a href="/About/">About</a>
+			<button class="bookCallBtn" on:click={redirectUser}>Book a Call</button>
 
-			<button class="bookCallBtn" on:click={() => console.log('in btn')}>Book a Call</button>
 		</div>
 	</nav>
 
@@ -463,6 +469,7 @@
 		color: rgb(10, 9, 9);
 		font-family: system-ui;
 		font-size: 12px;
+		cursor: pointer;
 	}
 
 	.technologyBtn {

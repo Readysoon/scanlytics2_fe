@@ -3,20 +3,8 @@
 	window.location.href = 'https://calendly.com/philipp-gallaschik-code/30min';
 
 	}
-	let currentSlide = 0;
-	const slides = [
-		{ image: 'radiologist_worldmap.png', subtitle: 'Subtitle 1' },
-		{ image: 'radiologist-russiamap.png', subtitle: 'Subtitle 2' },
-		{ image: 'image3.jpg', subtitle: 'Subtitle 3' }
-	];
+	
 
-	function updateSlide(index) {
-		currentSlide = (index + slides.length) % slides.length;
-	}
-
-	function printprompt() {
-		console.log('hello in pro');
-	}
 </script>
 
 <main>
@@ -37,12 +25,7 @@
 
 	<div class="mainSection">
 		<div class="mainLeftContentSection">
-			<div class="slider">
-				<span class="arrow" on:click={() => updateSlide(currentSlide - 1)}>&#9664;</span>
-				<img src={slides[currentSlide].image} alt="Slide Image">
-				<span class="arrow" on:click={() => updateSlide(currentSlide + 1)}>&#9654;</span>
-				<div class="subtitle">{slides[currentSlide].subtitle}</div>
-			</div>
+			
 		</div>
 	</div>
 
@@ -133,40 +116,12 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background-color: black;
+		background-color: rgb(143, 18, 18);
 		width: 100%;
 		height: 100%;
 		position: relative;
 	}
 
-	.slider {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.slider img {
-		max-width: 80%;
-		max-height: 80%;
-	}
-
-	.slider .arrow {
-		cursor: pointer;
-		font-size: 2em;
-		color: rgb(0, 0, 0);
-		user-select: none;
-		margin: 0 10px;
-	}
-
-	.slider .subtitle {
-		position: absolute;
-		bottom: 20px;
-		color: white;
-		font-family: system-ui;
-		font-size: 1.2em;
-		text-align: center;
-		width: 100%;
-	}
 
 	.footerSection {
 		width: 100%;
