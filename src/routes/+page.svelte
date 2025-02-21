@@ -69,7 +69,7 @@
 			
 			<!-- Gif Image -->
 			<div class="rightContentSecitonInLeft">
-				<img src="me5.gif" alt="Brain GIF" width="70%" height="700" />
+				<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" width="70%" height="700" />
 			</div>
 		</div>
 	</div>
