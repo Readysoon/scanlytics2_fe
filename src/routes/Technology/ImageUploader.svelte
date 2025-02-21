@@ -64,6 +64,9 @@
 </script>
 
 <div class="image-uploader">
+
+
+  
   <div class="imgSection">
     {#if imageUrl}
     <img src={imageUrl} alt="Uploaded image" height=400px width=500  />
@@ -96,6 +99,8 @@
     width: 100%;
     height: 100%; /* Extend to full height of the container */
   }
+
+
   .imgSection{
     /* background-color: rgb(102, 0, 255); */
     height: 90%;
@@ -109,9 +114,10 @@
     /* background-color: rgb(155, 59, 123); */
     height: 10%;
     border-top: 1px solid rgb(175, 166, 166);
-    /* align-items: center; */
-    /* justify-content: center;
-     */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 
 
 

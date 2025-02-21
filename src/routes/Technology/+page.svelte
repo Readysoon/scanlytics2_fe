@@ -101,6 +101,7 @@
 
 					<div class="boxSelectContentLayer">
 
+
 					<div class="imgPreviewArea">
 
 				
@@ -183,7 +184,7 @@
 					</div>
 
 					<div class="imgPreviewAddArea"> 
-							<button class="read-btn">submit</button>
+							<button class="read-btn">upload</button>
 
 					</div>
 					
@@ -250,6 +251,7 @@
 		display: flex;
 		height: 88%;
 		padding: 30px;
+		margin-left: 0.6%;
 	}
 
     .boxSelectArea {
@@ -298,6 +300,7 @@
 		/* overflow: auto; */
 		/* border: 1px solid white; */
 	}
+
 
 	.imgPreviewArea{
 		/* background-color: rgb(214, 12, 12); */
@@ -379,6 +382,7 @@
 		display: flex;
 		/* justify-content: space-between; */
 		align-items: center;
+		margin-left: 2%;
 
 	}
 	.box1{

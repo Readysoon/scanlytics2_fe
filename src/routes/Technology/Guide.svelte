@@ -81,7 +81,7 @@
       color: white;
       font-family: system-ui;
 
-      font-size: 12px;
+      font-size: 13px;
     }
   
     .headline {
