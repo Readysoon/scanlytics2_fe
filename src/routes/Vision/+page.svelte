@@ -1,15 +1,19 @@
 <script>
+	let currentSlide = 0;
+	const slides = [
+		{ image: 'radiologist_worldmap.png', subtitle: 'Subtitle 1' },
+		{ image: 'radiologist-russiamap.png', subtitle: 'Subtitle 2' },
+		{ image: 'image3.jpg', subtitle: 'Subtitle 3' }
+	];
 
-	function printprompt(){ 
-		console.log('hello in pro');
-
+	function updateSlide(index) {
+		currentSlide = (index + slides.length) % slides.length;
 	}
-	
-</script>
 
-<head>
-	<title>Scanlytics</title>
-</head>
+	function printprompt() {
+		console.log('hello in pro');
+	}
+</script>
 
 <main>
 	<nav>
@@ -19,61 +23,52 @@
 		</div>
 		<div class="navbar">
 			<a href="/">Home</a>
-			<a href="/Vision/" class="visonBtn" >Vision</a>
+			<a href="/Vision/" class="visonBtn">Vision</a>
 			<a href="/Technology/">Technology</a>
 			<a href="/Services/">Services</a>
-
-
 			<button class="bookCallBtn" on:click={printprompt}>Book a Call</button>
 		</div>
 	</nav>
 
-	
-
 	<div class="mainSection">
 		<div class="mainLeftContentSection">
-
-			
-			
-			
+			<div class="slider">
+				<span class="arrow" on:click={() => updateSlide(currentSlide - 1)}>&#9664;</span>
+				<img src={slides[currentSlide].image} alt="Slide Image">
+				<span class="arrow" on:click={() => updateSlide(currentSlide + 1)}>&#9654;</span>
+				<div class="subtitle">{slides[currentSlide].subtitle}</div>
+			</div>
 		</div>
 	</div>
-
-
-
 
 	<footer class="footerSection">
 		<div class="footer-content">
 			<div class="footer-left">
-				<p class="footer-left-text">© 2025 Scanlytics | Version 0.1</p>
-			
+				<p class="footer-left-text">© 2025 Scanlytics | Version 0,1</p>
 			</div>
 			<div class="footer-center">
-			 <div class="footer-center-box">
-				<p class="footer-center-text">
-					For clinical usage, appropriate clinical qualification is required, <br /> and users must
-					ensure they have the necessary credentials and permissions <br />to access and interpret
-					medical images.
-				</p>
+				<div class="footer-center-box">
+					<p class="footer-center-text">
+						For clinical usage, appropriate clinical qualification is required, <br /> and users must
+						ensure they have the necessary credentials and permissions <br />to access and interpret
+						medical images.
+					</p>
 				</div>
 			</div>
 		</div>
 	</footer>
 </main>
 
-
 <style>
 	main {
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
-		/* display: flex;
-		flex-direction: column; */
 		overflow: hidden;
 	}
 
 	nav {
 		display: flex;
-		width: '100%';
+		width: 100%;
 		height: 5%;
 		align-items: center;
 		justify-content: space-between;
@@ -106,14 +101,7 @@
 		font-family: system-ui;
 	}
 
-	.bookCalllable {
-		color: black;
-		font-size: 14px;
-		font-weight: 400;
-		font-family: system-ui;
-	}
 	.bookCallBtn {
-		/* background-color: rgb(255, 255, 255); */
 		width: 20%;
 		height: 50%;
 		display: flex;
@@ -124,183 +112,99 @@
 		color: rgb(10, 9, 9);
 		font-family: system-ui;
 		font-size: 12px;
-
 	}
 
 	.visonBtn {
 		color: white;
 	}
+
 	.mainSection {
-		/* background-color: rgb(36, 34, 34); */
 		height: 77%;
 		margin-top: 30px;
 	}
 
 	.mainLeftContentSection {
-		background-color: rgb(23, 108, 255);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: black;
 		width: 100%;
 		height: 100%;
+		position: relative;
 	}
 
-	.rightContentSecitonInLeft {
-		width: 1200px;
+	.slider {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.slider img {
+		max-width: 80%;
+		max-height: 80%;
+	}
+
+	.slider .arrow {
+		cursor: pointer;
+		font-size: 2em;
+		color: rgb(0, 0, 0);
+		user-select: none;
+		margin: 0 10px;
+	}
+
+	.slider .subtitle {
 		position: absolute;
-		top: 11%;
-		left: 50%;
-		opacity: 0.8;
-		zindex: -3;
-	}
-
-	.headerMainContentSection {
-		width: 100%;
-		height: 7%;
-		display: flex;
-		align-items: center;
-	}
-	.leftContentHeaderArea {
-		background-color: rgb(226, 241, 252);
-		width: 20%;
-		height: 60%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: 1px solid black;
-		border-radius: 40px;
-		color: black;
-		margin-left: 1%;
-	}
-
-
-
-	.middleMainContentSection{
-		/* background-color: rgb(11, 139, 111); */
-
-		width: 100%;
-		height: 86%;
-	}
-
-	.middleContentTitleArea {
-		/* background-color: rgb(139, 84, 11); */
-
-		width: 100%;
-		height: 80%;
-	}
-
-	.middleContentSubTextArea {
-		/* background-color: rgb(29, 38, 44); */
-		width: 70%;
-		height: 20%;
+		bottom: 20px;
 		color: white;
-		padding: 1%;
-	}
-	.mainTitle {
-		/* background-color: rgb(37, 139, 11); */
-		width: 70%;
-		height: 100%;
-		padding-left: 1%;
-		font-size: 100px;
 		font-family: system-ui;
-		color: white;
+		font-size: 1.2em;
+		text-align: center;
+		width: 100%;
 	}
 
-	.ButtomMainContentSection {
-		/* background-color: rgb(139, 11, 11); */
-
-		width: 70%;
-		height: 7%;
-		color: rgb(48, 48, 48);
-		padding: 1%;
-	}
-
-	.leftBtnSection {
-		width: 70%;
-		height: 100%;
-		color: rgb(48, 48, 48);
-		display: flex;
-		align-items: center;
-		gap: 5%;
-	}
-
-	.leftBtn_1 {
-		background-color: rgb(255, 255, 255);
-		width: 30%;
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: 1px solid black;
-		border-radius: 40px;
-		color: black;
-	}
-
-	.leftBtn_2 {
-		width: 30%;
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: 1px solid white;
-		border-radius: 40px;
-		color: black;
-	}
-	.leftappointmentbtn {
-		color: white;
-	}
 	.footerSection {
 		width: 100%;
 		height: 13%;
-		/* background-color: rgba(209, 78, 78, 0.673); */
-
-		padding: 1em;		
-		/* margin-top: 5px; */
-
-
+		padding: 1em;
 	}
-	.footer-content{
+
+	.footer-content {
 		width: 100%;
 		height: 100px;
 		display: flex;
 		justify-content: space-between;
-
-
 	}
-	.footer-left{
+
+	.footer-left {
 		color: black;
 		width: 40%;
 		height: 100%;
-		display: flex; 
-		flex-direction: column; 
+		display: flex;
+		flex-direction: column;
 		justify-content: flex-end;
 	}
-	.footer-left-text{
+
+	.footer-left-text {
 		color: white;
 		font-family: system-ui;
 		font-size: 12px;
 		opacity: 0.4;
-
-	
 	}
-	.footer-center{
+
+	.footer-center {
 		color: black;
 		width: 30%;
-		display: flex; 
-		flex-direction: column; 
+		display: flex;
+		flex-direction: column;
 		justify-content: flex-end;
 		align-items: end;
-
-
 	}
-	
 
-	.footer-center-text{
+	.footer-center-text {
 		color: white;
 		font-family: system-ui;
 		font-size: 12px;
 		opacity: 0.4;
 		text-align: end;
-
-
 	}
-
-
 </style>
