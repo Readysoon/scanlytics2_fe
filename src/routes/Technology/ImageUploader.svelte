@@ -64,11 +64,19 @@
 </script>
 
 <div class="image-uploader">
-  <input type="file" accept="image/*" on:change={handleFileChange} />
-  {#if imageUrl}
-    <img src={imageUrl} alt="Uploaded image" />
+  <div class="imgSection">
+    {#if imageUrl}
+    <img src={imageUrl} alt="Uploaded image" height=400px width=500  />
   {/if}
-  <button on:click={uploadToML}>Generate Report</button>
+  </div>
+ 
+
+  <div class="btnSection"> 
+    <input type="file" accept="image/*" on:change={handleFileChange} hidden />
+
+    <button on:click={uploadToML}>Generate Report</button>
+  </div>
+ 
   {#if mlMessage}
     <p>{mlMessage}</p>
   {/if}
@@ -76,16 +84,37 @@
 
 <style>
   .image-uploader {
+    /* background-color: aqua; */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center; */
+    /* justify-content: center; */
     text-align: center;
-    padding: 20px;
-    border: 1px solid #ccc;
+    /* padding: 20px; */
+    /* border: 1px solid #ccc; */
     box-sizing: border-box;
     width: 100%;
     height: 100%; /* Extend to full height of the container */
+  }
+  .imgSection{
+    /* background-color: rgb(102, 0, 255); */
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+  }
+  .btnSection{
+    /* background-color: rgb(155, 59, 123); */
+    height: 10%;
+    border-top: 1px solid rgb(175, 166, 166);
+    /* align-items: center; */
+    /* justify-content: center;
+     */
+
+
+
   }
   img {
     max-width: 100%;

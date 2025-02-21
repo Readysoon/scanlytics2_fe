@@ -30,10 +30,13 @@
 <style>
   .text-editor {
     padding: 10px;
+    /* background-color: red; */
+
+    height: 100%;
   }
   textarea {
     width: 100%;
-    height: 300px;
+    height:  90%;
   }
   .button-group {
     display: flex;
