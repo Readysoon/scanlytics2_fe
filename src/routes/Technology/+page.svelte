@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import ImageUploader from './ImageUploader.svelte';
 	import TextList from './TextList.svelte';
 	import Guide from './Guide.svelte';
@@ -6,6 +6,7 @@
 	import { onMount } from 'svelte';
 	import TextEditor from './TextEditor.svelte';
 	import Selectpage from './selectpage.svelte';
+	
 
 
 	function redirectUser(){ 
@@ -13,7 +14,7 @@
 
 	}
 
-	let texts = [];
+	let texts: string | any= [];
 	let selectedText = '';
 	let isMobile = false;
 
@@ -56,22 +57,22 @@
 		}
 	});
 
-	function handleSelect(text) {
+	function handleSelect(text: any) {
 		selectedText += (selectedText ? '\n' : '') + text;
-		texts = texts.filter((t) => t !== text);
+		texts = texts.filter((t:any) => t !== text);
 	}
 
-	function handleUploadSuccess(parsedTexts) {
+	function handleUploadSuccess(parsedTexts: any) {
 		texts = parsedTexts;
 	}
 
 	
-	function handleFileChange(event) {
-    mlSelectedFile = event.target.files[0];
-    if (mlSelectedFile) {
-      imageUrl = URL.createObjectURL(mlSelectedFile);
-    }
-  }
+// 	function handleFileChange(event: any ) {
+//     mlSelectedFile = event.target.files[0];
+//     if (mlSelectedFile) {
+//       imageUrl = URL.createObjectURL(mlSelectedFile);
+//     }
+//   }
 
 
 </script>
@@ -105,101 +106,8 @@
 
 					<div class="boxSelectAreaLayer">
 
-					<div class="boxSelectContentLayer">
-
-
-					<div class="imgPreviewArea">
-
 				
-					<div class="boxSelectContent">
-						<!-- <Selectpage /> -->
-						<img src="/thoraxF.jpg" alt="Logo" height="100%" width="100%" />
-						<div class="patientInfo">
-							<div>15.07.2025</div>
-						</div>
-
-						<div class="patientInfoData">
-							<div>Klaudia Wagner</div>
-							<div class="patientB_Date">12.12.1999</div>
-
-						</div>
-					
-
-					</div>
-					<div class="boxSelectContent">
-						<!-- <Selectpage /> -->
-						<img src="/thoraxF.jpg" alt="Logo" height="100%" width="100%" />
-						<div class="patientInfo">
-							<div>15.07.2025</div>
-						</div>
-
-						<div class="patientInfoData">
-							<div>Klaudia Wagner</div>
-							<div class="patientB_Date">12.12.1999</div>
-
-						</div>
-					
-
-					</div>
-					<div class="boxSelectContent">
-						<!-- <Selectpage /> -->
-						<img src="/thoraxF.jpg" alt="Logo" height="100%" width="100%" />
-						<div class="patientInfo">
-							<div>15.07.2025</div>
-						</div>
-
-						<div class="patientInfoData">
-							<div>Klaudia Wagner</div>
-							<div class="patientB_Date">12.12.1999</div>
-
-						</div>
-					
-
-					</div>
-					<div class="boxSelectContent">
-						<!-- <Selectpage /> -->
-						<img src="/thoraxF.jpg" alt="Logo" height="100%" width="100%" />
-						<div class="patientInfo">
-							<div>15.07.2025</div>
-						</div>
-
-						<div class="patientInfoData">
-							<div>Klaudia Wagner</div>
-							<div class="patientB_Date">12.12.1999</div>
-
-						</div>
-					
-
-					</div>
-					<div class="boxSelectContent">
-						<!-- <Selectpage /> -->
-						<img src="/thoraxF.jpg" alt="Logo" height="100%" width="100%" />
-						<div class="patientInfo">
-							<div>15.07.2025</div>
-						</div>
-
-						<div class="patientInfoData">
-							<div>Klaudia Wagner</div>
-							<div class="patientB_Date">12.12.1999</div>
-
-						</div>
-					
-
-					</div>
-
-					</div>
-
-					<div class="imgPreviewAddArea"> 
-							<button class="read-btn">upload</button>
-
-					</div>
-					
-
-					
-
-					</div>
-				
-
+							<Selectpage/>
 
 
 					<!-- Box Drop Down Section -->

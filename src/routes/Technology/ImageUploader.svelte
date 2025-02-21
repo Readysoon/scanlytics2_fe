@@ -1,139 +1,172 @@
-<script>
-  import axios from 'axios';
-  export let onUploadSuccess;
+<script lang="ts" module >
+	import axios from 'axios';
+	export let onUploadSuccess: (parsedTexts: string[]) => void;
+	import { onMount, onDestroy } from 'svelte';
+	import CircularProgress from '@smui/circular-progress';
+	import Checkbox from '@smui/checkbox';
+	import FormField from '@smui/form-field';
+	import Button from '@smui/button';
+  import "svelte-material-ui/bare.css"; 
+  import { writable } from 'svelte/store';
 
-  let imageUrl = '';
-  let mlMessage = '';
-  let mlSelectedFile = null;
-  let currentStep = 1;
 
-  function handleFileChange(event) {
-    mlSelectedFile = event.target.files[0];
-    if (mlSelectedFile) {
-      imageUrl = URL.createObjectURL(mlSelectedFile);
-    }
+
+	let progress = 0;
+	let closed = false;
+	let timer: ReturnType<typeof setInterval>;
+	let imageUrl = $state("");
+	let mlMessage: string = '';
+	let mlSelectedFile: File | null = null;
+	let currentStep: number = 1;
+  let fileInput: HTMLInputElement;
+
+ 
+
+
+
+
+	function handleFileChange(event: any) {
+  
+    const target = event?.target as HTMLInputElement;
+		if (target.files && target.files[0]) {
+
+			mlSelectedFile = target.files[0];
+      console.log('ml', mlSelectedFile);
+			imageUrl=(URL.createObjectURL(mlSelectedFile)) ;
+      console.log('sm', imageUrl);
+		}
+
+
+    
+		
+	}
+
+  console.log('image', imageUrl );
+
+	const uploadToML = async () => {
+		if (!mlSelectedFile) {
+			mlMessage = 'Please select a file first.';
+			return;
+		}
+
+		const formData = new FormData();
+		formData.append('file', mlSelectedFile);
+
+		try {
+			const response = await axios.post('https://scanlytics2-be.fly.dev/ml', formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				}
+			});
+
+			console.log('ML Response data:', response.data);
+
+			if (Array.isArray(response.data) && response.data.length > 0) {
+				const parsedTexts = response.data.map((item: { text: string }) => parseText(item.text));
+				onUploadSuccess(parsedTexts);
+				mlMessage = 'File uploaded successfully!';
+				goToNextStep(); // Move to the next step
+			} else {
+				mlMessage = 'Server starting... Please generate again.';
+			}
+		} catch (error) {
+			console.error('Error uploading file to ML:', error);
+			mlMessage = 'Error uploading file to ML';
+		}
+	};
+
+
+
+
+
+	function parseText(text: string) {
+		return text.replace(/\[dropdown:([^\]]+)\]/g, (match, options) => {
+			return options.split(',')[0];
+		});
+	}
+
+
+	function goToNextStep() {
+		const step1 = document.getElementById('step-1');
+		const step2 = document.getElementById('step-2');
+		if (step1 && step2) {
+			step1.classList.remove('active');
+			currentStep = 2;
+			step2.classList.add('active');
+		}
+	}
+
+  export function triggerclickEvent (){
+  console.log('hsja');
+  // alert("hello")
+  fileInput.click()
   }
-
-  const uploadToML = async () => {
-    if (!mlSelectedFile) {
-      mlMessage = 'Please select a file first.';
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('file', mlSelectedFile);
-
-    try {
-      const response = await axios.post('https://scanlytics2-be.fly.dev/ml', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-
-      console.log('ML Response data:', response.data);
-
-      if (Array.isArray(response.data) && response.data.length > 0) {
-        const parsedTexts = response.data.map(item => parseText(item.text));
-        onUploadSuccess(parsedTexts);
-        mlMessage = 'File uploaded successfully!';
-        goToNextStep(); // Move to the next step
-      } else {
-        mlMessage = 'Server starting... Please generate again.';
-      }
-
-    } catch (error) {
-      console.error('Error uploading file to ML:', error);
-      mlMessage = 'Error uploading file to ML';
-    }
-  };
-
-  function parseText(text) {
-    return text.replace(/\[dropdown:([^\]]+)\]/g, (match, options) => {
-      return options.split(',')[0];
-    });
-  }
-
-  function goToNextStep() {
-    if (currentStep === 1 || currentStep === 4) {
-      document.getElementById('step-1').classList.remove('active');
-      currentStep = 2;
-      document.getElementById('step-2').classList.add('active');
-    }
-  }
-
 </script>
 
 <div class="image-uploader">
+	<div class="imgSection">
+	
+		{#if imageUrl}
+    
+			<img src={imageUrl} alt="Uploaded image" height="400px" width="500"  />
+      {:else}
+       <div class="placeholderObjecttext">Select an Object</div>
+		{/if} 
+	</div>
 
+	<div class="btnSection">
+		<input  bind:this={fileInput} type="file" accept="image/*" on:change={handleFileChange} hidden  />
+		<button on:click={uploadToML}>Generate Report</button>
+	</div>
 
-  
-  <div class="imgSection">
-    {#if imageUrl}
-    <img src={imageUrl} alt="Uploaded image" height=400px width=500  />
-  {/if}
-  </div>
- 
-
-  <div class="btnSection"> 
-    <input type="file" accept="image/*" on:change={handleFileChange} hidden />
-
-    <button on:click={uploadToML}>Generate Report</button>
-  </div>
- 
-  {#if mlMessage}
-    <p>{mlMessage}</p>
-  {/if}
+	{#if mlMessage}
+		<p>{mlMessage}</p>
+	{/if}
 </div>
 
 <style>
-  .image-uploader {
-    /* background-color: aqua; */
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    /* justify-content: center; */
-    text-align: center;
-    /* padding: 20px; */
-    /* border: 1px solid #ccc; */
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%; /* Extend to full height of the container */
-  }
+	.image-uploader {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%; /* Extend to full height of the container */
+	}
 
 
-  .imgSection{
-    /* background-color: rgb(102, 0, 255); */
-    height: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+	.imgSection {
+    /* background-color: rgb(0, 255, 166); */
 
-  }
-  .btnSection{
-    /* background-color: rgb(155, 59, 123); */
-    height: 10%;
-    border-top: 1px solid rgb(175, 166, 166);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-
-
-
-  }
-  img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
-  }
-  button {
-    margin-top: 10px;
-  }
-  p {
-    margin-top: 10px;
-    color: red;
+		height: 90%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 20px;
+	}
+	.btnSection {
+		height: 10%;
+		border-top: 1px solid rgb(175, 166, 166);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	img {
+		max-width: 100%;
+		height: auto;
+		margin-top: 10px;
+	}
+	button {
+		margin-top: 10px;
+	}
+	p {
+		margin-top: 10px;
+		color: red;
+	}
+  .placeholderObjecttext{
+    font-size: 25px;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: rgba(0, 0, 0, 0.403);
   }
 </style>
-
-
