@@ -45,20 +45,10 @@
 			</div>
 		</div>
 	</div>
-
 	<footer class="footerSection">
 		<div class="footer-content">
 			<div class="footer-left">
-				<p class="footer-left-text">© 2025 Scanlytics | Version 0,1</p>
-			</div>
-			<div class="footer-center">
-				<div class="footer-center-box">
-					<p class="footer-center-text">
-						For clinical usage, appropriate clinical qualification is required, <br /> and users must
-						ensure they have the necessary credentials and permissions <br />to access and interpret
-						medical images.
-					</p>
-				</div>
+				<p class="footer-left-text">© 2025 Scanlytics | Version 0.1</p>
 			</div>
 		</div>
 	</footer>
@@ -197,20 +187,5 @@
 		opacity: 0.4;
 	}
 
-	.footer-center {
-		color: black;
-		width: 30%;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		align-items: end;
-	}
 
-	.footer-center-text {
-		color: white;
-		font-family: system-ui;
-		font-size: 12px;
-		opacity: 0.4;
-		text-align: end;
-	}
 </style>

@@ -15,9 +15,9 @@
 		</div>
 		<div class="navbar">
 			<a href="/">Home</a>
-			<a href="/Vision/" class="visonBtn">Vision</a>
+			<a href="/Vision/">Vision</a>
 			<a href="/Technology/">Technology</a>
-			<a href="/About/">About</a>
+			<a href="/About/" class="aboutBtn">About</a>
 			<button class="bookCallBtn" on:click={redirectUser}>Book a Call</button>
 
 		</div>
@@ -103,7 +103,7 @@
 		cursor: pointer;
 	}
 
-	.visonBtn {
+	.aboutBtn{
 		color: white;
 	}
 
