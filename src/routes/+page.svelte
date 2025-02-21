@@ -1,11 +1,17 @@
 <script>
+
+	function printprompt(){ 
+		console.log('hello in pro');
+
+	}
+	
 </script>
 
 <head>
 	<title>Scanlytics</title>
 </head>
 
-<body>
+<main>
 	<nav>
 		<div class="logoArea">
 			<img src="/logow.jpg" alt="Logo" height="30" width="28" />
@@ -13,23 +19,29 @@
 		</div>
 		<div class="navbar">
 			<a href="/" class="homeBtn">Home</a>
-			<a href="/About/">Vision</a>
-			<a href="/Demo/">Technology</a>
+			<a href="/Vision/">Vision</a>
+			<a href="/Technology/">Technology</a>
 			<a href="/Services/">Services</a>
 
-			<div class="bookCallBtn"><a href="/Booking /" class="bookCalllable">Book a Call</a></div>
+
+			<button class="bookCallBtn" on:click={printprompt}>Book a Call</button>
 		</div>
 	</nav>
 
+	
+
 	<div class="mainSection">
-		<div class="leftContentSection">
-			<div class="leftContentHeader">
+		<div class="mainLeftContentSection">
+
+			<!-- Header  -->
+			<div class="headerMainContentSection">
 				<div class="leftContentHeaderArea">
 					<p>Worlds most Adopted AI</p>
 				</div>
 			</div>
 
-			<div class="middleContentSection">
+			<!-- Middle Area -->
+			<div class="middleMainContentSection">
 				<div class="middleContentTitleArea">
 					<div class="mainTitle">Revolutionizing Medical Reporting with AI</div>
 				</div>
@@ -41,55 +53,63 @@
 					</div>
 				</div>
 
-				<div class="leftContentBtnArea">
-					<div class="leftBtnSection">
-						<div class="leftBtn_1"><a href="/Booking /" class="bookCalllable">Book a Call</a></div>
+			
+			</div>
 
-						<div class="leftBtn_2">
-							<a href="/Booking /" class="leftappointmentbtn">Appointment</a>
-						</div>
+			<!-- Buttom Area of left main section -->
+			<div class="ButtomMainContentSection">
+				<div class="leftBtnSection">
+					<div class="leftBtn_1"><a href="/Booking /" class="bookCalllable">Book a Call</a></div>
+
+					<div class="leftBtn_2">
+						<a href="/Booking /" class="leftappointmentbtn">Appointment</a>
 					</div>
 				</div>
 			</div>
-
+			
+			<!-- Gif Image -->
 			<div class="rightContentSecitonInLeft">
 				<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" width="70%" height="700" />
 			</div>
 		</div>
 	</div>
-</body>
-<footer class="footerSection">
-	<div class="footer-content">
-		<div class="footer-left">
-			<p class="footer-left-text">© 2025 Scanlytics | Version 0.1</p>
-		
-		</div>
-		<div class="footer-center">
-		 <div class="footer-center-box">
-			<p class="footer-center-text">
-				For clinical usage, appropriate clinical qualification is required, <br /> and users must
-				ensure they have the necessary credentials and permissions <br />to access and interpret
-				medical images.
-			</p>
+
+
+
+
+	<footer class="footerSection">
+		<div class="footer-content">
+			<div class="footer-left">
+				<p class="footer-left-text">© 2025 Scanlytics | Version 0.1</p>
+			
+			</div>
+			<div class="footer-center">
+			 <div class="footer-center-box">
+				<p class="footer-center-text">
+					For clinical usage, appropriate clinical qualification is required, <br /> and users must
+					ensure they have the necessary credentials and permissions <br />to access and interpret
+					medical images.
+				</p>
+				</div>
 			</div>
 		</div>
-	</div>
-</footer>
+	</footer>
+</main>
+
 
 <style>
-	body {
+	main {
 		background-color: rgb(0, 0, 0);
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		gap: 10px;
+		height: 100vh;
+		/* display: flex;
+		flex-direction: column; */
 		overflow: hidden;
 	}
 
 	nav {
 		display: flex;
 		width: '100%';
-		height: 35px;
+		height: 5%;
 		align-items: center;
 		justify-content: space-between;
 	}
@@ -128,26 +148,31 @@
 		font-family: system-ui;
 	}
 	.bookCallBtn {
-		background-color: rgb(255, 255, 255);
+		/* background-color: rgb(255, 255, 255); */
 		width: 20%;
-		height: 80%;
+		height: 50%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		border: 1px solid black;
 		border-radius: 40px;
-		color: white;
+		color: rgb(10, 9, 9);
+		font-family: system-ui;
+		font-size: 12px;
+
 	}
 
 	.homeBtn {
 		color: white;
 	}
 	.mainSection {
-		height: 700px;
+		/* background-color: rgb(36, 34, 34); */
+		height: 77%;
 		margin-top: 30px;
 	}
 
-	.leftContentSection {
+	.mainLeftContentSection {
+		/* background-color: rgb(255, 23, 193); */
 		width: 70%;
 		height: 100%;
 	}
@@ -161,7 +186,7 @@
 		zindex: -3;
 	}
 
-	.leftContentHeader {
+	.headerMainContentSection {
 		width: 100%;
 		height: 7%;
 		display: flex;
@@ -180,23 +205,31 @@
 		margin-left: 1%;
 	}
 
-	.middleContentSection {
+
+
+	.middleMainContentSection{
+		/* background-color: rgb(11, 139, 111); */
+
+		width: 100%;
+		height: 86%;
+	}
+
+	.middleContentTitleArea {
+		/* background-color: rgb(139, 84, 11); */
+
 		width: 100%;
 		height: 80%;
 	}
 
-	.middleContentTitleArea {
-		width: 100%;
-		height: 70%;
-	}
-
 	.middleContentSubTextArea {
+		/* background-color: rgb(29, 38, 44); */
 		width: 70%;
-		height: 24%;
+		height: 20%;
 		color: white;
 		padding: 1%;
 	}
 	.mainTitle {
+		/* background-color: rgb(37, 139, 11); */
 		width: 70%;
 		height: 100%;
 		padding-left: 1%;
@@ -205,9 +238,11 @@
 		color: white;
 	}
 
-	.leftContentBtnArea {
+	.ButtomMainContentSection {
+		/* background-color: rgb(139, 11, 11); */
+
 		width: 70%;
-		height: 13%;
+		height: 7%;
 		color: rgb(48, 48, 48);
 		padding: 1%;
 	}
@@ -224,7 +259,7 @@
 	.leftBtn_1 {
 		background-color: rgb(255, 255, 255);
 		width: 30%;
-		height: 38%;
+		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -235,7 +270,7 @@
 
 	.leftBtn_2 {
 		width: 30%;
-		height: 38%;
+		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -248,7 +283,12 @@
 	}
 	.footerSection {
 		width: 100%;
-		height: 100%;
+		height: 13%;
+		/* background-color: rgba(209, 78, 78, 0.673); */
+
+		padding: 1em;		
+		/* margin-top: 5px; */
+
 
 	}
 	.footer-content{
