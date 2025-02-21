@@ -13,7 +13,7 @@
 		</div>
 		<div class="navbar">
 			<a href="/" class="homeBtn">Home</a>
-			<a href="/About/">About</a>
+			<a href="/About/">Vision</a>
 			<a href="/Demo/">Technology</a>
 			<a href="/Services/">Services</a>
 
@@ -53,7 +53,7 @@
 			</div>
 
 			<div class="rightContentSecitonInLeft">
-				<img src="me5.gif" alt="Brain GIF" width="70%" height="700" />
+				<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" width="70%" height="700" />
 			</div>
 		</div>
 	</div>
