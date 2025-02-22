@@ -1,22 +1,18 @@
 <script>
+    import ImageWithBoxes from './ImageWithBoxes.svelte';
+
+    let currentSlide = 0;
+
+    const slides = [
+        { image: 'radiologist_worldmap.png', subtitle: 'In developed countries there is a decent availability of radiologists for the population. A range from 186 in Denmark over 87 in the US to 23 in Poland per million inhabitants can be observed. Contrary to that is the the rest of the world with 14.3 per million for China, 10 for India and only 3.6 on average for the African continent. We aim to provide basic radiologic diagnostics not only to developed countries - but also to the people in need. The following examples apply to most countries, with the different factors being more or less pronounced:' },
+        { image: 'radiologist-russiamap.png', subtitle: 'Subtitle 2' },
+        { image: 'image3.jpg', subtitle: 'Subtitle 3' }
+    ];
+
 	function redirectUser(){ 
 	window.location.href = 'https://calendly.com/philipp-gallaschik-code/30min';
-
-	}
-	let currentSlide = 0;
-	const slides = [
-		{ image: 'radiologist_worldmap.png', subtitle: 'Subtitle 1' },
-		{ image: 'radiologist-russiamap.png', subtitle: 'Subtitle 2' },
-		{ image: 'image3.jpg', subtitle: 'Subtitle 3' }
-	];
-
-	function updateSlide(index) {
-		currentSlide = (index + slides.length) % slides.length;
 	}
 
-	function printprompt() {
-		console.log('hello in pro');
-	}
 </script>
 
 <main>
@@ -31,21 +27,16 @@
 			<a href="/Technology/">Technology</a>
 			<a href="/About/">About</a>
 			<button class="bookCallBtn" on:click={redirectUser}>Book a Call</button>
-
 		</div>
 	</nav>
 
 	<div class="mainSection">
 		<div class="mainLeftContentSection">
-			<div class="slider">
-				<span class="arrow" on:click={() => updateSlide(currentSlide - 1)}>&#9664;</span>
-				<img src={slides[currentSlide].image} alt="Slide Image">
-				<span class="arrow" on:click={() => updateSlide(currentSlide + 1)}>&#9654;</span>
-				<div class="subtitle">{slides[currentSlide].subtitle}</div>
-			</div>
+            <ImageWithBoxes {slides} {currentSlide} />
+            <div class="subtitle">{slides[currentSlide].subtitle}</div>
 		</div>
 	</div>
-	<footer class="footerSection">
+	<footer class="footerSection"> fac
 		<div class="footer-content">
 			<div class="footer-left">
 				<p class="footer-left-text">© 2025 Scanlytics | Version 0.1</p>
@@ -56,10 +47,12 @@
 
 <style>
 	main {
-		background-color: rgb(0, 0, 0);
-		height: 100vh;
-		overflow: hidden;
-	}
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        background-color: rgb(0, 0, 0);
+        overflow: hidden;
+    }
 
 	nav {
 		display: flex;
@@ -115,13 +108,16 @@
 	}
 
 	.mainSection {
-		height: 77%;
-		margin-top: 30px;
-	}
+        flex: 1; /* Allow the main section to grow and fill the remaining space */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
 
 	.mainLeftContentSection {
 		display: flex;
-		justify-content: center;
+        flex-direction: column;
 		align-items: center;
 		background-color: black;
 		width: 100%;
@@ -129,34 +125,18 @@
 		position: relative;
 	}
 
-	.slider {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.slider img {
-		max-width: 80%;
-		max-height: 80%;
-	}
-
-	.slider .arrow {
-		cursor: pointer;
-		font-size: 2em;
-		color: rgb(0, 0, 0);
-		user-select: none;
-		margin: 0 10px;
-	}
-
-	.slider .subtitle {
-		position: absolute;
-		bottom: 20px;
-		color: white;
-		font-family: system-ui;
-		font-size: 1.2em;
-		text-align: center;
-		width: 100%;
-	}
+    .subtitle {
+        color: white;
+        font-family: system-ui;
+        font-size: 15px;
+        opacity: 0.4;
+        text-align: center;
+        padding: 1em;
+        width: 100%; /* Make subtitle take the full width of its container */
+        max-width: 600px; /* Optional: Set a max-width to match the image width */
+        box-sizing: border-box; /* Include padding in the width calculation */
+        background-color: rgba(0, 0, 0, 0.6); /* Optional: Add a background to make it stand out */
+    }
 
 	.footerSection {
 		width: 100%;
