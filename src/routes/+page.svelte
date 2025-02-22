@@ -1,7 +1,14 @@
 <script>
+	import { redirect } from '@sveltejs/kit';
 
-	function printprompt(){ 
-		console.log('hello in pro');
+	function redirectUser(){ 
+		window.location.href = 'https://calendly.com/philipp-gallaschik-code/30min';
+
+	}
+
+	function redirectTechnologyPage (){
+		window.location.href = '/Technology/';
+
 
 	}
 	
@@ -19,12 +26,12 @@
 		</div>
 		<div class="navbar">
 			<a href="/" class="homeBtn">Home</a>
-			<a href="/About/">About</a>
+			<a href="/Vision/">Vision</a>
 			<a href="/Technology/">Technology</a>
-			<a href="/Services/">Services</a>
+			<a href="/About/">About</a>
 
 
-			<button class="bookCallBtn" on:click={printprompt}>Book a Call</button>
+			<button class="bookCallBtn" on:click={redirectUser}>Book a Call</button>
 		</div>
 	</nav>
 
@@ -59,17 +66,19 @@
 			<!-- Buttom Area of left main section -->
 			<div class="ButtomMainContentSection">
 				<div class="leftBtnSection">
-					<div class="leftBtn_1"><a href="/Booking /" class="bookCalllable">Book a Call</a></div>
+					<button class="leftBtn_1" on:click={redirectUser}><a href="https://calendly.com/philipp-gallaschik-code/30min " class="bookCalllable">Book a Call</a></button>
 
-					<div class="leftBtn_2">
-						<a href="/Booking /" class="leftappointmentbtn">Appointment</a>
-					</div>
+					<button class="leftBtn_2" on:click={redirectTechnologyPage}>
+						<a href="/Technology/" class="leftappointmentbtn">View Technology</a>
+					</button>
 				</div>
 			</div>
 			
 			<!-- Gif Image -->
 			<div class="rightContentSecitonInLeft">
-				<img src="me5.gif" alt="Brain GIF" width="70%" height="700" />
+				<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" width="70%" height="700" />
+				<!-- <img src="LNz.gif" alt="Brain GIF" width="70%" height="700" /> -->
+
 			</div>
 		</div>
 	</div>
@@ -99,6 +108,7 @@
 
 <style>
 	main {
+    /* background-color: rgb(255, 254, 251); */
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
 		/* display: flex;
@@ -159,6 +169,7 @@
 		color: rgb(10, 9, 9);
 		font-family: system-ui;
 		font-size: 12px;
+		cursor: pointer;
 
 	}
 
@@ -266,9 +277,11 @@
 		border: 1px solid black;
 		border-radius: 40px;
 		color: black;
+		cursor: pointer;
 	}
 
 	.leftBtn_2 {
+		background-color: black;
 		width: 30%;
 		height: 100%;
 		display: flex;
@@ -277,9 +290,14 @@
 		border: 1px solid white;
 		border-radius: 40px;
 		color: black;
+		cursor: pointer;
+
 	}
 	.leftappointmentbtn {
 		color: white;
+		font-size: 14px;
+		font-weight: 400;
+		font-family: system-ui;
 	}
 	.footerSection {
 		width: 100%;

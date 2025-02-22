@@ -1,95 +1,95 @@
-<script>
-	import ImageUploader,{triggerclickEvent} from "./ImageUploader.svelte";
-
+<script lang="ts" module>
+	import ImageUploader,{imageupload} from "./ImageUploader.svelte";
+  
   //  let toggleupload = false 
    ImageUploader
+
+
+
+  let imageUrl = $state('');
+	let mlMessage: string = '';
+	let mlSelectedFile: File | null = null;
+	let currentStep: number = 1;
+	let fileInput: HTMLInputElement;
+	let imgArr = $state([]);
+
+
+export function triggerclickEvent() {
+		console.log('hsja');
+		// alert("hello")
+		fileInput.click();
+	}
+
+  async function handleFileChange(event: any) {
+    console.log('ninads');
+		const target = event?.target as HTMLInputElement;
+		if (target.files && target.files[0]) {
+			mlSelectedFile = target.files[0];
+			console.log('ml', mlSelectedFile);
+			imageUrl = URL.createObjectURL(mlSelectedFile);
+			console.log('sm', imageUrl);
+			if (imageUrl) {
+				console.log('init');
+				await handleImpageMultipleUpload(imageUrl);
+			}
+		}
+	}
+
+
+	function handleImpageMultipleUpload(event: any) {
+		
+
+
+    if(imgArr?.length <= 5){
+      imgArr.push(imageUrl);
+    }
+
+    console.log('image', imgArr);
+	}
+
+
+  function handletrigger(event: any){
+    console.log('img', event);
+    imageupload(event)
+  }
+
+  
+
 </script>
   
 <div class="boxSelectContentLayer">
 
 
   <div class="imgPreviewArea">
+    {#if imageUrl}  
+		{#if imgArr.length > 0}
+    
 
 
-  <div class="boxSelectContent">
-    <!-- <Selectpage /> -->
-    <img src="/thoraxF.jpg" alt="Logo" height="100%" width="100%" />
-    <div class="patientInfo">
-      <div>15.07.2025</div>
-    </div>
 
-    <div class="patientInfoData">
-      <div>Klaudia Wagner</div>
-      <div class="patientB_Date">12.12.1999</div>
+    
 
-    </div>
-  
+    {#each imgArr as img, i}
+    
+ 
+      <img src={img} alt="Uploaded image" height="150px" width="150" on:click={() => handletrigger(img)} />
+   
 
-  </div>
-  <div class="boxSelectContent">
-    <!-- <Selectpage /> -->
-    <img src="/thoraxF.jpg" alt="Logo" height="100%" width="100%" />
-    <div class="patientInfo">
-      <div>15.07.2025</div>
-    </div>
+     {/each}
+   
 
-    <div class="patientInfoData">
-      <div>Klaudia Wagner</div>
-      <div class="patientB_Date">12.12.1999</div>
+    {/if}
+		
+		{/if}
 
-    </div>
-  
 
-  </div>
-  <div class="boxSelectContent">
-    <!-- <Selectpage /> -->
-    <img src="/thoraxF.jpg" alt="Logo" height="100%" width="100%" />
-    <div class="patientInfo">
-      <div>15.07.2025</div>
-    </div>
-
-    <div class="patientInfoData">
-      <div>Klaudia Wagner</div>
-      <div class="patientB_Date">12.12.1999</div>
-
-    </div>
-  
-
-  </div>
-  <div class="boxSelectContent">
-    <!-- <Selectpage /> -->
-    <img src="/thoraxF.jpg" alt="Logo" height="100%" width="100%" />
-    <div class="patientInfo">
-      <div>15.07.2025</div>
-    </div>
-
-    <div class="patientInfoData">
-      <div>Klaudia Wagner</div>
-      <div class="patientB_Date">12.12.1999</div>
-
-    </div>
-  
-
-  </div>
-  <div class="boxSelectContent">
-    <!-- <Selectpage /> -->
-    <img src="/thoraxF.jpg" alt="Logo" height="100%" width="100%" />
-    <div class="patientInfo">
-      <div>15.07.2025</div>
-    </div>
-
-    <div class="patientInfoData">
-      <div>Klaudia Wagner</div>
-      <div class="patientB_Date">12.12.1999</div>
-
-    </div>
-  
-
-  </div>
+ 
 
   </div>
 
   <div class="imgPreviewAddArea"> 
+    <input  bind:this={fileInput} type="file" accept="image/*" on:change={handleFileChange} hidden  />
+
       <button class="read-btn" on:click={triggerclickEvent}>upload</button>
 
   </div>
@@ -118,6 +118,10 @@
 		/* overflow: auto; */
 		/* border: 1px solid white; */
 	}
+  ul{
+    text-decoration: none;
+    list-style: none;
+  }
   
 	.imgPreviewArea{
 		/* background-color: rgb(214, 12, 12); */
@@ -126,9 +130,11 @@
 		width: 100%;
 		overflow: auto;
 		display: flex;
-		gap: 10%;
-		flex-direction: column;
+		/* flex-direction: column; */
 		align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10%;
 	}
 	.imgPreviewAddArea{
 		background-color: rgba(211, 210, 209, 0.64);
