@@ -50,13 +50,14 @@
 	// }
 
 	// console.log('image', imgArr);
-	const uploadImageToMl = () => {
-		console.log('hello');
-		handleprogressbar()
-	}
+	// const uploadImageToMl = () => {
+	// 	console.log('hello');
+	// 	handleprogressbar()
+	// }
 
 	const uploadToML = async () => {
-		 console.log('init ');
+		handleprogressbar()
+
 		if (!mlSelectedFile) {
 			mlMessage = 'Please select a file first.';
 			return;
@@ -143,8 +144,8 @@
 
 	<div class="btnSection">
 		<!-- <input bind:this={fileInput} type="file" accept="image/*" on:change={handleFileChange} hidden /> -->
-		<!-- <button on:click={uploadToML}>Generate Report</button> -->
-		<button on:click={uploadImageToMl}>Generate Report</button>
+		<button on:click={uploadToML}>Generate Report</button>
+		<!-- <button on:click={uploadImageToMl}>Generate Report</button> -->
 
 	</div>
 
