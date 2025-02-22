@@ -7,7 +7,7 @@
 
 
   let imageUrl = $state('');
-	let mlMessage: string = '';
+	let mlMessage: string  = '';
 	let mlSelectedFile: File | null = null;
 	let currentStep: number = 1;
 	let fileInput: HTMLInputElement;
@@ -78,9 +78,14 @@ export function triggerclickEvent() {
      {/each}
    
 
+
     {/if}
+	{:else}
+			<img src="/xr3.png" class="xrLogo" alt="Logo" height="100" width="108"  />
+
+
 		
-		{/if}
+	{/if}
 
 
  
@@ -121,6 +126,11 @@ export function triggerclickEvent() {
   ul{
     text-decoration: none;
     list-style: none;
+  }
+
+  .xrLogo{
+	opacity: 0.4;
+	margin-bottom: 10%;
   }
   
 	.imgPreviewArea{

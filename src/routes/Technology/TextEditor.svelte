@@ -1,8 +1,10 @@
-<script>
+<script lang="ts" module>
   import AudioRecorder from './AudioRecorder.svelte';
+  import Loadingbar from './loadingbar.svelte';
 
   export let text = '';
   let currentStep= 3; // Assuming the current step is managed globally
+  let imgState = $state(false)
 
   function goToStepFour() {
     if (currentStep === 3) {
@@ -15,12 +17,24 @@
   function appendTranscription(transcription) {
     text += (text ? '\n' : '') + transcription;
   }
+
 </script>
 
 <div class="text-editor">
   <textarea bind:value={text} on:focus={goToStepFour}></textarea>
   <div class="button-group">
     <AudioRecorder onTranscription={appendTranscription} />
+    {#if imgState}
+        in img state
+
+      {:else}
+     
+      
+      
+       <Loadingbar/>
+
+    {/if}
+
     <button >
       <img src="downloads.png" alt="Download" />
     </button>
@@ -39,9 +53,11 @@
     height:  90%;
   }
   .button-group {
+    /* background-color: orange; */
     display: flex;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
   }
 
   button img {
@@ -57,5 +73,6 @@
     align-items: center;
     justify-content: center;
   }
+
 
 </style>

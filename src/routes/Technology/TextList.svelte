@@ -1,4 +1,4 @@
-<script>
+<script lang="ts" module>
   export let texts = [];
   export let onSelect;
   let currentStep = 2; // Assuming the current step is managed globally
@@ -26,23 +26,53 @@
   </script>
   
   <div class="text-list">
-    {#each texts as text (text)}
-      <div class="text-item" on:click={() => handleClick(text)}>
-        {parseText(text)}
-      </div>
-    {/each}
+    {#if texts.length > 0}
+      {#each texts as text (text)}
+        <div class="text-item" on:click={() => handleClick(text)}>
+          {parseText(text)}
+        </div>
+      {/each}
+    
+    {:else}
+       <div class="defaulText">
+        <div class="placeholderObjecttext">Scanlytics AI Assistant</div>
+       </div>
+    {/if}
   </div>
   
   <style>
     .text-list {
       overflow: hidden;
-      max-height: 300px;
+      /* max-height: 300px; */
+      /* background-color: pink; */
+      height: 100%;
     }
     .text-item {
       padding: 10px;
       margin: 5px 0;
       background: #f0f0f0;
       cursor: pointer;
+      background-color: blue;
     }
+    .defaulText{
+      /* background-color: bisque; */
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .placeholderObjecttext {
+		font-size: 29px;
+		font-weight: bold;
+		font-family: sans-serif;
+		color: rgba(0, 0, 0, 0.403);
+    display: flex;
+    justify-content: center;
+    background-color: pink;
+    height: 15%;
+    width: 0%;
+    text-align: center;
+    margin-bottom: 10%;
+	}
   </style>
   

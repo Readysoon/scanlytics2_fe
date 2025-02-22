@@ -8,7 +8,7 @@
 	import Button from '@smui/button';
 	import 'svelte-material-ui/bare.css';
 	import { writable } from 'svelte/store';
-
+	import loading, {handleprogressbar}  from './loadingbar.svelte';
 	let progress = 0;
 	let closed = false;
 	let timer: ReturnType<typeof setInterval>;
@@ -17,6 +17,8 @@
 	let mlSelectedFile: File | null = null;
 	let currentStep: number = 1;
   let imgPreview = $state('');
+  
+
 	// let fileInput: HTMLInputElement;
 	// let imgArr = $state([]);
   
@@ -48,8 +50,13 @@
 	// }
 
 	// console.log('image', imgArr);
+	const uploadImageToMl = () => {
+		console.log('hello');
+		handleprogressbar()
+	}
 
 	const uploadToML = async () => {
+		 console.log('init ');
 		if (!mlSelectedFile) {
 			mlMessage = 'Please select a file first.';
 			return;
@@ -136,7 +143,9 @@
 
 	<div class="btnSection">
 		<!-- <input bind:this={fileInput} type="file" accept="image/*" on:change={handleFileChange} hidden /> -->
-		<button on:click={uploadToML}>Generate Report</button>
+		<!-- <button on:click={uploadToML}>Generate Report</button> -->
+		<button on:click={uploadImageToMl}>Generate Report</button>
+
 	</div>
 
 	{#if mlMessage}
