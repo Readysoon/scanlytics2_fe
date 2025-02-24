@@ -14,7 +14,7 @@
 	let timer: ReturnType<typeof setInterval>;
 	let imageUrl = $state('');
 	let mlMessage= $state('');
-	let imgfileData: any  = {}
+	let imgfileData: File | null = null;
 	let mlSelectedFile: File | null = null;
 	let currentStep: number = 1;
   let imgPreview = $state('');
@@ -25,12 +25,11 @@
 
 		handleprogressbar()
 
-	 console.log("imgfile:", imgfileData );
 
-		// Early reply
-		if (Object.keys(imgfileData).length === 0) {
+	 	console.log('img object tyoe', typeof imgfileData);
+	
+		if (imgfileData == null) {
 			mlMessage = 'Please select a file first.';
-			console.log('in message error call');
 			return;
 		}
 
@@ -82,12 +81,10 @@
 	export function imageupload(event: any, selectedImgFileData: any) {
 
     if(event){
-		console.log('selectedImgFileData', selectedImgFileData);
       imgPreview = event
 	  imgfileData = selectedImgFileData
     }
 
-	console.log('imgfileData', imgfileData);
 	
 	}
 </script>
