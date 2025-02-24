@@ -10,7 +10,7 @@
 
 
 	function redirectUser(){ 
-		window.location.href = 'https://calendly.com/philipp-gallaschik-code/30min';
+		window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
 
 	}
 

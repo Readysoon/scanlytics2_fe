@@ -13,60 +13,33 @@
 	let closed = false;
 	let timer: ReturnType<typeof setInterval>;
 	let imageUrl = $state('');
-	let mlMessage: string = '';
+	let mlMessage= $state('');
+	let imgfileData: File | null = null;
 	let mlSelectedFile: File | null = null;
 	let currentStep: number = 1;
   let imgPreview = $state('');
   
 
-	// let fileInput: HTMLInputElement;
-	// let imgArr = $state([]);
-  
-
-	// async function handleFileChange(event: any) {
-	// 	const target = event?.target as HTMLInputElement;
-	// 	if (target.files && target.files[0]) {
-	// 		mlSelectedFile = target.files[0];
-	// 		console.log('ml', mlSelectedFile);
-	// 		imageUrl = URL.createObjectURL(mlSelectedFile);
-	// 		console.log('sm', imageUrl);
-	// 		if (imageUrl) {
-	// 			console.log('init');
-	// 			await handleImpageMultipleUpload(imageUrl);
-	// 		}
-	// 	}
-	// }
-
-
-	// function handleImpageMultipleUpload(event: any) {
-		
-
-
-  //   if(imgArr?.length <= 5){
-  //     imgArr.push(imageUrl);
-  //   }
-
-  //   console.log('image', imgArr);
-	// }
-
-	// console.log('image', imgArr);
-	// const uploadImageToMl = () => {
-	// 	console.log('hello');
-	// 	handleprogressbar()
-	// }
 
 	const uploadToML = async () => {
+
 		handleprogressbar()
 
-		if (!mlSelectedFile) {
+
+	 	console.log('img object tyoe', typeof imgfileData);
+	
+		if (imgfileData == null) {
 			mlMessage = 'Please select a file first.';
 			return;
 		}
 
+		// Convert to multiform data
 		const formData = new FormData();
-		formData.append('file', mlSelectedFile);
+		formData.append('file', imgfileData);
 
+			// API Call
 		try {
+			console.log('');
 			const response = await axios.post('https://scanlytics2-be.fly.dev/ml', formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data'
@@ -106,11 +79,17 @@
 		}
 	}
 
-	export function imageupload(event: any ) {
+	export function imageupload(event: any, selectedImgFileData: any) {
 
     if(event){
       imgPreview = event
+	  imgfileData = selectedImgFileData
+	  if(imgfileData){
+		mlMessage = ""
+	  }
     }
+
+
 	
 	}
 </script>

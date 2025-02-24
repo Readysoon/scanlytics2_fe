@@ -15,21 +15,15 @@
 
 
 export function triggerclickEvent() {
-		console.log('hsja');
-		// alert("hello")
 		fileInput.click();
 	}
 
   async function handleFileChange(event: any) {
-    console.log('ninads');
 		const target = event?.target as HTMLInputElement;
 		if (target.files && target.files[0]) {
 			mlSelectedFile = target.files[0];
-			console.log('ml', mlSelectedFile);
 			imageUrl = URL.createObjectURL(mlSelectedFile);
-			console.log('sm', imageUrl);
 			if (imageUrl) {
-				console.log('init');
 				await handleImpageMultipleUpload(imageUrl);
 			}
 		}
@@ -44,13 +38,12 @@ export function triggerclickEvent() {
       imgArr.push(imageUrl);
     }
 
-    console.log('image', imgArr);
 	}
 
 
   function handletrigger(event: any){
-    console.log('img', event);
-    imageupload(event)
+ 
+    imageupload(event, mlSelectedFile)
   }
 
   
