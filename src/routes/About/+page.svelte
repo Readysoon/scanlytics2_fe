@@ -25,7 +25,7 @@
 
 	<div class="mainSection">
 		<div class="mainLeftContentSection">
-			
+			<img src="/team.png" alt="About" class="mainImage"/>
 		</div>
 	</div>
 
@@ -116,10 +116,18 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background-color: rgb(143, 18, 18);
+		background-color: rgb(0, 0, 0);
 		width: 100%;
 		height: 100%;
 		position: relative;
+	}
+
+	.mainImage {
+		max-width: 100%;
+		max-height: 100%;
+		width: auto;
+		height: auto;
+		object-fit: contain; /* Ensures the image scales while maintaining aspect ratio */
 	}
 
 
