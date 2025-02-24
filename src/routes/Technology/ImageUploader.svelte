@@ -83,7 +83,11 @@
     if(event){
       imgPreview = event
 	  imgfileData = selectedImgFileData
+	  if(imgfileData){
+		mlMessage = ""
+	  }
     }
+
 
 	
 	}
