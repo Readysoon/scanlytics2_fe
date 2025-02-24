@@ -1,4 +1,4 @@
-<script lang="ts" module>
+<script lang="ts" >
   export let texts = [];
   export let onSelect;
   let currentStep = 2; // Assuming the current step is managed globally

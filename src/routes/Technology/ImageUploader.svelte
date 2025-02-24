@@ -83,6 +83,7 @@
 			} else {
 				mlMessage = 'Server starting... Please generate again.';
 			}
+			return response.data;
 		} catch (error) {
 			console.error('Error uploading file to ML:', error);
 			mlMessage = 'Error uploading file to ML';
