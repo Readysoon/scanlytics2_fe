@@ -8,59 +8,63 @@
 	import Button from '@smui/button';
 	import 'svelte-material-ui/bare.css';
 	import { writable } from 'svelte/store';
-	import loading, {handleprogressbar}  from './loadingbar.svelte';
+	import loading, { handleprogressbar } from './loadingbar.svelte';
 	let progress = 0;
 	let closed = false;
 	let timer: ReturnType<typeof setInterval>;
 	let imageUrl = $state('');
-	let mlMessage= $state('');
+	let mlMessage = $state('');
 	let imgfileData: File | null = null;
 	let mlSelectedFile: File | null = null;
 	let currentStep: number = 1;
-  let imgPreview = $state('');
-  
-
+	let imgPreview = $state('');
 
 	const uploadToML = async () => {
-
 		handleprogressbar()
 
-
-	 	console.log('img object tyoe', typeof imgfileData);
-	
 		if (imgfileData == null) {
 			mlMessage = 'Please select a file first.';
 			return;
 		}
 
-		// Convert to multiform data
+		const backendresData = await sendImgDataToBackend(imgfileData);
+
+		if(backendresData){
+			await handleSuccessfulUpload(backendresData)
+		}
+		
+	};
+
+	const sendImgDataToBackend = async (imgfileData: File) => {
 		const formData = new FormData();
 		formData.append('file', imgfileData);
 
-			// API Call
+		// API Call
 		try {
-			console.log('');
 			const response = await axios.post('https://scanlytics2-be.fly.dev/ml', formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data'
 				}
 			});
 
-			console.log('ML Response data:', response.data);
-
-			if (Array.isArray(response.data) && response.data.length > 0) {
-				const parsedTexts = response.data.map((item: { text: string }) => parseText(item.text));
-				onUploadSuccess(parsedTexts);
-				mlMessage = 'File uploaded successfully!';
-				goToNextStep(); // Move to the next step
-			} else {
-				mlMessage = 'Server starting... Please generate again.';
-			}
+			 return response.data
 		} catch (error) {
 			console.error('Error uploading file to ML:', error);
 			mlMessage = 'Error uploading file to ML';
 		}
 	};
+
+
+	const handleSuccessfulUpload = (backendresData: any) => {
+		if (Array.isArray(backendresData.data) && backendresData.data.length > 0) {
+				const parsedTexts = backendresData.data.map((item: { text: string }) => parseText(item.text));
+				onUploadSuccess(parsedTexts);
+				mlMessage = 'File uploaded successfully!';
+				goToNextStep(); // Move to the next step
+			} else {
+				mlMessage = 'Server starting... Please generate again.';
+		}
+	}
 
 	function parseText(text: string) {
 		return text.replace(/\[dropdown:([^\]]+)\]/g, (match, options) => {
@@ -79,30 +83,24 @@
 	}
 
 	export function imageupload(event: any, selectedImgFileData: any) {
-
-    if(event){
-      imgPreview = event
-	  imgfileData = selectedImgFileData
-	  if(imgfileData){
-		mlMessage = ""
-	  }
-    }
-
-
-	
+		if (event) {
+			imgPreview = event;
+			imgfileData = selectedImgFileData;
+			if (imgfileData) {
+				mlMessage = '';
+			}
+		}
 	}
 </script>
 
 <div class="image-uploader">
 	<div class="imgSection">
-
-    {#if imgPreview} 
-      <img src={imgPreview} alt="Uploaded image" height="400px" width="500" />
-      {:else}
+		{#if imgPreview}
+			<img src={imgPreview} alt="Uploaded image" height="400px" width="500" />
+		{:else}
 			<div class="placeholderObjecttext">Select an Object</div>
-
-    {/if}
-     <!-- {#if imageUrl}  
+		{/if}
+		<!-- {#if imageUrl}  
 		{#if imgArr.length > 0}
     
     <ul>
@@ -125,7 +123,6 @@
 		<!-- <input bind:this={fileInput} type="file" accept="image/*" on:change={handleFileChange} hidden /> -->
 		<button on:click={uploadToML}>Generate Report</button>
 		<!-- <button on:click={uploadImageToMl}>Generate Report</button> -->
-
 	</div>
 
 	{#if mlMessage}
@@ -148,12 +145,12 @@
 
 		height: 90%;
 		display: flex;
-    flex-direction: column;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		padding: 20px;
-    flex-wrap: wrap;
-    gap: 10px; 
+		flex-wrap: wrap;
+		gap: 10px;
 	}
 	.btnSection {
 		height: 10%;

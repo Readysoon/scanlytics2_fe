@@ -28,8 +28,7 @@
         in img state
 
       {:else}
-     
-      
+
       
        <Loadingbar/>
 
