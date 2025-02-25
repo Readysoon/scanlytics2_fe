@@ -123,6 +123,8 @@
 		{#if imgPreview}
 			<img src={imgPreview} class="imgPreview" alt="Uploaded image" height="400px" width="500" />
 		{:else}
+			<img src="/xr3.png" class="xrLogo" alt="Logo" height="100" width="108"  />
+
 			<div class="placeholderObjecttext">Select an Object</div>
 		{/if}
 		<!-- {#if imageUrl}  
@@ -181,6 +183,11 @@
 		width: 400px; /* Set the desired width */
 		height: 390px; /* Set the desired height */
 	}
+	
+	.xrLogo{
+	opacity: 0.4;
+	/* margin-bottom: 10%; */
+  }
 	.btnSection {
 		height: 10%;
 		border-top: 1px solid rgb(175, 166, 166);

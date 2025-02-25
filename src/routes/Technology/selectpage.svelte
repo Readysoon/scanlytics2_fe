@@ -74,8 +74,7 @@ export function triggerclickEvent() {
 
     {/if}
 	{:else}
-			<img src="/xr3.png" class="xrLogo" alt="Logo" height="100" width="108"  />
-
+	in select
 
 		
 	{/if}
