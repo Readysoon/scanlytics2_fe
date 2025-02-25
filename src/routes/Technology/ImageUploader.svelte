@@ -57,12 +57,13 @@
 		}
 	};
 
-	const handleResponseArr = (backendresData: any) => {
+	const handleResponseArr = async(backendresData: any) => {
 
 
 		console.log('backendresData', backendresData);
 		if (Array.isArray(backendresData.data) && backendresData.data.length > 0) {
 			handleCirleBarCall(true);
+			console.log('in array section');
 			const parsedTexts = backendresData.data.map((item: { text: string }) => parseText(item.text));
 			onUploadSuccess(parsedTexts);
 			mlMessage = 'File uploaded successfully!';
