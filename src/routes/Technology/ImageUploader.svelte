@@ -71,6 +71,7 @@
 			console.log('parsedText', parsedTexts);
 			if(parsedTexts){
 				mlMessage = 'File uploaded successfully!';
+				handleCirleBarCall(false);
 				// ?
 				onUploadSuccess(parsedTexts);
 				goToNextStep(); // 
