@@ -12,6 +12,8 @@
   function handleClick(text: any) {
     onSelect(text);
     if (currentStep === 2) {
+        console.log('inside handleClick onselect');
+        console.log('inside handleClick onselect - currentStep', currentStep);
 
       goToStepThree();
     }
