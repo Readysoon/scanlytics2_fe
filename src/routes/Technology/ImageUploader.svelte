@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import axios from 'axios';
 	export let onUploadSuccess: (parsedTexts: string[]) => void;
-	import TextEditor, {handleCirleBarCall} from './TextEditor.svelte';
+	import TextEditor, { handleCirleBarCall } from './TextEditor.svelte';
 	import { onMount, onDestroy } from 'svelte';
 	import CircularProgress from '@smui/circular-progress';
 	import Checkbox from '@smui/checkbox';
@@ -20,58 +20,53 @@
 	let currentStep: number = 1;
 	let imgPreview = $state('');
 
-
-	
 	const uploadToML = async () => {
 		// handleprogressbar()
-		handleCirleBarCall(true)
 
 		if (imgfileData == null) {
+			handleCirleBarCall(false);
 			mlMessage = 'Please select a file first.';
 			return;
 		}
 
 		const backendresData = await sendImgDataToBackend(imgfileData);
 
-		if(backendresData){
-			await handleResponseArr(backendresData)
+		if (backendresData) {
+			await handleResponseArr(backendresData);
 		}
-		
 	};
 
 	const sendImgDataToBackend = async (imgfileData: File) => {
-		const formData = new FormData();
-		formData.append('file', imgfileData);
-
-		// API Call
 		try {
+			handleCirleBarCall(true);
+			const formData = new FormData();
+			formData.append('file', imgfileData);
+
 			const response = await axios.post('https://scanlytics2-be.fly.dev/ml', formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data'
 				}
 			});
 			console.log('responseData', response.data);
-			handleCirleBarCall(false)
-			 return response.data
+			return response.data;
 		} catch (error) {
-			handleCirleBarCall(false)
+			handleCirleBarCall(false);
 			console.error('Error uploading file to ML:', error);
 			mlMessage = 'Error uploading file to ML';
 		}
 	};
 
-
-
 	const handleResponseArr = (backendresData: any) => {
 		if (Array.isArray(backendresData.data) && backendresData.data.length > 0) {
-				const parsedTexts = backendresData.data.map((item: { text: string }) => parseText(item.text));
-				onUploadSuccess(parsedTexts);
-				mlMessage = 'File uploaded successfully!';
-				goToNextStep(); // Move to the next step
-			} else {
-				mlMessage = 'Server starting... Please generate again.';
+			handleCirleBarCall(true);
+			const parsedTexts = backendresData.data.map((item: { text: string }) => parseText(item.text));
+			onUploadSuccess(parsedTexts);
+			mlMessage = 'File uploaded successfully!';
+			goToNextStep(); // Move to the next step
+		} else {
+			mlMessage = 'Server starting... Please generate again.';
 		}
-	}
+	};
 
 	function parseText(text: string) {
 		return text.replace(/\[dropdown:([^\]]+)\]/g, (match, options) => {
@@ -92,7 +87,7 @@
 	export function imageupload(event: any, selectedImgFileData: any) {
 		if (event) {
 			imgPreview = event;
-			
+
 			imgfileData = selectedImgFileData;
 			if (imgfileData) {
 				mlMessage = '';
@@ -104,7 +99,7 @@
 <div class="image-uploader">
 	<div class="imgSection">
 		{#if imgPreview}
-			<img   src={imgPreview} class="imgPreview" alt="Uploaded image" height="400px" width="500" />
+			<img src={imgPreview} class="imgPreview" alt="Uploaded image" height="400px" width="500" />
 		{:else}
 			<div class="placeholderObjecttext">Select an Object</div>
 		{/if}
@@ -162,8 +157,8 @@
 	}
 	.imgPreview {
 		width: 400px; /* Set the desired width */
-		height: 400px; /* Set the desired height */
-}
+		height: 390px; /* Set the desired height */
+	}
 	.btnSection {
 		height: 10%;
 		border-top: 1px solid rgb(175, 166, 166);
