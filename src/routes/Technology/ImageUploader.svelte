@@ -3,7 +3,6 @@
 	export let onUploadSuccess: (parsedTexts: string[]) => void;
 	import TextList, {handleTextData} from './TextList.svelte';
 	import TextEditor, { handleCirleBarCall } from './TextEditor.svelte';
-	
 	import { onMount, onDestroy } from 'svelte';
 	import CircularProgress from '@smui/circular-progress';
 	import Checkbox from '@smui/checkbox';
@@ -12,6 +11,7 @@
 	import 'svelte-material-ui/bare.css';
 	import { writable } from 'svelte/store';
 	import loading, { handleprogressbar } from './loadingbar.svelte';
+
 	let progress = 0;
 	let closed = false;
 	let timer: ReturnType<typeof setInterval>;
@@ -123,6 +123,8 @@
 		{#if imgPreview}
 			<img src={imgPreview} class="imgPreview" alt="Uploaded image" height="400px" width="500" />
 		{:else}
+			<img src="/xr3.png" class="xrLogo" alt="Logo" height="100" width="108"  />
+
 			<div class="placeholderObjecttext">Select an Object</div>
 		{/if}
 		<!-- {#if imageUrl}  
@@ -181,6 +183,11 @@
 		width: 400px; /* Set the desired width */
 		height: 390px; /* Set the desired height */
 	}
+	
+	.xrLogo{
+	opacity: 0.4;
+	/* margin-bottom: 10%; */
+  }
 	.btnSection {
 		height: 10%;
 		border-top: 1px solid rgb(175, 166, 166);

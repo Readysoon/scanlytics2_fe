@@ -3,12 +3,15 @@
 <script lang="ts" module>
 
   let texts = $state([]);
-  export let onSelect;
-  let currentStep = 2; // Assuming the current step is managed globally
+  export let onSelect: any;
+  let currentStep = $state(2); // Assuming the current step is managed globally
 
   function handleClick(text: any) {
     onSelect(text);
     if (currentStep === 2) {
+        console.log('inside handleClick onselect');
+        console.log('inside handleClick onselect - currentStep', currentStep);
+
       goToStepThree();
     }
   }
@@ -22,7 +25,7 @@
   // Left this here, for when a solution is found how to handle 
   // the dropdown menus in the TextEditor.svelte
   function parseText(text: any) {
-    console.log('text on Textlist');
+    console.log('text on Textlist: ', text);
     return text.replace(/\[dropdown:([^\]]+)\]/g, (match, options) => {
       return options.split(',')[0];
     });
