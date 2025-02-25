@@ -82,7 +82,7 @@
 		color: rgba(0, 0, 0, 0.403);
     display: flex;
     justify-content: center;
-    background-color: pink;
+    /* background-color: pink; */
     height: 15%;
     width: 0%;
     text-align: center;
