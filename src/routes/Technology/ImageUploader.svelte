@@ -3,7 +3,6 @@
 	export let onUploadSuccess: (parsedTexts: string[]) => void;
 	import TextList, {handleTextData} from './TextList.svelte';
 	import TextEditor, { handleCirleBarCall } from './TextEditor.svelte';
-	
 	import { onMount, onDestroy } from 'svelte';
 	import CircularProgress from '@smui/circular-progress';
 	import Checkbox from '@smui/checkbox';
@@ -12,6 +11,7 @@
 	import 'svelte-material-ui/bare.css';
 	import { writable } from 'svelte/store';
 	import loading, { handleprogressbar } from './loadingbar.svelte';
+
 	let progress = 0;
 	let closed = false;
 	let timer: ReturnType<typeof setInterval>;
