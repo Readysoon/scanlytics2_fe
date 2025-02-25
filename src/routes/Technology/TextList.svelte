@@ -32,6 +32,7 @@
   }
 
   export  function handleTextData(event: any){
+    console.log('in handleTextData', event);
     texts = event
   }
 
