@@ -19,6 +19,8 @@
 	let currentStep: number = 1;
 	let imgPreview = $state('');
 
+
+	
 	const uploadToML = async () => {
 		handleprogressbar()
 
