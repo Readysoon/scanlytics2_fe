@@ -39,6 +39,7 @@
 	const sendImgDataToBackend = async (imgfileData: File) => {
 		try {
 			handleCirleBarCall(true);
+			console.log('imgfileData in api call data:', imgfileData);
 			const formData = new FormData();
 			formData.append('file', imgfileData);
 
@@ -57,6 +58,9 @@
 	};
 
 	const handleResponseArr = (backendresData: any) => {
+
+
+		console.log('backendresData', backendresData);
 		if (Array.isArray(backendresData.data) && backendresData.data.length > 0) {
 			handleCirleBarCall(true);
 			const parsedTexts = backendresData.data.map((item: { text: string }) => parseText(item.text));
@@ -64,6 +68,8 @@
 			mlMessage = 'File uploaded successfully!';
 			goToNextStep(); // Move to the next step
 		} else {
+			handleCirleBarCall(false);
+
 			mlMessage = 'Server starting... Please generate again.';
 		}
 	};
