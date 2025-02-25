@@ -61,7 +61,7 @@
 	const handleResponseArr = async(backendresData: any) => {
 
 
-		console.log('backendresData', backendresData);
+		console.log('backendresData1', backendresData);
 		if (Array.isArray(backendresData) && backendresData.length > 0) {
 			handleCirleBarCall(true);
 			console.log('in array section');
@@ -69,10 +69,15 @@
 			const parsedTexts = backendresData.map((item: { text: string }) => parseText(item.text));
 
 			console.log('parsedText', parsedTexts);
-			// What does this function
-			onUploadSuccess(parsedTexts);
-			mlMessage = 'File uploaded successfully!';
-			goToNextStep(); // Move to the next step
+			if(parsedTexts){
+				mlMessage = 'File uploaded successfully!';
+				// ?
+				onUploadSuccess(parsedTexts);
+				goToNextStep(); // 
+
+			}
+
+			
 		} else {
 			handleCirleBarCall(false);
 

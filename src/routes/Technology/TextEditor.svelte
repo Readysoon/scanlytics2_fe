@@ -4,7 +4,7 @@
   import { Circle2 } from 'svelte-loading-spinners';
   
 
-  export let text = '';
+  let text = $state('');
   let currentStep= 3; // Assuming the current step is managed globally
   let imgState = $state(false)
   let circleLoadingBarState = $state(false)
@@ -18,6 +18,7 @@
   }
 
   function appendTranscription(transcription) {
+    console.log('transcription', transcription);
     text += (text ? '\n' : '') + transcription;
   }
 
