@@ -40,7 +40,7 @@
 
 	const sendImgDataToBackend = async (imgfileData: File) => {
 		try {
-			handleCirleBarCall(true);
+			/*handleCirleBarCall(true);*/
 			console.log('imgfileData in api call data:', imgfileData);
 			const formData = new FormData();
 			formData.append('file', imgfileData);
@@ -53,7 +53,7 @@
 			console.log('responseData', response.data);
 			return response.data;
 		} catch (error) {
-			handleCirleBarCall(false);
+			/*handleCirleBarCall(false);*/
 			console.error('Error uploading file to ML:', error);
 			mlMessage = 'Error uploading file to ML';
 		}

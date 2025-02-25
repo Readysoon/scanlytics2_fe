@@ -60,7 +60,6 @@
 					</div>
 				</div>
 
-			
 			</div>
 
 			<!-- Buttom Area of left main section -->
