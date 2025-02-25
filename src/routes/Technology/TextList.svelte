@@ -5,11 +5,11 @@
 
 
 
-  export let texts = [];
+  let texts = $state([]);
   export let onSelect;
   let currentStep = 2; // Assuming the current step is managed globally
 
-  function handleClick(text) {
+  function handleClick(text: any) {
     onSelect(text);
     if (currentStep === 2) {
       goToStepThree();
@@ -24,11 +24,14 @@
 
   // Left this here, for when a solution is found how to handle 
   // the dropdown menus in the TextEditor.svelte
-  function parseText(text) {
+  function parseText(text: any) {
+    console.log('text on Textlist');
     return text.replace(/\[dropdown:([^\]]+)\]/g, (match, options) => {
       return options.split(',')[0];
     });
   }
+
+  console.log('text length on TextList', );
   </script>
   
   <div class="text-list">
