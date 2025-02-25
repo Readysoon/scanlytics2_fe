@@ -19,7 +19,12 @@
 
   function appendTranscription(transcription: any) {
     console.log('transcription', transcription);
-    text += (text ? '\n' : '') + transcription;
+    if(transcription){
+      text += (text ? '\n' : '') + transcription;
+
+    }else{
+        console.log('Hola im in appendTranscription function');
+    }
   }
 
 

@@ -31,7 +31,7 @@
     });
   }
 
-  console.log('text length on TextList', );
+  console.log('text length on TextList', texts);
   </script>
   
   <div class="text-list">
