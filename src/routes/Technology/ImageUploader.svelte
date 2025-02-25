@@ -1,6 +1,7 @@
 <script lang="ts" module>
 	import axios from 'axios';
 	export let onUploadSuccess: (parsedTexts: string[]) => void;
+	// import TextList, from './TextList.svelte';
 	import TextEditor, { handleCirleBarCall } from './TextEditor.svelte';
 	import { onMount, onDestroy } from 'svelte';
 	import CircularProgress from '@smui/circular-progress';
@@ -64,7 +65,11 @@
 		if (Array.isArray(backendresData.data) && backendresData.data.length > 0) {
 			handleCirleBarCall(true);
 			console.log('in array section');
+			
 			const parsedTexts = backendresData.data.map((item: { text: string }) => parseText(item.text));
+
+			console.log('parsedText', parsedTexts);
+			// What does this function
 			onUploadSuccess(parsedTexts);
 			mlMessage = 'File uploaded successfully!';
 			goToNextStep(); // Move to the next step
@@ -80,6 +85,8 @@
 			return options.split(',')[0];
 		});
 	}
+
+	// What does this function do?
 
 	function goToNextStep() {
 		const step1 = document.getElementById('step-1');
