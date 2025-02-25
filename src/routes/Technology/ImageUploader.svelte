@@ -1,6 +1,7 @@
 <script lang="ts" module>
 	import axios from 'axios';
 	export let onUploadSuccess: (parsedTexts: string[]) => void;
+	import TextEditor, {handleCirleBarCall} from './TextEditor.svelte';
 	import { onMount, onDestroy } from 'svelte';
 	import CircularProgress from '@smui/circular-progress';
 	import Checkbox from '@smui/checkbox';
@@ -22,7 +23,8 @@
 
 	
 	const uploadToML = async () => {
-		handleprogressbar()
+		// handleprogressbar()
+		handleCirleBarCall(true)
 
 		if (imgfileData == null) {
 			mlMessage = 'Please select a file first.';
@@ -32,7 +34,7 @@
 		const backendresData = await sendImgDataToBackend(imgfileData);
 
 		if(backendresData){
-			await handleSuccessfulUpload(backendresData)
+			await handleResponseArr(backendresData)
 		}
 		
 	};
@@ -48,16 +50,19 @@
 					'Content-Type': 'multipart/form-data'
 				}
 			});
-
+			console.log('responseData', response.data);
+			handleCirleBarCall(false)
 			 return response.data
 		} catch (error) {
+			handleCirleBarCall(false)
 			console.error('Error uploading file to ML:', error);
 			mlMessage = 'Error uploading file to ML';
 		}
 	};
 
 
-	const handleSuccessfulUpload = (backendresData: any) => {
+
+	const handleResponseArr = (backendresData: any) => {
 		if (Array.isArray(backendresData.data) && backendresData.data.length > 0) {
 				const parsedTexts = backendresData.data.map((item: { text: string }) => parseText(item.text));
 				onUploadSuccess(parsedTexts);
@@ -87,6 +92,7 @@
 	export function imageupload(event: any, selectedImgFileData: any) {
 		if (event) {
 			imgPreview = event;
+			
 			imgfileData = selectedImgFileData;
 			if (imgfileData) {
 				mlMessage = '';
@@ -98,7 +104,7 @@
 <div class="image-uploader">
 	<div class="imgSection">
 		{#if imgPreview}
-			<img src={imgPreview} alt="Uploaded image" height="400px" width="500" />
+			<img   src={imgPreview} class="imgPreview" alt="Uploaded image" height="400px" width="500" />
 		{:else}
 			<div class="placeholderObjecttext">Select an Object</div>
 		{/if}
@@ -154,6 +160,10 @@
 		flex-wrap: wrap;
 		gap: 10px;
 	}
+	.imgPreview {
+		width: 400px; /* Set the desired width */
+		height: 400px; /* Set the desired height */
+}
 	.btnSection {
 		height: 10%;
 		border-top: 1px solid rgb(175, 166, 166);

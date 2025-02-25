@@ -1,10 +1,13 @@
 <script lang="ts" module>
   import AudioRecorder from './AudioRecorder.svelte';
   import Loadingbar from './loadingbar.svelte';
+  import { Circle2 } from 'svelte-loading-spinners';
+  
 
   export let text = '';
   let currentStep= 3; // Assuming the current step is managed globally
   let imgState = $state(false)
+  let circleLoadingBarState = $state(false)
 
   function goToStepFour() {
     if (currentStep === 3) {
@@ -18,19 +21,24 @@
     text += (text ? '\n' : '') + transcription;
   }
 
+
+  export function handleCirleBarCall(state: boolean)  {
+    circleLoadingBarState = state
+  }
+
 </script>
 
 <div class="text-editor">
   <textarea bind:value={text} on:focus={goToStepFour}></textarea>
   <div class="button-group">
     <AudioRecorder onTranscription={appendTranscription} />
-    {#if imgState}
-        in img state
+
+    {#if circleLoadingBarState}
+        <!-- <Loadingbar/> -->
+        <Circle2 size="40" colorOuter="blue" unit="px" durationInner="1s" />
 
       {:else}
-
-      
-       <Loadingbar/>
+      <div class="placeholderObjecttext">Text Editor</div>
 
     {/if}
 
@@ -58,6 +66,13 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  .placeholderObjecttext {
+		font-size: 25px;
+		font-weight: bold;
+		font-family: sans-serif;
+		color: rgba(0, 0, 0, 0.403);
+	}
 
   button img {
     width: 24px;
