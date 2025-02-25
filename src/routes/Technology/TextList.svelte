@@ -31,6 +31,10 @@
     });
   }
 
+  export  function handleTextData(event: any){
+    texts = event
+  }
+
   console.log('text length on TextList', texts);
   </script>
   

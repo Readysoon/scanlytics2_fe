@@ -1,8 +1,9 @@
 <script lang="ts" module>
 	import axios from 'axios';
 	export let onUploadSuccess: (parsedTexts: string[]) => void;
-	// import TextList, from './TextList.svelte';
+	import TextList, {handleTextData} from './TextList.svelte';
 	import TextEditor, { handleCirleBarCall } from './TextEditor.svelte';
+	
 	import { onMount, onDestroy } from 'svelte';
 	import CircularProgress from '@smui/circular-progress';
 	import Checkbox from '@smui/checkbox';
@@ -72,6 +73,7 @@
 			if(parsedTexts){
 				mlMessage = 'File uploaded successfully!';
 				handleCirleBarCall(false);
+				handleTextData(parsedTexts)
 				// ?
 				onUploadSuccess(parsedTexts);
 				goToNextStep(); // 
