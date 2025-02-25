@@ -66,7 +66,7 @@
       margin: 5px 0;
       background: #f0f0f0;
       cursor: pointer;
-      background-color: blue;
+      /* background-color: blue; */
     }
     .defaulText{
       /* background-color: bisque; */
