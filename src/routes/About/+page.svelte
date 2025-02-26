@@ -95,27 +95,7 @@ let DatenschutzState: boolean = false;
 				
 				</div>
 			</div>
-			<div  class="profileCard">
-				<div class="profileImageCardSection" >
-					<img src="/Julius_circle_portrait.png"  class="userProfileImg" height="100" width="100" />
 
-				</div>
-				<div class="profileCardNameSection">
-					<p class="profileNameContent">
-						Julius Klingelhöller
-					</p>
-				</div>
-				<div class="profileCardKnowHowSection">
-					<p class="knowHowContent">
-						Project Manager M&A (2021 - 2022)
-					</p>
-					<br>
-					<p class="knowHowContent">
-						Software Engineer (2022 - today)
-					</p>
-				
-				</div>
-			</div>
 			<div  class="profileCard">
 				<div class="profileImageCardSection" >
 					<img src="/Tobias_circle_portrait.png"  class="userProfileImg" height="100" width="100" />
@@ -128,7 +108,7 @@ let DatenschutzState: boolean = false;
 				</div>
 				<div class="profileCardKnowHowSection">
 					<p class="knowHowContent">
-						Product Management (2022 - heute)
+						Product Management (2022 - Today)
 					</p>
 					<br>
 					<p class="knowHowContent">
@@ -136,6 +116,28 @@ let DatenschutzState: boolean = false;
 				
 				</div>
 			</div>
+			<div  class="profileCard">
+				<div class="profileImageCardSection" >
+					<img src="/Julius_circle_portrait.png"  class="userProfileImg" height="100" width="100" />
+
+				</div>
+				<div class="profileCardNameSection">
+					<p class="profileNameContent">
+						Julius Klingelhöller
+					</p>
+				</div>
+				<div class="profileCardKnowHowSection">
+					<p class="knowHowContent">
+						Project Manager M&A (2021 - Today)
+					</p>
+					<br>
+					<p class="knowHowContent">
+						Software Engineer (2022 - Today)
+					</p>
+				
+				</div>
+			</div>
+			
 			<div class="profileCard">
 				<div class="profileImageCardSection">
 					<img src="/emms1.jpg"  class="userProfileImg" height="100" width="100" />
@@ -147,13 +149,14 @@ let DatenschutzState: boolean = false;
 					</p>
 				</div>
 				<div class="profileCardKnowHowSection">
+					<p class="knowHowContent">
+						Software Engineer (2022 - Today)
+					</p>
 					<!-- <p class="knowHowContent" >
 						Depute Innovation & Fashion GmbH(2021 - 2023)
 					</p> -->
-					<!-- <br> -->
-					<p class="knowHowContent">
-						Software Engineer
-					</p>
+					<br>
+					
 				</div>
 			</div>
 		</div>
@@ -258,7 +261,7 @@ let DatenschutzState: boolean = false;
 	.profileCard{
 		width: 20%;
 		height: 50%;
-		/* background-color: pink; */
+		background-color: rgba(41, 40, 41, 0.86);
 		display: flex;
 		border: 1px solid white; 
 		border-radius: 7px;

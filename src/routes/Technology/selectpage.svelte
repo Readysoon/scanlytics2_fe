@@ -16,14 +16,16 @@
 
 	const createMockFile = (fileData: any) => {
 		const { name, size, lastModified, type } = fileData;
-		const fileContent = new Blob([], { type }); // Create an empty file or mock content if needed
-		return new File([fileContent], name, { lastModified, type });
+
+		const fileContent = new Uint8Array(size).fill(0)
+		const blob = new Blob([fileContent], { type }); // Create an empty file or mock content if needed
+		return new File([blob], name,  { lastModified, type });
 	};
 
 	const mockFileData = [
 		{
 			name: 'vooraanzicht-knie-rontgenfoto-300x537.jpg',
-			size: "16102",
+			size: 16102,
 			lastModified: 1740407386082,
 			type: 'image/jpeg'
 		},
