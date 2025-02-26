@@ -154,8 +154,10 @@
 						</div>
 
 					</div>
-					<div>
-						hey
+					<div class="coverButtom">
+						<p class="overtext">
+							The integration of AI into radiology is transforming the field, paving the way for a future where human expertise and artificial intelligence work in seamless harmony. AI-driven tools are enhancing efficiency by rapidly analyzing medical images, detecting abnormalities with remarkable precision, and streamlining workflows, allowing radiologists to focus on complex cases that require deep clinical insight. As demand for radiology services grows, AI stands as a vital collaborator, alleviating workforce shortages and reducing diagnostic delays.
+						</p>
 					</div>
 				</div>
 			</div>
@@ -165,7 +167,7 @@
 				<div class="pinLayerHeader">
 					<div class="pinLayerHeaderTitle">
 						<p class="impressumCardTitle">
-							Radiologie in Europa
+							Radiologie in Africa
 						</p>
 					</div>
 					<div class="pinLayerHeaderCloseBtn">
@@ -173,7 +175,24 @@
 					</div>
 				</div>
 
+				<div class="pinLayerBody">
+					<div class="pinBodyCover">
 
+						<div class="leftCoverSection">
+							<img src="/africa.jpg"  alt="Logo" height="100%" width="100%"  />
+						</div>
+						<div class="rightCoverSection">
+								<p class="coverTitle">"Automation"</p>
+
+						</div>
+
+					</div>
+					<div class="coverButtom">
+						<p class="overtext">
+							The integration of AI into radiology is transforming the field, paving the way for a future where human expertise and artificial intelligence work in seamless harmony. AI-driven tools are enhancing efficiency by rapidly analyzing medical images, detecting abnormalities with remarkable precision, and streamlining workflows, allowing radiologists to focus on complex cases that require deep clinical insight. As demand for radiology services grows, AI stands as a vital collaborator, alleviating workforce shortages and reducing diagnostic delays.
+						</p>
+					</div>
+				</div>
 
 			</div>
 		{/if}
@@ -201,18 +220,27 @@
 				<div class="americaPoint">
 					<div class="americaPin" on:click={() => handlePinState("america")}>
 
-						<img src="Location.png"  alt="Logo" height="100%" width="100%"  />
+						<img src="Location.png"  class="pinpoint" alt="Logo" height="100%" width="100%"  />
 
 					</div>
 				</div>
 				<div class="brazilPoint">
-					<div class="brazilpin"  on:click={() => handlePinState("brazil")}>2</div>
+					<div class="brazilpin"  on:click={() => handlePinState("brazil")}>
+						<img src="Location.png" class="pinpoint"  alt="Logo" height="100%" width="100%"  />
+
+					</div>
 				</div>
 				<div class="africaPoint">
-					<div class="africaPin"  on:click={() => handlePinState("africa")}>3</div>
+					<div class="africaPin"  on:click={() => handlePinState("africa")}>
+						<img src="Location.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
+
+					</div>
 				</div>
 				<div class="europePoint">
-					<div class="europePin"  on:click={() => handlePinState("europe")}>4</div>
+					<div class="europePin"  on:click={() => handlePinState("europe")}>
+						<img src="Location.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
+
+					</div>
 				</div>
 
 			</div>
@@ -330,7 +358,7 @@
 		}
 
 		.americaPoint{
-			border: 1px solid red;
+			/* border: 1px solid red; */
 			height: 100px;
 			width: 200px;
 			position: absolute;
@@ -342,13 +370,13 @@
 		}
 
 		.americaPin{
-			background-color: aqua;
+			/* background-color: aqua; */
 			width: 50px;
 			height: 50px;
 		}
 
 		.brazilPoint{
-			border: 1px solid rgb(221, 255, 0);
+			/* border: 1px solid rgb(221, 255, 0); */
 			height: 100px;
 			width: 200px;
 			position: absolute;
@@ -359,13 +387,13 @@
 			justify-content: center;
 		}
 		.brazilpin{
-			background-color: rgb(255, 68, 0);
+			/* background-color: rgb(255, 68, 0); */
 			width: 50px;
 			height: 50px;
 		}
 
 		.africaPoint{
-			border: 1px solid rgb(21, 0, 255);
+			/* border: 1px solid rgb(21, 0, 255); */
 			height: 100px;
 			width: 200px;
 			position: absolute;
@@ -377,17 +405,21 @@
 		}
 
 		.africaPin{
-			background-color: rgb(0, 255, 30);
+			/* background-color: rgb(0, 255, 30); */
 			width: 50px;
 			height: 50px;
 		}
-
+		.pinpoint{
+			width: 200px;
+			height: 80px;
+			cursor: pointer;
+		}
 		.europePoint{
-			border: 1px solid rgb(255, 178, 34);
+			/* border: 1px solid rgb(255, 178, 34); */
 			height: 100px;
 			width: 200px;
 			position: absolute;
-			top: 39%;
+			top: 34%;
 			left: 45%;
 			display: flex;
 			align-items: center;
@@ -395,7 +427,7 @@
 		}
 
 		.europePin{
-			background-color: rgb(252, 58, 232);
+			/* background-color: rgb(252, 58, 232); */
 			width: 50px;
 			height: 50px;
 
@@ -512,12 +544,14 @@
 			display: flex;
 			align-items: center;
 			padding-left: 1rem;
+			
 		}
 	
 		.impressumCardTitle{
 			font-size: 19px;
 			font-weight: 700;
 			font-family: system-ui;
+			color: white;
 	
 	
 		}
@@ -542,14 +576,15 @@
 		}
 
 		.pinLayer{
-			background-color: rgba(221, 225, 221, 0.337);
-			width: 26%;
+			background-color: rgba(163, 163, 163, 0.725);
+			width: 33%;
 			height: 70%;
 			position: absolute;
 			top: 15%;
-			left: 70%;
+			left: 65%;
 			z-index: 3;
 			border-radius: 7px;
+			border: 1px solid white;
 		}
 		.pinLayerHeader{
 			width: 100%;
@@ -586,11 +621,27 @@
 
 		.pinBodyCover{
 			width: 100%;
-			height: 50%;
-			background-color: grey;
+			height: 60%;
+			/* background-color: grey; */
 			display: flex;
 			border-top: 1px solid white;
-			border-bottom: 1px solid white;
+			/* border-bottom: 1px solid rgba(255, 255, 255, 0.214); */
+
+
+		}
+
+		.coverButtom{
+			width: 100%;
+			height: 40%;
+			/* background-color: grey; */
+			display: flex;
+			/* justify-content: center; */
+			/* align-items: center; */
+			color: white;
+			padding: 1rem;
+			text-align: center;
+
+			
 
 
 		}
@@ -609,13 +660,14 @@
 			display: flex;
 			text-align: center;
 			align-items: center;
-			/* justify-content: center; */
+			justify-content: center;
 		}
 
 		.coverTitle{
-			font-size: 40px;
+			font-size: 30px;
 			font-weight: 600;
 			font-family: Arial, Helvetica, sans-serif;
+			color: white;
 
 		}
 
