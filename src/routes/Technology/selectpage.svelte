@@ -13,62 +13,6 @@
 
 	const images = [`hand.jpg`, `knie.jpg`, `thoraxF.jpg`];
 
-
-	const createMockFile = (fileData: any) => {
-		const { name, size, lastModified, type } = fileData;
-
-		const fileContent = new Uint8Array(size).fill(0)
-		const blob = new Blob([fileContent], { type }); // Create an empty file or mock content if needed
-		return new File([blob], name,  { lastModified, type });
-	};
-
-	const mockFileData = [
-		{
-			name: 'vooraanzicht-knie-rontgenfoto-300x537.jpg',
-			size: 16102,
-			lastModified: 1740407386082,
-			type: 'image/jpeg'
-		},
-		{
-			name: 'thoraxpa000011_lg.jpg',
-			size: 225442,
-			lastModified: 1740138424285,
-			type: 'image/jpeg'
-		}
-	];
-
-	// Create mock file objects
-	const mockFiles = mockFileData.map(createMockFile);
-
-	console.log('mockFiles Test: ', mockFiles[0]);
-	// To simulate how it would be passed to the backend, create a FileList
-	const mockFile = mockFiles[0] // this is equivalent to the "target.files" in an actual input element
-
-
-	// const imageMockFile = [
-	// 	{
-	// 		path: '/knie.jpg',
-	// 		name: 'Image 1',
-	// 		size: 16102,
-	// 		lastModified: 1740407386082,
-	// 		type: 'image/jpeg',
-	// 		webkitRelativePath: ''
-	// 	},
-	// 	{
-	// 		path: '/thoraxF.jpg',
-	// 		name: 'thoraxpa000011_lg.jpg',
-	// 		size: 225442,
-	// 		lastModified: 1740138424285,
-	// 		type: 'image/jpeg',
-	// 		webkitRelativePath: ''
-	// 	}
-	// ];
-
-	// $: if(defaulImgArr.length == 0){
-	// 	console.log('init');
-
-	// }
-
 	export function triggerclickEvent() {
 		fileInput.click();
 	}
@@ -94,13 +38,25 @@
 		// Uploads the image tp the select options
 
 		console.log('mlSelectedFile', mlSelectedFile);
-		console.log('imageMockFile', mockFiles);
+		console.log('imageMockFile');
 		if (mlSelectedFile) {
 			imageupload(event, mlSelectedFile);
 		} else {
-			imageupload(event, mockFile);
+			const imageFile = handleSelectedFile(event);
+			imageupload(event, imageFile);
 		}
 	}
+
+	const handleSelectedFile = async (event: any) => {
+		const res = await fetch(event);
+		const blob = await res.blob();
+		const imageName = event.split('/').pop() || 'unknown.jpg';
+		const file = new File([blob], imageName, { type: blob.type });
+
+		return file;
+	};
+
+	
 </script>
 
 <div class="boxSelectContentLayer">
