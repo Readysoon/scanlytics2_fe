@@ -81,7 +81,7 @@
 				<div class="smallContent">	
 					<div class="zoomTitle">Please Zoom Out</div>
 					<div class="ZoomOutArea">
-						<button class="gotItBtn" on:click={() => location.reload()}>Got It</button>
+						<button class="gotItBtn" on:click={() => location.reload()}>Refresh</button>
 					</div>
 				</div>
 				
