@@ -92,9 +92,7 @@
 			<div class="smallScreenOverlady">
 				<div class="smallContent">	
 					<div class="zoomTitle">App not available on mobile devices. Please access it from a laptop</div>
-					<div class="ZoomOutArea">
-						<button class="gotItBtn" on:click={() => location.reload()}>Got It</button>
-					</div>
+					
 				</div>
 				
 			</div>
