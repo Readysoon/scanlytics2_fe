@@ -259,7 +259,7 @@ let DatenschutzState: boolean = false;
 	.profileCard{
 		width: 20%;
 		height: 50%;
-		/* background-color: pink; */
+		background-color: rgba(41, 40, 41, 0.86);
 		display: flex;
 		border: 1px solid white; 
 		border-radius: 7px;
