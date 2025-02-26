@@ -3,7 +3,10 @@
 
 	let impressState: boolean = false;
 	let DatenschutzState: boolean = false;
-	let pinPopUp: boolean = false
+	let pinAmerica: boolean = false;
+	let pinBrazil: boolean = false;
+	let pinEurope: boolean = false;
+	let pinAfrica: boolean = false
 		function redirectUser(){ 
 		window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
 	
@@ -19,8 +22,31 @@
 			DatenschutzState = !DatenschutzState
 		}
 
-		const handlePinState = () => {
-			pinPopUp = !pinPopUp
+		const handlePinState = (event: string) => {
+
+			if(event == "america"){
+				pinAmerica = !pinAmerica
+				pinBrazil = false
+				pinEurope = false
+				pinAfrica = false
+				
+			}else if(event == "brazil"){
+				pinAmerica = false
+				pinBrazil = !pinBrazil
+				pinEurope = false
+				pinAfrica = false
+			}else if(event == "africa"){
+				pinAmerica = false
+				pinBrazil = false
+				pinEurope = false
+				pinAfrica = !pinAfrica
+			}else if( event == "europe"){
+				pinAmerica = false
+				pinBrazil = false
+				pinEurope = !pinEurope
+				pinAfrica = false
+
+			}
 		}
 	
 	
@@ -61,9 +87,30 @@
 			</div>
 		{/if}
 
-		{#if pinPopUp}
+		{#if pinAmerica}
 			<div class="pinLayer">
-				hey im in pin
+				<div class="pinLayerHeader">
+					<div class="pinLayerHeaderTitle"></div>
+					<div class="pinLayerHeaderCloseBtn">
+						<p class="closebtn" on:click={() =>  handlePinState("america")}>x</p>
+					</div>
+				</div>
+				hey im in pin america
+			</div>
+		{/if}
+		{#if pinBrazil}
+			<div class="pinLayer">
+				hey im in pin in brazil
+			</div>
+		{/if}
+		{#if pinEurope}
+			<div class="pinLayer">
+				hey im in pin in europe
+			</div>
+		{/if}
+		{#if pinAfrica}
+			<div class="pinLayer">
+				hey im in pin in africa
 			</div>
 		{/if}
 	
@@ -88,16 +135,16 @@
 
 				<img src="/blue2.png" class="map" alt="Logo" height="100%" width="100%"  />
 				<div class="americaPoint">
-					<div class="americaPin" on:click={handlePinState}>1</div>
+					<div class="americaPin" on:click={() => handlePinState("america")}>1</div>
 				</div>
 				<div class="brazilPoint">
-					<div class="brazilpin">2</div>
+					<div class="brazilpin"  on:click={() => handlePinState("brazil")}>2</div>
 				</div>
 				<div class="africaPoint">
-					<div class="africaPin">3</div>
+					<div class="africaPin"  on:click={() => handlePinState("africa")}>3</div>
 				</div>
 				<div class="europePoint">
-					<div class="europePin">4</div>
+					<div class="europePin"  on:click={() => handlePinState("europe")}>4</div>
 				</div>
 
 			</div>
@@ -433,6 +480,26 @@
 			top: 15%;
 			left: 70%;
 			z-index: 3;
+		}
+		.pinLayerHeader{
+			width: 100%;
+			height: 6%;
+			background-color: orange;
+			display: flex;
+		}
+
+		.pinLayerHeaderTitle{
+			width: 90%;
+			height: 100%;
+			background-color: rgb(255, 0, 72);
+		}
+		.pinLayerHeaderCloseBtn{
+			width: 10%;
+			height: 100%;
+			background-color: rgb(255, 255, 0);
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 	</style>
 	
