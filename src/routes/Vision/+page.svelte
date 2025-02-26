@@ -7,6 +7,8 @@
 	let pinBrazil: boolean = false;
 	let pinEurope: boolean = false;
 	let pinAfrica: boolean = false
+	let pinChina: boolean = false; 
+	let pinaustralia: boolean = false;
 		function redirectUser(){ 
 		window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
 	
@@ -29,24 +31,50 @@
 				pinBrazil = false
 				pinEurope = false
 				pinAfrica = false
+				pinChina = false
+				pinaustralia = false
 				
 			}else if(event == "brazil"){
 				pinAmerica = false
 				pinBrazil = !pinBrazil
 				pinEurope = false
 				pinAfrica = false
+				pinChina = false
+				pinaustralia = false
 			}else if(event == "africa"){
 				pinAmerica = false
 				pinBrazil = false
 				pinEurope = false
 				pinAfrica = !pinAfrica
+				pinChina = false
+				pinaustralia = false
 			}else if( event == "europe"){
 				pinAmerica = false
 				pinBrazil = false
 				pinEurope = !pinEurope
 				pinAfrica = false
+				pinChina = false
+				pinaustralia = false
+
+			}else if( event == "china"){
+				pinAmerica = false
+				pinBrazil = false
+				pinEurope = false
+				pinAfrica = false
+				pinChina = !pinChina
+				pinaustralia = false
+
+			}else if( event == "australia"){
+				pinAmerica = false
+				pinBrazil = false
+				pinEurope = false
+				pinAfrica = false
+				pinChina = false
+				pinaustralia = !pinaustralia
 
 			}
+
+
 		}
 	
 	
@@ -106,15 +134,28 @@
 				<!-- Body -->
 				<div class="pinLayerBody">
 					<div class="pinBodyCover">
-						<img src="/am1.webp"  alt="Logo" height="40%" width="80%"  />
+
+						<div class="leftCoverSection">
+							<img src="/africa.jpg"  alt="Logo" height="100%" width="100%"  />
+						</div>
+						<div class="rightCoverSection">
+								<p class="coverTitle">"Automation"</p>
+
+						</div>
 
 					</div>
-					<div></div>
+					<div class="coverButtom">
+						<p class="overtext">
+							The integration of AI into radiology is transforming the field, paving the way for a future where human expertise and artificial intelligence work in seamless harmony. AI-driven tools are enhancing efficiency by rapidly analyzing medical images, detecting abnormalities with remarkable precision, and streamlining workflows, allowing radiologists to focus on complex cases that require deep clinical insight. As demand for radiology services grows, AI stands as a vital collaborator, alleviating workforce shortages and reducing diagnostic delays.
+						</p>
+					</div>
 				</div>
+				
 			</div>
 		{/if}
 		{#if pinBrazil}
 			<div class="pinLayer">
+				<!-- Header North America -->
 				<div class="pinLayerHeader">
 					<div class="pinLayerHeaderTitle">
 						<p class="impressumCardTitle">
@@ -123,6 +164,25 @@
 					</div>
 					<div class="pinLayerHeaderCloseBtn">
 						<p class="closebtn" on:click={() =>  handlePinState("brazil")}>x</p>
+					</div>
+				</div>
+				<!-- Body North America -->
+				<div class="pinLayerBody">
+					<div class="pinBodyCover">
+
+						<div class="leftCoverSection">
+							<img src="/africa.jpg"  alt="Logo" height="100%" width="100%"  />
+						</div>
+						<div class="rightCoverSection">
+								<p class="coverTitle">"Automation"</p>
+
+						</div>
+
+					</div>
+					<div class="coverButtom">
+						<p class="overtext">
+							The integration of AI into radiology is transforming the field, paving the way for a future where human expertise and artificial intelligence work in seamless harmony. AI-driven tools are enhancing efficiency by rapidly analyzing medical images, detecting abnormalities with remarkable precision, and streamlining workflows, allowing radiologists to focus on complex cases that require deep clinical insight. As demand for radiology services grows, AI stands as a vital collaborator, alleviating workforce shortages and reducing diagnostic delays.
+						</p>
 					</div>
 				</div>
 			</div>
@@ -164,6 +224,7 @@
 		{/if}
 		{#if pinAfrica}
 			<div class="pinLayer">
+				<!-- Header Africa -->
 				<div class="pinLayerHeader">
 					<div class="pinLayerHeaderTitle">
 						<p class="impressumCardTitle">
@@ -174,7 +235,7 @@
 						<p class="closebtn" on:click={() =>  handlePinState("africa")}>x</p>
 					</div>
 				</div>
-
+				<!-- Body - Africa -->
 				<div class="pinLayerBody">
 					<div class="pinBodyCover">
 
@@ -196,6 +257,77 @@
 
 			</div>
 		{/if}
+
+		{#if pinChina}
+		<div class="pinLayer">
+			<!-- Header Africa -->
+			<div class="pinLayerHeader">
+				<div class="pinLayerHeaderTitle">
+					<p class="impressumCardTitle">
+						Radiologie in China
+					</p>
+				</div>
+				<div class="pinLayerHeaderCloseBtn">
+					<p class="closebtn" on:click={() =>  handlePinState("china")}>x</p>
+				</div>
+			</div>
+			<!-- Body - Africa -->
+			<div class="pinLayerBody">
+				<div class="pinBodyCover">
+
+					<div class="leftCoverSection">
+						<img src="/africa.jpg" class="imgLogo" alt="Logo" height="100%" width="100%"  />
+					</div>
+					<div class="rightCoverSection">
+							<p class="coverTitle">"Automation"</p>
+
+					</div>
+
+				</div>
+				<div class="coverButtom">
+					<p class="overtext">
+						The integration of AI into radiology is transforming the field, paving the way for a future where human expertise and artificial intelligence work in seamless harmony. AI-driven tools are enhancing efficiency by rapidly analyzing medical images, detecting abnormalities with remarkable precision, and streamlining workflows, allowing radiologists to focus on complex cases that require deep clinical insight. As demand for radiology services grows, AI stands as a vital collaborator, alleviating workforce shortages and reducing diagnostic delays.
+					</p>
+				</div>
+			</div>
+
+		</div>
+		{/if}
+		{#if pinaustralia}
+		<div class="pinLayer">
+			<!-- Header Africa -->
+			<div class="pinLayerHeader">
+				<div class="pinLayerHeaderTitle">
+					<p class="impressumCardTitle">
+						Radiologie in Australia
+					</p>
+				</div>
+				<div class="pinLayerHeaderCloseBtn">
+					<p class="closebtn" on:click={() =>  handlePinState("australia")}>x</p>
+				</div>
+			</div>
+			<!-- Body - Africa -->
+			<div class="pinLayerBody">
+				<div class="pinBodyCover">
+
+					<div class="leftCoverSection">
+						<img src="/africa.jpg"  alt="Logo" height="100%" width="100%"  />
+					</div>
+					<div class="rightCoverSection">
+							<p class="coverTitle">"Automation"</p>
+
+					</div>
+
+				</div>
+				<div class="coverButtom">
+					<p class="overtext">
+						The integration of AI into radiology is transforming the field, paving the way for a future where human expertise and artificial intelligence work in seamless harmony. AI-driven tools are enhancing efficiency by rapidly analyzing medical images, detecting abnormalities with remarkable precision, and streamlining workflows, allowing radiologists to focus on complex cases that require deep clinical insight. As demand for radiology services grows, AI stands as a vital collaborator, alleviating workforce shortages and reducing diagnostic delays.
+					</p>
+				</div>
+			</div>
+
+		</div>
+	{/if}
 	
 	
 		<nav>
@@ -216,33 +348,52 @@
 		<div class="mainSection">
 			<div class="mainLeftContentSection">
 
-				<img src="/blue2.png" class="map" alt="Logo" height="100%" width="100%"  />
+				<div class="mapSection">
+					<img src="/blue2.png" class="map" alt="Logo" height="100%" width="100%"  />
 				<div class="americaPoint">
-					<div class="americaPin" on:click={() => handlePinState("america")}>1</div>
+					<div class="americaPin" on:click={() => handlePinState("america")}>
+
+						<img src="Locationred.png"  class="pinpoint" alt="Logo" height="100%" width="100%"  />
+
+					</div>
+					
 				</div>
 				<div class="brazilPoint">
+					<!-- svelte-ignore a11y_no_static_element_interactions -->
 					<div class="brazilpin"  on:click={() => handlePinState("brazil")}>
-						<img src="Location.png" class="pinpoint"  alt="Logo" height="100%" width="100%"  />
+						<img src="Locationred.png" class="pinpoint"  alt="Logo" height="100%" width="100%"  />
 
 					</div>
 				</div>
 				<div class="africaPoint">
 					<div class="africaPin"  on:click={() => handlePinState("africa")}>
-						<img src="Location.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
+						<img src="Locationred.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
 
 					</div>
 				</div>
 				<div class="europePoint">
 					<div class="europePin"  on:click={() => handlePinState("europe")}>
-						<img src="Location.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
+						<img src="Locationred.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
 
 					</div>
 				</div>
 				<div class="chinaPoint">
-					<div class="chinaPin"  on:click={() => handlePinState("china")}>5</div>
+					<div class="chinaPin"  on:click={() => handlePinState("china")}>
+						<img src="Locationred.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
+
+					</div>
 				</div>
 				<div class="australiaPoint">
-					<div class="australiaPin"  on:click={() => handlePinState("australia")}>5</div>
+					<div class="australiaPin"  on:click={() => handlePinState("australia")}>
+						<img src="Locationred.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
+
+					</div>
+				</div>
+				</div>
+				
+
+				<div class="MapDefaultTEXT">
+					<div class="placeholderObjecttext">Click on a Vision Pin</div>
 				</div>
 			</div>
 		</div>
@@ -320,7 +471,11 @@
 			font-size: 12px;
 			cursor: pointer;
 		}
-	
+
+		
+		.imgLogo{
+			border-radius: 7px;
+		}
 		.aboutBtn{
 			color: white;
 		}
@@ -334,12 +489,37 @@
 			display: flex;
 			justify-content: space-around;
 			align-items: center;
+			flex-direction: column;
 			/* background-color: rgb(227, 63, 63); */
 			width: 100%;
 			height: 100%;
 			position: relative;
 	
 	
+		}
+		.mapSection{
+			/* background-color: rgb(244, 190, 28); */
+			width: 100%;
+			height: 90%;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		.MapDefaultTEXT{
+			/* background-color: red; */
+			width: 100%;
+			height: 20%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.placeholderObjecttext {
+		font-size: 25px;
+		font-weight: bold;
+		font-family:Arial, Helvetica, sans-serif;
+		color: rgb(255, 255, 255);
 		}
 	
 		.map{
@@ -359,11 +539,11 @@
 		}
 
 		.americaPoint{
-			border: 1px solid red;
+			/* border: 1px solid red; */
 			height: 100px;
 			width: 200px;
 			position: absolute;
-			top: 35%;
+			top: 32%;
 			left: 19%;
 			display: flex;
 			align-items: center;
@@ -371,9 +551,10 @@
 		}
 
 		.americaPin{
-			background-color: aqua;
-			width: 50px;
-			height: 50px;
+			
+			display: flex;
+			justify-content: center;
+			
 		}
 
 		.brazilPoint{
@@ -381,7 +562,7 @@
 			height: 100px;
 			width: 200px;
 			position: absolute;
-			top: 60%;
+			top: 55%;
 			left: 28%;
 			display: flex;
 			align-items: center;
@@ -389,8 +570,8 @@
 		}
 		.brazilpin{
 			/* background-color: rgb(255, 68, 0); */
-			width: 50px;
-			height: 50px;
+			/* width: 50px;
+			height: 50px; */
 		}
 
 		.africaPoint{
@@ -398,7 +579,7 @@
 			height: 100px;
 			width: 200px;
 			position: absolute;
-			top: 55%;
+			top: 50%;
 			left: 49%;
 			display: flex;
 			align-items: center;
@@ -407,11 +588,11 @@
 
 		.africaPin{
 			/* background-color: rgb(0, 255, 30); */
-			width: 50px;
-			height: 50px;
+			/* width: 50px;
+			height: 50px; */
 		}
 		.pinpoint{
-			width: 200px;
+			width: 80px;
 			height: 80px;
 			cursor: pointer;
 		}
@@ -420,54 +601,42 @@
 			height: 100px;
 			width: 200px;
 			position: absolute;
-			top: 34%;
+			top: 30%;
 			left: 45%;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 		}
 
-		.europePin{
-			/* background-color: rgb(252, 58, 232); */
-			width: 50px;
-			height: 50px;
-		}
+		
 
 		.chinaPoint{
-			border: 1px solid rgb(53, 137, 22);
+			/* border: 1px solid rgb(53, 137, 22); */
 			height: 100px;
 			width: 200px;
 			position: absolute;
-			top: 40%;
+			top: 35%;
 			left: 67%;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 		}
 
-		.chinaPin{
-			background-color: rgb(103, 58, 252);
-			width: 50px;
-			height: 50px;
-		}
+	
 
 		.australiaPoint{
-			border: 1px solid rgb(179, 35, 35);
+			/* border: 1px solid rgb(179, 35, 35); */
 			height: 100px;
 			width: 200px;
 			position: absolute;
-			top: 65%;
+			top: 55%;
 			left: 75%;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 		}
 
-		.australiaPin{
-			background-color: rgb(252, 58, 171);
-			width: 50px;
-			height: 50px;
-		}
+		
 	
 		.footerSection {
 			width: 100%;
