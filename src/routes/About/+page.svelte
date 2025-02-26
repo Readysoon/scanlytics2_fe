@@ -76,63 +76,62 @@ let DatenschutzState: boolean = false;
 		<div class="mainLeftContentSection">
 			<div class="profileCard">
 				<di class="profileImageCardSection" >
-					<img src="/profil.jpg"  class="userProfileImg" height="100" width="100" />
+					<img src="/Philipp_circle_portrait.png"  class="userProfileImg" height="100" width="100" />
 
 				</di>
 				<div class="profileCardNameSection">
 					 <p class="profileNameContent">
-					 Simon Bender
+					 Philipp Gallaschik
 					 </p>
 				</div>
 				<div class="profileCardKnowHowSection">
 					<p class="knowHowContent">
-						Bachelor of Medicine(2013 - 2023)
+						Doctor of Medicine(2014 - 2021)
 					</p>
 					<br>
 					<p class="knowHowContent">
-						Bachelor of Science(2023 - Heute)
+						Programmer
 					</p>
 				
 				</div>
 			</div>
 			<div  class="profileCard">
 				<div class="profileImageCardSection" >
-					<img src="/profil.jpg"  class="userProfileImg" height="100" width="100" />
+					<img src="/Julius_circle_portrait.png"  class="userProfileImg" height="100" width="100" />
 
 				</div>
 				<div class="profileCardNameSection">
 					<p class="profileNameContent">
-						Simon Bender
+						Julius Klingelhöller
 					</p>
 				</div>
 				<div class="profileCardKnowHowSection">
 					<p class="knowHowContent">
-						Bachelor of Medicine(2013 - 2023)
+						Project Manager M&A (2021 - 2022)
 					</p>
 					<br>
 					<p class="knowHowContent">
-						Bachelor of Science(2023 - Heute)
+						Programmer
 					</p>
 				
 				</div>
 			</div>
 			<div  class="profileCard">
 				<div class="profileImageCardSection" >
-					<img src="/profil.jpg"  class="userProfileImg" height="100" width="100" />
+					<img src="/Tobias_circle_portrait.png"  class="userProfileImg" height="100" width="100" />
 
 				</div>
 				<div class="profileCardNameSection">
 					<p class="profileNameContent">
-						Simon Bender 
+						Tobias Wedel
 					</p>
 				</div>
 				<div class="profileCardKnowHowSection">
 					<p class="knowHowContent">
-						Bachelor of Medicine(2013 - 2023)
+						Product Management 
 					</p>
 					<br>
 					<p class="knowHowContent">
-						Bachelor of Science(2023 - Heute)
 					</p>
 				
 				</div>
