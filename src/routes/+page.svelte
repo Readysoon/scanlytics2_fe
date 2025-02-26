@@ -43,7 +43,7 @@
 			<!-- Header  -->
 			<div class="headerMainContentSection">
 				<div class="leftContentHeaderArea">
-					<p>Worlds most Adopted AI</p>
+					<p>Worlds fastest Reporting Software</p>
 				</div>
 			</div>
 
