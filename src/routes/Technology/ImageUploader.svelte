@@ -117,10 +117,7 @@
 		}
 	}
 
-	export function bindingTtext(text: string){
-		alert("bing")
-		console.log('here is the text', text);
-	}
+	
 </script>
 
 <div class="image-uploader">

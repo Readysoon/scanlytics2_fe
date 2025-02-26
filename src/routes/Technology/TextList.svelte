@@ -1,8 +1,7 @@
 
 
 <script lang="ts" module>
-
-  import ImageUploader, {bindingTtext} from "./ImageUploader.svelte";
+  import TextEditor, {bindingTtext} from "./TextEditor.svelte";
   let texts = $state([]);
   export let onSelect: any;
   let currentStep = $state(2); // Assuming the current step is managed globally

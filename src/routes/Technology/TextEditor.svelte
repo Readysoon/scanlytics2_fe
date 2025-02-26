@@ -33,6 +33,12 @@
     circleLoadingBarState = state
   }
 
+  export function bindingTtext(textevent: string){
+		// alert("bing")
+		console.log('here is the text', text);
+    text = textevent
+	}
+
 </script>
 
 <div class="text-editor">
