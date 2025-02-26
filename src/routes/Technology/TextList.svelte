@@ -16,7 +16,7 @@
 
     //   goToStepThree();
     // }
-
+    console.log('in handler click ');
     bindingTtext(text)
 
   }
@@ -37,7 +37,8 @@
   }
 
   export  function handleTextData(event: any){
-    console.log('in handleTextData', event);
+    // console.log('in handleTextData', event);
+
     texts = event
   }
 
