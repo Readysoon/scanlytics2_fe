@@ -202,7 +202,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 				<div class="pinLayerHeader">
 					<div class="pinLayerHeaderTitle"> 
 						<p class="impressumCardTitle">
-							Radiologie in America
+							Radiology in America
 						</p>
 					</div>
 					<div class="pinLayerHeaderCloseBtn">
@@ -215,17 +215,16 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 					<div class="pinBodyCover">
 
 						<div class="leftCoverSection">
-							<img src="/africa.jpg"  alt="Logo" height="100%" width="100%"  />
+							<img src="/VisionUSA.jpeg"  alt="Logo" height="100%" width="100%"  />
 						</div>
 						<div class="rightCoverSection">
-								<p class="coverTitle">"Automation"</p>
-
+								<p class="coverTitle">The Pressures on US Radiology</p>
 						</div>
 
 					</div>
 					<div class="coverButtom">
 						<p class="overtext">
-							The integration of AI into radiology is transforming the field, paving the way for a future where human expertise and artificial intelligence work in seamless harmony. AI-driven tools are enhancing efficiency by rapidly analyzing medical images, detecting abnormalities with remarkable precision, and streamlining workflows, allowing radiologists to focus on complex cases that require deep clinical insight. As demand for radiology services grows, AI stands as a vital collaborator, alleviating workforce shortages and reducing diagnostic delays.
+							Radiology in the US faces seven major challenges identified by 31 societies, including declining reimbursements, corporatization, staffing shortages, and imaging appropriateness issues, creating a complex and challenging business environment. Automation offers potential solutions by streamlining administrative tasks, leveraging AI for improved imaging accuracy, and optimizing workflows to address staffing shortages and enhance productivity. <a href="https://radiologybusiness.com/topics/healthcare-management/medical-practice-management/7-most-pressing-challenges-radiology-practice-perfect-storm-brewing">Learn more</a>
 						</p>
 					</div>
 				</div>
@@ -238,7 +237,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 				<div class="pinLayerHeader">
 					<div class="pinLayerHeaderTitle">
 						<p class="impressumCardTitle">
-							Radiologie in North America
+							Radiology in South America
 						</p>
 					</div>
 					<div class="pinLayerHeaderCloseBtn">
@@ -250,17 +249,17 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 					<div class="pinBodyCover">
 
 						<div class="leftCoverSection">
-							<img src="/africa.jpg"  alt="Logo" height="100%" width="100%"  />
+							<img src="/VisionSA.png"  alt="Logo" height="100%" width="100%"  />
 						</div>
 						<div class="rightCoverSection">
-								<p class="coverTitle">"Automation"</p>
+								<p class="coverTitle">Equitable Healthcare in Latin America</p>
 
 						</div>
 
 					</div>
 					<div class="coverButtom">
 						<p class="overtext">
-							The integration of AI into radiology is transforming the field, paving the way for a future where human expertise and artificial intelligence work in seamless harmony. AI-driven tools are enhancing efficiency by rapidly analyzing medical images, detecting abnormalities with remarkable precision, and streamlining workflows, allowing radiologists to focus on complex cases that require deep clinical insight. As demand for radiology services grows, AI stands as a vital collaborator, alleviating workforce shortages and reducing diagnostic delays.
+							Latin America's healthcare system faces significant challenges exacerbated by the pandemic, including systemic inequities, resource constraints, an aging population, climate change impacts, and rising noncommunicable diseases. Radiology automation could help address these issues by expanding diagnostic access to underserved areas, enabling remote interpretation to overcome specialist shortages, and providing cost-effective solutions that maximize limited healthcare resources. <a href="https://www.thinkglobalhealth.org/article/health-latin-america-and-promise-artificial-intelligence">Learn more</a>
 						</p>
 					</div>
 				</div>
@@ -273,7 +272,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 				<div class="pinLayerHeader">
 					<div class="pinLayerHeaderTitle">
 						<p class="impressumCardTitle">
-							Radiologie in Europa
+							Radiology in Europe
 						</p>
 					</div>
 					<div class="pinLayerHeaderCloseBtn">
@@ -285,11 +284,10 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 					<div class="pinBodyCover">
 
 						<div class="leftCoverSection">
-							<img src="/am1.webp"  alt="Logo" height="100%" width="100%"  />
+							<img src="/VisionEurope.webp"  alt="Logo" height="100%" width="100%"  />
 						</div>
 						<div class="rightCoverSection">
-								<p class="coverTitle">"Efficent Collobartion with AI"</p>
-
+								<p class="coverTitle">Addressing Radiologist Shortages in England</p>
 						</div>
 
 					</div>
@@ -307,7 +305,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 				<div class="pinLayerHeader">
 					<div class="pinLayerHeaderTitle">
 						<p class="impressumCardTitle">
-							Radiologie in Africa
+							Radiology in Africa
 						</p>
 					</div>
 					<div class="pinLayerHeaderCloseBtn">
@@ -319,17 +317,16 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 					<div class="pinBodyCover">
 
 						<div class="leftCoverSection">
-							<img src="/africa.jpg"  alt="Logo" height="100%" width="100%"  />
+							<img src="/VisionAfrica.jpg"  alt="Logo" height="100%" width="100%"  />
 						</div>
 						<div class="rightCoverSection">
-								<p class="coverTitle">"Automation"</p>
-
+								<p class="coverTitle">Connecting Remote Areas</p>
 						</div>
 
 					</div>
 					<div class="coverButtom">
 						<p class="overtext">
-							The integration of AI into radiology is transforming the field, paving the way for a future where human expertise and artificial intelligence work in seamless harmony. AI-driven tools are enhancing efficiency by rapidly analyzing medical images, detecting abnormalities with remarkable precision, and streamlining workflows, allowing radiologists to focus on complex cases that require deep clinical insight. As demand for radiology services grows, AI stands as a vital collaborator, alleviating workforce shortages and reducing diagnostic delays.
+							Radiology in Africa faces a triple challenge: severe specialist shortages, inadequate infrastructure, and limited access to advanced imaging technologies, resulting in delayed diagnoses and suboptimal care. Automation could transform these circumstances by providing AI-based diagnostic support for non-specialists, enabling telemedicine solutions that connect remote areas to expertise, and implementing low-resource adaptable technologies that require minimal maintenance while maximizing the utility of existing equipment. <a href="https://www.nature.com/articles/s41467-024-46567-3">Learn more</a>
 						</p>
 					</div>
 				</div>
@@ -343,7 +340,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 			<div class="pinLayerHeader">
 				<div class="pinLayerHeaderTitle">
 					<p class="impressumCardTitle">
-						Radiologie in China
+						Radiology in Asia
 					</p>
 				</div>
 				<div class="pinLayerHeaderCloseBtn">
@@ -355,17 +352,16 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 				<div class="pinBodyCover">
 
 					<div class="leftCoverSection">
-						<img src="/africa.jpg" class="imgLogo" alt="Logo" height="100%" width="100%"  />
+						<img src="/VisionAsia.png" class="imgLogo" alt="Logo" height="100%" width="100%"  />
 					</div>
 					<div class="rightCoverSection">
-							<p class="coverTitle">"Automation"</p>
-
+							<p class="coverTitle">Supplementing Specialist Availability Across Asia</p>
 					</div>
 
 				</div>
 				<div class="coverButtom">
 					<p class="overtext">
-						The integration of AI into radiology is transforming the field, paving the way for a future where human expertise and artificial intelligence work in seamless harmony. AI-driven tools are enhancing efficiency by rapidly analyzing medical images, detecting abnormalities with remarkable precision, and streamlining workflows, allowing radiologists to focus on complex cases that require deep clinical insight. As demand for radiology services grows, AI stands as a vital collaborator, alleviating workforce shortages and reducing diagnostic delays.
+						Radiology in Asia faces three major challenges: limited support for interventional radiology, insufficient subspecialization training, and growing shortages of qualified radiologists and equipment, with significant variation across the region. Automation technologies could address these disparities by providing AI-assisted diagnosis to supplement limited specialist availability, enabling knowledge transfer through virtual training platforms, and implementing scalable solutions that can function effectively across different levels of infrastructure development. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10550747/">Learn more</a>
 					</p>
 				</div>
 			</div>
@@ -378,7 +374,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 			<div class="pinLayerHeader">
 				<div class="pinLayerHeaderTitle">
 					<p class="impressumCardTitle">
-						Radiologie in Australia
+						Radiology in Australia
 					</p>
 				</div>
 				<div class="pinLayerHeaderCloseBtn">
@@ -390,21 +386,20 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 				<div class="pinBodyCover">
 
 					<div class="leftCoverSection">
-						<img src="/africa.jpg"  alt="Logo" height="100%" width="100%"  />
+						<img src="/VisionAustralia.png"  alt="Logo" height="100%" width="100%"  />
 					</div>
 					<div class="rightCoverSection">
-							<p class="coverTitle">"Automation"</p>
+							<p class="coverTitle">Addressing Urban-Rural Maldistribution</p>
 
 					</div>
 
 				</div>
 				<div class="coverButtom">
 					<p class="overtext">
-						The integration of AI into radiology is transforming the field, paving the way for a future where human expertise and artificial intelligence work in seamless harmony. AI-driven tools are enhancing efficiency by rapidly analyzing medical images, detecting abnormalities with remarkable precision, and streamlining workflows, allowing radiologists to focus on complex cases that require deep clinical insight. As demand for radiology services grows, AI stands as a vital collaborator, alleviating workforce shortages and reducing diagnostic delays.
+						The radiology sector in Australia faces significant challenges, including severe urban-rural radiologist maldistribution, increasing workloads causing burnout, and pressure to meet growing demand from an aging population. Automation could address these issues by deploying teleradiology platforms with AI support to serve remote communities, implementing workflow optimization tools to reduce burnout, and utilizing computer-aided diagnosis to extend the reach of the limited specialist workforce across Australia's vast geography. <a href="https://pubmed.ncbi.nlm.nih.gov/37899512/">Learn more</a>
 					</p>
 				</div>
 			</div>
-
 		</div>
 	{/if}
 	
@@ -432,7 +427,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 				<div class="americaPoint">
 					<div class="americaPin" on:click={() => handlePinState("america")}>
 
-						<img src="Locationred.png"  class="pinpoint" alt="Logo" height="100%" width="100%"  />
+						<img src="LocationUSA.png"  class="pinpoint" alt="Logo" height="100%" width="100%"  />
 
 					</div>
 					
@@ -440,31 +435,31 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 				<div class="brazilPoint">
 					<!-- svelte-ignore a11y_no_static_element_interactions -->
 					<div class="brazilpin"  on:click={() => handlePinState("brazil")}>
-						<img src="Locationred.png" class="pinpoint"  alt="Logo" height="100%" width="100%"  />
+						<img src="LocationSA.png" class="pinpoint"  alt="Logo" height="100%" width="100%"  />
 
 					</div>
 				</div>
 				<div class="africaPoint">
 					<div class="africaPin"  on:click={() => handlePinState("africa")}>
-						<img src="Locationred.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
+						<img src="LocationAfrica.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
 
 					</div>
 				</div>
 				<div class="europePoint">
 					<div class="europePin"  on:click={() => handlePinState("europe")}>
-						<img src="Locationred.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
+						<img src="LocationEU.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
 
 					</div>
 				</div>
 				<div class="chinaPoint">
 					<div class="chinaPin"  on:click={() => handlePinState("china")}>
-						<img src="Locationred.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
+						<img src="LocationAsia.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
 
 					</div>
 				</div>
 				<div class="australiaPoint">
 					<div class="australiaPin"  on:click={() => handlePinState("australia")}>
-						<img src="Locationred.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
+						<img src="LocationAustralia.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
 
 					</div>
 				</div>
