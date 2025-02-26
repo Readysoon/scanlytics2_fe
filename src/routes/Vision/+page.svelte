@@ -146,7 +146,12 @@
 				<div class="europePoint">
 					<div class="europePin"  on:click={() => handlePinState("europe")}>4</div>
 				</div>
-
+				<div class="chinaPoint">
+					<div class="chinaPin"  on:click={() => handlePinState("china")}>5</div>
+				</div>
+				<div class="australiaPoint">
+					<div class="australiaPin"  on:click={() => handlePinState("australia")}>5</div>
+				</div>
 			</div>
 		</div>
 	
@@ -330,13 +335,43 @@
 			background-color: rgb(252, 58, 232);
 			width: 50px;
 			height: 50px;
-
 		}
-	
-	
-	
 
-	
+		.chinaPoint{
+			border: 1px solid rgb(53, 137, 22);
+			height: 100px;
+			width: 200px;
+			position: absolute;
+			top: 40%;
+			left: 67%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.chinaPin{
+			background-color: rgb(103, 58, 252);
+			width: 50px;
+			height: 50px;
+		}
+
+		.australiaPoint{
+			border: 1px solid rgb(179, 35, 35);
+			height: 100px;
+			width: 200px;
+			position: absolute;
+			top: 65%;
+			left: 75%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.australiaPin{
+			background-color: rgb(252, 58, 171);
+			width: 50px;
+			height: 50px;
+		}
 	
 		.footerSection {
 			width: 100%;
