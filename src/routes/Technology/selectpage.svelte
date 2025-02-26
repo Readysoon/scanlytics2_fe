@@ -22,8 +22,8 @@
 
 	const mockFileData = [
 		{
-			name: 'Image 1',
-			size: 16102,
+			name: 'vooraanzicht-knie-rontgenfoto-300x537.jpg',
+			size: "16102",
 			lastModified: 1740407386082,
 			type: 'image/jpeg'
 		},
@@ -38,8 +38,9 @@
 	// Create mock file objects
 	const mockFiles = mockFileData.map(createMockFile);
 
+	console.log('mockFiles Test: ', mockFiles[0]);
 	// To simulate how it would be passed to the backend, create a FileList
-	const mockFileList = mockFiles; // this is equivalent to the "target.files" in an actual input element
+	const mockFile = mockFiles[0] // this is equivalent to the "target.files" in an actual input element
 
 
 	// const imageMockFile = [
@@ -95,7 +96,7 @@
 		if (mlSelectedFile) {
 			imageupload(event, mlSelectedFile);
 		} else {
-			imageupload(event, mockFiles);
+			imageupload(event, mockFile);
 		}
 	}
 </script>
