@@ -1,44 +1,76 @@
 <script lang="ts" module>
-	import ImageUploader,{imageupload} from "./ImageUploader.svelte";
-  
-  //  let toggleupload = false 
-   ImageUploader
+	import ImageUploader, { imageupload } from './ImageUploader.svelte';
 
+	//  let toggleupload = false
+	ImageUploader;
 
-
-  let imageUrl = $state('');
-	let mlMessage: string  = '';
+	let imageUrl = $state('');
+	let mlMessage: string = '';
 	let mlSelectedFile: File | null = null;
 	let currentStep: number = 1;
 	let fileInput: HTMLInputElement;
 	let imgArr = $state([]);
 
-	
-	
-
-	const images = [
-		`knie.jpg`,
-		`thoraxF.jpg`, 
- 
-	]
-
-	const imageMockFile =
-	[
-		{ path: "/knie.jpg", name: "Image 1", size: "500KB" },
-		{ path: "/thoraxF.jpg", name: "Image 2", size: "720KB" },
-	]
+	const images = [`knie.jpg`, `thoraxF.jpg`];
 
 
-// $: if(defaulImgArr.length == 0){
-// 	console.log('init');
+	const createMockFile = (fileData: any) => {
+		const { name, size, lastModified, type } = fileData;
+		const fileContent = new Blob([], { type }); // Create an empty file or mock content if needed
+		return new File([fileContent], name, { lastModified, type });
+	};
 
-// }
+	const mockFileData = [
+		{
+			name: 'Image 1',
+			size: 16102,
+			lastModified: 1740407386082,
+			type: 'image/jpeg'
+		},
+		{
+			name: 'thoraxpa000011_lg.jpg',
+			size: 225442,
+			lastModified: 1740138424285,
+			type: 'image/jpeg'
+		}
+	];
 
-export function triggerclickEvent() {
+	// Create mock file objects
+	const mockFiles = mockFileData.map(createMockFile);
+
+	// To simulate how it would be passed to the backend, create a FileList
+	const mockFileList = mockFiles; // this is equivalent to the "target.files" in an actual input element
+
+
+	// const imageMockFile = [
+	// 	{
+	// 		path: '/knie.jpg',
+	// 		name: 'Image 1',
+	// 		size: 16102,
+	// 		lastModified: 1740407386082,
+	// 		type: 'image/jpeg',
+	// 		webkitRelativePath: ''
+	// 	},
+	// 	{
+	// 		path: '/thoraxF.jpg',
+	// 		name: 'thoraxpa000011_lg.jpg',
+	// 		size: 225442,
+	// 		lastModified: 1740138424285,
+	// 		type: 'image/jpeg',
+	// 		webkitRelativePath: ''
+	// 	}
+	// ];
+
+	// $: if(defaulImgArr.length == 0){
+	// 	console.log('init');
+
+	// }
+
+	export function triggerclickEvent() {
 		fileInput.click();
 	}
 
-  async function handleFileChange(event: any) {
+	async function handleFileChange(event: any) {
 		const target = event?.target as HTMLInputElement;
 		if (target.files && target.files[0]) {
 			mlSelectedFile = target.files[0];
@@ -49,86 +81,61 @@ export function triggerclickEvent() {
 		}
 	}
 
-
 	function handleImpageMultipleUpload(event: any) {
-		
-
-
-    if(imgArr?.length <= 5){
-      imgArr.push(imageUrl);
-    }
-
+		if (imgArr?.length <= 5) {
+			imgArr.push(imageUrl);
+		}
 	}
 
+	function handletrigger(event: any) {
+		// Uploads the image tp the select options
 
-  function handletrigger(event: any){
- 
-	// Uploads the image tp the select options
-
-	console.log('mlSelectedFile', mlSelectedFile);
-	if(mlSelectedFile){
-		imageupload(event, mlSelectedFile)
-
-	}else{
-		imageupload(event, imageMockFile)
+		console.log('mlSelectedFile', mlSelectedFile);
+		console.log('imageMockFile', mockFiles);
+		if (mlSelectedFile) {
+			imageupload(event, mlSelectedFile);
+		} else {
+			imageupload(event, mockFiles);
+		}
 	}
-  }
-
-  
-
 </script>
-  
+
 <div class="boxSelectContentLayer">
+	<div class="imgPreviewArea">
+		{#if imageUrl}
+			{#if imgArr.length > 0}
+				{#each imgArr as img, i}
+					<img
+						src={img}
+						alt="Uploaded image"
+						height="150px"
+						width="150"
+						on:click={() => handletrigger(img)}
+					/>
+				{/each}
+			{/if}
+		{:else}
+			{#each images as image}
+				<img
+					src={image}
+					alt="images"
+					height="150px"
+					width="150"
+					on:click={() => handletrigger(image)}
+				/>
+			{/each}
+		{/if}
+	</div>
 
+	<div class="imgPreviewAddArea">
+		<input bind:this={fileInput} type="file" accept="image/*" on:change={handleFileChange} hidden />
 
-  <div class="imgPreviewArea">
-    {#if imageUrl}  
-		{#if imgArr.length > 0}
-    
+		<button class="read-btn" on:click={triggerclickEvent}>upload</button>
+	</div>
+</div>
 
-
-
-    
-
-    {#each imgArr as img, i}
-    
- 
-      <img src={img} alt="Uploaded image" height="150px" width="150" on:click={() => handletrigger(img)} />
-   
-
-     {/each}
-   
-
-
-    {/if}
-	{:else}
-	 {#each images as image}
-		<img src={image} alt="images" height="150px" width="150" on:click={() => handletrigger(image)}>
-	 {/each}
-
-		
-	{/if}
-
-
- 
-
-  </div>
-
-  <div class="imgPreviewAddArea"> 
-    <input  bind:this={fileInput} type="file" accept="image/*" on:change={handleFileChange} hidden  />
-
-      <button class="read-btn" on:click={triggerclickEvent}>upload</button>
-
-  </div>
-
-
-  
-
-  </div>
-  
-  <style>
-  
-    .boxSelectContentLayer{
+<style>
+	.boxSelectContentLayer {
 		/* background-color: rgba(60, 60, 60, 0.753); */
 		/* background-color: rgb(157, 157, 157); */
 
@@ -145,17 +152,17 @@ export function triggerclickEvent() {
 		/* overflow: auto; */
 		/* border: 1px solid white; */
 	}
-  ul{
-    text-decoration: none;
-    list-style: none;
-  }
+	ul {
+		text-decoration: none;
+		list-style: none;
+	}
 
-  .xrLogo{
-	opacity: 0.4;
-	margin-bottom: 10%;
-  }
-  
-	.imgPreviewArea{
+	.xrLogo {
+		opacity: 0.4;
+		margin-bottom: 10%;
+	}
+
+	.imgPreviewArea {
 		/* background-color: rgb(214, 12, 12); */
 		padding-top: 15%;
 		height: 90%;
@@ -164,11 +171,11 @@ export function triggerclickEvent() {
 		display: flex;
 		/* flex-direction: column; */
 		align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10%;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 10%;
 	}
-	.imgPreviewAddArea{
+	.imgPreviewAddArea {
 		background-color: rgba(211, 210, 209, 0.64);
 		height: 10%;
 		width: 100%;
@@ -176,10 +183,9 @@ export function triggerclickEvent() {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-
 	}
 
-	.boxSelectContent{
+	.boxSelectContent {
 		/* flex: 1; */
 		/* margin: 30px; */
 		width: 80%;
@@ -194,7 +200,7 @@ export function triggerclickEvent() {
 		border: 1px solid rgba(255, 255, 255, 0.066);
 		position: relative;
 	}
-	.patientInfo{
+	.patientInfo {
 		width: 97%;
 		height: 10%;
 		/* background-color: green; */
@@ -209,9 +215,8 @@ export function triggerclickEvent() {
 		justify-content: flex-end;
 		align-items: center;
 		opacity: 0.7;
-
 	}
-	.patientInfoData{
+	.patientInfoData {
 		width: 97%;
 		height: 30%;
 		/* background-color: green; */
@@ -228,12 +233,7 @@ export function triggerclickEvent() {
 		opacity: 0.8;
 		font-size: 7px;
 	}
-	.patientB_Date{
+	.patientB_Date {
 		font-size: 7px;
 	}
-
-    
-  </style>
-  
-  
-  
+</style>
