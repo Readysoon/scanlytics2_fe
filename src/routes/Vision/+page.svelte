@@ -814,7 +814,6 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 		.impressumCardTitleSection{
 			height: 100%;
 			width: 90%;
-			/* background-color: orange; */
 			display: flex;
 			align-items: center;
 			padding-left: 1rem;
@@ -825,7 +824,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 			font-size: 19px;
 			font-weight: 700;
 			font-family: system-ui;
-	
+			color: white;
 	
 		}
 	
