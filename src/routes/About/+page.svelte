@@ -25,7 +25,89 @@
 
 	<div class="mainSection">
 		<div class="mainLeftContentSection">
-			<img src="/team.png" alt="About" class="mainImage"/>
+			<div class="profileCard">
+				<di class="profileImageCardSection" >
+					<img src="/profil.jpg"  class="userProfileImg" height="100" width="100" />
+
+				</di>
+				<div class="profileCardNameSection">
+					 <p class="profileNameContent">
+					 Simon Bender
+					 </p>
+				</div>
+				<div class="profileCardKnowHowSection">
+					<p class="knowHowContent">
+						Bachelor of Medicine(2013 - 2023)
+					</p>
+					<br>
+					<p class="knowHowContent">
+						Bachelor of Science(2023 - Heute)
+					</p>
+				
+				</div>
+			</div>
+			<div  class="profileCard">
+				<div class="profileImageCardSection" >
+					<img src="/profil.jpg"  class="userProfileImg" height="100" width="100" />
+
+				</div>
+				<div class="profileCardNameSection">
+					<p class="profileNameContent">
+						Simon Bender
+					</p>
+				</div>
+				<div class="profileCardKnowHowSection">
+					<p class="knowHowContent">
+						Bachelor of Medicine(2013 - 2023)
+					</p>
+					<br>
+					<p class="knowHowContent">
+						Bachelor of Science(2023 - Heute)
+					</p>
+				
+				</div>
+			</div>
+			<div  class="profileCard">
+				<div class="profileImageCardSection" >
+					<img src="/profil.jpg"  class="userProfileImg" height="100" width="100" />
+
+				</div>
+				<div class="profileCardNameSection">
+					<p class="profileNameContent">
+						Simon Bender 
+					</p>
+				</div>
+				<div class="profileCardKnowHowSection">
+					<p class="knowHowContent">
+						Bachelor of Medicine(2013 - 2023)
+					</p>
+					<br>
+					<p class="knowHowContent">
+						Bachelor of Science(2023 - Heute)
+					</p>
+				
+				</div>
+			</div>
+			<div class="profileCard">
+				<div class="profileImageCardSection">
+					<img src="/emms1.jpg"  class="userProfileImg" height="100" width="100" />
+
+				</div>
+				<div class="profileCardNameSection">
+					<p class="profileNameContent">
+						Emmanuel Neuenhaus
+					</p>
+				</div>
+				<div class="profileCardKnowHowSection">
+					<p class="knowHowContent">
+						Depute Innovation & Fashion GmbH(2021 - 2023)
+					</p>
+					<br>
+					<p class="knowHowContent">
+						Bachelor of Science(2023 - Heute)
+					</p>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -114,14 +196,85 @@
 
 	.mainLeftContentSection {
 		display: flex;
-		justify-content: center;
+		justify-content: space-around;
 		align-items: center;
-		background-color: rgb(0, 0, 0);
+		/* background-color: rgb(227, 63, 63); */
 		width: 100%;
 		height: 100%;
 		position: relative;
+
+
 	}
 
+
+	.profileCard{
+		width: 20%;
+		height: 50%;
+		/* background-color: pink; */
+		display: flex;
+		border: 1px solid white; 
+		border-radius: 7px;
+		flex-direction: column;
+	}
+
+	.profileImageCardSection{
+
+		/* background-color: rgb(196, 135, 12); */
+		height: 45%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+
+	}
+
+	.knowHowContent{
+		color: white;
+		font-family: system-ui;
+		font-size: 14px;
+		
+	}
+	.profileCardNameSection{
+		/* background-color: rgb(21, 90, 34); */
+		height: 15%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-top: 1px solid white;
+
+		border-bottom: 1px solid white;
+
+
+
+
+
+
+	}
+
+	.profileCardKnowHowSection{
+		/* background-color: rgb(194, 144, 255); */
+		height: 45%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		/* padding: 0.5rem; */
+		align-items: center;
+		padding-top: 5%;
+
+
+	}
+
+
+	.userProfileImg{
+		border-radius: 50%;
+	}
+
+	.profileNameContent{
+		font-size: 20px;
+		color: white;
+		font-family: Arial, Helvetica, sans-serif;
+
+	}
 	.mainImage {
 		max-width: 100%;
 		max-height: 100%;
