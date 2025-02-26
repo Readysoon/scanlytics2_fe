@@ -86,11 +86,11 @@ let DatenschutzState: boolean = false;
 				</div>
 				<div class="profileCardKnowHowSection">
 					<p class="knowHowContent">
-						Doctor of Medicine(2014 - 2021)
+						Doctor of Medicine (2014 - 2021)
 					</p>
 					<br>
 					<p class="knowHowContent">
-						Software Engineer
+						Software Engineer (2021 - today)
 					</p>
 				
 				</div>
@@ -111,7 +111,7 @@ let DatenschutzState: boolean = false;
 					</p>
 					<br>
 					<p class="knowHowContent">
-						Software Engineer
+						Software Engineer (2022 - today)
 					</p>
 				
 				</div>
@@ -128,7 +128,7 @@ let DatenschutzState: boolean = false;
 				</div>
 				<div class="profileCardKnowHowSection">
 					<p class="knowHowContent">
-						Product Management 
+						Product Management (2022 - heute)
 					</p>
 					<br>
 					<p class="knowHowContent">
