@@ -38,11 +38,12 @@
 		// Uploads the image tp the select options
 
 		console.log('mlSelectedFile', mlSelectedFile);
-		console.log('imageMockFile');
 		if (mlSelectedFile) {
 			imageupload(event, mlSelectedFile);
 		} else {
 			const imageFile = handleSelectedFile(event);
+			console.log('imageMockFile after convert', imageFile);
+
 			imageupload(event, imageFile);
 		}
 	}
