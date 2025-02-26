@@ -76,10 +76,18 @@
 			<div class="mainLeftContentSection">
 
 				<img src="/blue2.png" class="map" alt="Logo" height="100%" width="100%"  />
-				<div class="americaPoint">1</div>
-				<div class="brazilPoint">2</div>
-				<div class="africaPoint">3</div>
-				<div class="europePoint">4</div>
+				<div class="americaPoint">
+					<div class="americaPin">1</div>
+				</div>
+				<div class="brazilPoint">
+					<div class="brazilpin">2</div>
+				</div>
+				<div class="africaPoint">
+					<div class="africaPin">3</div>
+				</div>
+				<div class="europePoint">
+					<div class="europePin">4</div>
+				</div>
 
 			</div>
 		</div>
@@ -202,6 +210,15 @@
 			position: absolute;
 			top: 35%;
 			left: 19%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.americaPin{
+			background-color: aqua;
+			width: 50px;
+			height: 50px;
 		}
 
 		.brazilPoint{
@@ -211,6 +228,14 @@
 			position: absolute;
 			top: 60%;
 			left: 28%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.brazilpin{
+			background-color: rgb(255, 68, 0);
+			width: 50px;
+			height: 50px;
 		}
 
 		.africaPoint{
@@ -220,6 +245,15 @@
 			position: absolute;
 			top: 55%;
 			left: 49%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.africaPin{
+			background-color: rgb(0, 255, 30);
+			width: 50px;
+			height: 50px;
 		}
 
 		.europePoint{
@@ -229,6 +263,16 @@
 			position: absolute;
 			top: 39%;
 			left: 45%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.europePin{
+			background-color: rgb(252, 58, 232);
+			width: 50px;
+			height: 50px;
+
 		}
 	
 	
