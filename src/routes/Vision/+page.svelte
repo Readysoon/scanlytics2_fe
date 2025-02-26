@@ -218,7 +218,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 							<img src="/VisionUSA.jpeg"  alt="Logo" height="100%" width="100%"  />
 						</div>
 						<div class="rightCoverSection">
-								<p class="coverTitle">From Declining Reimbursements to Staffing Shortages: The Pressures on US Radiology</p>
+								<p class="coverTitle">The Pressures on US Radiology</p>
 						</div>
 
 					</div>
@@ -252,7 +252,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 							<img src="/VisionSA.png"  alt="Logo" height="100%" width="100%"  />
 						</div>
 						<div class="rightCoverSection">
-								<p class="coverTitle">Radiology Automation: A Path Forward for Equitable Healthcare in Latin America</p>
+								<p class="coverTitle">Equitable Healthcare in Latin America</p>
 
 						</div>
 
@@ -287,7 +287,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 							<img src="/VisionEurope.webp"  alt="Logo" height="100%" width="100%"  />
 						</div>
 						<div class="rightCoverSection">
-								<p class="coverTitle">Addressing Radiologist Shortages in England: The Role of Automation in Radiology</p>
+								<p class="coverTitle">Addressing Radiologist Shortages in England</p>
 						</div>
 
 					</div>
@@ -320,7 +320,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 							<img src="/VisionAfrica.jpg"  alt="Logo" height="100%" width="100%"  />
 						</div>
 						<div class="rightCoverSection">
-								<p class="coverTitle">Telemedicine's Impact on African Radiology: Connecting Remote Areas</p>
+								<p class="coverTitle">Connecting Remote Areas</p>
 						</div>
 
 					</div>
@@ -355,7 +355,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 						<img src="/VisionAsia.png" class="imgLogo" alt="Logo" height="100%" width="100%"  />
 					</div>
 					<div class="rightCoverSection">
-							<p class="coverTitle">AI-Assisted Diagnosis: Supplementing Specialist Availability Across Asia</p>
+							<p class="coverTitle">Supplementing Specialist Availability Across Asia</p>
 					</div>
 
 				</div>
@@ -389,7 +389,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 						<img src="/VisionAustralia.png"  alt="Logo" height="100%" width="100%"  />
 					</div>
 					<div class="rightCoverSection">
-							<p class="coverTitle">Addressing Urban-Rural Maldistribution: Automation's Role in Australian Radiology</p>
+							<p class="coverTitle">Addressing Urban-Rural Maldistribution</p>
 
 					</div>
 
