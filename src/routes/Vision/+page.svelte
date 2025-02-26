@@ -3,6 +3,7 @@
 
 	let impressState: boolean = false;
 	let DatenschutzState: boolean = false;
+	let pinPopUp: boolean = false
 		function redirectUser(){ 
 		window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
 	
@@ -16,6 +17,10 @@
 		
 		const handleDatenschutzClick = () => { 
 			DatenschutzState = !DatenschutzState
+		}
+
+		const handlePinState = () => {
+			pinPopUp = !pinPopUp
 		}
 	
 	
@@ -55,6 +60,12 @@
 				</div>
 			</div>
 		{/if}
+
+		{#if pinPopUp}
+			<div class="pinLayer">
+				hey im in pin
+			</div>
+		{/if}
 	
 	
 		<nav>
@@ -77,7 +88,7 @@
 
 				<img src="/blue2.png" class="map" alt="Logo" height="100%" width="100%"  />
 				<div class="americaPoint">
-					<div class="americaPin">1</div>
+					<div class="americaPin" on:click={handlePinState}>1</div>
 				</div>
 				<div class="brazilPoint">
 					<div class="brazilpin">2</div>
@@ -412,6 +423,16 @@
 			color: red;
 			cursor: pointer;
 	
+		}
+
+		.pinLayer{
+			background-color: green;
+			width: 26%;
+			height: 70%;
+			position: absolute;
+			top: 15%;
+			left: 70%;
+			z-index: 3;
 		}
 	</style>
 	
