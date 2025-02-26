@@ -22,7 +22,7 @@
 
 	const mockFileData = [
 		{
-			name: 'Image 1',
+			name: 'vooraanzicht-knie-rontgenfoto-300x537.jpg',
 			size: 16102,
 			lastModified: 1740407386082,
 			type: 'image/jpeg'
