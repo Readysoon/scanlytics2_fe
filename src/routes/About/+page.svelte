@@ -90,7 +90,7 @@ let DatenschutzState: boolean = false;
 					</p>
 					<br>
 					<p class="knowHowContent">
-						Programmer
+						Software Engineer
 					</p>
 				
 				</div>
@@ -111,7 +111,7 @@ let DatenschutzState: boolean = false;
 					</p>
 					<br>
 					<p class="knowHowContent">
-						Programmer
+						Software Engineer
 					</p>
 				
 				</div>
@@ -152,7 +152,7 @@ let DatenschutzState: boolean = false;
 					</p> -->
 					<!-- <br> -->
 					<p class="knowHowContent">
-						Bachelor of Science(2023 - Heute)
+						Software Engineer
 					</p>
 				</div>
 			</div>
