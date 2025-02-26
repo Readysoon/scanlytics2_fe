@@ -34,14 +34,14 @@
 		}
 	}
 
-	function handletrigger(event: any) {
+	async function handletrigger(event: any) {
 		// Uploads the image tp the select options
 
 		console.log('mlSelectedFile', mlSelectedFile);
 		if (mlSelectedFile) {
 			imageupload(event, mlSelectedFile);
 		} else {
-			const imageFile = handleSelectedFile(event);
+			const imageFile = await handleSelectedFile(event);
 			console.log('imageMockFile after convert', imageFile);
 
 			imageupload(event, imageFile);
@@ -50,6 +50,7 @@
 
 	const handleSelectedFile = async (event: any) => {
 		const res = await fetch(event);
+		if (!res.ok) throw new Error("Failed to fetch image");
 		const blob = await res.blob();
 		const imageName = event.split('/').pop() || 'unknown.jpg';
 		const file = new File([blob], imageName, { type: blob.type });
