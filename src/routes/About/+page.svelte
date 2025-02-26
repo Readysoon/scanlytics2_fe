@@ -114,17 +114,17 @@
 	<footer class="footerSection">
 		<div class="footer-content">
 			<div class="footer-left">
-				<p class="footer-left-text">© 2025 Scanlytics | Version 0,1</p>
-			</div>
-			<div class="footer-center">
-				<div class="footer-center-box">
-					<p class="footer-center-text">
-						For clinical usage, appropriate clinical qualification is required, <br /> and users must
-						ensure they have the necessary credentials and permissions <br />to access and interpret
-						medical images.
-					</p>
+				<div class="footer-left-box">
+					<p class="footer-left-text">© 2025 Scanlytics | Version 0,1</p>
+
 				</div>
+
+				<div class="footer-center-box">
+					<p  class="footer-right-text">Impressum |</p> 
+					<p  class="footer-right-text">Datenschutz</p>
+			   </div>
 			</div>
+			
 		</div>
 	</footer>
 </main>
@@ -295,15 +295,29 @@
 		height: 100px;
 		display: flex;
 		justify-content: space-between;
+		/* background-color: green; */
+
 	}
 
 	.footer-left {
 		color: black;
-		width: 40%;
+		width: 100%;
 		height: 100%;
 		display: flex;
-		flex-direction: column;
+		/* flex-direction: column; */
+		justify-content: space-between;
+
+		/* background-color: orange; */
+
+
+	}
+
+	.footer-left-box{
+		/* background-color: rgb(77, 76, 75); */
+		display: flex;
+		align-items: end;
 		justify-content: flex-end;
+
 	}
 
 	.footer-left-text {
@@ -313,13 +327,30 @@
 		opacity: 0.4;
 	}
 
+	.footer-right-text {
+		color: white;
+		font-family: system-ui;
+		font-size: 12px;
+		opacity: 0.4;
+		cursor: pointer;
+	}
+
+	
+
 	.footer-center {
 		color: black;
-		width: 30%;
+		/* width: 30%;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
-		align-items: end;
+		align-items: end; */
+		color: black;
+		width: 40%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		/* background-color: red; */
 	}
 
 	.footer-center-text {
@@ -328,5 +359,16 @@
 		font-size: 12px;
 		opacity: 0.4;
 		text-align: end;
+	}
+
+	.footer-center-box{
+		/* background-color: green; */
+		height: 100%;
+		width: 25%;
+		display: flex;
+		align-items: end;
+		justify-content: flex-end;
+		/* padding-right: 2%; */
+		gap: 1%;
 	}
 </style>
