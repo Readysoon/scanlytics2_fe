@@ -11,7 +11,7 @@
 	let fileInput: HTMLInputElement;
 	let imgArr = $state([]);
 
-	const images = [`knie.jpg`, `thoraxF.jpg`];
+	const images = [`hand.jpg`, `knie.jpg`, `thoraxF.jpg`];
 
 
 	const createMockFile = (fileData: any) => {
