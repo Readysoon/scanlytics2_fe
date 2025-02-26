@@ -18,7 +18,7 @@
 		const mobileState = innerWidth 
 		if(mobileState <= 769){
 			mobileStae = true
-			}else if(mobileState <= 1750){
+			}else if(mobileState <= 1707){
 				// alert("Please zoom out");
 				smallScreen = true
 
