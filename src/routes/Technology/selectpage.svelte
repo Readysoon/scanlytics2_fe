@@ -38,8 +38,9 @@
 	// Create mock file objects
 	const mockFiles = mockFileData.map(createMockFile);
 
+	console.log('mockFiles Test: ', mockFiles[0]);
 	// To simulate how it would be passed to the backend, create a FileList
-	const mockFileList = mockFiles; // this is equivalent to the "target.files" in an actual input element
+	const mockFile = mockFiles[0] // this is equivalent to the "target.files" in an actual input element
 
 
 	// const imageMockFile = [
@@ -95,7 +96,7 @@
 		if (mlSelectedFile) {
 			imageupload(event, mlSelectedFile);
 		} else {
-			imageupload(event, mockFiles);
+			imageupload(event, mockFile);
 		}
 	}
 </script>

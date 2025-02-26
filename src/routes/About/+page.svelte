@@ -148,10 +148,10 @@ let DatenschutzState: boolean = false;
 					</p>
 				</div>
 				<div class="profileCardKnowHowSection">
-					<p class="knowHowContent" >
+					<!-- <p class="knowHowContent" >
 						Depute Innovation & Fashion GmbH(2021 - 2023)
-					</p>
-					<br>
+					</p> -->
+					<!-- <br> -->
 					<p class="knowHowContent">
 						Bachelor of Science(2023 - Heute)
 					</p>
