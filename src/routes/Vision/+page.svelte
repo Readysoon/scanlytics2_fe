@@ -61,7 +61,7 @@
 						 <div class="impressumCardHead">
 							<div class="impressumCardTitleSection">
 									<p class="impressumCardTitle">Impressum</p>
-								</div>
+							</div>
 							<div class="impressumCloseBtn">
 								<p class="closebtn" on:click={handleImpressumClick}>x</p>
 							</div>
@@ -79,6 +79,7 @@
 									<p class="impressumCardTitle">DatenschutzState</p>
 								</div>
 							<div class="impressumCloseBtn">
+								
 								<p class="closebtn" on:click={handleDatenschutzClick}>x</p>
 							</div>
 						</div>
@@ -89,28 +90,91 @@
 
 		{#if pinAmerica}
 			<div class="pinLayer">
+
+				<!-- Header -->
 				<div class="pinLayerHeader">
-					<div class="pinLayerHeaderTitle"></div>
+					<div class="pinLayerHeaderTitle"> 
+						<p class="impressumCardTitle">
+							Radiologie in America
+						</p>
+					</div>
 					<div class="pinLayerHeaderCloseBtn">
 						<p class="closebtn" on:click={() =>  handlePinState("america")}>x</p>
 					</div>
 				</div>
-				hey im in pin america
+
+				<!-- Body -->
+				<div class="pinLayerBody">
+					<div class="pinBodyCover">
+						<img src="/am1.webp"  alt="Logo" height="40%" width="80%"  />
+
+					</div>
+					<div></div>
+				</div>
 			</div>
 		{/if}
 		{#if pinBrazil}
 			<div class="pinLayer">
-				hey im in pin in brazil
+				<div class="pinLayerHeader">
+					<div class="pinLayerHeaderTitle">
+						<p class="impressumCardTitle">
+							Radiologie in North America
+						</p>
+					</div>
+					<div class="pinLayerHeaderCloseBtn">
+						<p class="closebtn" on:click={() =>  handlePinState("brazil")}>x</p>
+					</div>
+				</div>
 			</div>
 		{/if}
 		{#if pinEurope}
+
 			<div class="pinLayer">
-				hey im in pin in europe
+				<!-- Header - Europe -->
+				<div class="pinLayerHeader">
+					<div class="pinLayerHeaderTitle">
+						<p class="impressumCardTitle">
+							Radiologie in Europa
+						</p>
+					</div>
+					<div class="pinLayerHeaderCloseBtn">
+						<p class="closebtn" on:click={() =>  handlePinState("europe")}>x</p>
+					</div>
+				</div>
+				<!-- Body - Europe -->
+				<div class="pinLayerBody">
+					<div class="pinBodyCover">
+
+						<div class="leftCoverSection">
+							<img src="/am1.webp"  alt="Logo" height="100%" width="100%"  />
+						</div>
+						<div class="rightCoverSection">
+								<p class="coverTitle">"Efficent Collobartion with AI"</p>
+
+						</div>
+
+					</div>
+					<div>
+						hey
+					</div>
+				</div>
 			</div>
 		{/if}
 		{#if pinAfrica}
 			<div class="pinLayer">
-				hey im in pin in africa
+				<div class="pinLayerHeader">
+					<div class="pinLayerHeaderTitle">
+						<p class="impressumCardTitle">
+							Radiologie in Europa
+						</p>
+					</div>
+					<div class="pinLayerHeaderCloseBtn">
+						<p class="closebtn" on:click={() =>  handlePinState("africa")}>x</p>
+					</div>
+				</div>
+
+
+
 			</div>
 		{/if}
 	
@@ -135,7 +199,11 @@
 
 				<img src="/blue2.png" class="map" alt="Logo" height="100%" width="100%"  />
 				<div class="americaPoint">
-					<div class="americaPin" on:click={() => handlePinState("america")}>1</div>
+					<div class="americaPin" on:click={() => handlePinState("america")}>
+
+						<img src="Location.png"  alt="Logo" height="100%" width="100%"  />
+
+					</div>
 				</div>
 				<div class="brazilPoint">
 					<div class="brazilpin"  on:click={() => handlePinState("brazil")}>2</div>
@@ -469,37 +537,87 @@
 			font-family: system-ui;
 			color: red;
 			cursor: pointer;
+			border-radius: 7px;
 	
 		}
 
 		.pinLayer{
-			background-color: green;
+			background-color: rgba(221, 225, 221, 0.337);
 			width: 26%;
 			height: 70%;
 			position: absolute;
 			top: 15%;
 			left: 70%;
 			z-index: 3;
+			border-radius: 7px;
 		}
 		.pinLayerHeader{
 			width: 100%;
 			height: 6%;
-			background-color: orange;
+			/* background-color: orange; */
 			display: flex;
+		}
+		.pinLayerBody{
+
+			width: 100%;
+			height: 96%;
+			/* background-color: rgb(0, 255, 170); */
+			display: flex;
+			flex-direction: column;
+
 		}
 
 		.pinLayerHeaderTitle{
 			width: 90%;
 			height: 100%;
-			background-color: rgb(255, 0, 72);
+			/* background-color: rgb(255, 0, 72); */
+			display: flex;
+			align-items: center;
+			padding-left: 1rem;
 		}
 		.pinLayerHeaderCloseBtn{
 			width: 10%;
 			height: 100%;
-			background-color: rgb(255, 255, 0);
+			/* background-color: rgb(255, 255, 0); */
 			display: flex;
 			justify-content: center;
 			align-items: center;
 		}
+
+		.pinBodyCover{
+			width: 100%;
+			height: 50%;
+			background-color: grey;
+			display: flex;
+			border-top: 1px solid white;
+			border-bottom: 1px solid white;
+
+
+		}
+
+		.leftCoverSection{
+			width: 55%;
+			height: 100%;
+			/* background-color: aqua; */
+			padding: 1rem;
+		}
+
+		.rightCoverSection{
+			width: 45%;
+			height: 100%;
+			/* background-color: rgb(94, 255, 0); */
+			display: flex;
+			text-align: center;
+			align-items: center;
+			/* justify-content: center; */
+		}
+
+		.coverTitle{
+			font-size: 40px;
+			font-weight: 600;
+			font-family: Arial, Helvetica, sans-serif;
+
+		}
+
 	</style>
 	
