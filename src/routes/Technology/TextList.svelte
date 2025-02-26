@@ -2,18 +2,23 @@
 
 <script lang="ts" module>
 
+  import ImageUploader, {bindingTtext} from "./ImageUploader.svelte";
   let texts = $state([]);
   export let onSelect: any;
   let currentStep = $state(2); // Assuming the current step is managed globally
+  
 
   function handleClick(text: any) {
-    onSelect(text);
-    if (currentStep === 2) {
-        console.log('inside handleClick onselect');
-        console.log('inside handleClick onselect - currentStep', currentStep);
+    // onSelect(text);
+    // if (currentStep === 2) {
+    //     console.log('inside handleClick onselect');
+    //     console.log('inside handleClick onselect - currentStep', currentStep);
 
-      goToStepThree();
-    }
+    //   goToStepThree();
+    // }
+
+    bindingTtext(text)
+
   }
 
   function goToStepThree() {
@@ -36,7 +41,6 @@
     texts = event
   }
 
-  console.log('text length on TextList', texts);
   </script>
   
   <div class="text-list">

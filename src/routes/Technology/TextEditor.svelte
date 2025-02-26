@@ -2,6 +2,7 @@
   import AudioRecorder from './AudioRecorder.svelte';
   import Loadingbar from './loadingbar.svelte';
   import { Circle2 } from 'svelte-loading-spinners';
+	import TextList from './TextList.svelte';
   
 
   let text = $state('');

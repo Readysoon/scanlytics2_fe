@@ -54,7 +54,6 @@
 		const blob = await res.blob();
 		const imageName = event.split('/').pop() || 'unknown.jpg';
 		const file = new File([blob], imageName, { type: blob.type });
-		console.log('init update');
 		return file;
 	};
 
