@@ -1,13 +1,62 @@
-<script>
+<script lang="ts">
+
+
+let impressState: boolean = false;
+let DatenschutzState: boolean = false;
 	function redirectUser(){ 
 	window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
 
 	}
+
+
+	const handleImpressumClick = () => { 
+		impressState = !impressState
+	}
+
+	
+	const handleDatenschutzClick = () => { 
+		DatenschutzState = !DatenschutzState
+	}
+
+
 	
 
 </script>
 
 <main>
+	{#if impressState}
+		<div class="overlay">
+			 <div class="Card">
+					 <div class="impressumCardHead">
+						<div class="impressumCardTitleSection">
+								<p class="impressumCardTitle">Impressum</p>
+							</div>
+						<div class="impressumCloseBtn">
+							<p class="closebtn" on:click={handleImpressumClick}>x</p>
+						</div>
+					 </div>
+					 <div class="impressumCardBody">body</div>
+			 </div>
+		</div>
+	{/if}
+
+		{#if DatenschutzState}
+		<div class="overlay">
+			<div class="Card">
+					<div class="impressumCardHead">
+						<div class="impressumCardTitleSection">
+								<p class="impressumCardTitle">DatenschutzState</p>
+							</div>
+						<div class="impressumCloseBtn">
+							<p class="closebtn" on:click={handleDatenschutzClick}>x</p>
+						</div>
+					</div>
+					<div class="impressumCardBody">body</div>
+			</div>
+		</div>
+	{/if}
+
+
 	<nav>
 		<div class="logoArea">
 			<img src="/logow.jpg" alt="Logo" height="30" width="28" />
@@ -99,7 +148,7 @@
 					</p>
 				</div>
 				<div class="profileCardKnowHowSection">
-					<p class="knowHowContent">
+					<p class="knowHowContent" >
 						Depute Innovation & Fashion GmbH(2021 - 2023)
 					</p>
 					<br>
@@ -120,8 +169,8 @@
 				</div>
 
 				<div class="footer-center-box">
-					<p  class="footer-right-text">Impressum |</p> 
-					<p  class="footer-right-text">Datenschutz</p>
+					<p  class="footer-right-text" on:click={handleImpressumClick}>Impressum |</p> 
+					<p  class="footer-right-text" on:click={handleDatenschutzClick}>Datenschutz</p>
 			   </div>
 			</div>
 			
@@ -370,5 +419,74 @@
 		justify-content: flex-end;
 		/* padding-right: 2%; */
 		gap: 1%;
+	}
+
+
+	.overlay{
+		background-color: rgba(0, 0, 0, 0.664);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		height: 100%;
+		width: 100%;
+		z-index: 3;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+
+		
+	}
+
+	.Card{
+		background-color: white;
+		height: 50%;
+		width: 50%;
+		border-radius: 7px;
+	}
+
+	.impressumCardHead{
+		height: 10%;
+		width: 100%;
+		display: flex;
+		/* background-color: green; */
+		border-bottom: 1px solid rgba(0, 0, 0, 0.259);
+
+	}
+
+	.impressumCardTitleSection{
+		height: 100%;
+		width: 90%;
+		/* background-color: orange; */
+		display: flex;
+		align-items: center;
+		padding-left: 1rem;
+	}
+
+	.impressumCardTitle{
+		font-size: 19px;
+		font-weight: 700;
+		font-family: system-ui;
+
+
+	}
+
+	.impressumCloseBtn{
+		height: 100%;
+		width: 10%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+	}
+
+	.closebtn{
+		font-size: 27px;
+		font-weight: 700;
+		font-family: system-ui;
+		color: red;
+		cursor: pointer;
+
 	}
 </style>
