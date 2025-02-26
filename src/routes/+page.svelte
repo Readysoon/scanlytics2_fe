@@ -43,7 +43,7 @@
 			<!-- Header  -->
 			<div class="headerMainContentSection">
 				<div class="leftContentHeaderArea">
-					<p>Worlds most Adopted AI</p>
+					<p>Worlds fastest Reporting Software</p>
 				</div>
 			</div>
 
@@ -60,13 +60,12 @@
 					</div>
 				</div>
 
-			
 			</div>
 
 			<!-- Buttom Area of left main section -->
 			<div class="ButtomMainContentSection">
 				<div class="leftBtnSection">
-					<button class="leftBtn_1" on:click={redirectUser}><a href="https://calendly.com/philipp-gallaschik-code/30min " class="bookCalllable">Book a Call</a></button>
+					<button class="leftBtn_1" on:click={redirectUser}><a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a></button>
 
 					<button class="leftBtn_2" on:click={redirectTechnologyPage}>
 						<a href="/Technology/" class="leftappointmentbtn">View Technology</a>

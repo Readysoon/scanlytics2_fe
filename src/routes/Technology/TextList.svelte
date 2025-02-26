@@ -2,9 +2,6 @@
 
 <script lang="ts" module>
 
-
-
-
   let texts = $state([]);
   export let onSelect: any;
   let currentStep = $state(2); // Assuming the current step is managed globally

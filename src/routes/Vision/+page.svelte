@@ -1,6 +1,4 @@
 <script>
-    import ImageWithBoxes from './ImageWithBoxes.svelte';
-
     let currentSlide = 0;
 
     const slides = [
@@ -32,11 +30,11 @@
 
 	<div class="mainSection">
 		<div class="mainLeftContentSection">
-            <ImageWithBoxes {slides} {currentSlide} />
-            <div class="subtitle">{slides[currentSlide].subtitle}</div>
+			<img src="/vision.png" alt="Vision" class="mainImage"/>
+			<p class="subtitle">Scanlytics aims to automate medical Reporting in two steps: <br> 1. Utilizing our proprietary classifier, we accurately categorize the input image into one of approximately 30 prevalent X-Ray categories, achieving an accuracy rate of 99,98%. <br> 2.	After the body part is identified, image segmentation algorithms are applied to delineate and analyze specific regions of interest within the X-Ray. This enables precise identification of anomalies or conditions, facilitating detailed and automated medical reporting. </p>
 		</div>
 	</div>
-	<footer class="footerSection"> fac
+	<footer class="footerSection"> 
 		<div class="footer-content">
 			<div class="footer-left">
 				<p class="footer-left-text">© 2025 Scanlytics | Version 0.1</p>
@@ -47,12 +45,12 @@
 
 <style>
 	main {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        background-color: rgb(0, 0, 0);
-        overflow: hidden;
-    }
+		display: flex;
+		flex-direction: column;
+		height: 100vh;
+		background-color: rgb(0, 0, 0);
+		overflow: hidden;
+	}
 
 	nav {
 		display: flex;
@@ -108,40 +106,52 @@
 	}
 
 	.mainSection {
-        flex: 1; /* Allow the main section to grow and fill the remaining space */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-    }
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 20px;
+		box-sizing: border-box;
+	}
 
 	.mainLeftContentSection {
 		display: flex;
-        flex-direction: column;
+		flex-direction: column;
 		align-items: center;
 		background-color: black;
 		width: 100%;
 		height: 100%;
 		position: relative;
+		box-sizing: border-box;
+		overflow-y: auto;
 	}
 
-    .subtitle {
-        color: white;
-        font-family: system-ui;
-        font-size: 15px;
-        opacity: 0.4;
-        text-align: center;
-        padding: 1em;
-        width: 100%; /* Make subtitle take the full width of its container */
-        max-width: 600px; /* Optional: Set a max-width to match the image width */
-        box-sizing: border-box; /* Include padding in the width calculation */
-        background-color: rgba(0, 0, 0, 0.6); /* Optional: Add a background to make it stand out */
-    }
+	.mainImage {
+		max-width: 100%;
+		height: auto;
+		max-height: calc(100vh - 20%); /* Adjust the height to ensure footer and subtitle are visible */
+		object-fit: contain;
+	}
+
+	.subtitle {
+		color: white;
+		font-family: system-ui;
+		font-size: 15px;
+		opacity: 0.4;
+		text-align: center;
+		padding: 1em;
+		width: 90%; /* Adjust this value to control the width */
+		box-sizing: border-box;
+		background-color: rgba(0, 0, 0, 0.6);
+		margin: 0 auto; /* Center the subtitle */
+	}
+
 
 	.footerSection {
 		width: 100%;
 		height: 13%;
 		padding: 1em;
+		box-sizing: border-box;
 	}
 
 	.footer-content {
@@ -166,6 +176,4 @@
 		font-size: 12px;
 		opacity: 0.4;
 	}
-
-
 </style>
