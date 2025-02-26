@@ -135,7 +135,7 @@
 
 				<img src="/blue2.png" class="map" alt="Logo" height="100%" width="100%"  />
 				<div class="americaPoint">
-					<div class="americaPin" on:click={() => handlePinState("america")}><image src="/Location.png" alt="pin"/></div>
+					<div class="americaPin" on:click={() => handlePinState("america")}><image src="/Locationred.png" alt="pin"/></div>
 				</div>
 				<div class="brazilPoint">
 					<div class="brazilpin"  on:click={() => handlePinState("brazil")}>2</div>
@@ -267,7 +267,6 @@
 		}
 
 		.americaPoint{
-			border: 1px solid red;
 			height: 100px;
 			width: 200px;
 			position: absolute;
@@ -276,12 +275,6 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-		}
-
-		.americaPin{
-			background-color: aqua;
-			width: 50px;
-			height: 50px;
 		}
 
 		.brazilPoint{
