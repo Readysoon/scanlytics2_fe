@@ -13,6 +13,26 @@
 	let fileInput: HTMLInputElement;
 	let imgArr = $state([]);
 
+	
+	
+
+	const images = [
+		`knie.jpg`,
+		`thoraxF.jpg`, 
+ 
+	]
+
+	const imageMockFile =
+	[
+		{ path: "/knie.jpg", name: "Image 1", size: "500KB" },
+		{ path: "/thoraxF.jpg", name: "Image 2", size: "720KB" },
+	]
+
+
+// $: if(defaulImgArr.length == 0){
+// 	console.log('init');
+
+// }
 
 export function triggerclickEvent() {
 		fileInput.click();
@@ -43,7 +63,15 @@ export function triggerclickEvent() {
 
   function handletrigger(event: any){
  
-    imageupload(event, mlSelectedFile)
+	// Uploads the image tp the select options
+
+	console.log('mlSelectedFile', mlSelectedFile);
+	if(mlSelectedFile){
+		imageupload(event, mlSelectedFile)
+
+	}else{
+		imageupload(event, imageMockFile)
+	}
   }
 
   
@@ -74,7 +102,9 @@ export function triggerclickEvent() {
 
     {/if}
 	{:else}
-	in select
+	 {#each images as image}
+		<img src={image} alt="images" height="150px" width="150" on:click={() => handletrigger(image)}>
+	 {/each}
 
 		
 	{/if}
