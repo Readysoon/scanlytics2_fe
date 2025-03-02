@@ -293,7 +293,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 					</div>
 					<div class="coverButtom">
 						<p class="overtext">
-							The integration of AI into radiology is transforming the field, paving the way for a future where human expertise and artificial intelligence work in seamless harmony. AI-driven tools are enhancing efficiency by rapidly analyzing medical images, detecting abnormalities with remarkable precision, and streamlining workflows, allowing radiologists to focus on complex cases that require deep clinical insight. As demand for radiology services grows, AI stands as a vital collaborator, alleviating workforce shortages and reducing diagnostic delays.
+							Radiology in England struggles with growing radiologist shortages, increased scanner access, an aging population, and heightened service demands, prompting standardization efforts from the Royal College of Radiologists. Automation technologies could alleviate these pressures by handling routine scans, enabling AI-assisted diagnosis to extend radiologist capacity, and creating more efficient workflows that allow specialists to focus on complex cases requiring human expertise.<br><a href="https://about.cmrad.com/articles/the-growing-radiologist-shortage-a-critical-healthcare-crisis">Learn more</a>
 						</p>
 					</div>
 				</div>
