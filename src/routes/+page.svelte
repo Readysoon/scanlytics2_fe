@@ -18,7 +18,7 @@
 		const mobileState = innerWidth 
 		if(mobileState <= 769){
 			mobileStae = true
-			}else if(mobileState <= 1505){
+			}else if(mobileState <= 1707){
 				// alert("Please zoom out");
 				smallScreen = true
 
@@ -81,7 +81,7 @@
 				<div class="smallContent">	
 					<div class="zoomTitle">Please Zoom Out</div>
 					<div class="ZoomOutArea">
-						<button class="gotItBtn" on:click={() => location.reload()}>Got It</button>
+						<button class="gotItBtn" on:click={() => location.reload()}>Refresh</button>
 					</div>
 				</div>
 				
@@ -92,9 +92,7 @@
 			<div class="smallScreenOverlady">
 				<div class="smallContent">	
 					<div class="zoomTitle">App not available on mobile devices. Please access it from a laptop</div>
-					<div class="ZoomOutArea">
-						<button class="gotItBtn" on:click={() => location.reload()}>Got It</button>
-					</div>
+					
 				</div>
 				
 			</div>
