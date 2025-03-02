@@ -99,7 +99,7 @@
 						<br>
 						Adresse: Mierendorffstr. 12, c/o Zekl, 10589 Berlin
 						<br>
-						Telefon: 017683470990
+						Telefon: 01739140346
 						<br>
 						E-Mail: philipp.gallaschik@code.berlin
 					 </div>
