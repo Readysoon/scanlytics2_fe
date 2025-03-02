@@ -95,7 +95,7 @@
 						</div>
 					 </div>
 					 <div class="impressumCardBody">
-						Name: Phillipp Gallaschik
+						Name: Philipp Gallaschik
 						<br>
 						Adresse: Mierendorffstr. 12, c/o Zekl, 10589 Berlin
 						<br>
