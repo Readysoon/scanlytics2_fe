@@ -361,7 +361,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 				</div>
 				<div class="coverButtom">
 					<p class="overtext">
-						Radiology in Asia faces three major challenges: limited support for interventional radiology, insufficient subspecialization training, and growing shortages of qualified radiologists and equipment, with significant variation across the region. Automation technologies could address these disparities by providing AI-assisted diagnosis to supplement limited specialist availability, enabling knowledge transfer through virtual training platforms, and implementing scalable solutions that can function effectively across different levels of infrastructure development. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10550747/">Learn more</a>
+						Radiology in Asia faces three key challenges: limited support for interventional radiology, insufficient subspecialization training, and shortages of qualified radiologists and equipment, with significant regional variation. Automation technologies could address these issues by offering AI-assisted diagnosis to supplement limited specialist availability, enabling knowledge transfer through virtual training platforms, and implementing scalable solutions that work across varying infrastructure levels. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10550747/">Learn more</a>
 					</p>
 				</div>
 			</div>
