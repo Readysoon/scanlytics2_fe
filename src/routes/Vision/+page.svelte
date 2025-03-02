@@ -101,7 +101,7 @@
 						<br>
 						Telefon: 017683470990
 						<br>
-						E-Mail: tobias.wedel@code.berlin
+						E-Mail: philipp.gallaschik@code.berlin
 					 </div>
 			 </div>
 		</div>
