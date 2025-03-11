@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Header from './Header.svelte';
 	import { redirect } from '@sveltejs/kit';
 	import { onMount, onDestroy } from 'svelte';
 
@@ -7,10 +8,6 @@
 
 	let mobileStae = false; 
 	let smallScreen = false; 
-
-	
-
-
 
 	const handleResize = () => {
 		console.log('innerHeight', innerHeight);
@@ -21,11 +18,7 @@
 			}else if(mobileState <= 1707){
 				// alert("Please zoom out");
 				smallScreen = true
-
 		}
-
-
-
 	}
 	
 
@@ -35,10 +28,7 @@
 
 		const mobileState = innerWidth 
 
-
 		window.addEventListener("Resize", handleResize )
-		
-		
 		
 		handleResize();
 
@@ -97,23 +87,8 @@
 				
 			</div>
 	{/if}
-	<nav>
-		<div class="logoArea">
-			<img src="/logow.jpg" alt="Logo" height="30" width="28" />
-			<h2>Scanlytics</h2>
-		</div>
-		<div class="navbar">
-			<a href="/" class="homeBtn">Home</a>
-			<a href="/Vision/">Vision</a>
-			<a href="/Technology/">Technology</a>
-			<a href="/About/">About</a>
 
-
-			<button class="bookCallBtn" on:click={redirectUser}>Book a Call</button>
-		</div>
-	</nav>
-
-	
+	<Header />
 
 	<div class="mainSection">
 		<div class="mainLeftContentSection">
@@ -240,34 +215,6 @@
 		font-size: 10px;
 	}
 
-	nav {
-		display: flex;
-		width: '100%';
-		height: 5%;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	.logoArea {
-		height: 100%;
-		width: 8%;
-		display: flex;
-		align-items: center;
-		gap: 8%;
-		padding-left: 1%;
-		font-family: system-ui;
-		color: white;
-	}
-
-	.navbar {
-		width: 27%;
-		height: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding-right: 1%;
-	}
-
 	a {
 		text-decoration: none;
 		color: rgb(77, 77, 77);
@@ -281,26 +228,7 @@
 		font-weight: 400;
 		font-family: system-ui;
 	}
-	
-	.bookCallBtn {
-		/* background-color: rgb(255, 255, 255); */
-		width: 20%;
-		height: 50%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: 1px solid black;
-		border-radius: 40px;
-		color: rgb(10, 9, 9);
-		font-family: system-ui;
-		font-size: 12px;
-		cursor: pointer;
 
-	}
-
-	.homeBtn {
-		color: white;
-	}
 	.mainSection {
 		/* background-color: rgb(36, 34, 34); */
 		height: 77%;
@@ -328,6 +256,7 @@
 		display: flex;
 		align-items: center;
 	}
+
 	.leftContentHeaderArea {
 		background-color: rgb(226, 241, 252);
 		width: 20%;
@@ -340,8 +269,6 @@
 		color: black;
 		margin-left: 1%;
 	}
-
-
 
 	.middleMainContentSection{
 		/* background-color: rgb(11, 139, 111); */
@@ -416,32 +343,30 @@
 		border-radius: 40px;
 		color: black;
 		cursor: pointer;
-
 	}
+
 	.leftappointmentbtn {
 		color: white;
 		font-size: 14px;
 		font-weight: 400;
 		font-family: system-ui;
 	}
+
 	.footerSection {
 		width: 100%;
 		height: 13%;
 		/* background-color: rgba(209, 78, 78, 0.673); */
-
 		padding: 1em;		
 		/* margin-top: 5px; */
-
-
 	}
+	
 	.footer-content{
 		width: 100%;
 		height: 100px;
 		display: flex;
 		justify-content: space-between;
-
-
 	}
+
 	.footer-left{
 		color: black;
 		width: 40%;
@@ -450,14 +375,14 @@
 		flex-direction: column; 
 		justify-content: flex-end;
 	}
+
 	.footer-left-text{
 		color: white;
 		font-family: system-ui;
 		font-size: 12px;
 		opacity: 0.4;
-
-	
 	}
+
 	.footer-center{
 		color: black;
 		width: 30%;
@@ -465,20 +390,14 @@
 		flex-direction: column; 
 		justify-content: flex-end;
 		align-items: end;
-
-
 	}
 	
-
 	.footer-center-text{
 		color: white;
 		font-family: system-ui;
 		font-size: 12px;
 		opacity: 0.4;
 		text-align: end;
-
-
 	}
-
 
 </style>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Header from '../Header.svelte';
 	import ImageUploader from './ImageUploader.svelte';
 	import TextList from './TextList.svelte';
 	import Guide from './Guide.svelte';
@@ -82,20 +83,7 @@
 </head>
 
 <main>
-	<nav>
-		<div class="logoArea">
-			<img src="/logow.jpg" alt="Logo" height="30" width="28" />
-			<h2>Scanlytics</h2>
-		</div>
-		<div class="navbar">
-			<a href="/">Home</a>
-			<a href="/Vision/">Vision</a>
-			<a href="/Technology/" class="technologyBtn">Technology</a>
-			<a href="/About/">About</a>
-			<button class="bookCallBtn" on:click={redirectUser}>Book a Call</button>
-
-		</div>
-	</nav>
+	<Header />
 
 	<div class="mainSection">
 		<div class="mainLeftContentSection">

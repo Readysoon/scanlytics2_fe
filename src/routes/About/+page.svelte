@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Header from "../Header.svelte";
+
 
 
 let impressState: boolean = false;
@@ -138,20 +140,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 	{/if}
 
 
-	<nav>
-		<div class="logoArea">
-			<img src="/logow.jpg" alt="Logo" height="30" width="28" />
-			<h2>Scanlytics</h2>
-		</div>
-		<div class="navbar">
-			<a href="/">Home</a>
-			<a href="/Vision/">Vision</a>
-			<a href="/Technology/">Technology</a>
-			<a href="/About/" class="aboutBtn">About</a>
-			<button class="bookCallBtn" on:click={redirectUser}>Book a Call</button>
-
-		</div>
-	</nav>
+	<Header />
 
 	<div class="mainSection">
 		<div class="mainLeftContentSection">

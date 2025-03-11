@@ -1,4 +1,6 @@
 <script>	
+    import { page } from '$app/stores';
+
     function redirectUser(){ 
     window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
 
@@ -11,12 +13,11 @@
         <h2>Scanlytics</h2>
     </div>
     <div class="navbar">
-        <a href="/">Home</a>
-        <a href="/Vision/" class="visionBtn">Vision</a>
-        <a href="/Technology/">Technology</a>
-        <a href="/About/" >About</a>
+        <a href="/" class={$page.url.pathname === '/' ? 'active' : ''}>Home</a>
+        <a href="/Vision/" class={$page.url.pathname.startsWith('/Vision') ? 'active' : ''}>Vision</a>
+        <a href="/Technology/" class={$page.url.pathname.startsWith('/Technology') ? 'active' : ''}>Technology</a>
+        <a href="/About/" class={$page.url.pathname.startsWith('/About') ? 'active' : ''}>About</a>
         <button class="bookCallBtn" on:click={redirectUser}>Book a Call</button>
-
     </div>
 </nav>
 
@@ -56,6 +57,10 @@
         font-family: system-ui;
     }
 
+    .active {
+        color: white !important;
+    }
+
     .bookCallBtn {
         width: 20%;
         height: 50%;
@@ -73,5 +78,6 @@
     .visionBtn {
         color: white;
     }
+
 
 </style>
