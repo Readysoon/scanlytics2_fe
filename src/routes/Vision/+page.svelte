@@ -1,5 +1,6 @@
 <script lang="ts">
 
+	import Header from '../Header.svelte';
 
 	let impressState: boolean = false;
 	let DatenschutzState: boolean = false;
@@ -9,10 +10,7 @@
 	let pinAfrica: boolean = false
 	let pinChina: boolean = false; 
 	let pinaustralia: boolean = false;
-		function redirectUser(){ 
-		window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
-	
-		}
+
 	
 	
 		const handleImpressumClick = () => { 
@@ -73,12 +71,7 @@
 				pinaustralia = !pinaustralia
 
 			}
-
-
 		}
-	
-	
-		
 	
 	</script>
 	
@@ -106,6 +99,8 @@
 			 </div>
 		</div>
 	{/if}
+
+	<Header />
 
 		{#if DatenschutzState}
 		<div class="overlay">
@@ -352,7 +347,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 				<div class="pinBodyCover">
 
 					<div class="leftCoverSection">
-						<img src="/VisionAsia.png" class="imgLogo" alt="Logo" height="100%" width="100%"  />
+						<img src="/VisionAsia.png" alt="Logo" height="100%" width="100%"  />
 					</div>
 					<div class="rightCoverSection">
 							<p class="coverTitle">Supplementing Specialist Availability Across Asia</p>
@@ -402,22 +397,6 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 			</div>
 		</div>
 	{/if}
-	
-	
-		<nav>
-			<div class="logoArea">
-				<img src="/logow.jpg" alt="Logo" height="30" width="28" />
-				<h2>Scanlytics</h2>
-			</div>
-			<div class="navbar">
-				<a href="/">Home</a>
-				<a href="/Vision/" class="visionBtn">Vision</a>
-				<a href="/Technology/">Technology</a>
-				<a href="/About/" >About</a>
-				<button class="bookCallBtn" on:click={redirectUser}>Book a Call</button>
-	
-			</div>
-		</nav>
 	
 		<div class="mainSection">
 			<div class="mainLeftContentSection">
@@ -497,61 +476,11 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 			overflow: hidden;
 		}
 	
-		nav {
-			display: flex;
-			width: 100%;
-			height: 5%;
-			align-items: center;
-			justify-content: space-between;
-		}
-	
-		.logoArea {
-			height: 100%;
-			width: 8%;
-			display: flex;
-			align-items: center;
-			gap: 8%;
-			padding-left: 1%;
-			font-family: system-ui;
-			color: white;
-		}
-	
-		.navbar {
-			width: 27%;
-			height: 100%;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			padding-right: 1%;
-		}
-	
 		a {
 			text-decoration: none;
 			color: rgb(77, 77, 77);
 			font-weight: 500;
 			font-family: system-ui;
-		}
-	
-		.bookCallBtn {
-			width: 20%;
-			height: 50%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			border: 1px solid black;
-			border-radius: 40px;
-			color: rgb(10, 9, 9);
-			font-family: system-ui;
-			font-size: 12px;
-			cursor: pointer;
-		}
-
-		
-		.imgLogo{
-			border-radius: 7px;
-		}
-		.visionBtn{
-			color: white;
 		}
 	
 		.mainSection {
