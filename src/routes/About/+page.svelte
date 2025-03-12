@@ -19,9 +19,6 @@
 		DatenschutzState = !DatenschutzState
 	}
 
-
-	
-
 </script>
 
 <main>
