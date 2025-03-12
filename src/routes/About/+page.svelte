@@ -215,4 +215,29 @@
 		height: auto;
 		object-fit: contain; /* Ensures the image scales while maintaining aspect ratio */
 	}
+
+	@media (max-width: 768px) {
+        .mainSection {
+            height: auto;
+            overflow-y: auto;
+        }
+        
+        .mainLeftContentSection {
+            flex-direction: column;
+            height: auto;
+            padding: 20px 0;
+            gap: 20px; /* Adds space between stacked cards */
+        }
+        
+        .profileCard {
+            width: 90%; /* Make cards wider on mobile */
+            height: auto; /* Let height adjust to content */
+            margin-bottom: 20px; /* Add space between cards */
+        }
+        
+        main {
+            height: auto;
+            overflow-y: auto;
+        }
+    }
 </style>
