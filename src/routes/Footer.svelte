@@ -201,8 +201,6 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 		font-size: 19px;
 		font-weight: 700;
 		font-family: system-ui;
-
-
 	}
 
 	.impressumCloseBtn{

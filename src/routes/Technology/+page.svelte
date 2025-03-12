@@ -252,8 +252,8 @@
 		justify-content: flex-end;
 		align-items: center;
 		opacity: 0.7;
-
 	}
+
 	.patientInfoData{
 		width: 97%;
 		height: 30%;
@@ -271,6 +271,7 @@
 		opacity: 0.8;
 		font-size: 7px;
 	}
+
 	.patientB_Date{
 		font-size: 7px;
 	}
@@ -314,59 +315,6 @@
 		height: 25%;
 	}
 
-	nav {
-		display: flex;
-		width: '100%';
-		height: 5%;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	.logoArea {
-		height: 100%;
-		width: 8%;
-		display: flex;
-		align-items: center;
-		gap: 8%;
-		padding-left: 1%;
-		font-family: system-ui;
-		color: white;
-	}
-
-	.navbar {
-		width: 27%;
-		height: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding-right: 1%;
-	}
-
-	a {
-		text-decoration: none;
-		color: rgb(77, 77, 77);
-		font-weight: 500;
-		font-family: system-ui;
-	}
-
-	.bookCallBtn {
-		/* background-color: rgb(255, 255, 255); */
-		width: 20%;
-		height: 50%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: 1px solid black;
-		border-radius: 40px;
-		color: rgb(10, 9, 9);
-		font-family: system-ui;
-		font-size: 12px;
-		cursor: pointer;
-	}
-
-	.technologyBtn {
-		color: white;
-	}
 	.mainSection {
 		/* background-color: rgb(36, 34, 34); */
 		height: 77%;
