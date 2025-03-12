@@ -8,15 +8,13 @@
 	import TextEditor from './TextEditor.svelte';
 	import Selectpage from './selectpage.svelte';
 	
-
-
 	function redirectUser(){ 
 		window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
-
 	}
 
-	let texts: string | any= [];
-	let selectedText = '';
+	// Independent state management
+	let extractedTexts: string[] = []; // Texts extracted from uploads
+	let editorContent = ''; // Content in the text editor
 	let isMobile = false;
 
 	if (typeof window !== 'undefined') {
@@ -26,6 +24,7 @@
 		});
 	}
 
+	// Server initialization
 	onMount(async () => {
 		try {
 			const response = await fetch('https://scanlytics2-ml.fly.dev/', {
@@ -58,24 +57,34 @@
 		}
 	});
 
-	function handleSelect(text: any) {
-		selectedText += (selectedText ? '\n' : '') + text;
-		texts = texts.filter((t:any) => t !== text);
+	// Function to handle text selection from TextList
+	function handleTextSelect(text: string) {
+		// Instead of directly modifying the editor content, dispatch an event or use a callback
+		// This allows the TextList to operate independently
+		const index = extractedTexts.indexOf(text);
+		if (index !== -1) {
+			// Remove the selected text from the list
+			extractedTexts = extractedTexts.filter((t) => t !== text);
+			
+			// Add it to the editor (now decoupled)
+			appendToEditor(text);
+		}
 	}
-
-	function handleUploadSuccess(parsedTexts: any) {
-		texts = parsedTexts;
-	}
-
 	
-// 	function handleFileChange(event: any ) {
-//     mlSelectedFile = event.target.files[0];
-//     if (mlSelectedFile) {
-//       imageUrl = URL.createObjectURL(mlSelectedFile);
-//     }
-//   }
+	// Function to append text to the editor
+	function appendToEditor(text: string) {
+		editorContent += (editorContent ? '\n' : '') + text;
+	}
 
+	// Function to handle editor content changes
+	function handleEditorChange(event: CustomEvent) {
+		editorContent = event.detail.text;
+	}
 
+	// Function to handle successful uploads
+	function handleUploadSuccess(parsedTexts: string[]) {
+		extractedTexts = parsedTexts;
+	}
 </script>
 
 <head>
@@ -91,34 +100,31 @@
 			<div class="boxArea">
 				<!-- Left side  -->
 				<div class="boxSelectArea">
-
 					<div class="boxSelectAreaLayer">
-
-				
-							<Selectpage/>
-
-
-					<!-- Box Drop Down Section -->
-					<div class="box1">
-						<ImageUploader onUploadSuccess={handleUploadSuccess} />
+						<Selectpage/>
+						<!-- Box Drop Down Section -->
+						<div class="box1">
+							<ImageUploader onUploadSuccess={handleUploadSuccess} />
+						</div>
 					</div>
-					</div>
-
-					
-					
-
 				</div>
 
 				<!-- right side -->
 				<div class="boxAreaMl">
-					
-
 					<div class="box">
-						<TextEditor bind:text={selectedText} />
+						<!-- Using on:change event instead of bind:text -->
+						<TextEditor 
+							text={editorContent} 
+							on:change={handleEditorChange} 
+						/>
 					</div>
 
 					<div class="box">
-						<TextList {texts} onSelect={handleSelect} />
+						<!-- Using onSelect callback instead of direct binding -->
+						<TextList 
+							texts={extractedTexts} 
+							onSelect={handleTextSelect} 
+						/>
 					</div>
 				</div>
 			</div>
@@ -130,8 +136,6 @@
 	</div>
 
 	<Footer />
-
-	
 </main>
 
 <style>
@@ -237,6 +241,7 @@
 		border: 1px solid rgba(255, 255, 255, 0.066);
 		position: relative;
 	}
+	
 	.patientInfo{
 		width: 97%;
 		height: 10%;
@@ -253,7 +258,7 @@
 		align-items: center;
 		opacity: 0.7;
 	}
-
+	
 	.patientInfoData{
 		width: 97%;
 		height: 30%;
