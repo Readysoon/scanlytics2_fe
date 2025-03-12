@@ -125,22 +125,26 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 		</div>
 	{/if}
 
-<footer class="footerSection">
-    <div class="footer-content">
-        <div class="footer-left">
-            <div class="footer-left-box">
-                <p class="footer-left-text">© 2025 Scanlytics | Version 0.2</p>
-
+    <footer class="footerSection">
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-left-box">
+                    <p class="footer-left-text">© 2025 Scanlytics | Version 0.2</p>
+                </div>
+    
+                <div class="footer-center-box">
+                    <p class="footer-right-text desktop-view" on:click={handleImpressumClick}>Impressum |</p> 
+                    <p class="footer-right-text desktop-view" on:click={handleDatenschutzClick}>Datenschutz</p>
+                    
+                    <div class="mobile-view">
+                        <p class="footer-right-text" on:click={handleImpressumClick}>Impressum</p>
+                        <p class="footer-separator">-</p>
+                        <p class="footer-right-text" on:click={handleDatenschutzClick}>Datenschutz</p>
+                    </div>
+                </div>
             </div>
-
-            <div class="footer-center-box">
-                <p  class="footer-right-text" on:click={handleImpressumClick}>Impressum |</p> 
-                <p  class="footer-right-text" on:click={handleDatenschutzClick}>Datenschutz</p>
-           </div>
         </div>
-        
-    </div>
-</footer>
+    </footer>
 
 <style>
     .overlay{
@@ -170,7 +174,6 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 		display: flex;
 		/* background-color: green; */
 		border-bottom: 1px solid rgba(0, 0, 0, 0.259);
-
 	}
 
     .DatenSchutzCard{
@@ -209,7 +212,6 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 		display: flex;
 		justify-content: center;
 		align-items: center;
-
 	}
 
 	.closebtn{
@@ -224,7 +226,8 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 	.impressumCardBody{
 		padding: 1rem;
 	}
-    	.footerSection {
+
+    .footerSection {
 		width: 100%;
 		height: 13%;
 		padding: 1em;
@@ -236,7 +239,6 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 		display: flex;
 		justify-content: space-between;
 		/* background-color: green; */
-
 	}
 
 	.footer-left {
@@ -246,10 +248,7 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 		display: flex;
 		/* flex-direction: column; */
 		justify-content: space-between;
-
 		/* background-color: orange; */
-
-
 	}
 
 	.footer-left-box{
@@ -274,8 +273,6 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 		opacity: 0.4;
 		cursor: pointer;
 	}
-
-	
 
 	.footer-center {
 		color: black;
@@ -311,4 +308,36 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 		/* padding-right: 2%; */
 		gap: 1%;
 	}
+
+    /* Default styles for desktop */
+    .mobile-view {
+        display: none;
+    }
+
+    .desktop-view {
+        display: inline-block;
+    }
+
+    /* Media query for mobile devices */
+    @media screen and (max-width: 768px) {
+        .mobile-view {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .desktop-view {
+            display: none;
+        }
+        
+        .footer-separator {
+            color: rgb(255, 255, 255);
+            margin: 2px 0;
+        }
+        
+        .footer-center-box {
+            text-align: center;
+        }
+    }
+
 </style>

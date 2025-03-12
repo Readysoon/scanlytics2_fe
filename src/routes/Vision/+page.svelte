@@ -80,6 +80,7 @@
 	<main>
 
 	<Header />
+
 		{#if pinAmerica}
 			<div class="pinLayer">
 
@@ -290,48 +291,47 @@
 	
 		<div class="mainSection">
 			<div class="mainLeftContentSection">
-
 				<div class="mapSection">
-					<img src="/blue2.png" class="map" alt="Logo" height="100%" width="100%"  />
-				<div class="americaPoint">
-					<div class="americaPin" on:click={() => handlePinState("america")}>
+						<img src="/blue2.png" class="map" alt="Logo" height="100%" width="100%"  />
+					<div class="americaPoint">
+						<div class="americaPin" on:click={() => handlePinState("america")}>
 
-						<img src="LocationUSA.png"  class="pinpoint" alt="Logo" height="100%" width="100%"  />
+							<img src="LocationUSA.png"  class="pinpoint" alt="Logo" height="100%" width="100%"  />
 
+						</div>
+						
 					</div>
-					
-				</div>
-				<div class="brazilPoint">
-					<!-- svelte-ignore a11y_no_static_element_interactions -->
-					<div class="brazilpin"  on:click={() => handlePinState("brazil")}>
-						<img src="LocationSA.png" class="pinpoint"  alt="Logo" height="100%" width="100%"  />
+					<div class="brazilPoint">
+						<!-- svelte-ignore a11y_no_static_element_interactions -->
+						<div class="brazilpin"  on:click={() => handlePinState("brazil")}>
+							<img src="LocationSA.png" class="pinpoint"  alt="Logo" height="100%" width="100%"  />
 
+						</div>
 					</div>
-				</div>
-				<div class="africaPoint">
-					<div class="africaPin"  on:click={() => handlePinState("africa")}>
-						<img src="LocationAfrica.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
+					<div class="africaPoint">
+						<div class="africaPin"  on:click={() => handlePinState("africa")}>
+							<img src="LocationAfrica.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
 
+						</div>
 					</div>
-				</div>
-				<div class="europePoint">
-					<div class="europePin"  on:click={() => handlePinState("europe")}>
-						<img src="LocationEU.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
+					<div class="europePoint">
+						<div class="europePin"  on:click={() => handlePinState("europe")}>
+							<img src="LocationEU.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
 
+						</div>
 					</div>
-				</div>
-				<div class="chinaPoint">
-					<div class="chinaPin"  on:click={() => handlePinState("china")}>
-						<img src="LocationAsia.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
+					<div class="chinaPoint">
+						<div class="chinaPin"  on:click={() => handlePinState("china")}>
+							<img src="LocationAsia.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
 
+						</div>
 					</div>
-				</div>
-				<div class="australiaPoint">
-					<div class="australiaPin"  on:click={() => handlePinState("australia")}>
-						<img src="LocationAustralia.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
+					<div class="australiaPoint">
+						<div class="australiaPin"  on:click={() => handlePinState("australia")}>
+							<img src="LocationAustralia.png" class="pinpoint" alt="Logo" height="100%" width="100%"  />
 
+						</div>
 					</div>
-				</div>
 				</div>
 				
 
@@ -344,277 +344,268 @@
 		<Footer />
 	</main>
 	
-	<style>
-		main {
-			background-color: rgb(0, 0, 0);
-			height: 100vh;
-			overflow: hidden;
-		}
-	
-		a {
-			text-decoration: none;
-			color: rgb(77, 77, 77);
-			font-weight: 500;
-			font-family: system-ui;
-		}
+<style>
+	main {
+		background-color: rgb(0, 0, 0);
+		height: 100vh;
+		overflow: hidden;
+	}
 
-		
-		.imgLogo{
-			border-radius: 7px;
-		}
-	
-		.mainSection {
-			height: 77%;
-			margin-top: 30px;
-		}
-	
-		.mainLeftContentSection {
-			display: flex;
-			justify-content: space-around;
-			align-items: center;
-			flex-direction: column;
-			/* background-color: rgb(227, 63, 63); */
-			width: 100%;
-			height: 100%;
-			position: relative;
-	
-	
-		}
-		.mapSection{
-			/* background-color: rgb(244, 190, 28); */
-			width: 100%;
-			height: 90%;
-			display: flex;
-			align-items: center;
-			flex-direction: column;
-			justify-content: center;
-		}
+	a {
+		text-decoration: none;
+		color: rgb(77, 77, 77);
+		font-weight: 500;
+		font-family: system-ui;
+	}
 
-		.MapDefaultTEXT{
-			/* background-color: red; */
-			width: 100%;
-			height: 20%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-		.placeholderObjecttext {
+	
+	.imgLogo{
+		border-radius: 7px;
+	}
+
+	.mainSection {
+		height: 77%;
+		margin-top: 30px;
+	}
+
+	.mainLeftContentSection {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		flex-direction: column;
+		/* background-color: rgb(227, 63, 63); */
+		width: 100%;
+		height: 100%;
+		position: relative;
+
+
+	}
+	.mapSection{
+		/* background-color: rgb(244, 190, 28); */
+		width: 100%;
+		height: 90%;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.MapDefaultTEXT{
+		/* background-color: red; */
+		width: 100%;
+		height: 20%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.placeholderObjecttext {
 		font-size: 25px;
 		font-weight: bold;
 		font-family:Arial, Helvetica, sans-serif;
 		color: rgb(255, 255, 255);
-		}
-	
-		.map{
-			height: 100%;
-			width: 80%;
-			opacity: 0.9;
-		}
-	
-		.profileCard{
-			width: 20%;
-			height: 50%;
-			background-color: rgba(41, 40, 41, 0.86);
-			display: flex;
-			border: 1px solid white; 
-			border-radius: 7px;
-			flex-direction: column;
-		}
+	}
 
-		.americaPoint{
-			/* border: 1px solid red; */
-			height: 100px;
-			width: 200px;
-			position: absolute;
-			top: 32%;
-			left: 19%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
+	.map{
+		height: 100%;
+		width: 80%;
+		opacity: 0.9;
+	}
 
-		.americaPin{
-			
-			display: flex;
-			justify-content: center;
-			
-		}
+	.profileCard{
+		width: 20%;
+		height: 50%;
+		background-color: rgba(41, 40, 41, 0.86);
+		display: flex;
+		border: 1px solid white; 
+		border-radius: 7px;
+		flex-direction: column;
+	}
 
-		.brazilPoint{
-			/* border: 1px solid rgb(221, 255, 0); */
-			height: 100px;
-			width: 200px;
-			position: absolute;
-			top: 55%;
-			left: 28%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-		.brazilpin{
-			/* background-color: rgb(255, 68, 0); */
-			/* width: 50px;
-			height: 50px; */
-		}
+	.americaPoint{
+		/* border: 1px solid red; */
+		height: 100px;
+		width: 200px;
+		position: absolute;
+		top: 32%;
+		left: 19%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 
-		.africaPoint{
-			/* border: 1px solid rgb(21, 0, 255); */
-			height: 100px;
-			width: 200px;
-			position: absolute;
-			top: 50%;
-			left: 49%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-
-		.africaPin{
-			/* background-color: rgb(0, 255, 30); */
-			/* width: 50px;
-			height: 50px; */
-		}
-		.pinpoint{
-			width: 80px;
-			height: 80px;
-			cursor: pointer;
-		}
-		.europePoint{
-			/* border: 1px solid rgb(255, 178, 34); */
-			height: 100px;
-			width: 200px;
-			position: absolute;
-			top: 30%;
-			left: 45%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-
+	.americaPin{
 		
+		display: flex;
+		justify-content: center;
+		
+	}
 
-		.chinaPoint{
-			/* border: 1px solid rgb(53, 137, 22); */
-			height: 100px;
-			width: 200px;
-			position: absolute;
-			top: 35%;
-			left: 67%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
+	.brazilPoint{
+		/* border: 1px solid rgb(221, 255, 0); */
+		height: 100px;
+		width: 200px;
+		position: absolute;
+		top: 55%;
+		left: 28%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.brazilpin{
+		/* background-color: rgb(255, 68, 0); */
+		/* width: 50px;
+		height: 50px; */
+	}
 
+	.africaPoint{
+		/* border: 1px solid rgb(21, 0, 255); */
+		height: 100px;
+		width: 200px;
+		position: absolute;
+		top: 50%;
+		left: 49%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.africaPin{
+		/* background-color: rgb(0, 255, 30); */
+		/* width: 50px;
+		height: 50px; */
+	}
+	.pinpoint{
+		width: 80px;
+		height: 80px;
+		cursor: pointer;
+	}
+	.europePoint{
+		/* border: 1px solid rgb(255, 178, 34); */
+		height: 100px;
+		width: 200px;
+		position: absolute;
+		top: 30%;
+		left: 45%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.chinaPoint{
+		/* border: 1px solid rgb(53, 137, 22); */
+		height: 100px;
+		width: 200px;
+		position: absolute;
+		top: 35%;
+		left: 67%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.australiaPoint{
+		/* border: 1px solid rgb(179, 35, 35); */
+		height: 100px;
+		width: 200px;
+		position: absolute;
+		top: 55%;
+		left: 75%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.pinLayer{
+		background-color: rgba(163, 163, 163, 0.725);
+		width: 33%;
+		height: 70%;
+		position: absolute;
+		top: 15%;
+		left: 65%;
+		z-index: 3;
+		border-radius: 7px;
+		border: 1px solid white;
+	}
+	.pinLayerHeader{
+		width: 100%;
+		height: 6%;
+		/* background-color: orange; */
+		display: flex;
+	}
+
+	.pinLayerBody{
+		width: 100%;
+		height: 96%;
+		/* background-color: rgb(0, 255, 170); */
+		display: flex;
+		flex-direction: column;
+
+	}
+
+	.pinLayerHeaderTitle{
+		width: 90%;
+		height: 100%;
+		/* background-color: rgb(255, 0, 72); */
+		display: flex;
+		align-items: center;
+		padding-left: 1rem;
+	}
+	.pinLayerHeaderCloseBtn{
+		width: 10%;
+		height: 100%;
+		/* background-color: rgb(255, 255, 0); */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.pinBodyCover{
+		width: 100%;
+		height: 60%;
+		/* background-color: grey; */
+		display: flex;
+		border-top: 1px solid white;
+		/* border-bottom: 1px solid rgba(255, 255, 255, 0.214); */
+	}
+
+	.coverButtom{
+		width: 100%;
+		height: 40%;
+		/* background-color: grey; */
+		display: flex;
+		/* justify-content: center; */
+		/* align-items: center; */
+		color: white;
+		padding: 1rem;
+		text-align: center;
+	}
+
+	.leftCoverSection{
+		width: 55%;
+		height: 100%;
+		/* background-color: aqua; */
+		padding: 1rem;
+	}
+
+	.rightCoverSection{
+		width: 45%;
+		height: 100%;
+		/* background-color: rgb(94, 255, 0); */
+		display: flex;
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.coverTitle{
+		font-size: 30px;
+		font-weight: 600;
+		font-family: Arial, Helvetica, sans-serif;
+		color: white;
+
+	}
 	
-
-		.australiaPoint{
-			/* border: 1px solid rgb(179, 35, 35); */
-			height: 100px;
-			width: 200px;
-			position: absolute;
-			top: 55%;
-			left: 75%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-
-		.pinLayer{
-			background-color: rgba(163, 163, 163, 0.725);
-			width: 33%;
-			height: 70%;
-			position: absolute;
-			top: 15%;
-			left: 65%;
-			z-index: 3;
-			border-radius: 7px;
-			border: 1px solid white;
-		}
-		.pinLayerHeader{
-			width: 100%;
-			height: 6%;
-			/* background-color: orange; */
-			display: flex;
-		}
-		.pinLayerBody{
-
-			width: 100%;
-			height: 96%;
-			/* background-color: rgb(0, 255, 170); */
-			display: flex;
-			flex-direction: column;
-
-		}
-
-		.pinLayerHeaderTitle{
-			width: 90%;
-			height: 100%;
-			/* background-color: rgb(255, 0, 72); */
-			display: flex;
-			align-items: center;
-			padding-left: 1rem;
-		}
-		.pinLayerHeaderCloseBtn{
-			width: 10%;
-			height: 100%;
-			/* background-color: rgb(255, 255, 0); */
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.pinBodyCover{
-			width: 100%;
-			height: 60%;
-			/* background-color: grey; */
-			display: flex;
-			border-top: 1px solid white;
-			/* border-bottom: 1px solid rgba(255, 255, 255, 0.214); */
-
-
-		}
-
-		.coverButtom{
-			width: 100%;
-			height: 40%;
-			/* background-color: grey; */
-			display: flex;
-			/* justify-content: center; */
-			/* align-items: center; */
-			color: white;
-			padding: 1rem;
-			text-align: center;
-
-			
-
-
-		}
-
-		.leftCoverSection{
-			width: 55%;
-			height: 100%;
-			/* background-color: aqua; */
-			padding: 1rem;
-		}
-
-		.rightCoverSection{
-			width: 45%;
-			height: 100%;
-			/* background-color: rgb(94, 255, 0); */
-			display: flex;
-			text-align: center;
-			align-items: center;
-			justify-content: center;
-		}
-
-		.coverTitle{
-			font-size: 30px;
-			font-weight: 600;
-			font-family: Arial, Helvetica, sans-serif;
-			color: white;
-
-		}
-		.impressumCardBody{
+	.impressumCardBody{
 		padding: 1rem;
 	}
 
@@ -632,5 +623,5 @@
 		/* background-color: green; */
 		border-bottom: 1px solid rgba(0, 0, 0, 0.259);
 	}
-	</style>
-	
+
+</style>

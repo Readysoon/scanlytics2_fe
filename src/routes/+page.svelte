@@ -6,9 +6,21 @@
 
 	let innerHeight: any;
 	let innerWidth: any;
+	let isMobile = false;
+
+	// Function to check if device is mobile
+	function checkIfMobile() {
+		isMobile = innerWidth <= 768;
+	}
 
 	onMount(() => {
-	})
+		checkIfMobile();
+	});
+
+	// Update isMobile when window resizes
+	$: if (innerWidth) {
+		checkIfMobile();
+	}
 
 	function redirectUser(){ 
 		window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
@@ -27,18 +39,23 @@
 </head>
 
 <main>
-
 	<Header />
 
 	<div class="mainSection">
-		<div class="mainLeftContentSection">
+		<!-- Gif Image - Positioned differently on mobile vs desktop -->
+		<div class="rightContentSecitonInLeft" class:mobile-image={isMobile}>
+			<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" class="brain-gif" />
+		</div>
 
+		<div class="mainLeftContentSection" class:mobile-content={isMobile}>
 			<!-- Header  -->
-			<div class="headerMainContentSection">
-				<div class="leftContentHeaderArea">
-					<p>Worlds fastest Reporting Software</p>
+			{#if !isMobile}
+				<div class="headerMainContentSection">
+					<div class="leftContentHeaderArea">
+						<p>Worlds fastest Reporting Software</p>
+					</div>
 				</div>
-			</div>
+			{/if}
 
 			<!-- Middle Area -->
 			<div class="middleMainContentSection">
@@ -52,41 +69,46 @@
 						efficiency, and empower healthcare professionals to spend more time with patients.
 					</div>
 				</div>
-
 			</div>
 
-			<!-- Buttom Area of left main section -->
-			<div class="ButtomMainContentSection">
-				<div class="leftBtnSection">
-					<button class="leftBtn_1" on:click={redirectUser}><a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a></button>
+			<!-- Bottom Area of left main section -->
+			{#if !isMobile}
+				<div class="ButtomMainContentSection">
+					<div class="leftBtnSection">
+						<button class="leftBtn_1" on:click={redirectUser}>
+							<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a>
+						</button>
 
-					<button class="leftBtn_2" on:click={redirectTechnologyPage}>
-						<a href="/Technology/" class="leftappointmentbtn">View Technology</a>
+						<button class="leftBtn_2" on:click={redirectTechnologyPage}>
+							<a href="/Technology/" class="leftappointmentbtn">View Technology</a>
+						</button>
+					</div>
+				</div>
+			{/if}
+			
+			<!-- Desktop-only buttons -->
+			{#if isMobile}
+				<div class="mobile-buttons">
+					<button class="mobile-btn" on:click={redirectUser}>
+						<a href="https://calendly.com/tobias-wedel-code/30min" class="mobile-btn-text">Book a Call</a>
+					</button>
+
+					<button class="mobile-btn dark" on:click={redirectTechnologyPage}>
+						<a href="/Technology/" class="mobile-btn-text white">View Technology</a>
 					</button>
 				</div>
-			</div>
-			
-			<!-- Gif Image -->
-			<div class="rightContentSecitonInLeft">
-				<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" width="70%" height="700" />
-				<!-- <img src="LNz.gif" alt="Brain GIF" width="70%" height="700" /> -->
-
-			</div>
+			{/if}
 		</div>
 	</div>
 
 	<Footer />
-
 </main>
 
 
 <style>
 	main {
-    /* background-color: rgb(255, 254, 251); */
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
-		/* display: flex;
-		flex-direction: column; */
 		overflow: hidden;
 	}
 
@@ -105,15 +127,16 @@
 	}
 
 	.mainSection {
-		/* background-color: rgb(36, 34, 34); */
 		height: 77%;
 		margin-top: 30px;
+		position: relative;
 	}
 
 	.mainLeftContentSection {
-		/* background-color: rgb(255, 23, 193); */
 		width: 70%;
 		height: 100%;
+		position: relative;
+		z-index: 2;
 	}
 
 	.rightContentSecitonInLeft {
@@ -122,7 +145,12 @@
 		top: 11%;
 		left: 50%;
 		opacity: 0.8;
-		zindex: -3;
+		z-index: 1;
+	}
+
+	.brain-gif {
+		width: 70%;
+		height: 700px;
 	}
 
 	.headerMainContentSection {
@@ -146,28 +174,23 @@
 	}
 
 	.middleMainContentSection{
-		/* background-color: rgb(11, 139, 111); */
-
 		width: 100%;
 		height: 86%;
 	}
 
 	.middleContentTitleArea {
-		/* background-color: rgb(139, 84, 11); */
-
 		width: 100%;
 		height: 80%;
 	}
 
 	.middleContentSubTextArea {
-		/* background-color: rgb(29, 38, 44); */
 		width: 70%;
 		height: 20%;
 		color: white;
 		padding: 1%;
 	}
+	
 	.mainTitle {
-		/* background-color: rgb(37, 139, 11); */
 		width: 70%;
 		height: 100%;
 		padding-left: 1%;
@@ -177,8 +200,6 @@
 	}
 
 	.ButtomMainContentSection {
-		/* background-color: rgb(139, 11, 11); */
-
 		width: 70%;
 		height: 7%;
 		color: rgb(48, 48, 48);
@@ -227,4 +248,122 @@
 		font-family: system-ui;
 	}
 
+	/* Mobile styles */
+	.mobile-buttons {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		margin-top: 30px;
+		padding: 0 20px;
+	}
+
+	.mobile-btn {
+		width: 100%;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 40px;
+		border: 1px solid black;
+		background-color: white;
+		cursor: pointer;
+	}
+
+	.mobile-btn.dark {
+		background-color: black;
+		border: 1px solid white;
+	}
+
+	.mobile-btn-text {
+		color: black;
+		font-size: 16px;
+		font-weight: 400;
+		font-family: system-ui;
+		text-decoration: none;
+	}
+
+	.mobile-btn-text.white {
+		color: white;
+	}
+
+	@media (max-width: 768px) {
+		main {
+			height: auto;
+			min-height: 100vh;
+			overflow-y: auto;
+		}
+
+		.mainSection {
+			height: auto;
+			min-height: 80vh;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.mobile-content {
+			width: 100%;
+			padding: 20px;
+			position: relative;
+			z-index: 5;
+		}
+
+		.mobile-image {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0.4;
+			z-index: 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.mobile-image .brain-gif {
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+		}
+
+		.mainTitle {
+			font-size: 40px;
+			width: 100%;
+			height: auto;
+			padding-left: 0;
+			margin-top: 20px;
+			line-height: 1.2;
+		}
+
+		.middleContentTitleArea {
+			height: auto;
+		}
+
+		.middleContentSubTextArea {
+			width: 100%;
+			height: auto;
+			padding: 0;
+			margin-top: 20px;
+		}
+
+		.mainTitle {
+			width: 100%;
+			height: 100%;
+			padding: 1rem;
+			font-size: 80px;
+			font-family: system-ui;
+			color: white;
+			
+		}
+
+		.subtext {
+			font-size: 30px;
+			line-height: 1.5;
+		}
+
+		.middleMainContentSection {
+			height: auto;
+		}
+	}
 </style>
