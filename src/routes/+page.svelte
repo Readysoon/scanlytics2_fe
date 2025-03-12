@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Header from './Header.svelte';
+	import Footer from './Footer.svelte';
 	import { redirect } from '@sveltejs/kit';
 	import { onMount, onDestroy } from 'svelte';
 
@@ -82,9 +83,7 @@
 			<div class="smallScreenOverlady">
 				<div class="smallContent">	
 					<div class="zoomTitle">App not available on mobile devices. Please access it from a laptop</div>
-					
 				</div>
-				
 			</div>
 	{/if}
 
@@ -135,26 +134,8 @@
 		</div>
 	</div>
 
+	<Footer />
 
-
-
-	<footer class="footerSection">
-		<div class="footer-content">
-			<div class="footer-left">
-				<p class="footer-left-text">© 2025 Scanlytics | Version 0.1</p>
-			
-			</div>
-			<div class="footer-center">
-			 <div class="footer-center-box">
-				<p class="footer-center-text">
-					For clinical usage, appropriate clinical qualification is required, <br /> and users must
-					ensure they have the necessary credentials and permissions <br />to access and interpret
-					medical images.
-				</p>
-				</div>
-			</div>
-		</div>
-	</footer>
 </main>
 
 
@@ -359,7 +340,7 @@
 		padding: 1em;		
 		/* margin-top: 5px; */
 	}
-	
+
 	.footer-content{
 		width: 100%;
 		height: 100px;

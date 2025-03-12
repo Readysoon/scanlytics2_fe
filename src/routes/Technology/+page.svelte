@@ -3,7 +3,7 @@
 	import ImageUploader from './ImageUploader.svelte';
 	import TextList from './TextList.svelte';
 	import Guide from './Guide.svelte';
-	import Footer from './Footer.svelte';
+	import Footer from '../Footer.svelte';
 	import { onMount } from 'svelte';
 	import TextEditor from './TextEditor.svelte';
 	import Selectpage from './selectpage.svelte';
@@ -129,13 +129,9 @@
 		</div>
 	</div>
 
-	<footer class="footerSection">
-		<div class="footer-content">
-			<div class="footer-left">
-				<p class="footer-left-text">© 2025 Scanlytics | Version 0.1</p>
-			</div>
-		</div>
-	</footer>
+	<Footer />
+
+	
 </main>
 
 <style>
@@ -382,51 +378,5 @@
 		width: 100%;
 		height: 100%;
 		position: relative;
-	}
-
-	.footerSection {
-		width: 100%;
-		height: 13%;
-		/* background-color: rgba(209, 78, 78, 0.673); */
-
-		padding: 1em;
-		/* margin-top: 5px; */
-	}
-	.footer-content {
-		/* background-color: rgba(157, 78, 209, 0.673); */
-
-		width: 100%;
-		height: 100px;
-		display: flex;
-		justify-content: flex-start;
-	}
-	.footer-left {
-		width: 40%;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-	}
-	.footer-left-text {
-		color: white;
-		font-family: system-ui;
-		font-size: 12px;
-		opacity: 0.4;
-	}
-	.footer-center {
-		color: black;
-		width: 30%;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		align-items: end;
-	}
-
-	.footer-center-text {
-		color: white;
-		font-family: system-ui;
-		font-size: 12px;
-		opacity: 0.4;
-		text-align: end;
 	}
 </style>

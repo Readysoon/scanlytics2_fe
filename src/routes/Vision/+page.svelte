@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Footer from '../Footer.svelte';
+
 
 	import Header from '../Header.svelte';
 
@@ -451,22 +453,8 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 			</div>
 		</div>
 	
-		<footer class="footerSection">
-			<div class="footer-content">
-				<div class="footer-left">
-					<div class="footer-left-box">
-						<p class="footer-left-text">© 2025 Scanlytics | Version 0,1</p>
-	
-					</div>
-	
-					<div class="footer-center-box">
-						<p  class="footer-right-text" on:click={handleImpressumClick}>Impressum |</p> 
-						<p  class="footer-right-text" on:click={handleDatenschutzClick}>Datenschutz</p>
-				   </div>
-				</div>
-				
-			</div>
-		</footer>
+		<Footer/>
+
 	</main>
 	
 	<style>
@@ -637,143 +625,6 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 			display: flex;
 			align-items: center;
 			justify-content: center;
-		}
-
-		
-	
-		.footerSection {
-			width: 100%;
-			height: 13%;
-			padding: 1em;
-		}
-	
-		.footer-content {
-			width: 100%;
-			height: 100px;
-			display: flex;
-			justify-content: space-between;
-			/* background-color: green; */
-	
-		}
-	
-		.footer-left {
-			color: black;
-			width: 100%;
-			height: 100%;
-			display: flex;
-			/* flex-direction: column; */
-			justify-content: space-between;
-	
-			/* background-color: orange; */
-	
-	
-		}
-	
-		.footer-left-box{
-			/* background-color: rgb(77, 76, 75); */
-			display: flex;
-			align-items: end;
-			justify-content: flex-end;
-	
-		}
-	
-		.footer-left-text {
-			color: white;
-			font-family: system-ui;
-			font-size: 12px;
-			opacity: 0.4;
-		}
-	
-		.footer-right-text {
-			color: white;
-			font-family: system-ui;
-			font-size: 12px;
-			opacity: 0.4;
-			cursor: pointer;
-		}
-	
-		
-	
-	
-		.footer-center-box{
-			/* background-color: green; */
-			height: 100%;
-			width: 25%;
-			display: flex;
-			align-items: end;
-			justify-content: flex-end;
-			/* padding-right: 2%; */
-			gap: 1%;
-		}
-	
-	
-		.overlay{
-			background-color: rgba(0, 0, 0, 0.664);
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			height: 100%;
-			width: 100%;
-			z-index: 3;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-	
-	
-			
-		}
-	
-		.Card{
-			background-color: white;
-			height: 20%;
-			width: 30%;
-			border-radius: 7px;
-		}
-	
-		.impressumCardHead{
-			height: 20%;
-			width: 100%;
-			display: flex;
-			/* background-color: green; */
-			border-bottom: 1px solid rgba(0, 0, 0, 0.259);
-	
-		}
-	
-		.impressumCardTitleSection{
-			height: 100%;
-			width: 90%;
-			display: flex;
-			align-items: center;
-			padding-left: 1rem;
-			
-		}
-	
-		.impressumCardTitle{
-			font-size: 19px;
-			font-weight: 700;
-			font-family: system-ui;
-			color: white;
-	
-		}
-	
-		.impressumCloseBtn{
-			height: 100%;
-			width: 10%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-	
-		}
-	
-		.closebtn{
-			font-size: 27px;
-			font-weight: 700;
-			font-family: system-ui;
-			color: red;
-			cursor: pointer;
-			border-radius: 7px;
-	
 		}
 
 		.pinLayer{
