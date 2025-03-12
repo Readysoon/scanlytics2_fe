@@ -332,4 +332,56 @@
 		height: 100%;
 		position: relative;
 	}
+
+	@media (max-width: 768px) {
+		main {
+			height: auto;
+			overflow-y: auto;
+		}
+		
+		.mainSection {
+			height: auto;
+			margin-top: 15px;
+		}
+		
+		.boxArea {
+			flex-direction: column;
+			height: auto;
+			padding: 15px;
+			margin-left: 0;
+		}
+		
+		.boxSelectArea {
+			width: 100%;
+			height: auto;
+			margin-bottom: 20px;
+		}
+		
+		.boxSelectAreaLayer {
+			height: auto;
+			min-height: 200px;
+		}
+		
+		.boxAreaMl {
+			width: 100%;
+			flex-direction: column;
+			margin-left: 0;
+		}
+		
+		.box {
+			width: 100%;
+			margin: 10px 0;
+			height: auto;
+			min-height: 200px;
+		}
+		
+		.explainArea {
+			height: auto;
+			margin-top: 20px;
+		}
+		
+		.mainLeftContentSection {
+			height: auto;
+		}
+	}
 </style>
