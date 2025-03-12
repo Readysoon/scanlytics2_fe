@@ -7,55 +7,15 @@
 	let innerHeight: any;
 	let innerWidth: any;
 
-	let mobileStae = false; 
-	let smallScreen = false; 
-
-	const handleResize = () => {
-		console.log('innerHeight', innerHeight);
-		console.log('innerWidth', innerWidth);
-		const mobileState = innerWidth 
-		if(mobileState <= 769){
-			mobileStae = true
-			}else if(mobileState <= 1707){
-				// alert("Please zoom out");
-				smallScreen = true
-		}
-	}
-	
-
 	onMount(() => {
-		console.log('innerHeight', innerHeight);
-		console.log('innerWidth', innerWidth);
-
-		const mobileState = innerWidth 
-
-		window.addEventListener("Resize", handleResize )
-		
-		handleResize();
-
-		// Cleanup function to remove the event listener
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
-		
-
 	})
-
-	// onDestroy(() => {
-	// 	console.log('im destoredy');
-	// })
-
-
 
 	function redirectUser(){ 
 		window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
-
 	}
 
 	function redirectTechnologyPage (){
 		window.location.href = '/Technology/';
-
-
 	}
 	
 </script>
@@ -67,25 +27,6 @@
 </head>
 
 <main>
-	{#if smallScreen}
-			<div class="smallScreenOverlady">
-				<div class="smallContent">	
-					<div class="zoomTitle">Please Zoom Out</div>
-					<div class="ZoomOutArea">
-						<button class="gotItBtn" on:click={() => location.reload()}>Refresh</button>
-					</div>
-				</div>
-				
-			</div>
-	{/if}
-
-	{#if mobileStae}
-			<div class="smallScreenOverlady">
-				<div class="smallContent">	
-					<div class="zoomTitle">App not available on mobile devices. Please access it from a laptop</div>
-				</div>
-			</div>
-	{/if}
 
 	<Header />
 
@@ -147,53 +88,6 @@
 		/* display: flex;
 		flex-direction: column; */
 		overflow: hidden;
-	}
-
-	.smallContent{
-		/* background-color: orange; */
-		width: 80%;
-		height: 10%;
-		text-align: center;
-	}
-
-	.zoomTitle{
-		width: 100%;
-		height: 50%;
-		/* background-color: rgb(0, 255, 68); */
-		display: flex;
-		justify-content: center;
-
-	}
-
-
-	.smallScreenOverlady{
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		background-color: rgb(12, 12, 12);
-		z-index: 3;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		color: white;
-	}
-
-	.ZoomOutArea{
-		 width: 100%;
-		 height: 50%;
-		 /* background-color: rgb(62, 76, 66); */
-		 display: flex;
-		 justify-content: center;
-		 align-items: center;
-
-
-	}
-
-	.gotItBtn{
-		height: 20px;
-		width: 60px;
-		font-size: 10px;
 	}
 
 	a {
