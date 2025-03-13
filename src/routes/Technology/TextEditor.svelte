@@ -65,12 +65,12 @@
   .text-editor {
     padding: 10px;
     /* background-color: red; */
-
     height: 100%;
   }
+
   textarea {
     width: 100%;
-    height:  90%;
+    min-height: 300px;
   }
   .button-group {
     /* background-color: orange; */

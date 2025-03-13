@@ -142,8 +142,6 @@
 	main {
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
-		/* display: flex;
-		flex-direction: column; */
 		overflow: hidden;
 	}
 
@@ -158,10 +156,6 @@
 
     .boxSelectArea {
 		/* background-color: rgb(65, 47, 167); */
-
-
-		/* flex: 1; */
-		/* margin: 80px; */
 		width: 35%;
 		height: 100%;
 		display: flex;
@@ -169,38 +163,25 @@
 		justify-content: center;
 		align-items: center;
 		gap: 5%;
-		/* padding: 10px; */
 		/* background-color: rgb(211, 210, 209); */
 
 	}
 	.boxSelectAreaLayer{
 		background-color: rgb(211, 210, 209);
-
-
 		height: 100%;
 		display: flex;
-		/* margin: 30px; */
 		width: 100%;
 		height: 89%;
-
-
 	}
 	.boxSelectContentLayer{
 		/* background-color: rgba(60, 60, 60, 0.753); */
 		/* background-color: rgb(157, 157, 157); */
-
 		height: 100%;
 		width: 30%;
 		display: flex;
-		/* gap: 10%; */
 		flex-direction: column;
 		align-items: center;
 		border-right: 1px solid rgb(175, 166, 166);
-
-		/* padding-top: 5%; */
-		/* justify-content: space-around; */
-		/* overflow: auto; */
-		/* border: 1px solid white; */
 	}
 
 
@@ -227,11 +208,8 @@
 	}
 
 	.boxSelectContent{
-		/* flex: 1; */
-		/* margin: 30px; */
 		width: 80%;
 		height: 25%;
-		/* padding: 10px; */
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -246,7 +224,6 @@
 		width: 97%;
 		height: 10%;
 		/* background-color: green; */
-		/* padding: 0.2rem; */
 		position: absolute;
 		bottom: 1%;
 		font-family: system-ui;
@@ -263,7 +240,6 @@
 		width: 97%;
 		height: 30%;
 		/* background-color: green; */
-		/* padding: 0.2rem; */
 		position: absolute;
 		top: 1%;
 		font-family: system-ui;
@@ -280,25 +256,21 @@
 	.patientB_Date{
 		font-size: 7px;
 	}
+
 	.boxAreaMl {
 		/* background-color: rgb(65, 167, 47); */
 		width: 65%;
 		display: flex;
-		/* justify-content: space-between; */
 		align-items: center;
 		margin-left: 2%;
 
 	}
 	.box1{
 		flex: 1;
-		/* margin: 30px; */
 		width: 100%;
 		height: 100%;
-		/* padding: 10px; */
-		/* width: 5px; */
 		background-color: rgb(211, 210, 209);
 		/* background-color: red; */
-
 		border: 1px solid #ccc;
 
 	}
@@ -308,10 +280,7 @@
 		margin: 30px;
 		width: 50%;
 		height: 89%;
-		/* padding: 10px; */
-		/* width: 5px; */
 		background-color: rgb(211, 210, 209);
-
 		border: 1px solid #ccc;
 	}
 
@@ -372,7 +341,6 @@
 			width: 100%;
 			margin: 10px 0;
 			height: auto;
-			min-height: 200px;
 		}
 		
 		.explainArea {

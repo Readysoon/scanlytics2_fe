@@ -80,17 +80,17 @@
       align-items: center;
     }
     .placeholderObjecttext {
-		font-size: 29px;
-		font-weight: bold;
-		font-family: sans-serif;
-		color: rgba(0, 0, 0, 0.403);
-    display: flex;
-    justify-content: center;
-    /* background-color: pink; */
-    height: 15%;
-    width: 0%;
-    text-align: center;
-    margin-bottom: 10%;
+      font-size: 29px;
+      font-weight: bold;
+      font-family: sans-serif;
+      color: rgba(0, 0, 0, 0.403);
+      display: flex;
+      justify-content: center;
+      /* background-color: pink; */
+      height: 15%;
+      width: 0%;
+      text-align: center;
+      margin-bottom: 10%;
 	}
   </style>
   

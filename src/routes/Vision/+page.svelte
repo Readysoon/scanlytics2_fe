@@ -1,8 +1,12 @@
 <script lang="ts">
 	import Footer from '../Footer.svelte';
-
-
 	import Header from '../Header.svelte';
+	import { onMount } from 'svelte';
+
+	// Mobile detection state
+	let isMobile = false;
+	let showMobileAlternative = false;
+	let activeMobileRegion: string | null = null;  // Added missing variable
 
 	let impressState: boolean = false;
 	let DatenschutzState: boolean = false;
@@ -13,7 +17,24 @@
 	let pinChina: boolean = false; 
 	let pinaustralia: boolean = false;
 
-	
+		// Check if device is mobile
+		onMount(() => {
+			checkIfMobile();
+			window.addEventListener('resize', checkIfMobile);
+			
+			return () => {
+				window.removeEventListener('resize', checkIfMobile);
+			};
+		});
+
+		function checkIfMobile() {
+			isMobile = window.innerWidth <= 768;
+		}
+		
+		// Toggle mobile alternative view
+		function toggleMobileView() {
+			showMobileAlternative = !showMobileAlternative;
+		}
 	
 		const handleImpressumClick = () => { 
 			impressState = !impressState
@@ -22,6 +43,11 @@
 		
 		const handleDatenschutzClick = () => { 
 			DatenschutzState = !DatenschutzState
+		}
+
+		// Added missing function
+		function setMobileRegion(region: string) {
+			activeMobileRegion = region === activeMobileRegion ? null : region;
 		}
 
 		const handlePinState = (event: string) => {
@@ -71,15 +97,13 @@
 				pinAfrica = false
 				pinChina = false
 				pinaustralia = !pinaustralia
-
 			}
 		}
-	
 	</script>
 	
 	<main>
 
-	<Header />
+		<Header />
 
 		{#if pinAmerica}
 			<div class="pinLayer">
@@ -114,7 +138,6 @@
 						</p>
 					</div>
 				</div>
-				
 			</div>
 		{/if}
 		{#if pinBrazil}
@@ -216,80 +239,81 @@
 						</p>
 					</div>
 				</div>
-
 			</div>
 		{/if}
 
 		{#if pinChina}
-		<div class="pinLayer">
-			<!-- Header Africa -->
-			<div class="pinLayerHeader">
-				<div class="pinLayerHeaderTitle">
-					<p class="impressumCardTitle">
-						Radiology in Asia
-					</p>
-				</div>
-				<div class="pinLayerHeaderCloseBtn">
-					<p class="closebtn" on:click={() =>  handlePinState("china")}>x</p>
-				</div>
-			</div>
-			<!-- Body - Africa -->
-			<div class="pinLayerBody">
-				<div class="pinBodyCover">
-
-					<div class="leftCoverSection">
-						<img src="/VisionAsia.png" class="imgLogo" alt="Logo" height="100%" width="100%"  />
+			<div class="pinLayer">
+				<!-- Header Africa -->
+				<div class="pinLayerHeader">
+					<div class="pinLayerHeaderTitle">
+						<p class="impressumCardTitle">
+							Radiology in Asia
+						</p>
 					</div>
-					<div class="rightCoverSection">
-							<p class="coverTitle">Supplementing Specialist Availability Across Asia</p>
+					<div class="pinLayerHeaderCloseBtn">
+						<p class="closebtn" on:click={() =>  handlePinState("china")}>x</p>
 					</div>
+				</div>
+				<!-- Body - Africa -->
+				<div class="pinLayerBody">
+					<div class="pinBodyCover">
 
+						<div class="leftCoverSection">
+							<img src="/VisionAsia.png" class="imgLogo" alt="Logo" height="100%" width="100%"  />
+						</div>
+						<div class="rightCoverSection">
+								<p class="coverTitle">Supplementing Specialist Availability Across Asia</p>
+						</div>
+
+					</div>
+					<div class="coverButtom">
+						<p class="overtext">
+							Radiology in Asia faces three key challenges: limited support for interventional radiology, insufficient subspecialization training, and shortages of qualified radiologists and equipment, with significant regional variation. Automation technologies could address these issues by offering AI-assisted diagnosis to supplement limited specialist availability, enabling knowledge transfer through virtual training platforms, and implementing scalable solutions that work across varying infrastructure levels. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10550747/">Learn more</a>
+						</p>
+					</div>
 				</div>
-				<div class="coverButtom">
-					<p class="overtext">
-						Radiology in Asia faces three key challenges: limited support for interventional radiology, insufficient subspecialization training, and shortages of qualified radiologists and equipment, with significant regional variation. Automation technologies could address these issues by offering AI-assisted diagnosis to supplement limited specialist availability, enabling knowledge transfer through virtual training platforms, and implementing scalable solutions that work across varying infrastructure levels. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10550747/">Learn more</a>
-					</p>
-				</div>
+
 			</div>
-
-		</div>
 		{/if}
 		{#if pinaustralia}
-		<div class="pinLayer">
-			<!-- Header Africa -->
-			<div class="pinLayerHeader">
-				<div class="pinLayerHeaderTitle">
-					<p class="impressumCardTitle">
-						Radiology in Australia
-					</p>
+			<div class="pinLayer">
+				<!-- Header Africa -->
+				<div class="pinLayerHeader">
+					<div class="pinLayerHeaderTitle">
+						<p class="impressumCardTitle">
+							Radiology in Australia
+						</p>
+					</div>
+					<div class="pinLayerHeaderCloseBtn">
+						<p class="closebtn" on:click={() =>  handlePinState("australia")}>x</p>
+					</div>
 				</div>
-				<div class="pinLayerHeaderCloseBtn">
-					<p class="closebtn" on:click={() =>  handlePinState("australia")}>x</p>
+				<!-- Body - Africa -->
+				<div class="pinLayerBody">
+					<div class="pinBodyCover">
+
+						<div class="leftCoverSection">
+							<img src="/VisionAustralia.png"  alt="Logo" height="100%" width="100%"  />
+						</div>
+						<div class="rightCoverSection">
+								<p class="coverTitle">Addressing Urban-Rural Maldistribution</p>
+
+						</div>
+
+					</div>
+					<div class="coverButtom">
+						<p class="overtext">
+							The radiology sector in Australia faces significant challenges, including severe urban-rural radiologist maldistribution, increasing workloads causing burnout, and pressure to meet growing demand from an aging population. Automation could address these issues by deploying teleradiology platforms with AI support to serve remote communities, implementing workflow optimization tools to reduce burnout, and utilizing computer-aided diagnosis to extend the reach of the limited specialist workforce across Australia's vast geography. <a href="https://pubmed.ncbi.nlm.nih.gov/37899512/">Learn more</a>
+						</p>
+					</div>
 				</div>
 			</div>
-			<!-- Body - Africa -->
-			<div class="pinLayerBody">
-				<div class="pinBodyCover">
-
-					<div class="leftCoverSection">
-						<img src="/VisionAustralia.png"  alt="Logo" height="100%" width="100%"  />
-					</div>
-					<div class="rightCoverSection">
-							<p class="coverTitle">Addressing Urban-Rural Maldistribution</p>
-
-					</div>
-
-				</div>
-				<div class="coverButtom">
-					<p class="overtext">
-						The radiology sector in Australia faces significant challenges, including severe urban-rural radiologist maldistribution, increasing workloads causing burnout, and pressure to meet growing demand from an aging population. Automation could address these issues by deploying teleradiology platforms with AI support to serve remote communities, implementing workflow optimization tools to reduce burnout, and utilizing computer-aided diagnosis to extend the reach of the limited specialist workforce across Australia's vast geography. <a href="https://pubmed.ncbi.nlm.nih.gov/37899512/">Learn more</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	{/if}
+		{/if}
 	
 		<div class="mainSection">
+			<!-- Desktop view for map and pins -->
+			{#if !isMobile}
 			<div class="mainLeftContentSection">
 				<div class="mapSection">
 						<img src="/blue2.png" class="map" alt="Logo" height="100%" width="100%"  />
@@ -339,6 +363,121 @@
 					<div class="placeholderObjecttext">Click on a Vision Pin</div>
 				</div>
 			</div>
+			{:else}
+			 <!-- Mobile view -->
+			<div class="mobile-view">
+				<div class="mobile-regions-grid">
+				<!-- America Region Box -->
+				<div class="mobile-region-box" class:active={activeMobileRegion === 'america'} on:click={() => setMobileRegion('america')}>
+					<div class="mobile-region-header">
+					<img src="LocationUSA.png" class="mobile-pin-icon" alt="USA" />
+					<span>America</span>
+					</div>
+					<div class="mobile-region-content">
+					<div class="mobile-region-image">
+						<img src="/VisionUSA.jpeg" alt="USA Radiology" />
+					</div>
+					<h3>The Pressures on US Radiology</h3>
+					<p>
+						Radiology in the US faces seven major challenges identified by 31 societies, including declining reimbursements, corporatization, staffing shortages, and imaging appropriateness issues, creating a complex and challenging business environment.
+					</p>
+					<a href="https://radiologybusiness.com/topics/healthcare-management/medical-practice-management/7-most-pressing-challenges-radiology-practice-perfect-storm-brewing" class="mobile-learn-more">Learn more</a>
+					</div>
+				</div>
+				
+				<!-- South America Region Box -->
+				<div class="mobile-region-box" class:active={activeMobileRegion === 'brazil'} on:click={() => setMobileRegion('brazil')}>
+					<div class="mobile-region-header">
+					<img src="LocationSA.png" class="mobile-pin-icon" alt="South America" />
+					<span>South America</span>
+					</div>
+					<div class="mobile-region-content">
+					<div class="mobile-region-image">
+						<img src="/VisionSA.png" alt="South America Radiology" />
+					</div>
+					<h3>Equitable Healthcare in Latin America</h3>
+					<p>
+						Latin America's healthcare system faces significant challenges exacerbated by the pandemic, including systemic inequities, resource constraints, an aging population, climate change impacts, and rising noncommunicable diseases.
+					</p>
+					<a href="https://www.thinkglobalhealth.org/article/health-latin-america-and-promise-artificial-intelligence" class="mobile-learn-more">Learn more</a>
+					</div>
+				</div>
+				
+				<!-- Europe Region Box -->
+				<div class="mobile-region-box" class:active={activeMobileRegion === 'europe'} on:click={() => setMobileRegion('europe')}>
+					<div class="mobile-region-header">
+					<img src="LocationEU.png" class="mobile-pin-icon" alt="Europe" />
+					<span>Europe</span>
+					</div>
+					<div class="mobile-region-content">
+					<div class="mobile-region-image">
+						<img src="/VisionEurope.webp" alt="Europe Radiology" />
+					</div>
+					<h3>Addressing Radiologist Shortages in England</h3>
+					<p>
+						Radiology in England struggles with growing radiologist shortages, increased scanner access, an aging population, and heightened service demands, prompting standardization efforts from the Royal College of Radiologists.
+					</p>
+					<a href="https://about.cmrad.com/articles/the-growing-radiologist-shortage-a-critical-healthcare-crisis" class="mobile-learn-more">Learn more</a>
+					</div>
+				</div>
+				
+				<!-- Africa Region Box -->
+				<div class="mobile-region-box" class:active={activeMobileRegion === 'africa'} on:click={() => setMobileRegion('africa')}>
+					<div class="mobile-region-header">
+					<img src="LocationAfrica.png" class="mobile-pin-icon" alt="Africa" />
+					<span>Africa</span>
+					</div>
+					<div class="mobile-region-content">
+					<div class="mobile-region-image">
+						<img src="/VisionAfrica.jpg" alt="Africa Radiology" />
+					</div>
+					<h3>Connecting Remote Areas</h3>
+					<p>
+						Radiology in Africa faces a triple challenge: severe specialist shortages, inadequate infrastructure, and limited access to advanced imaging technologies, resulting in delayed diagnoses and suboptimal care.
+					</p>
+					<a href="https://www.nature.com/articles/s41467-024-46567-3" class="mobile-learn-more">Learn more</a>
+					</div>
+				</div>
+				
+				<!-- Asia Region Box -->
+				<div class="mobile-region-box" class:active={activeMobileRegion === 'china'} on:click={() => setMobileRegion('china')}>
+					<div class="mobile-region-header">
+					<img src="LocationAsia.png" class="mobile-pin-icon" alt="Asia" />
+					<span>Asia</span>
+					</div>
+					<div class="mobile-region-content">
+					<div class="mobile-region-image">
+						<img src="/VisionAsia.png" alt="Asia Radiology" class="imgLogo" />
+					</div>
+					<h3>Supplementing Specialist Availability Across Asia</h3>
+					<p>
+						Radiology in Asia faces three key challenges: limited support for interventional radiology, insufficient subspecialization training, and shortages of qualified radiologists and equipment, with significant regional variation.
+					</p>
+					<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10550747/" class="mobile-learn-more">Learn more</a>
+					</div>
+				</div>
+				
+				<!-- Australia Region Box -->
+				<div class="mobile-region-box" class:active={activeMobileRegion === 'australia'} on:click={() => setMobileRegion('australia')}>
+					<div class="mobile-region-header">
+					<img src="LocationAustralia.png" class="mobile-pin-icon" alt="Australia" />
+					<span>Australia</span>
+					</div>
+					<div class="mobile-region-content">
+					<div class="mobile-region-image">
+						<img src="/VisionAustralia.png" alt="Australia Radiology" />
+					</div>
+					<h3>Addressing Urban-Rural Maldistribution</h3>
+					<p>
+						The radiology sector in Australia faces significant challenges, including severe urban-rural radiologist maldistribution, increasing workloads causing burnout, and pressure to meet growing demand from an aging population.
+					</p>
+					<a href="https://pubmed.ncbi.nlm.nih.gov/37899512/" class="mobile-learn-more">Learn more</a>
+					</div>
+				</div>
+				</div>
+			</div>
+			
+			{/if}
 		</div>
 	
 		<Footer />
@@ -357,7 +496,6 @@
 		font-weight: 500;
 		font-family: system-ui;
 	}
-
 	
 	.imgLogo{
 		border-radius: 7px;
@@ -377,9 +515,8 @@
 		width: 100%;
 		height: 100%;
 		position: relative;
-
-
 	}
+
 	.mapSection{
 		/* background-color: rgb(244, 190, 28); */
 		width: 100%;
@@ -433,8 +570,7 @@
 		justify-content: center;
 	}
 
-	.americaPin{
-		
+	.americaPin{	
 		display: flex;
 		justify-content: center;
 		
@@ -458,7 +594,6 @@
 	}
 
 	.africaPoint{
-		/* border: 1px solid rgb(21, 0, 255); */
 		height: 100px;
 		width: 200px;
 		position: absolute;
@@ -474,11 +609,13 @@
 		/* width: 50px;
 		height: 50px; */
 	}
+
 	.pinpoint{
 		width: 80px;
 		height: 80px;
 		cursor: pointer;
 	}
+
 	.europePoint{
 		/* border: 1px solid rgb(255, 178, 34); */
 		height: 100px;
@@ -526,17 +663,16 @@
 		border-radius: 7px;
 		border: 1px solid white;
 	}
+
 	.pinLayerHeader{
 		width: 100%;
 		height: 6%;
-		/* background-color: orange; */
 		display: flex;
 	}
 
 	.pinLayerBody{
 		width: 100%;
 		height: 96%;
-		/* background-color: rgb(0, 255, 170); */
 		display: flex;
 		flex-direction: column;
 
@@ -545,7 +681,6 @@
 	.pinLayerHeaderTitle{
 		width: 90%;
 		height: 100%;
-		/* background-color: rgb(255, 0, 72); */
 		display: flex;
 		align-items: center;
 		padding-left: 1rem;
@@ -553,7 +688,6 @@
 	.pinLayerHeaderCloseBtn{
 		width: 10%;
 		height: 100%;
-		/* background-color: rgb(255, 255, 0); */
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -562,19 +696,14 @@
 	.pinBodyCover{
 		width: 100%;
 		height: 60%;
-		/* background-color: grey; */
 		display: flex;
 		border-top: 1px solid white;
-		/* border-bottom: 1px solid rgba(255, 255, 255, 0.214); */
 	}
 
 	.coverButtom{
 		width: 100%;
 		height: 40%;
-		/* background-color: grey; */
 		display: flex;
-		/* justify-content: center; */
-		/* align-items: center; */
 		color: white;
 		padding: 1rem;
 		text-align: center;
@@ -583,14 +712,12 @@
 	.leftCoverSection{
 		width: 55%;
 		height: 100%;
-		/* background-color: aqua; */
 		padding: 1rem;
 	}
 
 	.rightCoverSection{
 		width: 45%;
 		height: 100%;
-		/* background-color: rgb(94, 255, 0); */
 		display: flex;
 		text-align: center;
 		align-items: center;
@@ -602,9 +729,8 @@
 		font-weight: 600;
 		font-family: Arial, Helvetica, sans-serif;
 		color: white;
-
 	}
-	
+
 	.impressumCardBody{
 		padding: 1rem;
 	}
@@ -620,8 +746,115 @@
 		height: 7%;
 		width: 100%;
 		display: flex;
-		/* background-color: green; */
 		border-bottom: 1px solid rgba(0, 0, 0, 0.259);
 	}
 
+		/* Mobile styles */
+		.mobile-view {
+		width: 100%;
+		height: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 15px;
+		overflow-y: auto;
+	}
+	
+	.mobile-regions-grid {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		padding-bottom: 20px;
+	}
+	
+	.mobile-region-box {
+		background-color: rgba(255, 255, 255, 0.15);
+		border-radius: 10px;
+		overflow: hidden;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	}
+	
+	.mobile-region-box.active {
+		background-color: rgba(255, 255, 255, 0.2);
+	}
+	
+	.mobile-region-header {
+		padding: 15px;
+		display: flex;
+		align-items: center;
+		gap: 15px;
+		cursor: pointer;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	}
+	
+	.mobile-region-header span {
+		color: white;
+		font-size: 18px;
+		font-family: Arial, sans-serif;
+		font-weight: 500;
+	}
+	
+	.mobile-pin-icon {
+		width: 40px;
+		height: 40px;
+	}
+	
+	.mobile-region-content {
+		padding: 15px;
+		color: white;
+	}
+	
+	.mobile-region-image {
+		width: 100%;
+		height: 180px;
+		margin-bottom: 15px;
+		border-radius: 8px;
+		overflow: hidden;
+	}
+	
+	.mobile-region-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	
+	.mobile-region-content h3 {
+		font-size: 20px;
+		margin-bottom: 10px;
+		font-family: Arial, sans-serif;
+	}
+	
+	.mobile-region-content p {
+		font-size: 14px;
+		line-height: 1.5;
+		margin-bottom: 15px;
+		font-family: Arial, sans-serif;
+	}
+	
+	.mobile-learn-more {
+		display: inline-block;
+		background-color: white;
+		color: black !important;
+		padding: 8px 15px;
+		border-radius: 20px;
+		font-size: 14px;
+		font-weight: 500;
+		text-decoration: none;
+		margin-top: 10px;
+	}
+
+	/* Media query for mobile view */
+	@media (max-width: 768px) {
+		main {
+			overflow-y: auto;
+			height: auto;
+			min-height: 100vh;
+		}
+		
+		.mainSection {
+			height: auto;
+			min-height: 70vh;
+		}
+	}
 </style>
