@@ -288,14 +288,20 @@
 	}
 
 	@media (max-width: 768px) {
+		/* Force content to be scrollable */
+		:global(body) {
+			overflow-y: auto !important;
+		}
+		
 		main {
-			height: auto;
+			height: auto !important;
 			min-height: 100vh;
-			overflow-y: auto;
+			overflow-y: auto !important;
 		}
 
 		.mainSection {
-			height: auto;
+			height: auto !important;
+			overflow: visible !important;
 			min-height: 80vh;
 			display: flex;
 			flex-direction: column;
