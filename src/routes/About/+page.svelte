@@ -154,7 +154,7 @@
 
 	.profileImageCardSection{
 		/* background-color: rgb(196, 135, 12); */
-		height: 45%;
+		min-height: 150px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -168,7 +168,7 @@
 	}
 	.profileCardNameSection{
 		/* background-color: rgb(21, 90, 34); */
-		height: 15%;
+		min-height: 40px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -179,7 +179,7 @@
 
 	.profileCardKnowHowSection{
 		/* background-color: rgb(194, 144, 255); */
-		height: 45%;
+		min-height: 130px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -214,7 +214,7 @@
 		:global(body) {
 			overflow-y: auto !important;
 		}
-		
+
         .mainSection {
             height: auto !important;
             overflow-y: auto !important;
