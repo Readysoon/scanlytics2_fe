@@ -357,14 +357,14 @@
 			width: 100%;
 			height: 100%;
 			padding: 1rem;
-			font-size: 80px;
+			font-size: 50px;
 			font-family: system-ui;
 			color: white;
 			
 		}
 
 		.subtext {
-			font-size: 30px;
+			font-size: 20px;
 			line-height: 1.5;
 		}
 
