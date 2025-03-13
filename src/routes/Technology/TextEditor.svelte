@@ -70,8 +70,9 @@
 
   textarea {
     width: 100%;
-    min-height: 300px;
+    min-height: 400px;
   }
+  
   .button-group {
     /* background-color: orange; */
     display: flex;

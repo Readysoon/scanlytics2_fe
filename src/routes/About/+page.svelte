@@ -210,9 +210,14 @@
 	}
 
 	@media (max-width: 768px) {
+		/* Force content to be scrollable */
+		:global(body) {
+			overflow-y: auto !important;
+		}
+		
         .mainSection {
-            height: auto;
-            overflow-y: auto;
+            height: auto !important;
+            overflow-y: auto !important;
         }
         
         .mainLeftContentSection {
@@ -229,8 +234,8 @@
         }
         
         main {
-            height: auto;
-            overflow-y: auto;
+            height: auto !important; 
+            overflow-y: auto !important;
         }
     }
 </style>
