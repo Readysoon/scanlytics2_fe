@@ -484,6 +484,11 @@
 	</main>
 	
 <style>
+	:global(html), :global(body) {
+		height: 100%;
+		overflow-y: auto !important;
+	}
+
 	main {
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
@@ -847,14 +852,18 @@
 	/* Media query for mobile view */
 	@media (max-width: 768px) {
 		main {
-			overflow-y: auto;
-			height: auto;
-			min-height: 100vh;
+			overflow-y: auto !important;
+			height: auto !important;
 		}
 		
 		.mainSection {
-			height: auto;
-			min-height: 70vh;
+			height: auto !important;
+			overflow: visible !important;
+		}
+		
+		/* Force content to be scrollable */
+		:global(body) {
+			overflow-y: auto !important;
 		}
 	}
 </style>
