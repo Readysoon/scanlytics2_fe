@@ -6,14 +6,12 @@
 	let DatenschutzState: boolean = false;
 	function redirectUser(){ 
 	window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
-
 	}
 
 
 	const handleImpressumClick = () => { 
 		impressState = !impressState
 	}
-
 	
 	const handleDatenschutzClick = () => { 
 		DatenschutzState = !DatenschutzState
@@ -186,8 +184,6 @@
 		/* padding: 0.5rem; */
 		align-items: center;
 		padding-top: 5%;
-
-
 	}
 
 
