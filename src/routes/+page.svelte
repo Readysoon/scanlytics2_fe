@@ -32,6 +32,7 @@
 	
 </script>
 
+<svelte:window bind:innerHeight={innerHeight} bind:innerWidth={innerWidth} />
 
 <head>
 	<title>Scanlytics</title>
