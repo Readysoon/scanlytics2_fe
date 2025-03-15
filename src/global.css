@@ -14,7 +14,8 @@
     /* 4. Improve text rendering */
     -webkit-font-smoothing: antialiased;
     overflow: hidden;
-
+    padding: 10px;
+    background-color: black; 
   }
   
   /* 5. Improve media defaults */

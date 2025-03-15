@@ -52,17 +52,17 @@
       {/each}
     
     {:else}
-       <div class="defaulText">
-        <div class="placeholderObjecttext">Scanlytics AI Assistant</div>
-       </div>
+      <div class="defaultText">
+          <div class="placeholderObjecttext">Scanlytics AI Assistant</div>
+      </div>
     {/if}
   </div>
   
   <style>
     .text-list {
       overflow: hidden;
-      /* max-height: 300px; */
-      /* background-color: pink; */
+      min-height: 400px;
+      /*background-color: pink;*/
       height: 100%;
     }
     .text-item {
@@ -72,25 +72,24 @@
       cursor: pointer;
       /* background-color: blue; */
     }
-    .defaulText{
-      /* background-color: bisque; */
+
+    .defaultText {
+      /* Fixed the class name from defaulText to defaultText */
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
     }
     .placeholderObjecttext {
-		font-size: 29px;
-		font-weight: bold;
-		font-family: sans-serif;
-		color: rgba(0, 0, 0, 0.403);
-    display: flex;
-    justify-content: center;
-    /* background-color: pink; */
-    height: 15%;
-    width: 0%;
-    text-align: center;
-    margin-bottom: 10%;
-	}
+      font-size: 29px;
+      font-weight: bold;
+      font-family: sans-serif;
+      color: rgba(0, 0, 0, 0.403);
+      text-align: center;
+      /* Removed width: 0% which was preventing horizontal centering */
+      /* Removed height: 15% to allow the text to be naturally sized */
+      /* Removed margin-bottom: 10% as it was shifting the text down */
+      /* Removed display: flex and justify-content: center as they're redundant with the parent's centering */
+    }
   </style>
   

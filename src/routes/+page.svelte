@@ -1,70 +1,33 @@
 <script lang="ts">
+	import Header from './Header.svelte';
+	import Footer from './Footer.svelte';
 	import { redirect } from '@sveltejs/kit';
 	import { onMount, onDestroy } from 'svelte';
 
-	// let innerHeight: any;
-	// let innerWidth: any;
+	let innerHeight: any;
+	let innerWidth: any;
+	let isMobile = false;
 
-	// let mobileStae = false; 
-	// let smallScreen = false; 
+	// Function to check if device is mobile
+	function checkIfMobile() {
+		isMobile = innerWidth <= 768;
+	}
 
-	
+	onMount(() => {
+		checkIfMobile();
+	});
 
-
-
-	// const handleResize = () => {
-	// 	console.log('innerHeight', innerHeight);
-	// 	console.log('innerWidth', innerWidth);
-	// 	const mobileState = innerWidth 
-	// 	if(mobileState <= 769){
-	// 		mobileStae = true
-	// 		}else if(mobileState <= 1707){
-	// 			// alert("Please zoom out");
-	// 			smallScreen = true
-
-	// 	}
-
-
-
-	// }
-	
-
-	// onMount(() => {
-	// 	console.log('innerHeight', innerHeight);
-	// 	console.log('innerWidth', innerWidth);
-
-	// 	const mobileState = innerWidth 
-
-
-	// 	window.addEventListener("Resize", handleResize )
-		
-		
-		
-	// 	handleResize();
-
-	// 	// Cleanup function to remove the event listener
-	// 	return () => {
-	// 		window.removeEventListener('resize', handleResize);
-	// 	};
-		
-
-	// })
-
-	// onDestroy(() => {
-	// 	console.log('im destoredy');
-	// })
-
-
+	// Update isMobile when window resizes
+	$: if (innerWidth) {
+		checkIfMobile();
+	}
 
 	function redirectUser(){ 
 		window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
-
 	}
 
 	function redirectTechnologyPage (){
 		window.location.href = '/Technology/';
-
-
 	}
 	
 </script>
@@ -75,54 +38,23 @@
 </head>
 
 <main>
-	<!-- {#if smallScreen}
-			<div class="smallScreenOverlady">
-				<div class="smallContent">	
-					<div class="zoomTitle">Please Zoom Out</div>
-					<div class="ZoomOutArea">
-						<button class="gotItBtn" on:click={() => location.reload()}>Refresh</button>
-					</div>
-				</div>
-				
-			</div>
-	{/if}
-
-	{#if mobileStae}
-			<div class="smallScreenOverlady">
-				<div class="smallContent">	
-					<div class="zoomTitle">App not available on mobile devices. Please access it from a laptop</div>
-					
-				</div>
-				
-			</div>
-	{/if} -->
-	<nav>
-		<div class="logoArea">
-			<img src="/logow.jpg" alt="Logo" height="30" width="28" />
-			<h2>Scanlytics</h2>
-		</div>
-		<div class="navbar">
-			<a href="/" class="homeBtn">Home</a>
-			<a href="/Vision/">Vision</a>
-			<a href="/Technology/">Technology</a>
-			<a href="/About/">About</a>
-
-
-			<button class="bookCallBtn" on:click={redirectUser}>Book a Call</button>
-		</div>
-	</nav>
-
-	
+	<Header />
 
 	<div class="mainSection">
-		<div class="mainLeftContentSection">
+		<!-- Gif Image - Positioned differently on mobile vs desktop -->
+		<div class="rightContentSecitonInLeft" class:mobile-image={isMobile}>
+			<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" class="brain-gif" />
+		</div>
 
+		<div class="mainLeftContentSection" class:mobile-content={isMobile}>
 			<!-- Header  -->
-			<div class="headerMainContentSection">
-				<div class="leftContentHeaderArea">
-					<p>Worlds fastest Reporting Software</p>
+			{#if !isMobile}
+				<div class="headerMainContentSection">
+					<div class="leftContentHeaderArea">
+						<p>Worlds fastest Reporting Software</p>
+					</div>
 				</div>
-			</div>
+			{/if}
 
 			<!-- Middle Area -->
 			<div class="middleMainContentSection">
@@ -136,135 +68,47 @@
 						efficiency, and empower healthcare professionals to spend more time with patients.
 					</div>
 				</div>
-
 			</div>
 
-			<!-- Buttom Area of left main section -->
-			<div class="ButtomMainContentSection">
-				<div class="leftBtnSection">
-					<button class="leftBtn_1" on:click={redirectUser}><a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a></button>
+			<!-- Bottom Area of left main section -->
+			{#if !isMobile}
+				<div class="ButtomMainContentSection">
+					<div class="leftBtnSection">
+						<button class="leftBtn_1" on:click={redirectUser}>
+							<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a>
+						</button>
 
-					<button class="leftBtn_2" on:click={redirectTechnologyPage}>
-						<a href="/Technology/" class="leftappointmentbtn">View Technology</a>
+						<button class="leftBtn_2" on:click={redirectTechnologyPage}>
+							<a href="/Technology/" class="leftappointmentbtn">View Technology</a>
+						</button>
+					</div>
+				</div>
+			{/if}
+			
+			<!-- Desktop-only buttons -->
+			{#if isMobile}
+				<div class="mobile-buttons">
+					<button class="mobile-btn" on:click={redirectUser}>
+						<a href="https://calendly.com/tobias-wedel-code/30min" class="mobile-btn-text">Book a Call</a>
+					</button>
+
+					<button class="mobile-btn dark" on:click={redirectTechnologyPage}>
+						<a href="/Technology/" class="mobile-btn-text white">View Technology</a>
 					</button>
 				</div>
-			</div>
-			
-			<!-- Gif Image -->
-			<div class="rightContentSecitonInLeft">
-				<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" width="70%" height="700" />
-				<!-- <img src="LNz.gif" alt="Brain GIF" width="70%" height="700" /> -->
-
-			</div>
+			{/if}
 		</div>
 	</div>
 
-
-
-
-	<footer class="footerSection">
-		<div class="footer-content">
-			<div class="footer-left">
-				<p class="footer-left-text">© 2025 Scanlytics | Version 0.1</p>
-			
-			</div>
-			<div class="footer-center">
-			 <div class="footer-center-box">
-				<p class="footer-center-text">
-					For clinical usage, appropriate clinical qualification is required, <br /> and users must
-					ensure they have the necessary credentials and permissions <br />to access and interpret
-					medical images.
-				</p>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<Footer />
 </main>
 
 
 <style>
 	main {
-    /* background-color: rgb(255, 254, 251); */
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
-		/* display: flex;
-		flex-direction: column; */
 		overflow: hidden;
-	}
-
-	.smallContent{
-		/* background-color: orange; */
-		width: 80%;
-		height: 10%;
-		text-align: center;
-	}
-
-	.zoomTitle{
-		width: 100%;
-		height: 50%;
-		/* background-color: rgb(0, 255, 68); */
-		display: flex;
-		justify-content: center;
-
-	}
-
-
-	.smallScreenOverlady{
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		background-color: rgb(12, 12, 12);
-		z-index: 3;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		color: white;
-	}
-
-	.ZoomOutArea{
-		 width: 100%;
-		 height: 50%;
-		 /* background-color: rgb(62, 76, 66); */
-		 display: flex;
-		 justify-content: center;
-		 align-items: center;
-
-
-	}
-
-	.gotItBtn{
-		height: 20px;
-		width: 60px;
-		font-size: 10px;
-	}
-
-	nav {
-		display: flex;
-		width: '100%';
-		height: 5%;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	.logoArea {
-		height: 100%;
-		width: 8%;
-		display: flex;
-		align-items: center;
-		gap: 8%;
-		padding-left: 1%;
-		font-family: system-ui;
-		color: white;
-	}
-
-	.navbar {
-		width: 27%;
-		height: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding-right: 1%;
 	}
 
 	a {
@@ -280,35 +124,18 @@
 		font-weight: 400;
 		font-family: system-ui;
 	}
-	.bookCallBtn {
-		/* background-color: rgb(255, 255, 255); */
-		width: 20%;
-		height: 50%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: 1px solid black;
-		border-radius: 40px;
-		color: rgb(10, 9, 9);
-		font-family: system-ui;
-		font-size: 12px;
-		cursor: pointer;
 
-	}
-
-	.homeBtn {
-		color: white;
-	}
 	.mainSection {
-		/* background-color: rgb(36, 34, 34); */
 		height: 77%;
 		margin-top: 30px;
+		position: relative;
 	}
 
 	.mainLeftContentSection {
-		/* background-color: rgb(255, 23, 193); */
 		width: 70%;
 		height: 100%;
+		position: relative;
+		z-index: 2;
 	}
 
 	.rightContentSecitonInLeft {
@@ -317,7 +144,12 @@
 		top: 11%;
 		left: 50%;
 		opacity: 0.8;
-		zindex: -3;
+		z-index: 1;
+	}
+
+	.brain-gif {
+		width: 70%;
+		height: 700px;
 	}
 
 	.headerMainContentSection {
@@ -326,6 +158,7 @@
 		display: flex;
 		align-items: center;
 	}
+
 	.leftContentHeaderArea {
 		background-color: rgb(226, 241, 252);
 		width: 20%;
@@ -339,31 +172,24 @@
 		margin-left: 1%;
 	}
 
-
-
 	.middleMainContentSection{
-		/* background-color: rgb(11, 139, 111); */
-
 		width: 100%;
 		height: 86%;
 	}
 
 	.middleContentTitleArea {
-		/* background-color: rgb(139, 84, 11); */
-
 		width: 100%;
 		height: 80%;
 	}
 
 	.middleContentSubTextArea {
-		/* background-color: rgb(29, 38, 44); */
 		width: 70%;
 		height: 20%;
 		color: white;
 		padding: 1%;
 	}
+	
 	.mainTitle {
-		/* background-color: rgb(37, 139, 11); */
 		width: 70%;
 		height: 100%;
 		padding-left: 1%;
@@ -373,8 +199,6 @@
 	}
 
 	.ButtomMainContentSection {
-		/* background-color: rgb(139, 11, 11); */
-
 		width: 70%;
 		height: 7%;
 		color: rgb(48, 48, 48);
@@ -414,69 +238,137 @@
 		border-radius: 40px;
 		color: black;
 		cursor: pointer;
-
 	}
+
 	.leftappointmentbtn {
 		color: white;
 		font-size: 14px;
 		font-weight: 400;
 		font-family: system-ui;
 	}
-	.footerSection {
+
+	/* Mobile styles */
+	.mobile-buttons {
 		width: 100%;
-		height: 13%;
-		/* background-color: rgba(209, 78, 78, 0.673); */
-
-		padding: 1em;		
-		/* margin-top: 5px; */
-
-
-	}
-	.footer-content{
-		width: 100%;
-		height: 100px;
 		display: flex;
-		justify-content: space-between;
-
-
+		flex-direction: column;
+		gap: 15px;
+		margin-top: 30px;
+		padding: 0 20px;
 	}
-	.footer-left{
+
+	.mobile-btn {
+		width: 100%;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 40px;
+		border: 1px solid black;
+		background-color: white;
+		cursor: pointer;
+	}
+
+	.mobile-btn.dark {
+		background-color: black;
+		border: 1px solid white;
+	}
+
+	.mobile-btn-text {
 		color: black;
-		width: 40%;
-		height: 100%;
-		display: flex; 
-		flex-direction: column; 
-		justify-content: flex-end;
-	}
-	.footer-left-text{
-		color: white;
+		font-size: 16px;
+		font-weight: 400;
 		font-family: system-ui;
-		font-size: 12px;
-		opacity: 0.4;
-
-	
+		text-decoration: none;
 	}
-	.footer-center{
-		color: black;
-		width: 30%;
-		display: flex; 
-		flex-direction: column; 
-		justify-content: flex-end;
-		align-items: end;
 
-
-	}
-	
-
-	.footer-center-text{
+	.mobile-btn-text.white {
 		color: white;
-		font-family: system-ui;
-		font-size: 12px;
-		opacity: 0.4;
-		text-align: end;
-
-
 	}
 
+	@media (max-width: 768px) {
+		/* Force content to be scrollable */
+		:global(body) {
+			overflow-y: auto !important;
+		}
+		
+		main {
+			height: auto !important;
+			min-height: 100vh;
+			overflow-y: auto !important;
+		}
 
+		.mainSection {
+			height: auto !important;
+			overflow: visible !important;
+			min-height: 80vh;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.mobile-content {
+			width: 100%;
+			padding: 20px;
+			position: relative;
+			z-index: 5;
+		}
+
+		.mobile-image {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0.4;
+			z-index: 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.mobile-image .brain-gif {
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+		}
+
+		.mainTitle {
+			font-size: 40px;
+			width: 100%;
+			height: auto;
+			padding-left: 0;
+			margin-top: 20px;
+			line-height: 1.2;
+		}
+
+		.middleContentTitleArea {
+			height: auto;
+		}
+
+		.middleContentSubTextArea {
+			width: 100%;
+			height: auto;
+			padding: 0;
+			margin-top: 20px;
+		}
+
+		.mainTitle {
+			width: 100%;
+			height: 100%;
+			padding: 1rem;
+			font-size: 50px;
+			font-family: system-ui;
+			color: white;
+			
+		}
+
+		.subtext {
+			font-size: 20px;
+			line-height: 1.5;
+		}
+
+		.middleMainContentSection {
+			height: auto;
+		}
+	}
 </style>

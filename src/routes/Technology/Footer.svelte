@@ -33,7 +33,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 20px;
-      border-top: 1px solid #ccc;
+      border-top: 1px solid #6e2525;
       flex-direction: column; /* Default to column for mobile */
     }
   

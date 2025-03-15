@@ -1,21 +1,20 @@
 <script lang="ts">
+	import Header from '../Header.svelte';
 	import ImageUploader from './ImageUploader.svelte';
 	import TextList from './TextList.svelte';
 	import Guide from './Guide.svelte';
-	import Footer from './Footer.svelte';
+	import Footer from '../Footer.svelte';
 	import { onMount } from 'svelte';
 	import TextEditor from './TextEditor.svelte';
 	import Selectpage from './selectpage.svelte';
 	
-
-
 	function redirectUser(){ 
 		window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
-
 	}
 
-	let texts: string | any= [];
-	let selectedText = '';
+	// Independent state management
+	let extractedTexts: string[] = []; // Texts extracted from uploads
+	let editorContent = ''; // Content in the text editor
 	let isMobile = false;
 
 	if (typeof window !== 'undefined') {
@@ -25,6 +24,7 @@
 		});
 	}
 
+	// Server initialization
 	onMount(async () => {
 		try {
 			const response = await fetch('https://scanlytics2-ml.fly.dev/', {
@@ -57,24 +57,34 @@
 		}
 	});
 
-	function handleSelect(text: any) {
-		selectedText += (selectedText ? '\n' : '') + text;
-		texts = texts.filter((t:any) => t !== text);
+	// Function to handle text selection from TextList
+	function handleTextSelect(text: string) {
+		// Instead of directly modifying the editor content, dispatch an event or use a callback
+		// This allows the TextList to operate independently
+		const index = extractedTexts.indexOf(text);
+		if (index !== -1) {
+			// Remove the selected text from the list
+			extractedTexts = extractedTexts.filter((t) => t !== text);
+			
+			// Add it to the editor (now decoupled)
+			appendToEditor(text);
+		}
 	}
-
-	function handleUploadSuccess(parsedTexts: any) {
-		texts = parsedTexts;
-	}
-
 	
-// 	function handleFileChange(event: any ) {
-//     mlSelectedFile = event.target.files[0];
-//     if (mlSelectedFile) {
-//       imageUrl = URL.createObjectURL(mlSelectedFile);
-//     }
-//   }
+	// Function to append text to the editor
+	function appendToEditor(text: string) {
+		editorContent += (editorContent ? '\n' : '') + text;
+	}
 
+	// Function to handle editor content changes
+	function handleEditorChange(event: CustomEvent) {
+		editorContent = event.detail.text;
+	}
 
+	// Function to handle successful uploads
+	function handleUploadSuccess(parsedTexts: string[]) {
+		extractedTexts = parsedTexts;
+	}
 </script>
 
 <head>
@@ -82,20 +92,7 @@
 </head>
 
 <main>
-	<nav>
-		<div class="logoArea">
-			<img src="/logow.jpg" alt="Logo" height="30" width="28" />
-			<h2>Scanlytics</h2>
-		</div>
-		<div class="navbar">
-			<a href="/">Home</a>
-			<a href="/Vision/">Vision</a>
-			<a href="/Technology/" class="technologyBtn">Technology</a>
-			<a href="/About/">About</a>
-			<button class="bookCallBtn" on:click={redirectUser}>Book a Call</button>
-
-		</div>
-	</nav>
+	<Header />
 
 	<div class="mainSection">
 		<div class="mainLeftContentSection">
@@ -103,34 +100,31 @@
 			<div class="boxArea">
 				<!-- Left side  -->
 				<div class="boxSelectArea">
-
 					<div class="boxSelectAreaLayer">
-
-				
-							<Selectpage/>
-
-
-					<!-- Box Drop Down Section -->
-					<div class="box1">
-						<ImageUploader onUploadSuccess={handleUploadSuccess} />
+						<Selectpage/>
+						<!-- Box Drop Down Section -->
+						<div class="box1">
+							<ImageUploader onUploadSuccess={handleUploadSuccess} />
+						</div>
 					</div>
-					</div>
-
-					
-					
-
 				</div>
 
 				<!-- right side -->
 				<div class="boxAreaMl">
-					
-
 					<div class="box">
-						<TextEditor bind:text={selectedText} />
+						<!-- Using on:change event instead of bind:text -->
+						<TextEditor 
+							text={editorContent} 
+							on:change={handleEditorChange} 
+						/>
 					</div>
 
 					<div class="box">
-						<TextList {texts} onSelect={handleSelect} />
+						<!-- Using onSelect callback instead of direct binding -->
+						<TextList 
+							texts={extractedTexts} 
+							onSelect={handleTextSelect} 
+						/>
 					</div>
 				</div>
 			</div>
@@ -141,21 +135,13 @@
 		</div>
 	</div>
 
-	<footer class="footerSection">
-		<div class="footer-content">
-			<div class="footer-left">
-				<p class="footer-left-text">© 2025 Scanlytics | Version 0.1</p>
-			</div>
-		</div>
-	</footer>
+	<Footer />
 </main>
 
 <style>
 	main {
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
-		/* display: flex;
-		flex-direction: column; */
 		overflow: hidden;
 	}
 
@@ -170,10 +156,6 @@
 
     .boxSelectArea {
 		/* background-color: rgb(65, 47, 167); */
-
-
-		/* flex: 1; */
-		/* margin: 80px; */
 		width: 35%;
 		height: 100%;
 		display: flex;
@@ -181,38 +163,25 @@
 		justify-content: center;
 		align-items: center;
 		gap: 5%;
-		/* padding: 10px; */
 		/* background-color: rgb(211, 210, 209); */
 
 	}
 	.boxSelectAreaLayer{
 		background-color: rgb(211, 210, 209);
-
-
 		height: 100%;
 		display: flex;
-		/* margin: 30px; */
 		width: 100%;
 		height: 89%;
-
-
 	}
 	.boxSelectContentLayer{
 		/* background-color: rgba(60, 60, 60, 0.753); */
 		/* background-color: rgb(157, 157, 157); */
-
 		height: 100%;
 		width: 30%;
 		display: flex;
-		/* gap: 10%; */
 		flex-direction: column;
 		align-items: center;
 		border-right: 1px solid rgb(175, 166, 166);
-
-		/* padding-top: 5%; */
-		/* justify-content: space-around; */
-		/* overflow: auto; */
-		/* border: 1px solid white; */
 	}
 
 
@@ -239,11 +208,8 @@
 	}
 
 	.boxSelectContent{
-		/* flex: 1; */
-		/* margin: 30px; */
 		width: 80%;
 		height: 25%;
-		/* padding: 10px; */
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -253,11 +219,11 @@
 		border: 1px solid rgba(255, 255, 255, 0.066);
 		position: relative;
 	}
+	
 	.patientInfo{
 		width: 97%;
 		height: 10%;
 		/* background-color: green; */
-		/* padding: 0.2rem; */
 		position: absolute;
 		bottom: 1%;
 		font-family: system-ui;
@@ -268,13 +234,12 @@
 		justify-content: flex-end;
 		align-items: center;
 		opacity: 0.7;
-
 	}
+	
 	.patientInfoData{
 		width: 97%;
 		height: 30%;
 		/* background-color: green; */
-		/* padding: 0.2rem; */
 		position: absolute;
 		top: 1%;
 		font-family: system-ui;
@@ -287,28 +252,25 @@
 		opacity: 0.8;
 		font-size: 7px;
 	}
+
 	.patientB_Date{
 		font-size: 7px;
 	}
+
 	.boxAreaMl {
 		/* background-color: rgb(65, 167, 47); */
 		width: 65%;
 		display: flex;
-		/* justify-content: space-between; */
 		align-items: center;
 		margin-left: 2%;
 
 	}
 	.box1{
 		flex: 1;
-		/* margin: 30px; */
 		width: 100%;
 		height: 100%;
-		/* padding: 10px; */
-		/* width: 5px; */
 		background-color: rgb(211, 210, 209);
 		/* background-color: red; */
-
 		border: 1px solid #ccc;
 
 	}
@@ -318,10 +280,7 @@
 		margin: 30px;
 		width: 50%;
 		height: 89%;
-		/* padding: 10px; */
-		/* width: 5px; */
 		background-color: rgb(211, 210, 209);
-
 		border: 1px solid #ccc;
 	}
 
@@ -330,59 +289,6 @@
 		height: 25%;
 	}
 
-	nav {
-		display: flex;
-		width: '100%';
-		height: 5%;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	.logoArea {
-		height: 100%;
-		width: 8%;
-		display: flex;
-		align-items: center;
-		gap: 8%;
-		padding-left: 1%;
-		font-family: system-ui;
-		color: white;
-	}
-
-	.navbar {
-		width: 27%;
-		height: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding-right: 1%;
-	}
-
-	a {
-		text-decoration: none;
-		color: rgb(77, 77, 77);
-		font-weight: 500;
-		font-family: system-ui;
-	}
-
-	.bookCallBtn {
-		/* background-color: rgb(255, 255, 255); */
-		width: 20%;
-		height: 50%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: 1px solid black;
-		border-radius: 40px;
-		color: rgb(10, 9, 9);
-		font-family: system-ui;
-		font-size: 12px;
-		cursor: pointer;
-	}
-
-	.technologyBtn {
-		color: white;
-	}
 	.mainSection {
 		/* background-color: rgb(36, 34, 34); */
 		height: 77%;
@@ -396,49 +302,60 @@
 		position: relative;
 	}
 
-	.footerSection {
-		width: 100%;
-		height: 13%;
-		/* background-color: rgba(209, 78, 78, 0.673); */
+	@media (max-width: 768px) {
+		/* Force content to be scrollable */
+		:global(body) {
+			overflow-y: auto !important;
+		}
 
-		padding: 1em;
-		/* margin-top: 5px; */
-	}
-	.footer-content {
-		/* background-color: rgba(157, 78, 209, 0.673); */
-
-		width: 100%;
-		height: 100px;
-		display: flex;
-		justify-content: flex-start;
-	}
-	.footer-left {
-		width: 40%;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-	}
-	.footer-left-text {
-		color: white;
-		font-family: system-ui;
-		font-size: 12px;
-		opacity: 0.4;
-	}
-	.footer-center {
-		color: black;
-		width: 30%;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		align-items: end;
-	}
-
-	.footer-center-text {
-		color: white;
-		font-family: system-ui;
-		font-size: 12px;
-		opacity: 0.4;
-		text-align: end;
+		main {
+			height: auto !important;
+			overflow-y: auto !important;
+		}
+		
+		.mainSection {
+			height: auto !important;
+			overflow: visible !important;
+			margin-top: 15px;
+		}
+		
+		.boxArea {
+			flex-direction: column;
+			height: auto;
+			padding: 15px;
+			margin-left: 0;
+		}
+		
+		.boxSelectArea {
+			width: 100%;
+			height: auto;
+			margin-bottom: 20px;
+		}
+		
+		.boxSelectAreaLayer {
+			height: auto;
+			min-height: 200px;
+		}
+		
+		.boxAreaMl {
+			width: 100%;
+			flex-direction: column;
+			margin-left: 0;
+		}
+		
+		.box {
+			width: 100%;
+			margin: 10px 0;
+			height: auto;
+		}
+		
+		.explainArea {
+			height: auto;
+			margin-top: 20px;
+		}
+		
+		.mainLeftContentSection {
+			height: auto;
+		}
 	}
 </style>
