@@ -2,53 +2,53 @@
 	import { redirect } from '@sveltejs/kit';
 	import { onMount, onDestroy } from 'svelte';
 
-	let innerHeight: any;
-	let innerWidth: any;
+	// let innerHeight: any;
+	// let innerWidth: any;
 
-	let mobileStae = false; 
-	let smallScreen = false; 
+	// let mobileStae = false; 
+	// let smallScreen = false; 
 
 	
 
 
 
-	const handleResize = () => {
-		console.log('innerHeight', innerHeight);
-		console.log('innerWidth', innerWidth);
-		const mobileState = innerWidth 
-		if(mobileState <= 769){
-			mobileStae = true
-			}else if(mobileState <= 1707){
-				// alert("Please zoom out");
-				smallScreen = true
+	// const handleResize = () => {
+	// 	console.log('innerHeight', innerHeight);
+	// 	console.log('innerWidth', innerWidth);
+	// 	const mobileState = innerWidth 
+	// 	if(mobileState <= 769){
+	// 		mobileStae = true
+	// 		}else if(mobileState <= 1707){
+	// 			// alert("Please zoom out");
+	// 			smallScreen = true
 
-		}
+	// 	}
 
 
 
-	}
+	// }
 	
 
-	onMount(() => {
-		console.log('innerHeight', innerHeight);
-		console.log('innerWidth', innerWidth);
+	// onMount(() => {
+	// 	console.log('innerHeight', innerHeight);
+	// 	console.log('innerWidth', innerWidth);
 
-		const mobileState = innerWidth 
+	// 	const mobileState = innerWidth 
 
 
-		window.addEventListener("Resize", handleResize )
+	// 	window.addEventListener("Resize", handleResize )
 		
 		
 		
-		handleResize();
+	// 	handleResize();
 
-		// Cleanup function to remove the event listener
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
+	// 	// Cleanup function to remove the event listener
+	// 	return () => {
+	// 		window.removeEventListener('resize', handleResize);
+	// 	};
 		
 
-	})
+	// })
 
 	// onDestroy(() => {
 	// 	console.log('im destoredy');
@@ -69,14 +69,13 @@
 	
 </script>
 
-<svelte:window bind:innerHeight={innerHeight} bind:innerWidth={innerWidth} />
 
 <head>
 	<title>Scanlytics</title>
 </head>
 
 <main>
-	{#if smallScreen}
+	<!-- {#if smallScreen}
 			<div class="smallScreenOverlady">
 				<div class="smallContent">	
 					<div class="zoomTitle">Please Zoom Out</div>
@@ -96,7 +95,7 @@
 				</div>
 				
 			</div>
-	{/if}
+	{/if} -->
 	<nav>
 		<div class="logoArea">
 			<img src="/logow.jpg" alt="Logo" height="30" width="28" />
