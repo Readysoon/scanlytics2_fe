@@ -4,7 +4,7 @@
 	//  let toggleupload = false
 	ImageUploader;
 
-	let imageUrl = $state('');
+	let imageUrl = $state('') as string;
 	let mlMessage: string = '';
 	let mlSelectedFile: File | null = null;
 	let currentStep: number = 1;
