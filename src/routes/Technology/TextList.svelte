@@ -1,9 +1,28 @@
 <script lang="ts" module>
+
 	import TextEditor, { bindingTtext } from './TextEditor.svelte';
+	import { Circle2 } from 'svelte-loading-spinners';
+
+
 	let texts = $state([]);
 	export let onSelect: any;
 	let currentStep = $state(2); // Assuming the current step is managed globally
 	let layerToggle = $state(false);
+	let firstLoad = $state(true)
+
+
+// 	$: if (firstLoad) {
+// 		setTimeout(() => {
+// 			firstLoad = !firstLoad;
+// 		}, 5000);	
+//   }
+
+    
+
+	// onDestroy(() => {
+	// 	console.log('hello');
+	// });
+
 
 	function handleClick(text: any) {
 		// onSelect(text);
@@ -19,12 +38,23 @@
 
 	const handleAIReportingStartLayer = () => {
 		layerToggle = !layerToggle;
+		setTimeout(() => {
+			firstLoad = false;
+		}, 3000);
+		// firstLoad = !firstLoad;	
 	};
-	function goToStepThree() {
-		document.getElementById('step-2').classList.remove('active');
-		currentStep = 3;
-		document.getElementById('step-3').classList.add('active');
-	}
+
+	const handlecloselayer = () => {
+		layerToggle = !layerToggle;
+		firstLoad = !firstLoad;
+	};
+
+	
+	// function goToStepThree() {
+	// 	document.getElementById('step-2').classList.remove('active');
+	// 	currentStep = 3;
+	// 	document.getElementById('step-3').classList.add('active');
+	// }
 
 	// Left this here, for when a solution is found how to handle
 	// the dropdown menus in the TextEditor.svelte
@@ -62,7 +92,16 @@
 						<div class="ImageArea">
 							<div class="imgScanSection">
 								<!-- <div class="conversationHeader">head</div> -->
-								1
+								 {#if firstLoad}
+								 		<!-- hello -->
+								  <Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
+								  {:else}
+								  <img src="hand.jpg" alt="widget" class="selectedItemlogo" />
+
+
+								 {/if}
+								        
+
 							</div>
 							<!-- <div class="imgSectionListTab">2</div> -->
 						</div>
@@ -82,7 +121,7 @@
 
 								</div>
 
-								<div class="optionBox"  on:click={handleAIReportingStartLayer}> 
+								<div class="optionBox"  on:click={handlecloselayer}> 
 									<img src="text.png" alt="widget" class="widgetlogo" />
 
 								</div>
@@ -209,6 +248,9 @@
 		height: 100%;
 		width: 100%;
 		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		border-left: 1px solid rgba(255, 255, 255, 0.175);
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
@@ -260,6 +302,12 @@
 		justify-content: center;
 		align-items: center;
 		cursor: pointer;
+	}
+
+	.selectedItemlogo{
+		height: 95%;
+		width: 76%;
+		/* background-size: cover; */
 	}
 
 	.widgetlogo{
