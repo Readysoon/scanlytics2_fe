@@ -54,29 +54,52 @@
           <div class="placeholderObjecttext">Scanlytics AI Assistant</div>
       </div> -->
 
-		<div
-			class="ImageRecognitionArea">
+		<div class="ImageRecognitionArea">
 			<!-- <div class="placeholderObjecttext">Scanlytics AI Assistant</div> -->
 			{#if layerToggle}
 				<div class="StartOverlay">
 					<div class="conversationArea">
-             	<div class="ImageArea">
-              <div class="imgScanSection">
-                 <div class="conversationHeader">head</div>
+						<div class="ImageArea">
+							<div class="imgScanSection">
+								<!-- <div class="conversationHeader">head</div> -->
+								1
+							</div>
+							<!-- <div class="imgSectionListTab">2</div> -->
+						</div>
+						<div class="aiNavBar">
+							<div class="upperBar">
+								<div class="optionBox">
+									<img src="widget.png" alt="widget" class="widgetlogo" />
 
-              </div>
-              <div class="imgSectionListTab">
+								</div>
+								<div class="optionBox"> 
+									<img src="play.png" alt="widget" class="widgetlogo" />
 
-              </div>
+								</div>
 
-            </div>
-						<div class="questionArea">
-              <div class="questionAreaHeader">head</div>
+								<div class="optionBox"> 
+									<img src="her1.png" alt="widget" class="widgetlogo" />
+
+								</div>
+
+								<div class="optionBox"  on:click={handleAIReportingStartLayer}> 
+									<img src="text.png" alt="widget" class="widgetlogo" />
+
+								</div>
+							</div>
+							<div class="middleBar">
+								<div class="freq1">
+
+								</div>
+							
+							</div>
+
+						</div>
+						<!-- <div class="questionArea">
               <div class="AudioListBody">2</div>
               <div class="AudioOption">3</div>
 
-            </div>
-					
+            </div> -->
 					</div>
 				</div>
 			{/if}
@@ -84,9 +107,7 @@
 			<div class="listArea" style="background-color: aqua; width: 100%; height:75%">1</div>
 			<div class="pdfArea">
 				<div class="pdfContentSectionBtn">
-					<button class="startBtn"  on:click={handleAIReportingStartLayer}
-						>Start Reporting</button
-					>
+					<button class="startBtn" on:click={handleAIReportingStartLayer}>Start Reporting</button>
 				</div>
 
 				<!-- <div class="pdfContentSectionArr">
@@ -115,7 +136,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-    /* background-color: blueviolet; */
+		/* background-color: blueviolet; */
 	}
 
 	.text-item {
@@ -132,10 +153,9 @@
 		width: 100%;
 		display: flex;
 		justify-content: center;
-		align-items: center;    
-    
-    border-top: 2px solid rgba(111, 110, 110, 0.662);
+		align-items: center;
 
+		border-top: 2px solid rgba(111, 110, 110, 0.662);
 	}
 
 	.pdfContentSectionBtn {
@@ -163,69 +183,121 @@
 		display: flex;
 		flex-direction: row;
 	}
-  .conversationHeader{
-    background-color: rgba(137, 43, 226, 0.468);
-    height: 7%;
-    width: 100%; 
-    border-bottom: 1px solid white;
-    position: absolute;
-    top: 0%;
-    
-  }
+	.conversationHeader {
+		background-color: rgba(137, 43, 226, 0.468);
+		height: 7%;
+		width: 100%;
+		border-bottom: 1px solid white;
+		position: absolute;
+		top: 0%;
+	}
 
-
-
-  .conversationMain{
-    /* background-color: rgb(15, 160, 112); */
-    height: 95%;
-    width: 100%; 
-    display: flex;
-    flex-direction: row;
-  }
+	.conversationMain {
+		/* background-color: rgb(15, 160, 112); */
+		height: 95%;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+	}
 	.ImageArea {
 		height: 100%;
-		width: 65%;
+		width: 97%;
 		/* background-color: blueviolet; */
 	}
-  .imgScanSection{
-    background-color: antiquewhite;
-    height: 85%;
-    width: 100%;
-    position: relative;
-
-  }
-  .imgSectionListTab{
-    background-color: orange;
-    height: 15%;
-    width: 100%;
-  }
-	.questionArea {
+	.imgScanSection {
+		background-color: #0d1117;
+		height: 100%;
+		width: 100%;
+		position: relative;
+	}
+	.imgSectionListTab {
+		background-color: #0d1117;
+		height: 15%;
+		width: 100%;
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+	}
+	/* .questionArea {
 		height: 100%;
 		width: 35%;
 		background-color: grey;
     flex-direction: column;
-    /* position: relative; */
+	} */
+
+	.aiNavBar {
+		height: 100%;
+		width: 3%;
+		background-color: #0d1117;
+		border-left: 1px solid rgba(255, 255, 255, 0.175);
+		flex-direction: column;
+		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
+
 	}
 
-  .questionAreaHeader{
+	.upperBar {
+		height: 50%;
+		width: 100%;
+		/* background-color: green; */
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+	
+		align-items: center;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 
-    background-color: rgba(137, 43, 226, 0.168);
-    height: 5.9%;
-    width: 100%; 
-    border-bottom: 1px solid white;
-  }
 
-  .AudioListBody{
-    background-color: rgba(205, 226, 43, 0.995);
-    height: 86.1%;
-    width: 100%; 
-  }
+	}
 
-  .AudioOption{
-    background-color: rgba(226, 43, 177, 0.995);
-    height: 8%;
-    width: 100%; 
-  }
+	.optionBox{
+		width: 80%;
+		height: 15%;
+		/* background-color: #7d2a2a; */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
+
+	.widgetlogo{
+
+		height: 25px;
+	}
+	.middleBar {
+		height: 50%;
+		width: 100%;
+		/* background-color: rgb(223, 155, 18); */
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.freq1{
+		height: 98%;
+		width: 100%;
+		/* background-color: rgb(18, 223, 49); */
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
+
+	}
+
+	.questionAreaHeader {
+		background-color: rgba(137, 43, 226, 0.168);
+		height: 5.9%;
+		width: 100%;
+		border-bottom: 1px solid white;
+	}
+
+	.AudioListBody {
+		background-color: rgba(205, 226, 43, 0.995);
+		height: 86.1%;
+		width: 100%;
+	}
+
+	.AudioOption {
+		background-color: rgba(226, 43, 177, 0.995);
+		height: 8%;
+		width: 100%;
+	}
 
 	.pdfContentSectionArr {
 		height: 100%;
