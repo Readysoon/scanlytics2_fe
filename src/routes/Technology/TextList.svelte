@@ -177,8 +177,8 @@
 		z-index: 6;
 	}
 	.conversationArea {
-		height: 99%;
-		background-color: rgba(42, 176, 42, 0.126);
+		height: 100%;
+		/* background-color: rgba(42, 176, 42, 0.126); */
 		width: 100%;
 		display: flex;
 		flex-direction: row;
@@ -209,6 +209,11 @@
 		height: 100%;
 		width: 100%;
 		position: relative;
+		border-left: 1px solid rgba(255, 255, 255, 0.175);
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+		/* border-radius: 7px; */
+
 	}
 	.imgSectionListTab {
 		background-color: #0d1117;
@@ -227,7 +232,7 @@
 		height: 100%;
 		width: 3%;
 		background-color: #0d1117;
-		border-left: 1px solid rgba(255, 255, 255, 0.175);
+		border: 1px solid rgba(255, 255, 255, 0.175);
 		flex-direction: column;
 		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
 
