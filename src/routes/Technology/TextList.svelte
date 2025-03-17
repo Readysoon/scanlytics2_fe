@@ -94,16 +94,39 @@
 								{:else}
 									<div class="aiContentArea">
 										<div class="ImageviewSection" style="width: {menuToggle ? ' 70% ' : '100%'};">
-											<img src="hand.jpg" alt="widget" class="selectedItemlogo" />
+											<img src="knee3.jpeg" alt="widget" class="selectedItemlogo" />
 										</div>
 										{#if menuToggle}
 											<div class="ImageReportSection">
 												<div class="imageReportSectionHeader">
-													<p class="assitantTitle">Reporting Assistant</p>
+													<p class="assitantTitle"> AI Reporting Assistant</p>
 												</div>
 												<div class="assistantContentSection">
+													<div class="metadataSection">
+														<div class="metadataContent">
+															<div class="metadataBox">
+																Title: {kneejsonData.title}
+															</div>
+															<div class="metadataBox">
+																Description: {kneejsonData.description}
+															</div>
+															<div class="metadataBox">
+																Date: {kneejsonData.metadata.date}
+															</div>
+															<div class="metadataBox">
+																Publisher: {kneejsonData.metadata.publisher}
+															</div>
+														</div>
+													</div>
 													<div class="aicontentSection">
-														{#if kneejsonData.sections.length > 0}
+
+														<div class="aicontentSectionHeader">
+															<p class="questiontTitle">
+																Questionnaire</p>
+
+														</div>
+														<div class="aicontentSectionContent">
+															{#if kneejsonData.sections.length > 0}
 														{#each kneejsonData.sections as items (items)}
 															<div class="text-item-name-area">
 																<div class="text-item-name">{items.name}</div>
@@ -113,6 +136,10 @@
 															</div>
 														{/each}
 													{/if}
+
+														</div>
+
+														
 
 													</div>
 												
@@ -313,7 +340,7 @@
 	.assistantContentSection {
 		height: 94%;
 		width: 100%;
-		/* background-color: yellow; */
+		/* background-color: rgb(77, 77, 14); */
 		font-family: sans-serif;
 		color: white;
 		display: flex;
@@ -323,25 +350,99 @@
 
 	}
 
+
+	.metadataSection{
+		height: 20%;
+		width: 100%;
+		/* background-color: rgb(255, 7, 106); */
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		/* padding: 1rem; */
+
+	}
+
+	.metadataContent{
+		height: 95%;
+		width: 97%;
+		/* background-color: rgb(151, 20, 160); */
+		color: white;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		/* gap: 5px; */
+		font-family: sans-serif;
+		/* align-items: center; */
+
+		/* padding: 1rem; */
+	}
+
+	.metadataBox{
+		/* background-color: aqua; */
+		width: 100%;
+		height: 15%;
+		display: flex;
+		align-items: center;
+	}
+
 	.aicontentSection{
-		height: 97%;
+		height: 80%;
 		width: 100%;
 		/* background-color: rgb(255, 152, 7); */
-		padding: 1rem;
+		/* padding: 1rem; */
+		display: flex;
+		flex-direction: column;
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+
+
+		
+	}
+
+	.aicontentSectionHeader{
+		height: 6%;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+		padding-right: 3%;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+
+		
+	}
+
+	.questiontTitle{
+		color: rgba(255, 255, 255, 0.727);
+		font-size: 20px;
+		font-weight: 600;
+		font-family: sans-serif;
+		
+
+	}
+
+	.aicontentSectionContent{
+		height: 94%;
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		gap: 32px;
+		/* border-top: 1px solid rgba(255, 255, 255, 0.175); */
+		/* background-color: rgb(7, 98, 255); */
+		padding: 1rem;
+		margin-top: 3%;
 	}
 
 	.text-item-name-area{
 		/* background-color: rgb(18, 147, 6); */
 		border: 1px solid white;
-		height: 5%;
+		height: 6%;
 		width: 100%;
 		border-radius: 50px;
 		display: flex;
 		align-items: center;
 		padding-left: 5%;
+		cursor: pointer;
 	}
 
 	.text-item-name{
