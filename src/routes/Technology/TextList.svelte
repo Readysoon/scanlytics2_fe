@@ -1,28 +1,21 @@
 <script lang="ts" module>
-
 	import TextEditor, { bindingTtext } from './TextEditor.svelte';
 	import { Circle2 } from 'svelte-loading-spinners';
-
+	import * as kneejsonData from '../../../static/knee.json';
 
 	let texts = $state([]);
 	export let onSelect: any;
 	let currentStep = $state(2); // Assuming the current step is managed globally
 	let layerToggle = $state(false);
-	let firstLoad = $state(true)
+	let firstLoad = $state(true);
+	let menuToggle = $state(true);
 
-
-// 	$: if (firstLoad) {
-// 		setTimeout(() => {
-// 			firstLoad = !firstLoad;
-// 		}, 5000);	
-//   }
-
-    
+	$: if (firstLoad) {
+	}
 
 	// onDestroy(() => {
 	// 	console.log('hello');
 	// });
-
 
 	function handleClick(text: any) {
 		// onSelect(text);
@@ -36,12 +29,16 @@
 		bindingTtext(text);
 	}
 
+	const handleMenuClick = () => {
+		menuToggle = !menuToggle;
+	};
+
 	const handleAIReportingStartLayer = () => {
 		layerToggle = !layerToggle;
 		setTimeout(() => {
 			firstLoad = false;
 		}, 3000);
-		// firstLoad = !firstLoad;	
+		// firstLoad = !firstLoad;
 	};
 
 	const handlecloselayer = () => {
@@ -49,7 +46,6 @@
 		firstLoad = !firstLoad;
 	};
 
-	
 	// function goToStepThree() {
 	// 	document.getElementById('step-2').classList.remove('active');
 	// 	currentStep = 3;
@@ -92,47 +88,68 @@
 						<div class="ImageArea">
 							<div class="imgScanSection">
 								<!-- <div class="conversationHeader">head</div> -->
-								 {#if firstLoad}
-								 		<!-- hello -->
-								  <Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
-								  {:else}
-								  <img src="hand.jpg" alt="widget" class="selectedItemlogo" />
+								{#if firstLoad}
+									<!-- hello -->
+									<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
+								{:else}
+									<div class="aiContentArea">
+										<div class="ImageviewSection" style="width: {menuToggle ? ' 70% ' : '100%'};">
+											<img src="hand.jpg" alt="widget" class="selectedItemlogo" />
+										</div>
+										{#if menuToggle}
+											<div class="ImageReportSection">
+												<div class="imageReportSectionHeader">
+													<p class="assitantTitle">Reporting Assistant</p>
+												</div>
+												<div class="assistantContentSection">
+													<div class="aicontentSection">
+														{#if kneejsonData.sections.length > 0}
+														{#each kneejsonData.sections as items (items)}
+															<div class="text-item-name-area">
+																<div class="text-item-name">{items.name}</div>
+																<div class="text-item-checkBox">
+																	<input type="checkbox" class="aicheckBox">
+																</div>
+															</div>
+														{/each}
+													{/if}
 
-
-								 {/if}
-								        
-
+													</div>
+												
+												</div>
+												<div></div>
+											</div>
+										{/if}
+									</div>
+								{/if}
 							</div>
 							<!-- <div class="imgSectionListTab">2</div> -->
 						</div>
 						<div class="aiNavBar">
 							<div class="upperBar">
 								<div class="optionBox">
-									<img src="widget.png" alt="widget" class="widgetlogo" />
-
+									<img
+										src="widget.png"
+										alt="widget"
+										class="widgetlogo"
+										on:click={handleMenuClick}
+									/>
 								</div>
-								<div class="optionBox"> 
+								<div class="optionBox">
 									<img src="play.png" alt="widget" class="widgetlogo" />
-
 								</div>
 
-								<div class="optionBox"> 
+								<div class="optionBox">
 									<img src="her1.png" alt="widget" class="widgetlogo" />
-
 								</div>
 
-								<div class="optionBox"  on:click={handlecloselayer}> 
+								<div class="optionBox" on:click={handlecloselayer}>
 									<img src="text.png" alt="widget" class="widgetlogo" />
-
 								</div>
 							</div>
 							<div class="middleBar">
-								<div class="freq1">
-
-								</div>
-							
+								<div class="freq1"></div>
 							</div>
-
 						</div>
 						<!-- <div class="questionArea">
               <div class="AudioListBody">2</div>
@@ -255,6 +272,113 @@
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 		/* border-radius: 7px; */
+	}
+
+	.aiContentArea {
+		background-color: orange;
+		height: 93%;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+	}
+	.ImageviewSection {
+		background-color: #0d1117;
+		height: 100%;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	.ImageReportSection {
+		background-color: #0d1117;
+		height: 100%;
+		width: 30%;
+		border-left: 1px solid rgba(255, 255, 255, 0.175);
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+	}
+
+	.imageReportSectionHeader {
+		/* background-color: rgba(137, 43, 226, 0.168); */
+		height: 5.9%;
+		width: 100%;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+
+	.assistantContentSection {
+		height: 94%;
+		width: 100%;
+		/* background-color: yellow; */
+		font-family: sans-serif;
+		color: white;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+	}
+
+	.aicontentSection{
+		height: 97%;
+		width: 100%;
+		/* background-color: rgb(255, 152, 7); */
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 32px;
+	}
+
+	.text-item-name-area{
+		/* background-color: rgb(18, 147, 6); */
+		border: 1px solid white;
+		height: 5%;
+		width: 100%;
+		border-radius: 50px;
+		display: flex;
+		align-items: center;
+		padding-left: 5%;
+	}
+
+	.text-item-name{
+		/* background-color: rgb(255, 152, 7); */
+		width: 85%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		font-family: sans-serif;
+		/* justify-content: center; */
+		/* background-color: rgb(255, 152, 7);
+		border: 1px solid white; */
+		/* height: 5%;
+		width: 100%;
+		border-radius: 50px;
+		display: flex;
+		align-items: center;
+		padding-left: 5%; */
+
+	}
+
+
+
+	.text-item-checkBox{
+		/* background-color: rgb(7, 102, 255); */
+		width: 10%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+
+	.aicheckBox{
+		height: 15px;
+		width: 50px;
+		border-radius: 50%;
 
 	}
 	.imgSectionListTab {
@@ -277,7 +401,6 @@
 		border: 1px solid rgba(255, 255, 255, 0.175);
 		flex-direction: column;
 		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
-
 	}
 
 	.upperBar {
@@ -287,14 +410,12 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
-	
+
 		align-items: center;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
-
-
 	}
 
-	.optionBox{
+	.optionBox {
 		width: 80%;
 		height: 15%;
 		/* background-color: #7d2a2a; */
@@ -304,14 +425,13 @@
 		cursor: pointer;
 	}
 
-	.selectedItemlogo{
+	.selectedItemlogo {
 		height: 95%;
 		width: 76%;
 		/* background-size: cover; */
 	}
 
-	.widgetlogo{
-
+	.widgetlogo {
 		height: 25px;
 	}
 	.middleBar {
@@ -324,13 +444,12 @@
 		align-items: center;
 	}
 
-	.freq1{
+	.freq1 {
 		height: 98%;
 		width: 100%;
 		/* background-color: rgb(18, 223, 49); */
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
 		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
-
 	}
 
 	.questionAreaHeader {
@@ -375,6 +494,14 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+
+	.assitantTitle {
+		font-size: 20px;
+		font-weight: bold;
+		font-family: sans-serif;
+		color: #ffffff;
+		text-align: center;
 	}
 	.placeholderObjecttext {
 		font-size: 29px;
