@@ -9,6 +9,7 @@
 	let layerToggle = $state(false);
 	let firstLoad = $state(true);
 	let menuToggle = $state(true);
+	let ItemToggle: any = $state(null);
 
 	$: if (firstLoad) {
 	}
@@ -40,6 +41,18 @@
 		}, 3000);
 		// firstLoad = !firstLoad;
 	};
+
+	const handleSelectedEvent = (event: any) => {
+		console.log('e', event);
+		// alert("selected ")
+
+		ItemToggle = ItemToggle == ItemToggle ? event : null
+		console.log('ItemToggle', ItemToggle);
+	}
+
+	const handleClosetogglebtn = () => {
+		ItemToggle = null
+	}
 
 	const handlecloselayer = () => {
 		layerToggle = !layerToggle;
@@ -128,12 +141,50 @@
 														<div class="aicontentSectionContent">
 															{#if kneejsonData.sections.length > 0}
 														{#each kneejsonData.sections as items (items)}
-															<div class="text-item-name-area">
-																<div class="text-item-name">{items.name}</div>
-																<div class="text-item-checkBox">
-																	<input type="checkbox" class="aicheckBox">
-																</div>
-															</div>
+															
+																
+																	
+
+																	{#if ItemToggle != null&& ItemToggle.name == items.name }
+																	<div class="selected-item-area">
+																		<div class="selected-Item-header">
+																			<div class="selected-Item-title">{ItemToggle.name}</div>
+																			<div class="selected-Item-closeBtn" on:click={handleClosetogglebtn}>
+																				x
+																			</div>
+																		</div>
+																		<div class="select-Item-Content">
+																		{#each ItemToggle.questions as itemObj (itemObj)}
+																					
+																		 			<div class="selected-item-obj">
+																						{itemObj.label}
+
+																						<input type="text" class="textoption">
+																					</div>
+																				
+																		{/each}
+																		
+																	</div>
+
+																	</div>
+																	
+																	{:else}
+																	<div class="text-item-name-area">
+																		<div class="text-item-name"  on:click={() => handleSelectedEvent(items)}>{items.name}
+
+																			
+																		</div>
+																		<div class="text-item-checkBox">
+																			<input type="checkbox" class="aicheckBox">
+																		</div>
+
+																	</div>
+														
+
+																	{/if}
+
+
+																
 														{/each}
 													{/if}
 
@@ -365,7 +416,7 @@
 
 	.metadataContent{
 		height: 95%;
-		width: 97%;
+		width: 96%;
 		/* background-color: rgb(151, 20, 160); */
 		color: white;
 		display: flex;
@@ -440,29 +491,115 @@
 		width: 100%;
 		border-radius: 50px;
 		display: flex;
-		align-items: center;
-		padding-left: 5%;
+		flex-direction: row;
+		/* align-items: center; */
+		/* justify-content: space-between; */
+		padding-left: 2%;
 		cursor: pointer;
 	}
 
 	.text-item-name{
-		/* background-color: rgb(255, 152, 7); */
-		width: 85%;
+		/* background-color: pink; */
+	
+		width: 95%;
 		height: 100%;
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		font-family: sans-serif;
-		/* justify-content: center; */
-		/* background-color: rgb(255, 152, 7);
-		border: 1px solid white; */
-		/* height: 5%;
+	}
+
+	.text-item-checkBox{
+		/* background-color: rgb(234, 13, 50); */
+		height: 6%;
+		width: 20%;
+	}
+
+	.selected-item-area{
+		background-color: rgba(45, 45, 46, 0.386);
+		border: 1px solid white;
+		height: 56%;
 		width: 100%;
-		border-radius: 50px;
-		display: flex;
+		border-radius: 7px;
+		/* display: flex;
+		flex-direction: row;
 		align-items: center;
-		padding-left: 5%; */
+		padding-left: 5%;
+		cursor: pointer; */
 
 	}
+
+	.selected-Item-header{
+		height: 15%;
+		width: 100%;
+		padding-left: 2%;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		/* background-color: #255bad; */
+		border-top-left-radius: 7px;
+		border-top-right-radius: 7px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+	}
+
+	.selected-Item-title{
+		/* background-color: orange; */
+		height: 100%;
+		width: 90%;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		font-size: 19px;
+		font-family: sans-serif;
+
+	}
+
+
+	.selected-Item-closeBtn{
+		color: red; 
+		font-size: 22px;
+		/* background-color: pink; */
+		height: 100%;
+		width: 10%;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+	}
+
+	
+	.select-Item-Content{
+		height: 85%;
+		width: 100%;
+		/* padding-left: 2%; */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		/* background-color: #2f7cf0; */
+		overflow:auto;
+		gap: 20px;
+		
+		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
+	}
+
+	.selected-item-obj{
+		height: 15%;
+		width: 100%;
+		display: flex;
+		padding-left: 5%; 
+		flex-direction: row;
+		justify-content: space-between;
+		background-color: #51515952;
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+		align-items: center;
+		padding-right: 5%;
+
+
+	}
+
 
 
 
