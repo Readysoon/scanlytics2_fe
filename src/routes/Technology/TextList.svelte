@@ -321,7 +321,7 @@
 				</div>
 				<div class="pdfIconBox"  style="border: {  updateSelectedPdf == 2 ? "2px solid blue" : "0px solid blue"};" on:click={() => handlePdfClick(2)}>
 						<img src="/pdfIcon.svg" alt="widget" class="pdfIcon1" />
-						<p class="pdfTitle">knee</p>
+						<p class="pdfTitle">knee.pt2</p>
 
 				</div>
 			</div>
