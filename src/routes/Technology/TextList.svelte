@@ -11,9 +11,6 @@
 	let menuToggle = $state(true);
 	let ItemToggle: any = $state(null);
 
-	$: if (firstLoad) {
-	}
-
 	// onDestroy(() => {
 	// 	console.log('hello');
 	// });
@@ -39,20 +36,19 @@
 		setTimeout(() => {
 			firstLoad = false;
 		}, 3000);
-		// firstLoad = !firstLoad;
 	};
 
 	const handleSelectedEvent = (event: any) => {
 		console.log('e', event);
 		// alert("selected ")
 
-		ItemToggle = ItemToggle == ItemToggle ? event : null
+		ItemToggle = ItemToggle == ItemToggle ? event : null;
 		console.log('ItemToggle', ItemToggle);
-	}
+	};
 
 	const handleClosetogglebtn = () => {
-		ItemToggle = null
-	}
+		ItemToggle = null;
+	};
 
 	const handlecloselayer = () => {
 		layerToggle = !layerToggle;
@@ -69,7 +65,7 @@
 	// the dropdown menus in the TextEditor.svelte
 	function parseText(text: any) {
 		console.log('text on Textlist: ', text);
-		return text.replace(/\[dropdown:([^\]]+)\]/g, (match, options) => {
+		return text.replace(/\[dropdown:([^\]]+)\]/g, (match: any, options: any) => {
 			return options.split(',')[0];
 		});
 	}
@@ -79,6 +75,77 @@
 
 		texts = event;
 	}
+</script>
+
+<script>
+	let isChecked: any = $state({});
+	let isCheckInputData: any = $state({});
+
+	const requiredNames = ['Patient Information', 'Study Information', 'Examination'];
+
+	$effect(() => {
+		kneejsonData.sections.map((i) => {
+			if (
+				i.name == 'Patient Information' ||
+				i.name == 'Study Information' ||
+				i.name == 'Examination'
+			) {
+				isChecked[i.name] = true;
+				i.questions?.map((labelItem: any) => {
+					console.log('labelItem', labelItem);
+
+					const labelInfo = labelItem.label;
+
+					const handlePatientInformation = (labelPatientInfo: any) => {
+						if (labelPatientInfo == 'Patient Name') {
+							console.log('side');
+							isCheckInputData[labelPatientInfo] = 'Tom Müller';
+						} else if (labelPatientInfo == 'Patient ID') {
+							isCheckInputData[labelPatientInfo] = 'DKU2324342';
+						} else if (labelPatientInfo == 'Date of Birth') {
+							const formatDate = (date: any) => date.toISOString().split('T')[0];
+							isCheckInputData[labelPatientInfo] = formatDate(new Date('2024-12-31'));
+						} else if (labelPatientInfo == 'Gender') {
+							isCheckInputData[labelPatientInfo] = 'Male';
+						}
+					};
+
+					const handleStudyInformation = (labelStudyInfo: any) => {
+						if (labelStudyInfo == 'Study Date') {
+							isCheckInputData[labelStudyInfo] = '25.06.2024';
+						} else if (labelStudyInfo == 'Study Time') {
+							isCheckInputData[labelStudyInfo] = 'Today';
+						} else if (labelStudyInfo == 'Referring Physician') {
+							isCheckInputData[labelStudyInfo] = "Knee"
+						} else if (labelStudyInfo == 'Clinical Indication') {
+							isCheckInputData[labelStudyInfo] = 'Male in treatment';
+						}else if(labelStudyInfo == "Previous Procedures"){
+							isCheckInputData[labelStudyInfo] = 'implants, or interventions';
+						}
+					};
+
+					const handleExaminationInformation = (labelExamInfo: any) => {
+						if (labelExamInfo == 'Examination Type') {
+							isCheckInputData[labelExamInfo] = 'Röntgen Kniegelenk links';
+						} else if (labelExamInfo == 'Patient Position') {
+							isCheckInputData[labelExamInfo] = 'liegend';
+						} else if (labelExamInfo == 'Projection') {
+							isCheckInputData[labelExamInfo] = "seitlich"
+						} else if (labelExamInfo == 'Previous Comparison') {
+							isCheckInputData[labelExamInfo] = 'Keine Voruntersuchung vorliegend';
+						}else if(labelExamInfo == "Previous Examination Date"){
+							isCheckInputData[labelExamInfo] = "12.07.2024";
+						}
+
+					}
+					handlePatientInformation(labelInfo);
+					handleStudyInformation(labelInfo);
+
+					handleExaminationInformation(labelInfo)
+				});
+			}
+		});
+	});
 </script>
 
 <div class="text-list">
@@ -103,102 +170,110 @@
 								<!-- <div class="conversationHeader">head</div> -->
 								{#if firstLoad}
 									<!-- hello -->
-									<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
-								{:else}
-									<div class="aiContentArea">
-										<div class="ImageviewSection" style="width: {menuToggle ? ' 70% ' : '100%'};">
-											<img src="knee3.jpeg" alt="widget" class="selectedItemlogo" />
-										</div>
-										{#if menuToggle}
-											<div class="ImageReportSection">
-												<div class="imageReportSectionHeader">
-													<p class="assitantTitle"> AI Reporting Assistant</p>
-												</div>
-												<div class="assistantContentSection">
-													<div class="metadataSection">
-														<div class="metadataContent">
-															<div class="metadataBox">
-																Title: {kneejsonData.title}
-															</div>
-															<div class="metadataBox">
-																Description: {kneejsonData.description}
-															</div>
-															<div class="metadataBox">
-																Date: {kneejsonData.metadata.date}
-															</div>
-															<div class="metadataBox">
-																Publisher: {kneejsonData.metadata.publisher}
-															</div>
+								<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
+								 {:else}
+								<div class="aiContentArea">
+									<div class="ImageviewSection" style="width: {menuToggle ? ' 70% ' : '100%'};">
+										<img src="knee3.jpeg" alt="widget" class="selectedItemlogo" />
+									</div>
+									{#if menuToggle}
+										<div class="ImageReportSection">
+											<div class="imageReportSectionHeader">
+												<p class="assitantTitle">AI Reporting Assistant</p>
+											</div>
+											<div class="assistantContentSection">
+												<div class="metadataSection">
+													<div class="metadataContent">
+														<div class="metadataBox">
+															Title: {kneejsonData.title}
+														</div>
+														<div class="metadataBox">
+															Description: {kneejsonData.description}
+														</div>
+														<div class="metadataBox">
+															Date: {kneejsonData.metadata.date}
+														</div>
+														<div class="metadataBox">
+															Publisher: {kneejsonData.metadata.publisher}
 														</div>
 													</div>
-													<div class="aicontentSection">
-
-														<div class="aicontentSectionHeader">
-															<p class="questiontTitle">
-																Questionnaire</p>
-
+												</div>
+												<div class="aicontentSection">
+													<div class="aicontentSectionHeader">
+														<div>
+															<p class="questiontTitle">Questionnaire</p>
 														</div>
-														<div class="aicontentSectionContent">
-															{#if kneejsonData.sections.length > 0}
-														{#each kneejsonData.sections as items (items)}
-															
-																
-																	
-
-																	{#if ItemToggle != null&& ItemToggle.name == items.name }
+													</div>
+													<div class="aicontentSectionContent">
+														{#if kneejsonData.sections.length > 0}
+															{#each kneejsonData.sections as items (items)}
+																{#if ItemToggle != null && ItemToggle.name == items.name}
 																	<div class="selected-item-area">
 																		<div class="selected-Item-header">
 																			<div class="selected-Item-title">{ItemToggle.name}</div>
-																			<div class="selected-Item-closeBtn" on:click={handleClosetogglebtn}>
+																			<div
+																				class="selected-Item-closeBtn"
+																				on:click={handleClosetogglebtn}
+																			>
 																				x
 																			</div>
 																		</div>
 																		<div class="select-Item-Content">
-																		{#each ItemToggle.questions as itemObj (itemObj)}
-																					
-																		 			<div class="selected-item-obj">
-																						{itemObj.label}
+																			{#each ItemToggle.questions as itemObj (itemObj)}
+																				<div class="selected-item-obj">
+																					{itemObj.label}
 
-																						<input type="text" class="textoption">
-																					</div>
-																				
-																		{/each}
-																		
+																					<input
+																						type="text"
+																						class="textoption"
+																						value={isCheckInputData[itemObj.label]}
+																					/>
+																				</div>
+																			{/each}
+																		</div>
 																	</div>
+																{:else}
+																	<div
+																		class="text-item-name-area"
+																		style="border-color: {items.name == 'Findings'
+																			? 'rgb(43, 121, 194)'
+																			: 'white'};"
+																	>
+																		<div
+																			class="text-item-name"
+																			on:click={() => handleSelectedEvent(items)}
+																		>
+																			{items.name}
 
-																	</div>
-																	
-																	{:else}
-																	<div class="text-item-name-area">
-																		<div class="text-item-name"  on:click={() => handleSelectedEvent(items)}>{items.name}
-
-																			
+																			{#if items.name == 'Findings'}
+																				<div>
+																					<img
+																						src="robo2.png"
+																						alt="widget"
+																						class="robologo"
+																						on:click={handleMenuClick}
+																					/>
+																				</div>
+																			{/if}
 																		</div>
 																		<div class="text-item-checkBox">
-																			<input type="checkbox" class="aicheckBox">
+																			<input
+																				type="checkbox"
+																				class="aicheckBox"
+																				bind:checked={isChecked[items.name]}
+																			/>
 																		</div>
-
 																	</div>
-														
-
-																	{/if}
-
-
-																
-														{/each}
-													{/if}
-
-														</div>
-
-														
-
+																{/if}
+															{/each}
+														{/if}
 													</div>
-												
 												</div>
-												<div></div>
 											</div>
-										{/if}
-									</div>
+											<div></div>
+										</div>
+									{/if}
+								</div>
 								{/if}
 							</div>
 							<!-- <div class="imgSectionListTab">2</div> -->
@@ -398,11 +473,9 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-
 	}
 
-
-	.metadataSection{
+	.metadataSection {
 		height: 20%;
 		width: 100%;
 		/* background-color: rgb(255, 7, 106); */
@@ -411,10 +484,9 @@
 		justify-content: center;
 		align-items: center;
 		/* padding: 1rem; */
-
 	}
 
-	.metadataContent{
+	.metadataContent {
 		height: 95%;
 		width: 96%;
 		/* background-color: rgb(151, 20, 160); */
@@ -429,7 +501,7 @@
 		/* padding: 1rem; */
 	}
 
-	.metadataBox{
+	.metadataBox {
 		/* background-color: aqua; */
 		width: 100%;
 		height: 15%;
@@ -437,7 +509,7 @@
 		align-items: center;
 	}
 
-	.aicontentSection{
+	.aicontentSection {
 		height: 80%;
 		width: 100%;
 		/* background-color: rgb(255, 152, 7); */
@@ -445,12 +517,9 @@
 		display: flex;
 		flex-direction: column;
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
-
-
-		
 	}
 
-	.aicontentSectionHeader{
+	.aicontentSectionHeader {
 		height: 6%;
 		width: 100%;
 		display: flex;
@@ -458,21 +527,19 @@
 		justify-content: flex-end;
 		align-items: center;
 		padding-right: 3%;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 
-		
+		/* background-color: pink; */
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
-	.questiontTitle{
+	.questiontTitle {
 		color: rgba(255, 255, 255, 0.727);
 		font-size: 20px;
 		font-weight: 600;
 		font-family: sans-serif;
-		
-
 	}
 
-	.aicontentSectionContent{
+	.aicontentSectionContent {
 		height: 94%;
 		width: 100%;
 		display: flex;
@@ -484,7 +551,7 @@
 		margin-top: 3%;
 	}
 
-	.text-item-name-area{
+	.text-item-name-area {
 		/* background-color: rgb(18, 147, 6); */
 		border: 1px solid white;
 		height: 6%;
@@ -498,9 +565,9 @@
 		cursor: pointer;
 	}
 
-	.text-item-name{
+	.text-item-name {
 		/* background-color: pink; */
-	
+
 		width: 95%;
 		height: 100%;
 		display: flex;
@@ -509,13 +576,7 @@
 		font-family: sans-serif;
 	}
 
-	.text-item-checkBox{
-		/* background-color: rgb(234, 13, 50); */
-		height: 6%;
-		width: 20%;
-	}
-
-	.selected-item-area{
+	.selected-item-area {
 		background-color: rgba(45, 45, 46, 0.386);
 		border: 1px solid white;
 		height: 56%;
@@ -526,23 +587,22 @@
 		align-items: center;
 		padding-left: 5%;
 		cursor: pointer; */
-
 	}
 
-	.selected-Item-header{
+	.selected-Item-header {
 		height: 15%;
 		width: 100%;
 		padding-left: 2%;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		/* background-color: #255bad; */
+		/* background-color: #b8babe; */
 		border-top-left-radius: 7px;
 		border-top-right-radius: 7px;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
-	.selected-Item-title{
+	.selected-Item-title {
 		/* background-color: orange; */
 		height: 100%;
 		width: 90%;
@@ -551,12 +611,10 @@
 		align-items: center;
 		font-size: 19px;
 		font-family: sans-serif;
-
 	}
 
-
-	.selected-Item-closeBtn{
-		color: red; 
+	.selected-Item-closeBtn {
+		color: red;
 		font-size: 22px;
 		/* background-color: pink; */
 		height: 100%;
@@ -567,8 +625,7 @@
 		justify-content: center;
 	}
 
-	
-	.select-Item-Content{
+	.select-Item-Content {
 		height: 85%;
 		width: 100%;
 		/* padding-left: 2%; */
@@ -577,17 +634,17 @@
 		align-items: center;
 		justify-content: center;
 		/* background-color: #2f7cf0; */
-		overflow:auto;
+		overflow: auto;
 		gap: 20px;
-		
+
 		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
 	}
 
-	.selected-item-obj{
+	.selected-item-obj {
 		height: 15%;
 		width: 100%;
 		display: flex;
-		padding-left: 5%; 
+		padding-left: 5%;
 		flex-direction: row;
 		justify-content: space-between;
 		background-color: #51515952;
@@ -596,14 +653,9 @@
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 		align-items: center;
 		padding-right: 5%;
-
-
 	}
 
-
-
-
-	.text-item-checkBox{
+	.text-item-checkBox {
 		/* background-color: rgb(7, 102, 255); */
 		width: 10%;
 		height: 100%;
@@ -612,12 +664,10 @@
 		justify-content: center;
 	}
 
-
-	.aicheckBox{
+	.aicheckBox {
 		height: 15px;
 		width: 50px;
 		border-radius: 50%;
-
 	}
 	.imgSectionListTab {
 		background-color: #0d1117;
@@ -751,5 +801,10 @@
 		/* Removed height: 15% to allow the text to be naturally sized */
 		/* Removed margin-bottom: 10% as it was shifting the text down */
 		/* Removed display: flex and justify-content: center as they're redundant with the parent's centering */
+	}
+
+	.robologo {
+		width: 27px;
+		height: 27px;
 	}
 </style>
