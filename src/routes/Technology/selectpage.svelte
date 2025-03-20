@@ -11,7 +11,7 @@
 	let fileInput: HTMLInputElement;
 	let imgArr = $state([]);
 
-	const images = [`hand.jpg`, `knie.jpg`, `thoraxF.jpg`];
+	const images = [ `knie.jpg`];
 
 	export function triggerclickEvent() {
 		fileInput.click();
