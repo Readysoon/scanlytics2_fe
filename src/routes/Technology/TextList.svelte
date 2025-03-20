@@ -10,6 +10,7 @@
 	let firstLoad = $state(true);
 	let menuToggle = $state(true);
 	let ItemToggle: any = $state(null);
+	let updateSelectedPdf = $state(1)
 
 	// onDestroy(() => {
 	// 	console.log('hello');
@@ -38,6 +39,9 @@
 		}, 3000);
 	};
 
+	const handlePdfClick = (e: any)  => {
+		updateSelectedPdf = e
+	}
 	const handleSelectedEvent = (event: any) => {
 		console.log('e', event);
 		// alert("selected ")
@@ -77,9 +81,13 @@
 	}
 </script>
 
+
+
 <script>
+
 	let isChecked: any = $state({});
 	let isCheckInputData: any = $state({});
+
 
 	const requiredNames = ['Patient Information', 'Study Information', 'Examination'];
 
@@ -312,8 +320,24 @@
 					</div>
 				</div>
 			{/if}
-			<div class="headerSection" style="height: 10%; width:100%; background: orange ">0</div>
-			<div class="listArea" style="background-color: aqua; width: 100%; height:75%">1</div>
+			<div class="headerSection" style="height: 10%; width:100%; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid rgb(175, 166, 166);">
+					<div class="placeholderObjecttext">Select a Report</div>
+			</div>
+			<div class="listArea" style=" width: 100%; height:75%">
+				<div class="pdfIconArea">
+					<div class="pdfIconBox"  style="border: {  updateSelectedPdf == 1 ? "2px solid blue" : "0px solid blue"};" on:click={() => handlePdfClick(1)}>
+							<img src="/pdfIcon.svg" alt="widget" class="pdfIcon1" />
+							<p class="pdfTitle">knee</p>
+					</div>
+					<div class="pdfIconBox"  style="border: {  updateSelectedPdf == 2 ? "2px solid blue" : "0px solid blue"};" on:click={() => handlePdfClick(2)}>
+							<img src="/pdfIcon.svg" alt="widget" class="pdfIcon1" />
+							<p class="pdfTitle">knee</p>
+
+					</div>
+				</div>
+			
+
+			</div>
 			<div class="pdfArea">
 				<div class="pdfContentSectionBtn">
 					<button class="startBtn" on:click={handleAIReportingStartLayer}>Start Reporting</button>
@@ -348,6 +372,8 @@
 		/* background-color: blueviolet; */
 	}
 
+
+
 	.text-item {
 		padding: 10px;
 		margin: 5px 0;
@@ -364,9 +390,40 @@
 		justify-content: center;
 		align-items: center;
 
-		border-top: 2px solid rgba(111, 110, 110, 0.662);
+		border-top: 1px solid rgb(175, 166, 166);
 	}
 
+	.pdfIconArea{
+		/* background-color: pink; */
+		height: 25%;
+		width: 100%;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		margin-top: 2%;
+
+	}
+
+	.pdfIconBox{
+		/* background-color: yellow; */
+		width: 15%;
+		height: 93%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 5px;
+		align-items: center;
+		color: black;
+		text-align: center;
+		border-radius: 7px;
+
+	}
+
+	.pdfIcon1{
+		width: 50px;
+		height: 50px;
+		cursor: pointer;
+	}
 	.pdfContentSectionBtn {
 		height: 90%;
 		width: 90%;
