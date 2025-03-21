@@ -108,11 +108,11 @@
 			{#if !isMobile}
 				<div class="ButtomMainContentSection">
 					<div class="leftBtnSection">
-						<button class="leftBtn_1" on:click={redirectUser}>
+						<button class="leftBtn call" on:click={redirectUser}>
 							<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a>
 						</button>
 
-						<button class="leftBtn_2" on:click={redirectTechnologyPage}>
+						<button class="leftBtn tech" on:click={redirectTechnologyPage}>
 							<a href="/Technology/" class="leftappointmentbtn">View Technology</a>
 						</button>
 					</div>
@@ -153,7 +153,7 @@
 	}
 
 	.bookCalllable {
-		color: black;
+		color: rgb(255, 255, 255);
 		font-size: 14px;
 		font-weight: 400;
 		font-family: system-ui;
@@ -195,7 +195,7 @@
 
 	.leftContentHeaderArea {
 		background-color: rgb(226, 241, 252);
-		width: 20%;
+		width: 300px;
 		height: 60%;
 		display: flex;
 		justify-content: center;
@@ -227,7 +227,7 @@
 		width: 70%;
 		height: 100%;
 		padding-left: 1%;
-		font-size: 100px;
+		font-size: clamp(6vw, 6vw, 6vw);
 		font-family: system-ui;
 		color: white;
 	}
@@ -248,9 +248,9 @@
 		gap: 5%;
 	}
 
-	.leftBtn_1 {
+	.leftBtn.tech {
 		background-color: rgb(255, 255, 255);
-		width: 30%;
+		width: 200px;
 		height: 100%;
 		display: flex;
 		justify-content: center;
@@ -261,9 +261,9 @@
 		cursor: pointer;
 	}
 
-	.leftBtn_2 {
+	.leftBtn.call {
 		background-color: black;
-		width: 30%;
+		width: 200px;
 		height: 100%;
 		display: flex;
 		justify-content: center;
@@ -275,7 +275,7 @@
 	}
 
 	.leftappointmentbtn {
-		color: white;
+		color: rgb(0, 0, 0);
 		font-size: 14px;
 		font-weight: 400;
 		font-family: system-ui;
@@ -292,7 +292,6 @@
 	}
 
 	.mobile-btn {
-		width: 100%;
 		height: 50px;
 		display: flex;
 		justify-content: center;
