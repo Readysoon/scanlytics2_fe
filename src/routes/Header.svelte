@@ -75,6 +75,7 @@
     }
 
     nav {
+        
         display: flex;
         width: 100%;
         height: 5%;
@@ -85,7 +86,7 @@
     }
 
     .navbar {
-        width: 27%;
+        width: 500px;
         height: 100%;
         display: flex;
         justify-content: space-between;
