@@ -98,8 +98,7 @@
 
 				<div class="middleContentSubTextArea">
 					<div class="subtext">
-						Scanlytics is an AI-powered solution designed to streamline medical reporting, enhance
-						efficiency, and empower healthcare professionals to spend more time with patients.
+						Mit Scanlytics revolutionieren wir die radiologische Befundung durch unsere innovative Konversations-KI. Als einziger Anbieter ermöglichen wir die Erstellung strukturierter Befunde für alle Modalitäten (CT, MRT, Röntgen) in Sekundenschnelle – und sparen dabei wertvolle Zeit im klinischen Alltag. Unsere Lösung integriert sich nahtlos in bestehende IT-Systeme und überzeugt durch eine intuitive Bedienung ohne Schulungsaufwand. Die Ergebnisse werden als professionelle PDF-Dokumente ausgegeben, die sofort einsatzbereit sind. Ob für radiologische Praxen, Krankenhäuser, Teleradiologie-Anbieter oder Forschungseinrichtungen – Scanlytics ist die Zukunft der effizienten Befundung.
 					</div>
 				</div>
 			</div>
