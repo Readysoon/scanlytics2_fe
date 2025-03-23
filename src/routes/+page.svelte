@@ -108,11 +108,11 @@
 				<div class="ButtomMainContentSection">
 					<div class="leftBtnSection">
 						<button class="leftBtn call" on:click={redirectUser}>
-							<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a>
+							<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Meeting vereinbaren</a>
 						</button>
 
 						<button class="leftBtn tech" on:click={redirectTechnologyPage}>
-							<a href="/Technology/" class="leftappointmentbtn">View Technology</a>
+							<a href="/Technology/" class="leftappointmentbtn">Technologie testen</a>
 						</button>
 					</div>
 				</div>

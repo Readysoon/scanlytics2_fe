@@ -37,11 +37,11 @@
 				</div>
 				<div class="profileCardKnowHowSection">
 					<p class="knowHowContent">
-						Doctor of Medicine (2014 - 2021)
+						Approbierter Arzt (seit 2021)
 					</p>
 					<br>
 					<p class="knowHowContent">
-						Software Engineer (2021 - today)
+						Software Ingenieur (2021 - heute)
 					</p>
 				
 				</div>
@@ -59,34 +59,12 @@
 				</div>
 				<div class="profileCardKnowHowSection">
 					<p class="knowHowContent">
-						Product Management (2022 - Today)
+						Produkt Manager (2022 - heute)
 					</p>
 					<br>
 					<p class="knowHowContent">
-						Software Engineer (2024 - Today)
+						Software Ingenieur (2024 - heute)
 					</p>
-				
-				</div>
-			</div>
-			<div  class="profileCard">
-				<div class="profileImageCardSection" >
-					<img src="/Julius_circle_portrait.png"  class="userProfileImg" height="100" width="100" />
-
-				</div>
-				<div class="profileCardNameSection">
-					<p class="profileNameContent">
-						Julius Klingelhöller
-					</p>
-				</div>
-				<div class="profileCardKnowHowSection">
-					<p class="knowHowContent">
-						Project Manager M&A (2021 - Today)
-					</p>
-					<br>
-					<p class="knowHowContent">
-						Software Engineer (2022 - Today)
-					</p>
-				
 				</div>
 			</div>
 			
@@ -102,14 +80,12 @@
 				</div>
 				<div class="profileCardKnowHowSection">
 					<p class="knowHowContent" >
-						Business Administration (2019 - 2022)
+						Betriebswirt (2019 - 2022)
 					</p>
 					<br>
 					<p class="knowHowContent">
-						Software Engineer (2022 - Today)
+						Software Ingenieur (2022 - heute)
 					</p>
-					
-					
 				</div>
 			</div>
 		</div>
@@ -184,6 +160,11 @@
 		/* padding: 0.5rem; */
 		align-items: center;
 		padding-top: 5%;
+	}
+
+	.profileCardKnowHowSection p{
+		color: white;
+		font-size: 20px;
 	}
 
 
