@@ -31,12 +31,22 @@
             mobileMenuOpen = false;
         }
     }
+
 </script>
 
 <nav>
     <div class="logoArea">
         <img src="/logow.jpg" alt="Logo" height="30" width="28" />
         <h2>Scanlytics</h2>
+    </div>
+
+    <!-- Navigation links -->
+    <div class="navbar" class:mobile-menu={isMobile} class:open={mobileMenuOpen}>
+        <a href="/" class={$page.url.pathname === '/' ? 'active' : ''}>Home</a>
+        <a href="/Vision/" class={$page.url.pathname.startsWith('/Vision') ? 'active' : ''}>Vision</a>
+        <a href="/Technology/" class={$page.url.pathname.startsWith('/Technology') ? 'active' : ''}>Technology</a>
+        <a href="/About/" class={$page.url.pathname.startsWith('/About') ? 'active' : ''}>About</a>
+        <button class="bookCallBtn" on:click={redirectUser}>Book a Call</button>
     </div>
 
     <!-- Hamburger menu button for mobile -->
@@ -49,15 +59,6 @@
             </div>
         </div>
     {/if}
-
-    <!-- Navigation links -->
-    <div class="navbar" class:mobile-menu={isMobile} class:open={mobileMenuOpen}>
-        <a href="/" class={$page.url.pathname === '/' ? 'active' : ''}>Home</a>
-        <a href="/Vision/" class={$page.url.pathname.startsWith('/Vision') ? 'active' : ''}>Vision</a>
-        <a href="/Technology/" class={$page.url.pathname.startsWith('/Technology') ? 'active' : ''}>Technology</a>
-        <a href="/About/" class={$page.url.pathname.startsWith('/About') ? 'active' : ''}>About</a>
-        <button class="bookCallBtn" on:click={redirectUser}>Book a Call</button>
-    </div>
 </nav>
 
 <style>
@@ -209,7 +210,7 @@
         }
 
         .navbar.mobile-menu.open {
-            max-height: 300px;
+            max-height: none;
             padding: 15px 0;
         }
 
