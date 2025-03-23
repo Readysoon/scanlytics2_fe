@@ -98,7 +98,7 @@
 
 				<div class="middleContentSubTextArea">
 					<div class="subtext">
-						Mit Scanlytics revolutionieren wir die radiologische Befundung durch unsere innovative Konversations-KI. Als einziger Anbieter ermöglichen wir die Erstellung strukturierter Befunde für alle Modalitäten (CT, MRT, Röntgen) in Sekundenschnelle – und sparen dabei wertvolle Zeit im klinischen Alltag. Unsere Lösung integriert sich nahtlos in bestehende IT-Systeme und überzeugt durch eine intuitive Bedienung ohne Schulungsaufwand. Die Ergebnisse werden als professionelle PDF-Dokumente ausgegeben, die sofort einsatzbereit sind. Ob für radiologische Praxen, Krankenhäuser, Teleradiologie-Anbieter oder Forschungseinrichtungen – Scanlytics ist die Zukunft der effizienten Befundung.
+						Mit Scanlytics revolutionieren wir die radiologische Befundung durch unsere innovative Konversations-KI. Als einziger Anbieter werden die daraus erstellten strukturierten Befunde direkt in dem üblichen PDF-Format gespeichert und können somit nahtlos in den radiologischen Workflow integriert werden. Der Fließtext geht dabei nicht verloren. Wir bieten 434 strukturierte Befunde für  CT,MRT, Röntgen und USG an und erstellen gerne an Ihre Befunde angepasste Vorlagen. Ob für radiologische Praxen, Krankenhäuser, Teleradiologie-Anbieter oder Forschungseinrichtungen – Scanlytics ist die Zukunft der effizienten Befundung.
 					</div>
 				</div>
 			</div>
