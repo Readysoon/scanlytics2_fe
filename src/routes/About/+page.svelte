@@ -27,8 +27,7 @@
 		<div class="mainLeftContentSection">
 			<div class="profileCard">
 				<di class="profileImageCardSection" >
-					<img src="/Philipp_circle_portrait.png"  class="userProfileImg" height="100" width="100" />
-
+					<img src="/Philipp_circle_portrait.png"  class="userProfileImg"/>
 				</di>
 				<div class="profileCardNameSection">
 					 <p class="profileNameContent">
@@ -37,10 +36,7 @@
 				</div>
 				<div class="profileCardKnowHowSection">
 					<p class="knowHowContent">
-						Doctor of Medicine (since 2021)
-					</p>
-					<br>
-					<p class="knowHowContent">
+						Doctor of Medicine (since 2021)<br>
 						Software Engineer (2021 - today)
 					</p>
 				
@@ -49,7 +45,7 @@
 
 			<div  class="profileCard">
 				<div class="profileImageCardSection" >
-					<img src="/Tobias_circle_portrait.png"  class="userProfileImg" height="100" width="100" />
+					<img src="/Tobias_circle_portrait.png"  class="userProfileImg"/>
 
 				</div>
 				<div class="profileCardNameSection">
@@ -59,10 +55,7 @@
 				</div>
 				<div class=profileCardKnowHowSection>
 					<p class="knowHowContent">
-						Product Manager (2022 - today)
-					</p>
-					<br>
-					<p class="knowHowContent">
+						Product Manager (2022 - today)<br>
 						Software Engineer (2024 - today)
 					</p>
 				</div>
@@ -70,7 +63,7 @@
 			
 			<div class="profileCard">
 				<div class="profileImageCardSection">
-					<img src="/emms1.jpg"  class="userProfileImg" height="100" width="100" />
+					<img src="/emms1.jpg"  class="userProfileImg"/>
 
 				</div>
 				<div class="profileCardNameSection">
@@ -80,10 +73,7 @@
 				</div>
 				<div class="profileCardKnowHowSection">
 					<p class="knowHowContent" >
-						Business Administration (2019 - 2022)
-					</p>
-					<br>
-					<p class="knowHowContent">
+						Business Administration (2019 - 2022)<br>
 						Software Engineer (2022 - today)
 					</p>
 				</div>
@@ -126,19 +116,12 @@
 	}
 
 	.profileImageCardSection{
-		/* background-color: rgb(196, 135, 12); */
-		min-height: 150px;
+		padding: 10px 0;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
 
-	.knowHowContent{
-		color: white;
-		font-family: system-ui;
-		font-size: 14px;
-		
-	}
 	.profileCardNameSection{
 		/* background-color: rgb(21, 90, 34); */
 		min-height: 40px;
@@ -146,8 +129,13 @@
 		justify-content: center;
 		align-items: center;
 		border-top: 1px solid white;
-
 		border-bottom: 1px solid white;
+	}
+
+	.profileNameContent{
+		font-size: 30px;
+		color: white;
+		font-family: Arial, Helvetica, sans-serif;
 	}
 
 	.profileCardKnowHowSection{
@@ -164,20 +152,25 @@
 
 	.profileCardKnowHowSection p{
 		color: white;
-		font-size: 20px;
+		font-family: system-ui;
+		font-size: 25px;
+	}
+
+	.knowHowContent {
+		padding: 20px;
+		text-align: center;
 	}
 
 
 	.userProfileImg{
+		height: 250px;
+		max-height: 250px;
+		max-width: 100%;
 		border-radius: 50%;
+		width: auto;
 	}
 
-	.profileNameContent{
-		font-size: 20px;
-		color: white;
-		font-family: Arial, Helvetica, sans-serif;
 
-	}
 	.mainImage {
 		max-width: 100%;
 		max-height: 100%;
