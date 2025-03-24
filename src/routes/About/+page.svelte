@@ -57,7 +57,7 @@
 						Tobias Wedel
 					</p>
 				</div>
-				<div class="profileCardKnowHowSection">
+				<div class=profileCardKnowHowSection>
 					<p class="knowHowContent">
 						Produkt Manager (2022 - heute)
 					</p>
@@ -110,7 +110,6 @@
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
-		/* background-color: rgb(227, 63, 63); */
 		width: 100%;
 		height: 100%;
 		position: relative;
@@ -160,6 +159,7 @@
 		/* padding: 0.5rem; */
 		align-items: center;
 		padding-top: 5%;
+		height: 100%;
 	}
 
 	.profileCardKnowHowSection p{
