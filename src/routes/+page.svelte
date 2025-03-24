@@ -85,7 +85,7 @@
 			{#if !isMobile}
 				<div class="headerMainContentSection">
 					<div class="leftContentHeaderArea">
-						<p>Worlds fastest Reporting Software</p>
+						<p>Intelligente Strukturierte Befunde</p>
 					</div>
 				</div>
 			{/if}
@@ -93,7 +93,7 @@
 			<!-- Middle Area -->
 			<div class="middleMainContentSection">
 				<div class="middleContentTitleArea">
-					<div class="mainTitle">Revolutionizing Medical Reporting with AI</div>
+					<div class="mainTitle">KI-unterstützte strukturierte Befundung</div>
 				</div>
 
 				<div class="middleContentSubTextArea">
@@ -122,11 +122,11 @@
 			{#if isMobile}
 				<div class="mobile-buttons">
 					<button class="mobile-btn" on:click={redirectUser}>
-						<a href="https://calendly.com/tobias-wedel-code/30min" class="mobile-btn-text">Book a Call</a>
+						<a href="https://calendly.com/tobias-wedel-code/30min" class="mobile-btn-text">Meeting vereinbaren</a>
 					</button>
 
 					<button class="mobile-btn dark" on:click={redirectTechnologyPage}>
-						<a href="/Technology/" class="mobile-btn-text white">View Technology</a>
+						<a href="/Technology/" class="mobile-btn-text white">Technologie testen</a>
 					</button>
 				</div>
 			{/if}
@@ -195,7 +195,7 @@
 	.leftContentHeaderArea {
 		background-color: rgb(226, 241, 252);
 		width: 300px;
-		height: 60%;
+		height: 40px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -247,30 +247,24 @@
 		gap: 5%;
 	}
 
-	.leftBtn.tech {
-		background-color: rgb(255, 255, 255);
+	.leftBtn {
 		width: 200px;
-		height: 100%;
+		height: 30px;
 		display: flex;
 		justify-content: center;
-		align-items: center;
-		border: 1px solid black;
 		border-radius: 40px;
 		color: black;
 		cursor: pointer;
 	}
 
+	.leftBtn.tech {
+		background-color: rgb(255, 255, 255);
+		border: 1px solid black;
+	}
+
 	.leftBtn.call {
 		background-color: black;
-		width: 200px;
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		border: 1px solid white;
-		border-radius: 40px;
-		color: black;
-		cursor: pointer;
 	}
 
 	.leftappointmentbtn {
