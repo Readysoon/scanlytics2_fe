@@ -127,19 +127,20 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 
 <footer class="footerSection">
 	<div class="footer-left-box">
-		<p class="footer-left-text">© 2025 Scanlytics | Version 0.2</p>
+		<p class="footer-text left">© 2025 Scanlytics | Version 0.2</p>
 	</div>
 
 	<div class="footer-center-box">
 		<div class="desktop-view">
-			<p class="footer-right-text desktop-view" on:click={handleImpressumClick}>Impressum |</p> 
-			<p class="footer-right-text desktop-view" on:click={handleDatenschutzClick}>Datenschutz</p>
+			<p class="footer-text right" on:click={handleImpressumClick}>Impressum</p> 
+			<span class="separator-desktop">|</span>
+			<p class="footer-text right" on:click={handleDatenschutzClick}>Datenschutz</p>
 		</div>
 		
 		<div class="mobile-view">
-			<p class="footer-right-text" on:click={handleImpressumClick}>Impressum</p>
-			<p class="footer-separator">-</p>
-			<p class="footer-right-text" on:click={handleDatenschutzClick}>Datenschutz</p>
+			<p class="footer-text right" on:click={handleImpressumClick}>Impressum</p>
+			<p class="footer-text separator">-</p>
+			<p class="footer-text right" on:click={handleDatenschutzClick}>Datenschutz</p>
 		</div>
 	</div>
 </footer>
@@ -242,18 +243,14 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
         align-items: center;
     }
 
-	.footer-left-text {
+	.footer-text {
 		color: white;
 		font-family: system-ui;
-		font-size: 12px;
+		font-size: 15px;
 		opacity: 0.4;
 	}
 
-	.footer-right-text {
-		color: white;
-		font-family: system-ui;
-		font-size: 12px;
-		opacity: 0.4;
+	.footer-text.right{
 		cursor: pointer;
 	}
 
@@ -286,7 +283,16 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
     }
 
     .desktop-view {
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+	.separator-desktop {
+        color: white;
+        opacity: 0.4;
+        font-family: system-ui;
+        font-size: 12px;
     }
 
     /* Media query for mobile devices */
@@ -300,9 +306,10 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
         .desktop-view {
             display: none;
         }
-        
-        .footer-separator {
-            color: rgb(255, 255, 255);
+
+        .footer-text.separator {
+            color: white;
+            opacity: 0.4;
             margin: 2px 0;
         }
         
