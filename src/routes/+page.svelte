@@ -76,7 +76,7 @@
 
 	<div class="mainSection">
 		<!-- Gif Image - Positioned differently on mobile vs desktop -->
-		<div class="rightContentSecitonInLeft" class:mobile-image={isMobile}>
+		<div class="rightContentSectionInLeft" class:mobile-image={isMobile}>
 			<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" class="brain-gif" />
 		</div>
 
@@ -171,7 +171,7 @@
 		z-index: 2;
 	}
 
-	.rightContentSecitonInLeft {
+	.rightContentSectionInLeft {
 		width: 1200px;
 		position: absolute;
 		top: 11%;
