@@ -76,32 +76,41 @@
 
 	<div class="mainSection">
 		<!-- Gif Image - Positioned differently on mobile vs desktop -->
-		<div class="rightContentSectionInLeft" class:mobile-image={isMobile}>
+		<div class="mainSectionRight" class:mobile-image={isMobile}>
 			<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" class="brain-gif" />
 		</div>
 
-		<div class="mainLeftContentSection" class:mobile-content={isMobile}>
+		<div class="mainSectionLeft" class:mobile-content={isMobile}>
 			<!-- Header  -->
 			{#if !isMobile}
-				<div class="headerMainContentSection">
-					<div class="leftContentHeaderArea">
-						<p>Worlds fastest structured reporting</p>
-					</div>
+				<div class="mainSectionLeftHeader">
+					<p>Worlds fastest structured reporting</p>
 				</div>
 			{/if}
 
 			<!-- Middle Area -->
-			<div class="middleMainContentSection">
-				<div class="middleContentTitleArea">
-					<div class="mainTitle">Revolutionizing Medical Reporting with AI</div>
+			<div class="mainSectionLeftText">
+				
+				<div class="mainSectionLeftTextTitle">Revolutionizing Medical Reporting with AI</div>
+
+				<div class="mainSectionLeftTextSubtext">
+					With Scanlytics we revolutionize radiological reporting through our innovative conversational AI. As the only provider, the resulting structured reports are saved directly in the usual PDF format and can thus be seamlessly integrated into the radiological workflow. We offer 434 structured reports for CT, MRI, X-ray and ultrasound and are happy to create templates adapted to your reports. Whether for radiological practices, hospitals, teleradiology providers or research institutions - Scanlytics is the future of efficient reporting.
 				</div>
 
-				<div class="middleContentSubTextArea">
-					<div class="subtext">
-						With Scanlytics we revolutionize radiological reporting through our innovative conversational AI. As the only provider, the resulting structured reports are saved directly in the usual PDF format and can thus be seamlessly integrated into the radiological workflow. The PDFs look the same as always. We offer 434 structured reports for CT, MRI, X-ray and ultrasound and are happy to create templates adapted to your reports. Whether for radiological practices, hospitals, teleradiology providers or research institutions - Scanlytics is the future of efficient reporting.
-					</div>
-				</div>
 			</div>
+
+			<!-- Desktop-only buttons -->
+			{#if isMobile}
+				<div class="mobile-buttons">
+					<button class="mobile-btn" on:click={redirectUser}>
+						<a href="https://calendly.com/tobias-wedel-code/30min" class="mobile-btn-text">Meeting vereinbaren</a>
+					</button>
+
+					<button class="mobile-btn dark" on:click={redirectTechnologyPage}>
+						<a href="/Technology/" class="mobile-btn-text white">Technologie testen</a>
+					</button>
+				</div>
+			{/if}
 
 			<!-- Bottom Area of left main section -->
 			{#if !isMobile}
@@ -115,19 +124,6 @@
 							<a href="/Technology/" class="leftappointmentbtn">Test Technology</a>
 						</button>
 					</div>
-				</div>
-			{/if}
-			
-			<!-- Desktop-only buttons -->
-			{#if isMobile}
-				<div class="mobile-buttons">
-					<button class="mobile-btn" on:click={redirectUser}>
-						<a href="https://calendly.com/tobias-wedel-code/30min" class="mobile-btn-text">Meeting vereinbaren</a>
-					</button>
-
-					<button class="mobile-btn dark" on:click={redirectTechnologyPage}>
-						<a href="/Technology/" class="mobile-btn-text white">Technologie testen</a>
-					</button>
 				</div>
 			{/if}
 		</div>
@@ -164,14 +160,24 @@
 		position: relative;
 	}
 
-	.mainLeftContentSection {
+	.mainSectionLeft {
+		display: flex;
+		flex-direction: column;
 		width: 70%;
-		height: 100%;
+		min-height: 100%;
 		position: relative;
 		z-index: 2;
+		justify-content: space-between;
 	}
 
-	.rightContentSectionInLeft {
+	.mainSectionLeftHeader {
+		width: 100%;
+		height: 7%;
+		display: flex;
+		align-items: center;
+	}
+
+	.mainSectionRight {
 		width: 1200px;
 		position: absolute;
 		top: 11%;
@@ -185,15 +191,8 @@
 		height: 700px;
 	}
 
-	.headerMainContentSection {
-		width: 100%;
-		height: 7%;
-		display: flex;
-		align-items: center;
-	}
-
-	.leftContentHeaderArea {
-		background-color: rgb(226, 241, 252);
+	.mainSectionLeftHeader {
+		background-color: rgb(255, 255, 255);
 		width: 300px;
 		height: 40px;
 		display: flex;
@@ -205,30 +204,26 @@
 		margin-left: 1%;
 	}
 
-	.middleMainContentSection{
+	.mainSectionLeftText{
 		width: 100%;
 		height: 86%;
 	}
-
-	.middleContentTitleArea {
-		width: 100%;
-		height: 80%;
-	}
-
-	.middleContentSubTextArea {
-		width: 70%;
-		height: 20%;
-		color: white;
-		padding: 1%;
-	}
 	
-	.mainTitle {
+	.mainSectionLeftTextTitle {
 		width: 70%;
 		height: 100%;
 		padding-left: 1%;
 		font-size: clamp(6vw, 6vw, 6vw);
 		font-family: system-ui;
 		color: white;
+	}
+
+	.mainSectionLeftTextSubtext {
+		width: 70%;
+		height: 20%;
+		color: white;
+		padding: 1%;
+		font-family: system-ui;
 	}
 
 	.ButtomMainContentSection {
@@ -358,42 +353,25 @@
 			object-fit: cover;
 		}
 
-		.mainTitle {
-			font-size: 40px;
-			width: 100%;
-			height: auto;
-			padding-left: 0;
-			margin-top: 20px;
-			line-height: 1.2;
-		}
-
-		.middleContentTitleArea {
-			height: auto;
-		}
-
-		.middleContentSubTextArea {
+		.mainSectionLeftTextSubtext {
 			width: 100%;
 			height: auto;
 			padding: 0;
 			margin-top: 20px;
-		}
-
-		.mainTitle {
-			width: 100%;
-			height: 100%;
-			padding: 1rem;
-			font-size: 50px;
-			font-family: system-ui;
-			color: white;
-			
-		}
-
-		.subtext {
 			font-size: 20px;
 			line-height: 1.5;
 		}
 
-		.middleMainContentSection {
+		.mainSectionLeftTextTitle {
+			width: 100%;
+			height: auto;
+			padding: 1rem;
+			font-size: 50px;
+			font-family: system-ui;
+			color: white;
+		}
+
+		.mainSectionLeftText {
 			height: auto;
 		}
 	}
