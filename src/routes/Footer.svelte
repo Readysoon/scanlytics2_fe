@@ -102,49 +102,47 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 {/if}
 
 {#if impressState}
-		<div class="overlay">
-			 <div class="Card">
-					 <div class="impressumCardHead">
-						<div class="impressumCardTitleSection">
-								<p class="impressumCardTitle">Impressum</p>
-							</div>
-						<div class="impressumCloseBtn">
-							<p class="closebtn" on:click={handleImpressumClick}>x</p>
+	<div class="overlay">
+			<div class="Card">
+					<div class="impressumCardHead">
+					<div class="impressumCardTitleSection">
+							<p class="impressumCardTitle">Impressum</p>
 						</div>
-					 </div>
-					 <div class="impressumCardBody">
-						Name: Phillipp Gallaschik
-						<br>
-						Adresse: Mierendorffstr. 12, c/o Zekl, 10589 Berlin
-						<br>
-						Telefon: 017683470990
-						<br>
-						E-Mail: tobias.wedel@code.berlin
-					 </div>
-			 </div>
-		</div>
-	{/if}
+					<div class="impressumCloseBtn">
+						<p class="closebtn" on:click={handleImpressumClick}>x</p>
+					</div>
+					</div>
+					<div class="impressumCardBody">
+					Name: Phillipp Gallaschik
+					<br>
+					Adresse: Mierendorffstr. 12, c/o Zekl, 10589 Berlin
+					<br>
+					Telefon: 01739140346
+					<br>
+					E-Mail: philipp.gallaschik@code.berlin
+					</div>
+			</div>
+	</div>
+{/if}
 
-    <footer class="footerSection">
-        <div class="footer-content">
-            <div class="footer-left">
-                <div class="footer-left-box">
-                    <p class="footer-left-text">© 2025 Scanlytics | Version 0.2</p>
-                </div>
-    
-                <div class="footer-center-box">
-                    <p class="footer-right-text desktop-view" on:click={handleImpressumClick}>Impressum |</p> 
-                    <p class="footer-right-text desktop-view" on:click={handleDatenschutzClick}>Datenschutz</p>
-                    
-                    <div class="mobile-view">
-                        <p class="footer-right-text" on:click={handleImpressumClick}>Impressum</p>
-                        <p class="footer-separator">-</p>
-                        <p class="footer-right-text" on:click={handleDatenschutzClick}>Datenschutz</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+<footer class="footerSection">
+	<div class="footer-left-box">
+		<p class="footer-left-text">© 2025 Scanlytics | Version 0.2</p>
+	</div>
+
+	<div class="footer-center-box">
+		<div class="desktop-view">
+			<p class="footer-right-text desktop-view" on:click={handleImpressumClick}>Impressum |</p> 
+			<p class="footer-right-text desktop-view" on:click={handleDatenschutzClick}>Datenschutz</p>
+		</div>
+		
+		<div class="mobile-view">
+			<p class="footer-right-text" on:click={handleImpressumClick}>Impressum</p>
+			<p class="footer-separator">-</p>
+			<p class="footer-right-text" on:click={handleDatenschutzClick}>Datenschutz</p>
+		</div>
+	</div>
+</footer>
 
 <style>
     .overlay{
@@ -220,7 +218,6 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 		font-family: system-ui;
 		color: red;
 		cursor: pointer;
-
 	}
 
 	.impressumCardBody{
@@ -228,36 +225,22 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 	}
 
     .footerSection {
-		width: 100%;
-		height: 13%;
-		padding: 1em;
-	}
+        width: 100%;
+        padding: 1em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
 
-	.footer-content {
-		width: 100%;
-		height: 100px;
-		display: flex;
-		justify-content: space-between;
-		/* background-color: green; */
-	}
-
-	.footer-left {
-		color: black;
-		width: 100%;
-		height: 100%;
-		display: flex;
-		/* flex-direction: column; */
-		justify-content: space-between;
-		/* background-color: orange; */
-	}
-
-	.footer-left-box{
-		/* background-color: rgb(77, 76, 75); */
-		display: flex;
-		align-items: end;
-		justify-content: flex-end;
-
-	}
+    .footer-left-box {
+        background-color: rgb(77, 76, 75);
+        display: flex;
+        align-items: center;
+    }
 
 	.footer-left-text {
 		color: white;
@@ -276,18 +259,11 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 
 	.footer-center {
 		color: black;
-		/* width: 30%;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		align-items: end; */
-		color: black;
 		width: 40%;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
-		/* background-color: red; */
 	}
 
 	.footer-center-text {
@@ -297,17 +273,12 @@ Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
 		opacity: 0.4;
 		text-align: end;
 	}
-
-	.footer-center-box{
-		/* background-color: green; */
-		height: 100%;
-		width: 25%;
-		display: flex;
-		align-items: end;
-		justify-content: flex-end;
-		/* padding-right: 2%; */
-		gap: 1%;
-	}
+	
+    .footer-center-box {
+        display: flex;
+        align-items: center;
+        gap: 1%;
+    }
 
     /* Default styles for desktop */
     .mobile-view {
