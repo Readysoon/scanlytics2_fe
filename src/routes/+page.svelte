@@ -85,7 +85,7 @@
 			{#if !isMobile}
 				<div class="headerMainContentSection">
 					<div class="leftContentHeaderArea">
-						<p>Intelligente Strukturierte Befunde</p>
+						<p>Worlds fastest structured reporting</p>
 					</div>
 				</div>
 			{/if}
@@ -93,12 +93,12 @@
 			<!-- Middle Area -->
 			<div class="middleMainContentSection">
 				<div class="middleContentTitleArea">
-					<div class="mainTitle">KI-unterstützte strukturierte Befundung</div>
+					<div class="mainTitle">Revolutionizing Medical Reporting with AI</div>
 				</div>
 
 				<div class="middleContentSubTextArea">
 					<div class="subtext">
-						Mit Scanlytics revolutionieren wir die radiologische Befundung durch unsere innovative Konversations-KI. Als einziger Anbieter werden die daraus erstellten strukturierten Befunde direkt in dem üblichen PDF-Format gespeichert und können somit nahtlos in den radiologischen Workflow integriert werden. Die PDFs sehen dabei wie immer aus. Wir bieten 434 strukturierte Befunde für  CT,MRT, Röntgen und USG an und erstellen gerne an Ihre Befunde angepasste Vorlagen. Ob für radiologische Praxen, Krankenhäuser, Teleradiologie-Anbieter oder Forschungseinrichtungen – Scanlytics ist die Zukunft der effizienten Befundung.
+						With Scanlytics we revolutionize radiological reporting through our innovative conversational AI. As the only provider, the resulting structured reports are saved directly in the usual PDF format and can thus be seamlessly integrated into the radiological workflow. The PDFs look the same as always. We offer 434 structured reports for CT, MRI, X-ray and ultrasound and are happy to create templates adapted to your reports. Whether for radiological practices, hospitals, teleradiology providers or research institutions - Scanlytics is the future of efficient reporting.
 					</div>
 				</div>
 			</div>
@@ -108,11 +108,11 @@
 				<div class="ButtomMainContentSection">
 					<div class="leftBtnSection">
 						<button class="leftBtn call" on:click={redirectUser}>
-							<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Meeting vereinbaren</a>
+							<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a>
 						</button>
 
 						<button class="leftBtn tech" on:click={redirectTechnologyPage}>
-							<a href="/Technology/" class="leftappointmentbtn">Technologie testen</a>
+							<a href="/Technology/" class="leftappointmentbtn">Test Technology</a>
 						</button>
 					</div>
 				</div>

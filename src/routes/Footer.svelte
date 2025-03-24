@@ -238,7 +238,6 @@
     }
 
     .footer-left-box {
-        background-color: rgb(77, 76, 75);
         display: flex;
         align-items: center;
     }

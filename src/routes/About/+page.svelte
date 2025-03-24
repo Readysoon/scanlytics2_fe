@@ -37,11 +37,11 @@
 				</div>
 				<div class="profileCardKnowHowSection">
 					<p class="knowHowContent">
-						Approbierter Arzt (seit 2021)
+						Doctor of Medicine (since 2021)
 					</p>
 					<br>
 					<p class="knowHowContent">
-						Software Ingenieur (2021 - heute)
+						Software Engineer (2021 - today)
 					</p>
 				
 				</div>
@@ -59,11 +59,11 @@
 				</div>
 				<div class=profileCardKnowHowSection>
 					<p class="knowHowContent">
-						Produkt Manager (2022 - heute)
+						Product Manager (2022 - today)
 					</p>
 					<br>
 					<p class="knowHowContent">
-						Software Ingenieur (2024 - heute)
+						Software Engineer (2024 - today)
 					</p>
 				</div>
 			</div>
@@ -80,11 +80,11 @@
 				</div>
 				<div class="profileCardKnowHowSection">
 					<p class="knowHowContent" >
-						Betriebswirt (2019 - 2022)
+						Business Administration (2019 - 2022)
 					</p>
 					<br>
 					<p class="knowHowContent">
-						Software Ingenieur (2022 - heute)
+						Software Engineer (2022 - today)
 					</p>
 				</div>
 			</div>
