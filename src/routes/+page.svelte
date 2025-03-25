@@ -10,7 +10,7 @@
 
 	// Function to check if device is mobile
 	function checkIfMobile() {
-		isMobile = innerWidth <= 768;
+		isMobile = innerWidth <= 1024;
 	}
 
 	onMount(() => {
@@ -99,33 +99,20 @@
 
 			</div>
 
-			<!-- Desktop-only buttons -->
-			{#if isMobile}
-				<div class="mobile-buttons">
-					<button class="mobile-btn" on:click={redirectUser}>
-						<a href="https://calendly.com/tobias-wedel-code/30min" class="mobile-btn-text">Meeting vereinbaren</a>
+
+			<!-- Button Area of left main section -->
+			<div class="mainSectionLeftButtons" class:mobile-buttons={isMobile}>
+				<div class="leftBtnSection">
+					<button class="leftBtn call" on:click={redirectUser}>
+						<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a>
 					</button>
 
-					<button class="mobile-btn dark" on:click={redirectTechnologyPage}>
-						<a href="/Technology/" class="mobile-btn-text white">Technologie testen</a>
+					<button class="leftBtn tech" on:click={redirectTechnologyPage}>
+						<a href="/Technology/" class="leftappointmentbtn">Test Technology</a>
 					</button>
 				</div>
-			{/if}
+			</div>
 
-			<!-- Bottom Area of left main section -->
-			{#if !isMobile}
-				<div class="ButtomMainContentSection">
-					<div class="leftBtnSection">
-						<button class="leftBtn call" on:click={redirectUser}>
-							<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a>
-						</button>
-
-						<button class="leftBtn tech" on:click={redirectTechnologyPage}>
-							<a href="/Technology/" class="leftappointmentbtn">Test Technology</a>
-						</button>
-					</div>
-				</div>
-			{/if}
 		</div>
 	</div>
 
@@ -178,17 +165,17 @@
 	}
 
 	.mainSectionRight {
-		width: 1200px;
+		width: 50%;
 		position: absolute;
 		top: 11%;
-		left: 50%;
+		right: 0;
 		opacity: 0.8;
 		z-index: 1;
 	}
 
 	.brain-gif {
 		width: 70%;
-		height: 700px;
+		height: auto;
 	}
 
 	.mainSectionLeftHeader {
@@ -226,11 +213,17 @@
 		font-family: system-ui;
 	}
 
-	.ButtomMainContentSection {
+	.mainSectionLeftButtons {
 		width: 70%;
 		height: 7%;
 		color: rgb(48, 48, 48);
 		padding: 1%;
+	}
+
+	.mainSectionLeftButtons.mobile-buttons{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
 	}
 
 	.leftBtnSection {
@@ -238,7 +231,8 @@
 		height: 100%;
 		color: rgb(48, 48, 48);
 		display: flex;
-		align-items: center;
+		flex-direction: row;
+		justify-content: center;
 		gap: 5%;
 	}
 
@@ -266,7 +260,7 @@
 		color: rgb(0, 0, 0);
 		font-size: 14px;
 		font-weight: 400;
-		font-family: system-ui;
+		font-family: system-ui;  
 	}
 
 	/* Mobile styles */
@@ -279,35 +273,7 @@
 		padding: 0 20px;
 	}
 
-	.mobile-btn {
-		height: 50px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-radius: 40px;
-		border: 1px solid black;
-		background-color: white;
-		cursor: pointer;
-	}
-
-	.mobile-btn.dark {
-		background-color: black;
-		border: 1px solid white;
-	}
-
-	.mobile-btn-text {
-		color: black;
-		font-size: 16px;
-		font-weight: 400;
-		font-family: system-ui;
-		text-decoration: none;
-	}
-
-	.mobile-btn-text.white {
-		color: white;
-	}
-
-	@media (max-width: 768px) {
+	@media (max-width: 1024px) {
 		/* Force content to be scrollable */
 		:global(body) {
 			overflow-y: auto !important;
@@ -369,6 +335,7 @@
 			font-size: 50px;
 			font-family: system-ui;
 			color: white;
+			text-align: center;
 		}
 
 		.mainSectionLeftText {
