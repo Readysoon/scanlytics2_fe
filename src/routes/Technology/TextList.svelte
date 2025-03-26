@@ -1,5 +1,3 @@
-
-
 <script lang="ts" module>
   import TextEditor, {bindingTtext} from "./TextEditor.svelte";
   let texts = $state([]);
@@ -17,7 +15,6 @@
     // }
     console.log('in handler click ');
     bindingTtext(text)
-
   }
 
   function goToStepThree() {
@@ -80,6 +77,7 @@
       justify-content: center;
       align-items: center;
     }
+  
     .placeholderObjecttext {
       font-size: 29px;
       font-weight: bold;
