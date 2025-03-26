@@ -124,7 +124,7 @@
 	main {
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
-		overflow: hidden;
+		/* overflow: hidden  !important; */
 	}
 
 	a {
@@ -232,7 +232,7 @@
 		color: rgb(48, 48, 48);
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
+		justify-content: flex-start;
 		gap: 5%;
 	}
 
