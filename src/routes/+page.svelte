@@ -102,15 +102,13 @@
 
 			<!-- Button Area of left main section -->
 			<div class="mainSectionLeftButtons" class:mobile-buttons={isMobile}>
-				<div class="leftBtnSection">
-					<button class="leftBtn call" on:click={redirectUser}>
-						<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a>
-					</button>
+				<button class="leftBtn call" on:click={redirectUser}>
+					<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a>
+				</button>
 
-					<button class="leftBtn tech" on:click={redirectTechnologyPage}>
-						<a href="/Technology/" class="leftappointmentbtn">Test Technology</a>
-					</button>
-				</div>
+				<button class="leftBtn tech" on:click={redirectTechnologyPage}>
+					<a href="/Technology/" class="leftappointmentbtn">Test Technology</a>
+				</button>
 			</div>
 
 		</div>
@@ -218,6 +216,8 @@
 		height: 7%;
 		color: rgb(48, 48, 48);
 		padding: 1%;
+		display: flex;
+		flex-direction: row;
 	}
 
 	.mainSectionLeftButtons.mobile-buttons{
@@ -244,6 +244,7 @@
 		border-radius: 40px;
 		color: black;
 		cursor: pointer;
+		margin: 10px;
 	}
 
 	.leftBtn.tech {
@@ -343,5 +344,4 @@
 		}
 	}
 
-	@media (max-width: 768px)
 </style>
