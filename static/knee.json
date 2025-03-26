@@ -1,0 +1,862 @@
+{
+    "title": "Knee Radiograph Report",
+    "description": "Comprehensive template for standardized knee X-ray reporting",
+    "metadata": {
+      "identifier": "knee-xray-report-template",
+      "language": "de",
+      "publisher": "Scanlytics",
+      "rights": "May be used freely, subject to license agreement",
+      "license": "http://www.scanlytics.de/license.pdf",
+      "date": "2025-03-16",
+      "creator": "Philipp Gallaschik"
+    },
+    "sections": [
+      {
+        "name": "Patient Information",
+        "questions": [
+          {
+            "label": "Patient Name",
+            "type": "text"
+          },
+          {
+            "label": "Patient ID",
+            "type": "text"
+          },
+          {
+            "label": "Date of Birth",
+            "type": "date"
+          },
+          {
+            "label": "Gender",
+            "type": "select",
+            "options": ["männlich", "weiblich", "divers"]
+          }
+        ]
+      },
+      {
+        "name": "Study Information",
+        "questions": [
+          {
+            "label": "Study Date",
+            "type": "date"
+          },
+          {
+            "label": "Study Time",
+            "type": "text"
+          },
+          {
+            "label": "Referring Physician",
+            "type": "text"
+          },
+          {
+            "label": "Clinical Indication",
+            "type": "textarea",
+            "description": "Reason for examination"
+          },
+          {
+            "label": "Previous Procedures",
+            "type": "textarea",
+            "description": "Previous surgeries, implants, or interventions with dates"
+          }
+        ]
+      },
+      {
+        "name": "Examination",
+        "questions": [
+          {
+            "label": "Examination Type",
+            "type": "select",
+            "options": [
+              "Röntgen Kniegelenk links",
+              "Röntgen Kniegelenk rechts",
+              "Röntgen Kniegelenk beidseits",
+              "Röntgen Patella axial links",
+              "Röntgen Patella axial rechts",
+              "Röntgen Unterschenkel mit Sprunggelenk links",
+              "Röntgen Unterschenkel mit Sprunggelenk rechts"
+            ],
+            "default": "Röntgen Kniegelenk rechts"
+          },
+          {
+            "label": "Patient Position",
+            "type": "select",
+            "options": ["liegend", "stehend"],
+            "default": "liegend"
+          },
+          {
+            "label": "Projection",
+            "type": "multiselect",
+            "options": ["a.p.", "seitlich", "Patella tangential", "Tunnelaufnahme", "axial"],
+            "default": ["a.p.", "seitlich"]
+          },
+          {
+            "label": "Previous Comparison",
+            "type": "radio",
+            "options": ["Voruntersuchung vorliegend", "Keine Voruntersuchung vorliegend"],
+            "default": "Keine Voruntersuchung vorliegend"
+          },
+          {
+            "label": "Previous Examination Date",
+            "type": "date",
+            "description": "Date of previous examination if available"
+          }
+        ]
+      },
+      {
+        "name": "Findings",
+        "subsections": [
+          {
+            "name": "Knee Selection",
+            "questions": [
+              {
+                "label": "Examined Knee",
+                "type": "select",
+                "options": ["Linkes Kniegelenk", "Rechtes Kniegelenk", "Beide Kniegelenke"],
+                "default": "Rechtes Kniegelenk"
+              }
+            ]
+          },
+          {
+            "name": "Joint Articulation",
+            "questions": [
+              {
+                "label": "Articulation in knee joint",
+                "type": "select",
+                "options": [
+                  "Regelrechte Artikulation",
+                  "Regelrechte Artikulationsverhältnisse",
+                  "Eingeschränkte Artikulation",
+                  "Deutlich eingeschränkte Artikulation",
+                  "Regelrechte Gelenkstellung"
+                ],
+                "default": "Regelrechte Artikulation"
+              }
+            ]
+          },
+          {
+            "name": "Joint Space",
+            "questions": [
+              {
+                "label": "Joint space narrowing",
+                "type": "select",
+                "options": [
+                  "Keine Gelenkspaltverschmälerung",
+                  "Geringgradige Gelenkspaltverschmälerung",
+                  "Mittelgradige Gelenkspaltverschmälerung",
+                  "Hochgradige Gelenkspaltverschmälerung",
+                  "Zunehmende Gelenkspaltverschmälerung",
+                  "Vollständig aufgebrauchter Gelenkspalt",
+                  "Erweiterter Gelenkspalt",
+                  "Deutliche Gelenkspaltverschmälerung"
+                ],
+                "default": "Keine Gelenkspaltverschmälerung"
+              },
+              {
+                "label": "Compartment affected",
+                "type": "select",
+                "options": [
+                  "im medialen Kompartment",
+                  "im lateralen Kompartment",
+                  "im medialen und lateralen Kompartment",
+                  "in allen Gelenkkompartimenten",
+                  "im femoropatellaren Gelenkspalt",
+                  "auf beiden Seiten verschmälert"
+                ],
+                "default": "im medialen Kompartment"
+              }
+            ]
+          },
+          {
+            "name": "Femoral Condyle",
+            "questions": [
+              {
+                "label": "Radiolucent line",
+                "type": "select",
+                "options": [
+                  "Keine Aufhellungslinie",
+                  "Dezente Aufhellungslinie",
+                  "Ausgeprägte Aufhellungslinie",
+                  "Flächenhafte Aufhellungslinie",
+                  "Tragische Aufhellungslinie",
+                  "Glatt berandete Aufhellung"
+                ],
+                "default": "Keine Aufhellungslinie"
+              },
+              {
+                "label": "Location",
+                "type": "select",
+                "options": [
+                  "im medialen Femurkondylus",
+                  "im lateralen Femurkondylus",
+                  "im medialen und lateralen Femurkondylus",
+                  "im Tibiakopf dorsalseitig",
+                  "im distalen (metaphysären) posterioren (subkortikalen) Femuranteil"
+                ],
+                "default": "im medialen Femurkondylus"
+              }
+            ]
+          },
+          {
+            "name": "Cortical Bone",
+            "questions": [
+              {
+                "label": "Cortical integrity",
+                "type": "select",
+                "options": [
+                  "Kortikalis intakt",
+                  "Kortikalis nicht intakt",
+                  "Glatt berandete Artikulationsflächen",
+                  "Keine abgrenzbare Konturunterbrechung"
+                ],
+                "default": "Kortikalis intakt"
+              },
+              {
+                "label": "Contour irregularities",
+                "type": "select",
+                "options": [
+                  "Keine Konturirregularitäten",
+                  "Dezente Konturirregularitäten",
+                  "Ausgeprägte Konturirregularitäten",
+                  "Unregelmäßig konturierte Gelenkflächen",
+                  "Keine abgrenzbare Konturunterbrechung der knöchernen Strukturen"
+                ],
+                "default": "Keine Konturirregularitäten"
+              }
+            ]
+          },
+          {
+            "name": "Tibial Head",
+            "questions": [
+              {
+                "label": "Osteophytes",
+                "type": "select",
+                "options": [
+                  "Keine ossäre Randanbauten",
+                  "Dezente ossäre Randanbauten",
+                  "Ausgeprägte ossäre Randanbauten",
+                  "Kräftige ossäre Randanbauten",
+                  "Geringe osteophytäre Anbauten",
+                  "Deutliche Randkantenausziehungen",
+                  "Leichte ossäre Randanbauten",
+                  "Zarte ossäre Randausziehungen"
+                ],
+                "default": "Keine ossäre Randanbauten"
+              },
+              {
+                "label": "Location",
+                "type": "select",
+                "options": [
+                  "am Tibiakopf medial",
+                  "am Tibiakopf lateral",
+                  "am Tibiakopf medial und lateral",
+                  "an der Tibiagelenkfläche",
+                  "des lateralen Tibiaplateaus dorsal"
+                ],
+                "default": "am Tibiakopf medial"
+              },
+              {
+                "label": "Tuberculum intercondylare",
+                "type": "select",
+                "options": [
+                  "Unauffällig",
+                  "Spitz ausgezogenes Tuberculum intercondylare"
+                ],
+                "default": "Unauffällig"
+              }
+            ]
+          },
+          {
+            "name": "Patella",
+            "questions": [
+              {
+                "label": "Edge formations",
+                "type": "select",
+                "options": [
+                  "Keine Kantanbauten",
+                  "Dezente Kantanbauten",
+                  "Ausgeprägte Kantanbauten",
+                  "Randkantenausziehungen",
+                  "Zarte ossäre Randausziehungen"
+                ],
+                "default": "Keine Kantanbauten"
+              },
+              {
+                "label": "Location",
+                "type": "select",
+                "options": [
+                  "am Oberpol der Patella",
+                  "am Unterpol der Patella",
+                  "am Ober- und Unterpol der Patella",
+                  "an der Rückseite der Patella",
+                  "am Patellaansatz",
+                  "am craniomedialen Umfang der Patella"
+                ],
+                "default": "am Oberpol der Patella"
+              },
+              {
+                "label": "Patella Position",
+                "type": "select",
+                "options": [
+                  "Regelrechte Stellung",
+                  "Regelrecht in Patellaführung",
+                  "Patella alta",
+                  "Patella baja",
+                  "Patella lateralisiert",
+                  "Kranialer Patellasporn",
+                  "Patella Wiberg Typ II",
+                  "Unauffällige Patella"
+                ],
+                "default": "Regelrechte Stellung"
+              },
+              {
+                "label": "Patella Shape",
+                "type": "select",
+                "options": [
+                  "Normale Form",
+                  "Patella alta",
+                  "Patella partita",
+                  "Patella bipartita",
+                  "Patellahochstand"
+                ],
+                "default": "Normale Form"
+              },
+              {
+                "label": "Patella Fracture",
+                "type": "select",
+                "options": [
+                  "Keine Patellafraktur",
+                  "Vollständig konsolidierte Patellafraktur",
+                  "Patellafraktur mit verbliebener minimaler Knickbildung",
+                  "Nicht konsolidierte Patellafraktur"
+                ],
+                "default": "Keine Patellafraktur"
+              }
+            ]
+          },
+          {
+            "name": "Meniscus",
+            "questions": [
+              {
+                "label": "Calcification status",
+                "type": "select",
+                "options": ["Verkalkung", "keine Verkalkung"],
+                "default": "keine Verkalkung"
+              },
+              {
+                "label": "Location",
+                "type": "select",
+                "options": [
+                  "des Innenmeniskus",
+                  "des Außenmeniskus",
+                  "des Innen- und Außenmeniskus"
+                ],
+                "default": "des Innenmeniskus"
+              },
+              {
+                "label": "Meniscus degeneration",
+                "type": "select",
+                "options": [
+                  "Keine Meniskusveränderungen",
+                  "Geringe Meniskusveränderungen",
+                  "Ausgeprägte Meniskusveränderungen",
+                  "Initiale meniskale Verkalkungen",
+                  "Verkalkungen der Menisci betont medial",
+                  "Deutliche Meniskusverkalkung medialseitig",
+                  "Chondrokalzinose des Innen- und Außenmeniskus"
+                ],
+                "default": "Keine Meniskusveränderungen"
+              }
+            ]
+          },
+          {
+            "name": "Retropatellar Space",
+            "questions": [
+              {
+                "label": "Space condition",
+                "type": "select",
+                "options": [
+                  "Verschmälerter Retropatellarraum",
+                  "Kein verschmälerter Retropatellarraum",
+                  "Erhaltener femoropatellarer Gelenkspalt",
+                  "Vollständig aufgebrauchter Retropatellarraum"
+                ],
+                "default": "Kein verschmälerter Retropatellarraum"
+              },
+              {
+                "label": "Retropatellar arthrosis",
+                "type": "select",
+                "options": [
+                  "Keine Retropatellararthrose",
+                  "Dezente Retropatellararthrose",
+                  "Ausgeprägte Retropatellararthrose",
+                  "Bekannte Retropatellararthrose",
+                  "Hochgradige Femoropatellararthrose"
+                ],
+                "default": "Keine Retropatellararthrose"
+              }
+            ]
+          },
+          {
+            "name": "Tendons",
+            "questions": [
+              {
+                "label": "Quadriceps tendon",
+                "type": "select",
+                "options": [
+                  "Unauffällig",
+                  "Verkalkung der Quadrizepssehne",
+                  "Keine Verkalkung der Quadrizepssehne",
+                  "Verdickung der Quadrizepssehne",
+                  "Veränderungen am patellaren Ansatz der Quadrizepssehne"
+                ],
+                "default": "Unauffällig"
+              },
+              {
+                "label": "Patellar tendon",
+                "type": "select",
+                "options": [
+                  "Unauffällig",
+                  "Verdickung des Ligamentum patellae",
+                  "Verkalkung des Ligamentum patellae"
+                ],
+                "default": "Unauffällig"
+              },
+              {
+                "label": "Patellar tendon insertion",
+                "type": "select",
+                "options": [
+                  "Unauffällig",
+                  "Veränderungen am patellaren Ansatz der Quadrizepssehne",
+                  "Peripatellare Weichteilverkalkung"
+                ],
+                "default": "Unauffällig"
+              }
+            ]
+          },
+          {
+            "name": "Bone Structure",
+            "questions": [
+              {
+                "label": "Bone density",
+                "type": "select",
+                "options": [
+                  "Normale Knochendichte",
+                  "Verminderte Knochendichte",
+                  "Erhöhte Knochendichte",
+                  "Reduzierter Mineralgehalt"
+                ],
+                "default": "Normale Knochendichte"
+              },
+              {
+                "label": "Bone structure",
+                "type": "select",
+                "options": [
+                  "Unauffällige Knochenstruktur",
+                  "Veränderte Knochenstruktur",
+                  "Deformierende Verbreiterung der tibialen Gelenkfläche",
+                  "Normale Knochenstruktur",
+                  "Regelrechte Knochenstruktur"
+                ],
+                "default": "Unauffällige Knochenstruktur"
+              },
+              {
+                "label": "Bony structures",
+                "type": "select",
+                "options": [
+                  "Regelrechte Darstellung der knöchernen Strukturen",
+                  "Unregelmäßige Darstellung der knöchernen Strukturen",
+                  "Keine Konturunterbrechung der knöchernen Strukturen",
+                  "Glatt berandete Artikulationsflächen"
+                ],
+                "default": "Regelrechte Darstellung der knöchernen Strukturen"
+              },
+              {
+                "label": "Sclerosis",
+                "type": "select",
+                "options": [
+                  "Keine Sklerosierung",
+                  "Dezente subchondrale Sklerosierung",
+                  "Vermehrte Sklerosierung",
+                  "Subchondrale Sklerose",
+                  "Zunehmende Sklerosierungen",
+                  "Keine subchondrale Sklerose"
+                ],
+                "default": "Keine Sklerosierung"
+              },
+              {
+                "label": "Location of sclerosis",
+                "type": "select",
+                "options": [
+                  "der tibialen Gelenkfläche",
+                  "der femoralen Gelenkfläche",
+                  "der retropatellaren Gelenkfläche",
+                  "im medialen Kompartment",
+                  "im lateralen Kompartment",
+                  "im medialen Femorotibialgelenk",
+                  "in der Patella"
+                ],
+                "default": "der tibialen Gelenkfläche"
+              }
+            ]
+          },
+          {
+            "name": "Arthrosis",
+            "questions": [
+              {
+                "label": "Arthrosis status",
+                "type": "select",
+                "options": [
+                  "Keine Gonarthrose",
+                  "Initiale Gonarthrose",
+                  "Geringgradige Gonarthrose",
+                  "Mittelgradige Gonarthrose",
+                  "Ausgeprägte Gonarthrose",
+                  "Bekannte Gonarthrose",
+                  "Fortschreitende Gonarthrose",
+                  "Leichtgradige Gonarthrose",
+                  "Posttraumatische Gonarthrose",
+                  "Deutliche medialbetonte Gonarthrose",
+                  "Aktivierte Gonarthrose"
+                ],
+                "default": "Keine Gonarthrose"
+              },
+              {
+                "label": "Location",
+                "type": "select",
+                "options": [
+                  "medial betont",
+                  "lateral betont",
+                  "medial und lateral betont",
+                  "trikompartimentell",
+                  "ohne Betonung des Femoropatellargelenks"
+                ],
+                "default": "medial betont"
+              },
+              {
+                "label": "Femoropatellar arthrosis",
+                "type": "select",
+                "options": [
+                  "Keine Femoropatellararthrose",
+                  "Dezente Femoropatellararthrose",
+                  "Ausgeprägte Femoropatellararthrose",
+                  "Bekannte Femoropatellararthrose",
+                  "Hochgradige Femoropatellararthrose"
+                ],
+                "default": "Keine Femoropatellararthrose"
+              }
+            ]
+          },
+          {
+            "name": "Fracture",
+            "questions": [
+              {
+                "label": "Fracture status",
+                "type": "select",
+                "options": [
+                  "Kein Frakturnachweis",
+                  "Keine Fraktur",
+                  "Fraktur nachweisbar",
+                  "Keine frische Fraktur",
+                  "Keine sicher abgrenzbare Fraktur"
+                ],
+                "default": "Kein Frakturnachweis"
+              },
+              {
+                "label": "Fracture type",
+                "type": "select",
+                "options": [
+                  "Keine Fraktur",
+                  "Periprothetische Fraktur",
+                  "Tibiaschaftfraktur",
+                  "Femurschaftfraktur",
+                  "Patellafraktur",
+                  "Querfraktur der Patella",
+                  "Fibulakopfchenfraktur",
+                  "Andere Fraktur"
+                ],
+                "default": "Keine Fraktur"
+              },
+              {
+                "label": "Fracture description",
+                "type": "textarea",
+                "description": "If fracture is present, describe location and characteristics"
+              }
+            ]
+          },
+          {
+            "name": "Implants and Prosthetics",
+            "questions": [
+              {
+                "label": "Implant status",
+                "type": "select",
+                "options": [
+                  "Keine Implantate",
+                  "Knie-TEP",
+                  "Schlittenprothese",
+                  "Plattenosteosynthese",
+                  "Endoprothese",
+                  "Kniegelenkendoprothese",
+                  "Andere Implantate"
+                ],
+                "default": "Keine Implantate"
+              },
+              {
+                "label": "Implant location",
+                "type": "select",
+                "options": [
+                  "Nicht zutreffend",
+                  "Medial",
+                  "Lateral",
+                  "Medial und lateral",
+                  "Proximal",
+                  "Distal",
+                  "Rechts median"
+                ],
+                "default": "Nicht zutreffend"
+              },
+              {
+                "label": "Implant position",
+                "type": "select",
+                "options": [
+                  "Regelrechte Lage",
+                  "Veränderte Lage",
+                  "Lockerungszeichen",
+                  "Keine Lockerungszeichen",
+                  "Material intakt"
+                ],
+                "default": "Regelrechte Lage"
+              },
+              {
+                "label": "Lucent lines around implant",
+                "type": "select",
+                "options": [
+                  "Kein Aufhellungssaum",
+                  "Dezenter Aufhellungssaum",
+                  "Deutlicher Aufhellungssaum"
+                ],
+                "default": "Kein Aufhellungssaum"
+              },
+              {
+                "label": "Material failure",
+                "type": "select",
+                "options": [
+                  "Kein Materialbruch",
+                  "Materialbruch nachweisbar"
+                ],
+                "default": "Kein Materialbruch"
+              }
+            ]
+          },
+          {
+            "name": "Additional Findings",
+            "questions": [
+              {
+                "label": "Soft tissue",
+                "type": "select",
+                "options": [
+                  "Unauffällig",
+                  "Weichteilschwellung",
+                  "Verkalkungen im Weichteilgewebe",
+                  "Reguläre Weichteile",
+                  "Keine periartkuläre Weichteilverkalkung",
+                  "Keine periartkulären Verkalkungen",
+                  "Weichteilüberlagerung in beiden Ebenen"
+                ],
+                "default": "Unauffällig"
+              },
+              {
+                "label": "Joint effusion",
+                "type": "select",
+                "options": [
+                  "Kein Gelenkerguss",
+                  "Geringer Gelenkerguss",
+                  "Deutlicher Gelenkerguss",
+                  "Diskreter Gelenkerguss",
+                  "Reizloser Hoffa-Fettkörper",
+                  "Röntgenologisch kein Gelenkerguss"
+                ],
+                "default": "Kein Gelenkerguss"
+              },
+              {
+                "label": "Vascular calcifications",
+                "type": "select",
+                "options": [
+                  "Keine Gefäßverkalkungen",
+                  "Dezente Gefäßverkalkungen",
+                  "Ausgeprägte Gefäßverkalkungen",
+                  "Arteriosklerose",
+                  "Vasosklerose"
+                ],
+                "default": "Keine Gefäßverkalkungen"
+              },
+              {
+                "label": "Fibular head",
+                "type": "select",
+                "options": [
+                  "Unauffällig",
+                  "Benigne imponierende Läsion des Fibulaköpfchens",
+                  "Verdacht auf Fibrom",
+                  "Keine sicher abgrenzbare Fraktur des Fibulaköpfchens"
+                ],
+                "default": "Unauffällig"
+              },
+              {
+                "label": "Bursa",
+                "type": "select",
+                "options": [
+                  "Keine Bursitis",
+                  "Verdacht auf Bursitis infrapatellaris",
+                  "Mögliche Bursitis infrapatellaris"
+                ],
+                "default": "Keine Bursitis"
+              },
+              {
+                "label": "Osgood-Schlatter",
+                "type": "select",
+                "options": [
+                  "Kein Nachweis Morbus Osgood-Schlatter",
+                  "Hinweis auf Morbus Osgood-Schlatter",
+                  "Osteochondrose bei Patellafraktur"
+                ],
+                "default": "Kein Nachweis Morbus Osgood-Schlatter"
+              },
+              {
+                "label": "Fabella",
+                "type": "select",
+                "options": [
+                  "Keine Fabella",
+                  "Fabella",
+                  "Fabella mit Verkalkung"
+                ],
+                "default": "Keine Fabella"
+              },
+              {
+                "label": "Cysts and Ganglions",
+                "type": "select",
+                "options": [
+                  "Keine Zysten",
+                  "Intraossäre Zyste",
+                  "Ganglion",
+                  "Intraossäres Ganglion",
+                  "Zystisch imponierende Struktur",
+                  "Sonstige ossäre (zystische) Läsion"
+                ],
+                "default": "Keine Zysten"
+              },
+              {
+                "label": "Cyst/Ganglion size",
+                "type": "text",
+                "description": "Size of cyst or ganglion if present (e.g., 13 mm)"
+              },
+              {
+                "label": "Cyst/Ganglion location",
+                "type": "select",
+                "options": [
+                  "Nicht zutreffend",
+                  "In der Patella am craniomedialen Umfang",
+                  "Im medialen Femurkondylus",
+                  "Im lateralen Femurkondylus",
+                  "Im distalen (metaphysären) posterioren (subkortikalen) Femuranteil"
+                ],
+                "default": "Nicht zutreffend"
+              },
+              {
+                "label": "Other findings",
+                "type": "textarea"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Assessment",
+        "questions": [
+          {
+            "label": "Diagnosis",
+            "type": "textarea",
+            "description": "Final diagnosis based on radiographic findings"
+          },
+          {
+            "label": "Arthrose-Grad",
+            "type": "select",
+            "options": [
+              "Keine Arthrose",
+              "Geringgradige Arthrose",
+              "Mittelgradige Arthrose",
+              "Hochgradige Arthrose",
+              "Initiale Arthrose",
+              "Dezente Arthrose",
+              "Deutliche medialbetonte Gonarthrose"
+            ],
+            "default": "Keine Arthrose"
+          },
+          {
+            "label": "Gelenkspaltverschmälerung in %",
+            "type": "select",
+            "options": ["Keine", "<25%", "25-50%", "50-75%", ">75%", "Vollständig aufgebraucht"],
+            "default": "Keine"
+          },
+          {
+            "label": "Prosthesis status",
+            "type": "select",
+            "options": [
+              "Keine Prothese",
+              "Regelrechte Lage der Prothese",
+              "Lockerung der Prothese",
+              "Prothesenmobilisierung",
+              "Keine Lockerungszeichen"
+            ],
+            "default": "Keine Prothese"
+          },
+          {
+            "label": "Fracture status",
+            "type": "select",
+            "options": [
+              "Kein Nachweis einer Fraktur",
+              "Periprothetische Fraktur",
+              "Andere Fraktur",
+              "Konsolidierte Patellafraktur",
+              "Keine sicher abgrenzbare Fraktur"
+            ],
+            "default": "Kein Nachweis einer Fraktur"
+          },
+          {
+            "label": "Additional diagnoses",
+            "type": "multiselect",
+            "options": [
+              "Keine",
+              "Insertionstendinopathie",
+              "Osteochondrose",
+              "Osteopenieasepkt",
+              "Ganglion",
+              "Meniskusresektion",
+              "Chondrokalzinose des Innen- und Außenmeniskus"
+            ],
+            "default": ["Keine"]
+          }
+        ]
+      },
+      {
+        "name": "Recommendations",
+        "questions": [
+          {
+            "label": "Follow-up recommendations",
+            "type": "textarea"
+          },
+          {
+            "label": "Additional imaging recommended",
+            "type": "multiselect",
+            "options": [
+              "Keine",
+              "MRT-Untersuchung",
+              "CT-Untersuchung",
+              "Kontrollaufnahme",
+              "Verlaufskontrolle"
+            ],
+            "default": ["Keine"]
+          }
+        ]
+      }
+    ]
+  }
+  

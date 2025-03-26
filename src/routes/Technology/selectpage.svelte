@@ -4,14 +4,14 @@
 	//  let toggleupload = false
 	ImageUploader;
 
-	let imageUrl = $state('');
+	let imageUrl = $state('') as string;
 	let mlMessage: string = '';
 	let mlSelectedFile: File | null = null;
 	let currentStep: number = 1;
 	let fileInput: HTMLInputElement;
 	let imgArr = $state([]);
 
-	const images = [`hand.jpg`, `knie.jpg`, `thoraxF.jpg`];
+	const images = [ `knie.jpg`];
 
 	export function triggerclickEvent() {
 		fileInput.click();

@@ -70,6 +70,7 @@
 
   textarea {
     width: 100%;
+    height: 92.2%;
     min-height: 400px;
   }
   
