@@ -10,7 +10,7 @@
 
 	// Function to check if device is mobile
 	function checkIfMobile() {
-		isMobile = innerWidth <= 768;
+		isMobile = innerWidth <= 1024;
 	}
 
 	onMount(() => {
@@ -76,61 +76,43 @@
 
 	<div class="mainSection">
 		<!-- Gif Image - Positioned differently on mobile vs desktop -->
-		<div class="rightContentSecitonInLeft" class:mobile-image={isMobile}>
+		<div class="mainSectionRight" class:mobile-image={isMobile}>
 			<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" class="brain-gif" />
 		</div>
 
-		<div class="mainLeftContentSection" class:mobile-content={isMobile}>
+		<div class="mainSectionLeft" class:mobile-content={isMobile}>
 			<!-- Header  -->
 			{#if !isMobile}
-				<div class="headerMainContentSection">
-					<div class="leftContentHeaderArea">
-						<p>Worlds fastest Reporting Software</p>
-					</div>
+				<div class="mainSectionLeftHeader">
+					<p>Worlds fastest structured reporting</p>
 				</div>
 			{/if}
 
 			<!-- Middle Area -->
-			<div class="middleMainContentSection">
-				<div class="middleContentTitleArea">
-					<div class="mainTitle">Revolutionizing Medical Reporting with AI</div>
+			<div class="mainSectionLeftText">
+				
+				<div class="mainSectionLeftTextTitle">Revolutionizing Medical Reporting with AI</div>
+
+				<div class="mainSectionLeftTextSubtext">
+					With Scanlytics we revolutionize radiological reporting through our innovative conversational AI. As the only provider, the resulting structured reports are saved directly in the usual PDF format and can thus be seamlessly integrated into the radiological workflow. We offer 434 structured reports for CT, MRI, X-ray and ultrasound and are happy to create templates adapted to your reports. Whether for radiological practices, hospitals, teleradiology providers or research institutions - Scanlytics is the future of efficient reporting.
 				</div>
 
-				<div class="middleContentSubTextArea">
-					<div class="subtext">
-						Scanlytics is an AI-powered solution designed to streamline medical reporting, enhance
-						efficiency, and empower healthcare professionals to spend more time with patients.
-					</div>
+			</div>
+
+
+			<!-- Button Area of left main section -->
+			<div class="mainSectionLeftButtons" class:mobile-buttons={isMobile}>
+				<div class="leftBtnSection">
+					<button class="leftBtn call" on:click={redirectUser}>
+						<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a>
+					</button>
+
+					<button class="leftBtn tech" on:click={redirectTechnologyPage}>
+						<a href="/Technology/" class="leftappointmentbtn">Test Technology</a>
+					</button>
 				</div>
 			</div>
 
-			<!-- Bottom Area of left main section -->
-			{#if !isMobile}
-				<div class="ButtomMainContentSection">
-					<div class="leftBtnSection">
-						<button class="leftBtn_1" on:click={redirectUser}>
-							<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a>
-						</button>
-
-						<button class="leftBtn_2" on:click={redirectTechnologyPage}>
-							<a href="/Technology/" class="leftappointmentbtn">View Technology</a>
-						</button>
-					</div>
-				</div>
-			{/if}
-			
-			<!-- Desktop-only buttons -->
-			{#if isMobile}
-				<div class="mobile-buttons">
-					<button class="mobile-btn" on:click={redirectUser}>
-						<a href="https://calendly.com/tobias-wedel-code/30min" class="mobile-btn-text">Book a Call</a>
-					</button>
-
-					<button class="mobile-btn dark" on:click={redirectTechnologyPage}>
-						<a href="/Technology/" class="mobile-btn-text white">View Technology</a>
-					</button>
-				</div>
-			{/if}
 		</div>
 	</div>
 
@@ -153,7 +135,7 @@
 	}
 
 	.bookCalllable {
-		color: black;
+		color: rgb(255, 255, 255);
 		font-size: 14px;
 		font-weight: 400;
 		font-family: system-ui;
@@ -165,38 +147,41 @@
 		position: relative;
 	}
 
-	.mainLeftContentSection {
+	.mainSectionLeft {
+		display: flex;
+		flex-direction: column;
 		width: 70%;
-		height: 100%;
+		min-height: 100%;
 		position: relative;
 		z-index: 2;
+		justify-content: space-between;
 	}
 
-	.rightContentSecitonInLeft {
-		width: 1200px;
-		position: absolute;
-		top: 11%;
-		left: 50%;
-		opacity: 0.8;
-		z-index: 1;
-	}
-
-	.brain-gif {
-		width: 70%;
-		height: 700px;
-	}
-
-	.headerMainContentSection {
+	.mainSectionLeftHeader {
 		width: 100%;
 		height: 7%;
 		display: flex;
 		align-items: center;
 	}
 
-	.leftContentHeaderArea {
-		background-color: rgb(226, 241, 252);
-		width: 20%;
-		height: 60%;
+	.mainSectionRight {
+		width: 50%;
+		position: absolute;
+		top: 11%;
+		right: 0;
+		opacity: 0.8;
+		z-index: 1;
+	}
+
+	.brain-gif {
+		width: 70%;
+		height: auto;
+	}
+
+	.mainSectionLeftHeader {
+		background-color: rgb(255, 255, 255);
+		width: 300px;
+		height: 40px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -206,37 +191,39 @@
 		margin-left: 1%;
 	}
 
-	.middleMainContentSection{
+	.mainSectionLeftText{
 		width: 100%;
 		height: 86%;
 	}
-
-	.middleContentTitleArea {
-		width: 100%;
-		height: 80%;
-	}
-
-	.middleContentSubTextArea {
-		width: 70%;
-		height: 20%;
-		color: white;
-		padding: 1%;
-	}
 	
-	.mainTitle {
+	.mainSectionLeftTextTitle {
 		width: 70%;
 		height: 100%;
 		padding-left: 1%;
-		font-size: 100px;
+		font-size: clamp(6vw, 6vw, 6vw);
 		font-family: system-ui;
 		color: white;
 	}
 
-	.ButtomMainContentSection {
+	.mainSectionLeftTextSubtext {
+		width: 70%;
+		height: 20%;
+		color: white;
+		padding: 1%;
+		font-family: system-ui;
+	}
+
+	.mainSectionLeftButtons {
 		width: 70%;
 		height: 7%;
 		color: rgb(48, 48, 48);
 		padding: 1%;
+	}
+
+	.mainSectionLeftButtons.mobile-buttons{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
 	}
 
 	.leftBtnSection {
@@ -244,41 +231,36 @@
 		height: 100%;
 		color: rgb(48, 48, 48);
 		display: flex;
-		align-items: center;
+		flex-direction: row;
+		justify-content: center;
 		gap: 5%;
 	}
 
-	.leftBtn_1 {
-		background-color: rgb(255, 255, 255);
-		width: 30%;
-		height: 100%;
+	.leftBtn {
+		width: 200px;
+		height: 30px;
 		display: flex;
 		justify-content: center;
-		align-items: center;
-		border: 1px solid black;
 		border-radius: 40px;
 		color: black;
 		cursor: pointer;
 	}
 
-	.leftBtn_2 {
+	.leftBtn.tech {
+		background-color: rgb(255, 255, 255);
+		border: 1px solid black;
+	}
+
+	.leftBtn.call {
 		background-color: black;
-		width: 30%;
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		border: 1px solid white;
-		border-radius: 40px;
-		color: black;
-		cursor: pointer;
 	}
 
 	.leftappointmentbtn {
-		color: white;
+		color: rgb(0, 0, 0);
 		font-size: 14px;
 		font-weight: 400;
-		font-family: system-ui;
+		font-family: system-ui;  
 	}
 
 	/* Mobile styles */
@@ -291,36 +273,7 @@
 		padding: 0 20px;
 	}
 
-	.mobile-btn {
-		width: 100%;
-		height: 50px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-radius: 40px;
-		border: 1px solid black;
-		background-color: white;
-		cursor: pointer;
-	}
-
-	.mobile-btn.dark {
-		background-color: black;
-		border: 1px solid white;
-	}
-
-	.mobile-btn-text {
-		color: black;
-		font-size: 16px;
-		font-weight: 400;
-		font-family: system-ui;
-		text-decoration: none;
-	}
-
-	.mobile-btn-text.white {
-		color: white;
-	}
-
-	@media (max-width: 768px) {
+	@media (max-width: 1024px) {
 		/* Force content to be scrollable */
 		:global(body) {
 			overflow-y: auto !important;
@@ -366,42 +319,26 @@
 			object-fit: cover;
 		}
 
-		.mainTitle {
-			font-size: 40px;
-			width: 100%;
-			height: auto;
-			padding-left: 0;
-			margin-top: 20px;
-			line-height: 1.2;
-		}
-
-		.middleContentTitleArea {
-			height: auto;
-		}
-
-		.middleContentSubTextArea {
+		.mainSectionLeftTextSubtext {
 			width: 100%;
 			height: auto;
 			padding: 0;
 			margin-top: 20px;
-		}
-
-		.mainTitle {
-			width: 100%;
-			height: 100%;
-			padding: 1rem;
-			font-size: 50px;
-			font-family: system-ui;
-			color: white;
-			
-		}
-
-		.subtext {
 			font-size: 20px;
 			line-height: 1.5;
 		}
 
-		.middleMainContentSection {
+		.mainSectionLeftTextTitle {
+			width: 100%;
+			height: auto;
+			padding: 1rem;
+			font-size: 50px;
+			font-family: system-ui;
+			color: white;
+			text-align: center;
+		}
+
+		.mainSectionLeftText {
 			height: auto;
 		}
 	}
