@@ -103,11 +103,11 @@
 			<!-- Button Area of left main section -->
 			<div class="mainSectionLeftButtons" class:mobile-buttons={isMobile}>
 				<button class="leftBtn call" on:click={redirectUser}>
-					<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a>
+					<a href="https://calendly.com/tobias-wedel-code/30min" class="CallButton">Book a Call</a>
 				</button>
 
 				<button class="leftBtn tech" on:click={redirectTechnologyPage}>
-					<a href="/Technology/" class="leftappointmentbtn">Test Technology</a>
+					<a href="/Technology/" class="AppointmentButton">Test Technology</a>
 				</button>
 			</div>
 
@@ -132,7 +132,7 @@
 		font-family: system-ui;
 	}
 
-	.bookCalllable {
+	.CallButton {
 		color: rgb(255, 255, 255);
 		font-size: 14px;
 		font-weight: 400;
@@ -222,18 +222,13 @@
 
 	.mainSectionLeftButtons.mobile-buttons{
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		justify-content: center;
-	}
-
-	.leftBtnSection {
-		width: 70%;
-		height: 100%;
-		color: rgb(48, 48, 48);
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		gap: 5%;
+		align-items: center;
+		width: 100%;
+		gap: 15px;
+		margin-top: 30px;
+		padding: 0 20px;
 	}
 
 	.leftBtn {
@@ -257,21 +252,11 @@
 		border: 1px solid white;
 	}
 
-	.leftappointmentbtn {
+	.AppointmentButton {
 		color: rgb(0, 0, 0);
 		font-size: 14px;
 		font-weight: 400;
 		font-family: system-ui;  
-	}
-
-	/* Mobile styles */
-	.mobile-buttons {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		gap: 15px;
-		margin-top: 30px;
-		padding: 0 20px;
 	}
 
 	@media (max-width: 1024px) {
