@@ -104,7 +104,6 @@
         text-align: center;
     }
 
-
     strong {
         margin-top: 1em;
         margin-bottom: .5em;
