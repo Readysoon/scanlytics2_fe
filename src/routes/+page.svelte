@@ -232,7 +232,7 @@
 		color: rgb(48, 48, 48);
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
+		justify-content: flex-start;
 		gap: 5%;
 	}
 

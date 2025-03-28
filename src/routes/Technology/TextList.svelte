@@ -344,9 +344,195 @@
 		</div>
 	</div>
 	{:else}
-		<div class="defaultText">
+		<!-- <div class="defaultText">
           <div class="placeholderObjecttext">Scanlytics AI Assistant</div>
-      </div>
+      </div> -->
+
+	  <div class="ImageRecognitionArea">
+		<!-- <div class="placeholderObjecttext">Scanlytics AI Assistant</div> -->
+		{#if layerToggle}
+			<div class="StartOverlay">
+				<div class="conversationArea">
+					<div class="ImageArea">
+						<div class="imgScanSection">
+							<!-- <div class="conversationHeader">head</div> -->
+							{#if firstLoad}
+								<!-- hello -->
+							<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
+							 {:else}
+							<div class="aiContentArea">
+								<div class="ImageviewSection" style="width: {menuToggle ? ' 70% ' : '100%'};">
+									<img src="knie.jpg" alt="widget" class="selectedItemlogo" />
+								</div>
+								{#if menuToggle}
+									<div class="ImageReportSection">
+										<div class="imageReportSectionHeader">
+											<p class="assitantTitle">AI Reporting Assistant</p>
+										</div>
+										<div class="assistantContentSection">
+											<div class="metadataSection">
+												<div class="metadataContent">
+													<div class="metadataBox">
+														Title: {kneejsonData.title}
+													</div>
+													<div class="metadataBox">
+														Description: {kneejsonData.description}
+													</div>
+													<div class="metadataBox">
+														Date: {kneejsonData.metadata.date}
+													</div>
+													<div class="metadataBox">
+														Publisher: {kneejsonData.metadata.publisher}
+													</div>
+												</div>
+											</div>
+											<div class="aicontentSection">
+												<div class="aicontentSectionHeader">
+													<div>
+														<p class="questiontTitle">Questionnaire</p>
+													</div>
+												</div>
+												<div class="aicontentSectionContent">
+													{#if kneejsonData.sections.length > 0}
+														{#each kneejsonData.sections as items (items)}
+															{#if ItemToggle != null && ItemToggle.name == items.name}
+																<div class="selected-item-area">
+																	<div class="selected-Item-header">
+																		<div class="selected-Item-title">{ItemToggle.name}</div>
+																		<div
+																			class="selected-Item-closeBtn"
+																			on:click={handleClosetogglebtn}
+																		>
+																			x
+																		</div>
+																	</div>
+																	<div class="select-Item-Content">
+																		{#each ItemToggle.questions as itemObj (itemObj)}
+																			<div class="selected-item-obj">
+																				{itemObj.label}
+
+																				<input
+																					type="text"
+																					class="textoption"
+																					value={isCheckInputData[itemObj.label]}
+																				/>
+																			</div>
+																		{/each}
+																	</div>
+																</div>
+															{:else}
+																<div
+																	class="text-item-name-area"
+																	style="border-color: {items.name == 'Findings'
+																		? 'rgb(43, 121, 194)'
+																		: 'white'};"
+																>
+																	<div
+																		class="text-item-name"
+																		on:click={() => handleSelectedEvent(items)}
+																	>
+																		{items.name}
+
+																		{#if items.name == 'Findings'}
+																			<div>
+																				<img
+																					src="robo2.png"
+																					alt="widget"
+																					class="robologo"
+																					on:click={handleMenuClick}
+																				/>
+																			</div>
+																		{/if}
+																	</div>
+																	<div class="text-item-checkBox">
+																		<input
+																			type="checkbox"
+																			class="aicheckBox"
+																			bind:checked={isChecked[items.name]}
+																		/>
+																	</div>
+																</div>
+															{/if}
+														{/each}
+													{/if}
+												</div>
+											</div>
+										</div>
+										<div></div>
+									</div>
+								{/if}
+							</div>
+							{/if}
+						</div>
+						<!-- <div class="imgSectionListTab">2</div> -->
+					</div>
+					<div class="aiNavBar">
+						<div class="upperBar">
+							<div class="optionBox">
+								<img
+									src="widget.png"
+									alt="widget"
+									class="widgetlogo"
+									on:click={handleMenuClick}
+								/>
+							</div>
+							<div class="optionBox">
+								<img src="play.png" alt="widget" class="widgetlogo" />
+							</div>
+
+							<div class="optionBox">
+								<img src="her1.png" alt="widget" class="widgetlogo" />
+							</div>
+
+							<div class="optionBox" on:click={handlecloselayer}>
+								<img src="text.png" alt="widget" class="widgetlogo" />
+							</div>
+						</div>
+						<div class="middleBar">
+							<div class="freq1"></div>
+						</div>
+					</div>
+					<!-- <div class="questionArea">
+		  <div class="AudioListBody">2</div>
+		  <div class="AudioOption">3</div>
+
+		</div> -->
+				</div>
+			</div>
+		{/if}
+		<div class="headerSection" style="height: 10%; width:100%; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid rgb(175, 166, 166);">
+				<div class="placeholderObjecttext">Select a Report</div>
+		</div>
+		<div class="listArea" style=" width: 100%; height:75%">
+			<div class="pdfIconArea">
+				<div class="pdfIconBox"  style="border: {  updateSelectedPdf == 1 ? "2px solid blue" : "0px solid blue"};" on:click={() => handlePdfClick(1)}>
+						<img src="/pdfIcon.svg" alt="widget" class="pdfIcon1" />
+						<p class="pdfTitle">knee</p>
+				</div>
+				<div class="pdfIconBox"  style="border: {  updateSelectedPdf == 2 ? "2px solid blue" : "0px solid blue"};" on:click={() => handlePdfClick(2)}>
+						<img src="/pdfIcon.svg" alt="widget" class="pdfIcon1" />
+						<p class="pdfTitle">knee.pt2</p>
+
+				</div>
+			</div>
+		
+
+		</div>
+		<div class="pdfArea">
+			<div class="pdfContentSectionBtn">
+				<button class="startBtn" on:click={handleAIReportingStartLayer}>Start Reporting</button>
+			</div>
+
+			<!-- <div class="pdfContentSectionArr">
+		<div class="mockPfd">0</div>
+		<div class="mockPfd">2</div>
+		<div class="mockPfd">1</div>
+		<div class="mockPfd">0</div>
+	   
+
+	  </div> -->
+		</div>
+	</div>
 
 		
 	{/if}
