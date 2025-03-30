@@ -24,39 +24,6 @@
 		});
 	}
 
-	// Server initialization
-	onMount(async () => {
-		try {
-			const response = await fetch('https://scanlytics2-ml.fly.dev/', {
-				method: 'GET'
-			});
-			console.log('Pinging ml server... ');
-			if (response.ok) {
-				console.log('Ml server started successfully');
-			} else {
-				console.error('Failed to start server', response.status);
-			}
-		} catch (error) {
-			console.error('Error starting server', error);
-		}
-	});
-
-	onMount(async () => {
-		try {
-			console.log('Pinging whisper server... ');
-			const response = await fetch('https://scanlytics2-whisper.fly.dev/', {
-				method: 'GET'
-			});
-			if (response.ok) {
-				console.log('Whisper server started successfully');
-			} else {
-				console.error('Failed to start server', response.status);
-			}
-		} catch (error) {
-			console.error('Error starting server', error);
-		}
-	});
-
 	// Function to handle text selection from TextList
 	function handleTextSelect(text: string) {
 		// Instead of directly modifying the editor content, dispatch an event or use a callback
@@ -142,7 +109,9 @@
 	main {
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
-		overflow: hidden;
+		overflow-y: auto;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
 	}
 
 	.boxArea {
@@ -303,13 +272,19 @@
 	}
 
 	@media (max-width: 768px) {
+		/* Force content to be scrollable */
+		:global(body) {
+			overflow-y: auto !important;
+		}
+
 		main {
-			height: auto;
-			overflow-y: auto;
+			height: auto !important;
+			overflow-y: auto !important;
 		}
 		
 		.mainSection {
-			height: auto;
+			height: auto !important;
+			overflow: visible !important;
 			margin-top: 15px;
 		}
 		
