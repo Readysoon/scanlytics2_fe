@@ -107,7 +107,7 @@
 				</button>
 
 				<button class="leftBtn tech" on:click={redirectTechnologyPage}>
-					<a href="/Technology/" class="AppointmentButton">Test Technology</a>
+					<a href="/Technology/" class="AppointmentButton">Technology</a>
 				</button>
 			</div>
 
