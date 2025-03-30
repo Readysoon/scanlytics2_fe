@@ -1,37 +1,50 @@
+
+
+
+<script  lang="ts" module>
+	import { SECRET_OPENAIKEY } from '$env/static/private';
+
+
+
+	console.log('SECRET_OPENAIKEY', SECRET_OPENAIKEY);
+</script>
 <script>
-	// Uses the Web Speech API
+	// Uses the Web Speech API#
+
+	// import { SECRET_OPENAIKEY } from '$env/static/public';
 
 	let isRecording = false;
-    let recordingTimeout;
+	let recordingTimeout;
 	let recognition;
 	let transcript;
+	// import OpenAI from 'openai';
+	// const client = new OpenAI({
+	// 	apiKey: SECRET_OPENAIKEY 
+	// });
+	const transkriptionArr = [];
+	const arrList = [];
 
-    const transkriptionArr = []
-    const arrList = []
+	const handleUploadData = async (phrase) => {
+		if (phrase) {
+			try {
+				// console.log('openai key', SECRET_OPENAIKEY);
+				// const response = await client.responses.create({
+				// 	model: "gpt-4o",
+				// 	input: "Write a one-sentence bedtime story about a unicorn."
+				// });
 
-    const handleUploadData = async(phrase) => { 
-        if(phrase){
-            try{
-
-            }catch{
-                console.error('Error uploading audio:', error);
-            }
-
-        }
-
-    }
-    const handletranskriptionData = (event) => { 
-
-      
-         if(event){
-            arrList.push(event)
-            console.log('event on handler', event);
-         }
-         
-    }
-   
-
-  
+				// console.log('res', response);
+			} catch {
+				console.error('Error uploading audio:', error);
+			}
+		}
+	};
+	const handletranskriptionData = (event) => {
+		if (event) {
+			arrList.push(event);
+			console.log('event on handler', event);
+		}
+	};
 
 	const handleRecording = () => {
 		// Set up SpeechRecognition
@@ -65,45 +78,30 @@
 				}
 			}
 
+			if (finalTranscript) {
+				let transkriptList = finalTranscript.split(' ');
 
+				if (transkriptList) {
+					for (let word of transkriptList) {
+						console.log('word', word);
+						// transkriptionArr.push(word)
+						handletranskriptionData(word);
+					}
+				}
+			}
 
-			
-            if(finalTranscript){
+			console.log('Final array list:', arrList);
 
-               let transkriptList = finalTranscript.split(' ');
-
-           
-            if(transkriptList){
-                for(let  word of transkriptList ){
-                    console.log('word', word);
-                    // transkriptionArr.push(word)
-                    handletranskriptionData(word)
-                }
-            }
-            }
-
-           
-          
-
-            console.log('Final array list:', arrList);
-            
-            if(arrList.length != 0){
-                const recordedPhrase = arrList.join(' ')
-                console.log('recordedPhrase', recordedPhrase);
-                handleUploadData(recordedPhrase)
-                if(recordedPhrase.includes('Stopp')){
-                    console.log('recognition stopped');
-                    recognition.stop();
-
-                }
-               
-            }
-          
-
-
+			if (arrList.length != 0) {
+				const recordedPhrase = arrList.join(' ');
+				console.log('recordedPhrase', recordedPhrase);
+				handleUploadData(recordedPhrase);
+				if (recordedPhrase.includes('Stopp')) {
+					console.log('recognition stopped');
+					recognition.stop();
+				}
+			}
 		};
-
-
 
 		recognition.onerror = (event) => {
 			console.error('SpeechRecognition error:', event.error);
@@ -126,7 +124,7 @@
 		// }, 60000);
 	};
 
-    console.log('arrList', arrList);
+	console.log('arrList', arrList);
 	const toggleRecording = () => {
 		if (!isRecording) {
 			try {
