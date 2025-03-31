@@ -94,21 +94,23 @@
 				<div class="mainSectionLeftTextTitle">Revolutionizing Medical Reporting with AI</div>
 
 				<div class="mainSectionLeftTextSubtext">
-					With Scanlytics we revolutionize radiological reporting through our innovative conversational AI. As the only provider, the resulting structured reports are saved directly in the usual PDF format and can thus be seamlessly integrated into the radiological workflow. We offer 434 structured reports for CT, MRI, X-ray and ultrasound and are happy to create templates adapted to your reports. Whether for radiological practices, hospitals, teleradiology providers or research institutions - Scanlytics is the future of efficient reporting.
+					Building the future of structured reporting with our conversational AI. 
+					<br>
+					Visit our Technology Page to try yourself or book directly a Call with us. 
 				</div>
 
 			</div>
 
 
 			<!-- Button Area of left main section -->
-			<div class="mainSectionLeftButtons" class:mobile-buttons={isMobile}>
-				<div class="leftBtnSection">
-					<button class="leftBtn call" on:click={redirectUser}>
-						<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a>
+			<div class="mainSectionButtons" class:mobile-buttons={isMobile}>
+				<div class="ButtonSection">
+					<button class="Button call" on:click={redirectUser}>
+						<a href="https://calendly.com/tobias-wedel-code/30min" class="buttoncalltext">Book a Call</a>
 					</button>
 
-					<button class="leftBtn tech" on:click={redirectTechnologyPage}>
-						<a href="/Technology/" class="leftappointmentbtn">Test Technology</a>
+					<button class="Button tech" on:click={redirectTechnologyPage}>
+						<a href="/Technology/" class="buttontechtext">Technology</a>
 					</button>
 				</div>
 			</div>
@@ -131,13 +133,6 @@
 		text-decoration: none;
 		color: rgb(77, 77, 77);
 		font-weight: 500;
-		font-family: system-ui;
-	}
-
-	.bookCalllable {
-		color: rgb(255, 255, 255);
-		font-size: 14px;
-		font-weight: 400;
 		font-family: system-ui;
 	}
 
@@ -201,6 +196,7 @@
 		height: 100%;
 		padding-left: 1%;
 		font-size: clamp(6vw, 6vw, 6vw);
+		text-align: left;
 		font-family: system-ui;
 		color: white;
 	}
@@ -213,30 +209,31 @@
 		font-family: system-ui;
 	}
 
-	.mainSectionLeftButtons {
+	.mainSectionButtons {
 		width: 70%;
 		height: 7%;
 		color: rgb(48, 48, 48);
 		padding: 1%;
 	}
 
-	.mainSectionLeftButtons.mobile-buttons{
+	.mainSectionButtons.mobile-buttons{
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 	}
 
-	.leftBtnSection {
+	.ButtonSection {
 		width: 70%;
 		height: 100%;
 		color: rgb(48, 48, 48);
 		display: flex;
+		align-items: center;
 		flex-direction: row;
 		justify-content: flex-start;
 		gap: 5%;
 	}
 
-	.leftBtn {
+	.Button {
 		width: 200px;
 		height: 30px;
 		display: flex;
@@ -246,21 +243,28 @@
 		cursor: pointer;
 	}
 
-	.leftBtn.tech {
-		background-color: rgb(255, 255, 255);
-		border: 1px solid black;
-	}
-
-	.leftBtn.call {
+	.Button.call {
 		background-color: black;
 		border: 1px solid white;
 	}
 
-	.leftappointmentbtn {
+	.Button.tech {
+		background-color: rgb(255, 255, 255);
+		border: 1px solid black;
+	}
+
+	.buttontechtext {
 		color: rgb(0, 0, 0);
-		font-size: 14px;
-		font-weight: 400;
+		font-size: 18px;
+		font-weight: bold;
 		font-family: system-ui;  
+	}
+	
+	.buttoncalltext {
+		color: rgb(255, 255, 255);
+		font-size: 18px;
+		font-weight: bold;
+		font-family: system-ui;
 	}
 
 	/* Mobile styles */
@@ -333,13 +337,31 @@
 			height: auto;
 			padding: 1rem;
 			font-size: 50px;
+			text-align: left;
 			font-family: system-ui;
 			color: white;
-			text-align: center;
 		}
 
 		.mainSectionLeftText {
 			height: auto;
 		}
+
+		.ButtonSection {
+			flex-direction: column;
+		}
+
+		.Button.call {
+			margin-bottom: 20px;
+		}
+
+
+		.Button {
+			height: 40px;
+			width: 300px;
+			display: flex;
+			flex-direction: column;
+		}
+
+
 	}
 </style>
