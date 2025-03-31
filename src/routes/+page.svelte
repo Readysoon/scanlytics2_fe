@@ -228,7 +228,7 @@
 		color: rgb(48, 48, 48);
 		display: flex;
 		align-items: center;
-		flex-direction: column;
+		flex-direction: row;
 		justify-content: flex-start;
 		gap: 5%;
 	}
@@ -246,7 +246,6 @@
 	.Button.call {
 		background-color: black;
 		border: 1px solid white;
-		margin-bottom: 25px;
 	}
 
 	.Button.tech {
@@ -256,15 +255,15 @@
 
 	.buttontechtext {
 		color: rgb(0, 0, 0);
-		font-size: 14px;
-		font-weight: 400;
+		font-size: 18px;
+		font-weight: bold;
 		font-family: system-ui;  
 	}
 	
 	.buttoncalltext {
 		color: rgb(255, 255, 255);
-		font-size: 14px;
-		font-weight: 400;
+		font-size: 18px;
+		font-weight: bold;
 		font-family: system-ui;
 	}
 
@@ -346,5 +345,23 @@
 		.mainSectionLeftText {
 			height: auto;
 		}
+
+		.ButtonSection {
+			flex-direction: column;
+		}
+
+		.Button.call {
+			margin-bottom: 20px;
+		}
+
+
+		.Button {
+			height: 40px;
+			width: 300px;
+			display: flex;
+			flex-direction: column;
+		}
+
+
 	}
 </style>
