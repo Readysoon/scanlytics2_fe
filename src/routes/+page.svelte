@@ -94,7 +94,9 @@
 				<div class="mainSectionLeftTextTitle">Revolutionizing Medical Reporting with AI</div>
 
 				<div class="mainSectionLeftTextSubtext">
-					With Scanlytics we revolutionize radiological reporting through our innovative conversational AI. As the only provider, the resulting structured reports are saved directly in the usual PDF format and can thus be seamlessly integrated into the radiological workflow. We offer 434 structured reports for CT, MRI, X-ray and ultrasound and are happy to create templates adapted to your reports. Whether for radiological practices, hospitals, teleradiology providers or research institutions - Scanlytics is the future of efficient reporting.
+					Building the future of structured reporting with our conversational AI. 
+					<br>
+					Visit our Technology Page to try it out or book directly a Call with us. 
 				</div>
 
 			</div>
@@ -201,6 +203,7 @@
 		height: 100%;
 		padding-left: 1%;
 		font-size: clamp(6vw, 6vw, 6vw);
+		text-align: left;
 		font-family: system-ui;
 		color: white;
 	}
@@ -333,9 +336,9 @@
 			height: auto;
 			padding: 1rem;
 			font-size: 50px;
+			text-align: left;
 			font-family: system-ui;
 			color: white;
-			text-align: center;
 		}
 
 		.mainSectionLeftText {
