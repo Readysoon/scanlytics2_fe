@@ -96,21 +96,21 @@
 				<div class="mainSectionLeftTextSubtext">
 					Building the future of structured reporting with our conversational AI. 
 					<br>
-					Visit our Technology Page to try it out or book directly a Call with us. 
+					Visit our Technology Page to try yourself or book directly a Call with us. 
 				</div>
 
 			</div>
 
 
 			<!-- Button Area of left main section -->
-			<div class="mainSectionLeftButtons" class:mobile-buttons={isMobile}>
-				<div class="leftBtnSection">
-					<button class="leftBtn call" on:click={redirectUser}>
-						<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a>
+			<div class="mainSectionButtons" class:mobile-buttons={isMobile}>
+				<div class="ButtonSection">
+					<button class="Button call" on:click={redirectUser}>
+						<a href="https://calendly.com/tobias-wedel-code/30min" class="buttoncalltext">Book a Call</a>
 					</button>
 
-					<button class="leftBtn tech" on:click={redirectTechnologyPage}>
-						<a href="/Technology/" class="leftappointmentbtn">Test Technology</a>
+					<button class="Button tech" on:click={redirectTechnologyPage}>
+						<a href="/Technology/" class="buttontechtext">Technology</a>
 					</button>
 				</div>
 			</div>
@@ -133,13 +133,6 @@
 		text-decoration: none;
 		color: rgb(77, 77, 77);
 		font-weight: 500;
-		font-family: system-ui;
-	}
-
-	.bookCalllable {
-		color: rgb(255, 255, 255);
-		font-size: 14px;
-		font-weight: 400;
 		font-family: system-ui;
 	}
 
@@ -216,30 +209,31 @@
 		font-family: system-ui;
 	}
 
-	.mainSectionLeftButtons {
+	.mainSectionButtons {
 		width: 70%;
 		height: 7%;
 		color: rgb(48, 48, 48);
 		padding: 1%;
 	}
 
-	.mainSectionLeftButtons.mobile-buttons{
+	.mainSectionButtons.mobile-buttons{
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 	}
 
-	.leftBtnSection {
+	.ButtonSection {
 		width: 70%;
 		height: 100%;
 		color: rgb(48, 48, 48);
 		display: flex;
-		flex-direction: row;
+		align-items: center;
+		flex-direction: column;
 		justify-content: flex-start;
 		gap: 5%;
 	}
 
-	.leftBtn {
+	.Button {
 		width: 200px;
 		height: 30px;
 		display: flex;
@@ -249,21 +243,29 @@
 		cursor: pointer;
 	}
 
-	.leftBtn.tech {
+	.Button.call {
+		background-color: black;
+		border: 1px solid white;
+		margin-bottom: 25px;
+	}
+
+	.Button.tech {
 		background-color: rgb(255, 255, 255);
 		border: 1px solid black;
 	}
 
-	.leftBtn.call {
-		background-color: black;
-		border: 1px solid white;
-	}
-
-	.leftappointmentbtn {
+	.buttontechtext {
 		color: rgb(0, 0, 0);
 		font-size: 14px;
 		font-weight: 400;
 		font-family: system-ui;  
+	}
+	
+	.buttoncalltext {
+		color: rgb(255, 255, 255);
+		font-size: 14px;
+		font-weight: 400;
+		font-family: system-ui;
 	}
 
 	/* Mobile styles */
