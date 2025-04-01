@@ -96,7 +96,7 @@
 				---
 
 				Diese Datenschutzerklärung wurde zuletzt aktualisiert am 26.02.2024.
-            </div>
+        	</div>
     </div>
 </div>
 {/if}
@@ -231,10 +231,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
     }
 
     .footer-left-box {
