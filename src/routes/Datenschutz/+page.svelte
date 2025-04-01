@@ -199,7 +199,6 @@
 	}
   
 	strong {
-	  color: rgb(76, 228, 0);
 	  font-weight: 600;
 	}
   

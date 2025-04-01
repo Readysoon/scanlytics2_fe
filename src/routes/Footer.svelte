@@ -60,13 +60,13 @@
 		<div class="desktop-view">
 			<p class="footer-text right" on:click={handleImpressumClick}>Impressum</p> 
 			<span class="separator-desktop">|</span>
-			<p class="footer-text right" on:click={handleDatenschutzClick}>Datenschutz</p>
+			<div class="footer-text right" on:click={() => window.location.href = '/Datenschutz'}>Datenschutz</div>
 		</div>
 		
 		<div class="mobile-view">
 			<p class="footer-text right" on:click={handleImpressumClick}>Impressum</p>
 			<p class="footer-text separator">-</p>
-			<p class="footer-text right" on:click={handleDatenschutzClick}>Datenschutz</p>
+			<div class="footer-text right" on:click={() => window.location.href = '/Datenschutz'}>Datenschutz</div>
 		</div>
 	</div>
 </footer>
