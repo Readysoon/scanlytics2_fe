@@ -355,5 +355,13 @@
 			display: flex;
 			flex-direction: column;
 		}
+
+		.buttoncalltext {
+			text-align: center;
+		}
+
+		.buttontechtext {
+			text-align: center;
+		}
 	}
 </style>
