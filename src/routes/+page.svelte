@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Header from './Header.svelte';
 	import Footer from './Footer.svelte';
+	import Header from './Header.svelte';
 	import { redirect } from '@sveltejs/kit';
 	import { onMount, onDestroy } from 'svelte';
 
