@@ -254,6 +254,7 @@
 	}
 
 	.buttontechtext {
+		text-align: center;
 		color: rgb(0, 0, 0);
 		font-size: 18px;
 		font-weight: bold;
@@ -261,6 +262,7 @@
 	}
 	
 	.buttoncalltext {
+		text-align: center;
 		color: rgb(255, 255, 255);
 		font-size: 18px;
 		font-weight: bold;
@@ -361,7 +363,5 @@
 			display: flex;
 			flex-direction: column;
 		}
-
-
 	}
 </style>
