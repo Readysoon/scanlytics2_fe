@@ -239,11 +239,13 @@
 	.Button.call {
 		background-color: black;
 		border: 1px solid white;
+		text-align: center;
 	}
 
 	.Button.tech {
 		background-color: rgb(255, 255, 255);
 		border: 1px solid black;
+		text-align: center;
 	}
 
 	.buttontechtext {
