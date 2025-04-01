@@ -177,10 +177,6 @@
 		border-radius: 40px;
 		color: black;
 		margin-left: 1%;
-		width: 100%;
-		height: 7%;
-		display: flex;
-		align-items: center;
 	}
 
 	.mainSectionLeftText{
@@ -334,7 +330,6 @@
 		.mainSectionLeftTextTitle {
 			width: 100%;
 			height: auto;
-			padding: 1rem;
 			font-size: 50px;
 			text-align: left;
 			font-family: system-ui;
