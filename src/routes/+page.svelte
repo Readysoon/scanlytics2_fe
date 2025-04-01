@@ -152,13 +152,6 @@
 		justify-content: space-between;
 	}
 
-	.mainSectionLeftHeader {
-		width: 100%;
-		height: 7%;
-		display: flex;
-		align-items: center;
-	}
-
 	.mainSectionRight {
 		width: 50%;
 		position: absolute;
@@ -184,6 +177,10 @@
 		border-radius: 40px;
 		color: black;
 		margin-left: 1%;
+		width: 100%;
+		height: 7%;
+		display: flex;
+		align-items: center;
 	}
 
 	.mainSectionLeftText{
