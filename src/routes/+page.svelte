@@ -152,13 +152,6 @@
 		justify-content: space-between;
 	}
 
-	.mainSectionLeftHeader {
-		width: 100%;
-		height: 7%;
-		display: flex;
-		align-items: center;
-	}
-
 	.mainSectionRight {
 		width: 50%;
 		position: absolute;
@@ -254,6 +247,7 @@
 	}
 
 	.buttontechtext {
+		text-align: center;
 		color: rgb(0, 0, 0);
 		font-size: 18px;
 		font-weight: bold;
@@ -261,6 +255,7 @@
 	}
 	
 	.buttoncalltext {
+		text-align: center;
 		color: rgb(255, 255, 255);
 		font-size: 18px;
 		font-weight: bold;
@@ -335,7 +330,6 @@
 		.mainSectionLeftTextTitle {
 			width: 100%;
 			height: auto;
-			padding: 1rem;
 			font-size: 50px;
 			text-align: left;
 			font-family: system-ui;
@@ -361,7 +355,5 @@
 			display: flex;
 			flex-direction: column;
 		}
-
-
 	}
 </style>
