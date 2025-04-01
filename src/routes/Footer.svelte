@@ -292,6 +292,10 @@
 
     /* Media query for mobile devices */
     @media screen and (max-width: 768px) {
+		.footerSection {
+			display: none;
+		}
+		
         .mobile-view {
             display: flex;
             flex-direction: column;
