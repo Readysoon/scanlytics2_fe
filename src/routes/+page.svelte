@@ -231,37 +231,37 @@
 		height: 30px;
 		display: flex;
 		justify-content: center;
+		align-items: center;
 		border-radius: 40px;
 		color: black;
 		cursor: pointer;
+		text-align: center;
 	}
 
 	.Button.call {
 		background-color: black;
 		border: 1px solid white;
-		text-align: center;
 	}
 
 	.Button.tech {
 		background-color: rgb(255, 255, 255);
 		border: 1px solid black;
-		text-align: center;
 	}
 
-	.buttontechtext {
+	.buttontechtext, .buttoncalltext {
 		text-align: center;
-		color: rgb(0, 0, 0);
+		display: block;
 		font-size: 18px;
 		font-weight: bold;
 		font-family: system-ui;  
 	}
+
+	.buttontechtext {
+		color: rgb(0, 0, 0);
+	}
 	
 	.buttoncalltext {
-		text-align: center;
 		color: rgb(255, 255, 255);
-		font-size: 18px;
-		font-weight: bold;
-		font-family: system-ui;
 	}
 
 	/* Mobile styles */
