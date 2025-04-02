@@ -69,7 +69,7 @@
         display: flex;
         align-items: center;
         gap: 8%;
-        padding-left: 20px;
+        padding-left: 10px;
         font-family: system-ui;
         color: white;
     }
