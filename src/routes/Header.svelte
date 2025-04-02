@@ -40,7 +40,7 @@
         <h2>Scanlytics</h2>
     </div>
 
-    <!-- Navigation links -->
+    <!-- Navigation linkss -->
     <div class="navbar" class:mobile-menu={isMobile} class:open={mobileMenuOpen}>
         <a href="/" class={$page.url.pathname === '/' ? 'active' : ''}>Home</a>
         <a href="/Vision/" class={$page.url.pathname.startsWith('/Vision') ? 'active' : ''}>Vision</a>
