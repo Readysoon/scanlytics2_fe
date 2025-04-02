@@ -100,7 +100,7 @@
     }
 
     .active {
-        color: white !important;
+        color: white;
     }
 
     .bookCallBtn {
@@ -118,10 +118,6 @@
         font-size: 12px;
         cursor: pointer;
         background-color: white;
-    }
-
-    .visionBtn {
-        color: white;
     }
 
     /* Hamburger menu styles */
