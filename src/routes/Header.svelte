@@ -15,7 +15,7 @@
         mobileMenuOpen = !mobileMenuOpen;
     }
 
-    // Check if device is mobile
+    // Check if device iss mobile
     onMount(() => {
         checkIfMobile();
         window.addEventListener('resize', checkIfMobile);
