@@ -69,7 +69,6 @@
         display: flex;
         align-items: center;
         gap: 8%;
-        padding-left: 3%;
         font-family: system-ui;
         color: white;
     }
@@ -82,6 +81,8 @@
         align-items: center;
         justify-content: space-between;
         position: relative;
+        padding-left: 5%;
+        padding-right: 5%;
     }
 
     .navbar {
@@ -100,7 +101,7 @@
     }
 
     .active {
-        color: white;
+        color: white !important;
     }
 
     .bookCallBtn {
@@ -178,7 +179,7 @@
         .hamburger-menu {
             display: block;
             position: absolute;
-            right: 15px;
+            right: 20px;
         }
 
         .navbar {
