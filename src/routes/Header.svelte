@@ -69,13 +69,12 @@
         display: flex;
         align-items: center;
         gap: 8%;
-        padding-left: 1%;
+        padding-left: 3%;
         font-family: system-ui;
         color: white;
     }
 
     nav {
-        
         display: flex;
         width: 100%;
         height: 5%;
@@ -91,7 +90,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-right: 1%;
     }
 
     a {
@@ -130,7 +128,6 @@
     .hamburger-menu {
         display: none;
         cursor: pointer;
-        padding: 10px;
         z-index: 1001;
     }
 
