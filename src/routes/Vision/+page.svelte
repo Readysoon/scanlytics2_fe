@@ -318,8 +318,7 @@
 				<div class="mapSection">
 						<img src="/blue2.png" class="map" alt="Logo" height="100%" width="100%"  />
 					<div class="americaPoint">
-						<div class="americaPin" 
-							on:mouseover={() => handlePinState("america")}>
+						<div class="americaPin" on:click={() => handlePinState("america")}>
 
 							<img src="LocationUSA.png"  class="pinpoint" alt="Logo" height="100%" width="100%"  />
 
@@ -548,7 +547,7 @@
 		color: rgb(255, 255, 255);
 	}
 
-	.map {
+	.map{
 		height: 100%;
 		width: 80%;
 		opacity: 0.9;
@@ -593,7 +592,6 @@
 		align-items: center;
 		justify-content: center;
 	}
-	
 	.brazilpin{
 		/* background-color: rgb(255, 68, 0); */
 		/* width: 50px;

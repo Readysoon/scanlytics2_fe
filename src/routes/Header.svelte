@@ -69,12 +69,13 @@
         display: flex;
         align-items: center;
         gap: 8%;
-        padding-left: 20px;
+        padding-left: 1%;
         font-family: system-ui;
         color: white;
     }
 
     nav {
+        
         display: flex;
         width: 100%;
         height: 5%;
@@ -90,6 +91,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding-right: 1%;
     }
 
     a {
@@ -120,10 +122,15 @@
         background-color: white;
     }
 
+    .visionBtn {
+        color: white;
+    }
+
     /* Hamburger menu styles */
     .hamburger-menu {
         display: none;
         cursor: pointer;
+        padding: 10px;
         z-index: 1001;
     }
 
@@ -178,7 +185,7 @@
         .hamburger-menu {
             display: block;
             position: absolute;
-            right: 20px;
+            right: 15px;
         }
 
         .navbar {
