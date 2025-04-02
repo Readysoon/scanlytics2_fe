@@ -69,6 +69,7 @@
         display: flex;
         align-items: center;
         gap: 8%;
+        padding-left: 20px;
         font-family: system-ui;
         color: white;
     }
@@ -81,8 +82,6 @@
         align-items: center;
         justify-content: space-between;
         position: relative;
-        padding-left: 5%;
-        padding-right: 5%;
     }
 
     .navbar {
