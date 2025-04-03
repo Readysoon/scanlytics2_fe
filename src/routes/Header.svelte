@@ -178,7 +178,7 @@
         .hamburger-menu {
             display: block;
             position: absolute;
-            right: 20px;
+            right: 10px;
         }
 
         .navbar {
