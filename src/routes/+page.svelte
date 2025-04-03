@@ -73,22 +73,20 @@
 
 <main>
 	<Header />
-	<div class="mainSection">+
-		<!-- Header  -->
 
-		<div class="mainSectionLeftHeader">
-			<p class="Best">Worlds fastest structured reporting</p>
-
-			<p class="AIaaS">AI as a Service</p>
-		</div>
-
-
+	<div class="mainSection">
 		<!-- Gif Image - Positioned differently on mobile vs desktop -->
 		<div class="mainSectionRight" class:mobile-image={isMobile}>
 			<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" class="brain-gif" />
 		</div>
 
 		<div class="mainSectionLeft" class:mobile-content={isMobile}>
+			<!-- Header  -->
+			{#if !isMobile}
+				<div class="mainSectionLeftHeader">
+					<p>Worlds fastest structured reporting</p>
+				</div>
+			{/if}
 
 			<!-- Middle Area -->
 			<div class="mainSectionLeftText">
@@ -169,14 +167,6 @@
 	}
 
 	.mainSectionLeftHeader {
-		display: flex;
-		justify-content: space-between;
-		width: 100%;
-		position: relative;
-		z-index: 3;
-	}
-
-	.mainSectionLeftHeader .Best{
 		background-color: rgb(255, 255, 255);
 		width: 300px;
 		height: 40px;
@@ -189,21 +179,6 @@
 		margin-left: 1%;
 	}
 
-	.mainSectionLeftHeader .AIaaS{
-		background-color: rgb(0, 34, 255);
-		width: auto;
-		padding: 0 20px;
-		height: 40px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: 1px solid black;
-		border-radius: 40px;
-		color: rgb(255, 255, 255);
-		margin-right: 5%;
-		margin-left: 1%;
-	}
-
 	.mainSectionLeftText{
 		width: 100%;
 		height: 86%;
@@ -212,6 +187,7 @@
 	.mainSectionLeftTextTitle {
 		width: 70%;
 		height: 100%;
+		padding-left: 1%;
 		font-size: clamp(6vw, 6vw, 6vw);
 		text-align: left;
 		font-family: system-ui;
@@ -320,18 +296,9 @@
 
 		.mobile-content {
 			width: 100%;
-			padding: 10px;
+			padding: 20px;
 			position: relative;
 			z-index: 5;
-		}
-
-		.mainSectionLeftHeader {
-			justify-content: flex-end;
-			padding-right: 0px;
-		}
-
-		.mainSectionLeftHeader .Best {
-			display: none;
 		}
 
 		.mobile-image {
