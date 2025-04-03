@@ -142,7 +142,7 @@
 
 	.mainSection {
 		height: 77%;
-		margin-top: 24px;
+		margin-top: 26px;
 		position: relative;
 	}
 
