@@ -105,16 +105,6 @@
 
 
 			<!-- Button Area of left main section -->
-<<<<<<< HEAD
-			<div class="mainSectionLeftButtons" class:mobile-buttons={isMobile}>
-				<button class="leftBtn call" on:click={redirectUser}>
-					<a href="https://calendly.com/tobias-wedel-code/30min" class="CallButton">Book a Call</a>
-				</button>
-
-				<button class="leftBtn tech" on:click={redirectTechnologyPage}>
-					<a href="/Technology/" class="AppointmentButton">Technology</a>
-				</button>
-=======
 			<div class="mainSectionButtons" class:mobile-buttons={isMobile}>
 				<div class="ButtonSection">
 					<button class="Button call" on:click={redirectUser}>
@@ -125,7 +115,6 @@
 						<a href="/Technology/" class="buttontechtext">Technology</a>
 					</button>
 				</div>
->>>>>>> 3b83ffc00aa1164688c88aad137d6ae20e05af62
 			</div>
 
 		</div>
@@ -151,16 +140,6 @@
 		font-family: system-ui;
 	}
 
-<<<<<<< HEAD
-	.CallButton {
-		color: rgb(255, 255, 255);
-		font-size: 14px;
-		font-weight: 400;
-		font-family: system-ui;
-	}
-
-=======
->>>>>>> 3b83ffc00aa1164688c88aad137d6ae20e05af62
 	.mainSection {
 		height: 77%;
 		margin-top: 30px;
@@ -213,14 +192,14 @@
 	}
 
 	.mainSectionLeftHeader .AIaaS{
-		background-color: rgb(0, 34, 255);
+		background-color: rgb(4, 4, 4);
 		width: auto;
 		padding: 0 20px;
 		height: 40px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border: 1px solid black;
+		border: 1px solid rgb(155, 197, 234);
 		border-radius: 40px;
 		color: rgb(255, 255, 255);
 		margin-right: 5%;
@@ -262,13 +241,6 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-<<<<<<< HEAD
-		align-items: center;
-		width: 100%;
-		gap: 15px;
-		margin-top: 30px;
-		padding: 0 20px;
-=======
 	}
 
 	.ButtonSection {
@@ -280,7 +252,6 @@
 		flex-direction: row;
 		justify-content: flex-start;
 		gap: 5%;
->>>>>>> 3b83ffc00aa1164688c88aad137d6ae20e05af62
 	}
 
 	.Button {
@@ -292,11 +263,7 @@
 		border-radius: 40px;
 		color: black;
 		cursor: pointer;
-<<<<<<< HEAD
-		margin: 10px;
-=======
 		text-align: center;
->>>>>>> 3b83ffc00aa1164688c88aad137d6ae20e05af62
 	}
 
 	.Button.call {
@@ -304,15 +271,6 @@
 		border: 1px solid white;
 	}
 
-<<<<<<< HEAD
-	.AppointmentButton {
-		color: rgb(0, 0, 0);
-		font-size: 14px;
-		font-weight: 400;
-		font-family: system-ui;  
-	}
-
-=======
 	.Button.tech {
 		background-color: rgb(255, 255, 255);
 		border: 1px solid black;
@@ -344,7 +302,6 @@
 		padding: 0 20px;
 	}
 
->>>>>>> 3b83ffc00aa1164688c88aad137d6ae20e05af62
 	@media (max-width: 1024px) {
 		/* Force content to be scrollable */
 		:global(body) {

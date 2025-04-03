@@ -12,8 +12,6 @@
 		}
 </script>
 
-<<<<<<< HEAD
-=======
 {#if DatenschutzState}
 <div class="overlay">
     <div class="DatenSchutzCard">
@@ -29,7 +27,6 @@
 </div>
 {/if}
 
->>>>>>> 3b83ffc00aa1164688c88aad137d6ae20e05af62
 {#if impressState}
 	<div class="overlay">
 			<div class="Card">
