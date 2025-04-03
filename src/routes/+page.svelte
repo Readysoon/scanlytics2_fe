@@ -73,7 +73,7 @@
 
 <main>
 	<Header />
-	<div class="mainSection">+
+	<div class="mainSection">
 		<!-- Header  -->
 
 		<div class="mainSectionLeftHeader">
@@ -142,7 +142,7 @@
 
 	.mainSection {
 		height: 77%;
-		margin-top: 30px;
+		margin-top: 24px;
 		position: relative;
 	}
 
@@ -340,7 +340,8 @@
 		.mainSectionLeftHeader {
 			justify-content: flex-end;
 			padding-right: 0px;
-			background-color: rgb(58, 242, 16)197, 255, 192);
+			/* background-color: rgb(58, 242, 16) */
+
 		}
 
 		.mainSectionLeftHeader .Best {
