@@ -310,10 +310,10 @@
 				</div>
 			</div>
 		{/if}
-		<div class="headerSection" style="height: 10%; width:100%; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid rgb(175, 166, 166);">
+		<!-- <div class="headerSection" style="height: 10%; width:100%; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid rgb(175, 166, 166);">
 				<div class="placeholderObjecttext">Select a Report</div>
 		</div>
-		<div class="listArea" style=" width: 100%; height:75%">
+		<div class="listArea" style=" width: 10%; height:75%">
 			<div class="pdfIconArea">
 				<div class="pdfIconBox"  style="border: {  updateSelectedPdf == 1 ? "2px solid blue" : "0px solid blue"};" on:click={() => handlePdfClick(1)}>
 						<img src="/pdfIcon.svg" alt="widget" class="pdfIcon1" />
@@ -327,7 +327,7 @@
 			</div>
 		
 
-		</div>
+		</div> -->
 		<div class="pdfArea">
 			<div class="pdfContentSectionBtn">
 				<button class="startBtn" on:click={handleAIReportingStartLayer}>Start Reporting</button>
@@ -376,6 +376,13 @@
 		/* background: #f0f0f0; */
 		cursor: pointer;
 		/* background-color: blue; */
+	}
+
+	.StartOverlay{
+		background-color: blue;
+		position: absolute;
+		height: 100vh;
+		width: 100%;
 	}
 
     .defaultText {
