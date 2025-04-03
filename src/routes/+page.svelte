@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Header from './Header.svelte';
 	import Footer from './Footer.svelte';
+	import Header from './Header.svelte';
 	import { redirect } from '@sveltejs/kit';
 	import { onMount, onDestroy } from 'svelte';
 
@@ -73,20 +73,22 @@
 
 <main>
 	<Header />
+	<div class="mainSection">+
+		<!-- Header  -->
 
-	<div class="mainSection">
+		<div class="mainSectionLeftHeader">
+			<p class="Best">Worlds fastest structured reporting</p>
+
+			<p class="AIaaS">AI as a Service</p>
+		</div>
+
+
 		<!-- Gif Image - Positioned differently on mobile vs desktop -->
 		<div class="mainSectionRight" class:mobile-image={isMobile}>
 			<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" class="brain-gif" />
 		</div>
 
 		<div class="mainSectionLeft" class:mobile-content={isMobile}>
-			<!-- Header  -->
-			{#if !isMobile}
-				<div class="mainSectionLeftHeader">
-					<p>Worlds fastest structured reporting</p>
-				</div>
-			{/if}
 
 			<!-- Middle Area -->
 			<div class="mainSectionLeftText">
@@ -94,13 +96,16 @@
 				<div class="mainSectionLeftTextTitle">Revolutionizing Medical Reporting with AI</div>
 
 				<div class="mainSectionLeftTextSubtext">
-					With Scanlytics we revolutionize radiological reporting through our innovative conversational AI. As the only provider, the resulting structured reports are saved directly in the usual PDF format and can thus be seamlessly integrated into the radiological workflow. We offer 434 structured reports for CT, MRI, X-ray and ultrasound and are happy to create templates adapted to your reports. Whether for radiological practices, hospitals, teleradiology providers or research institutions - Scanlytics is the future of efficient reporting.
+					Building the future of structured reporting with our conversational AI. 
+					<br>
+					Visit our Technology Page to try yourself or book directly a Call with us. 
 				</div>
 
 			</div>
 
 
 			<!-- Button Area of left main section -->
+<<<<<<< HEAD
 			<div class="mainSectionLeftButtons" class:mobile-buttons={isMobile}>
 				<button class="leftBtn call" on:click={redirectUser}>
 					<a href="https://calendly.com/tobias-wedel-code/30min" class="CallButton">Book a Call</a>
@@ -109,6 +114,18 @@
 				<button class="leftBtn tech" on:click={redirectTechnologyPage}>
 					<a href="/Technology/" class="AppointmentButton">Technology</a>
 				</button>
+=======
+			<div class="mainSectionButtons" class:mobile-buttons={isMobile}>
+				<div class="ButtonSection">
+					<button class="Button call" on:click={redirectUser}>
+						<a href="https://calendly.com/tobias-wedel-code/30min" class="buttoncalltext">Book a Call</a>
+					</button>
+
+					<button class="Button tech" on:click={redirectTechnologyPage}>
+						<a href="/Technology/" class="buttontechtext">Technology</a>
+					</button>
+				</div>
+>>>>>>> 3b83ffc00aa1164688c88aad137d6ae20e05af62
 			</div>
 
 		</div>
@@ -134,6 +151,7 @@
 		font-family: system-ui;
 	}
 
+<<<<<<< HEAD
 	.CallButton {
 		color: rgb(255, 255, 255);
 		font-size: 14px;
@@ -141,6 +159,8 @@
 		font-family: system-ui;
 	}
 
+=======
+>>>>>>> 3b83ffc00aa1164688c88aad137d6ae20e05af62
 	.mainSection {
 		height: 77%;
 		margin-top: 30px;
@@ -155,13 +175,6 @@
 		position: relative;
 		z-index: 2;
 		justify-content: space-between;
-	}
-
-	.mainSectionLeftHeader {
-		width: 100%;
-		height: 7%;
-		display: flex;
-		align-items: center;
 	}
 
 	.mainSectionRight {
@@ -179,6 +192,14 @@
 	}
 
 	.mainSectionLeftHeader {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		position: relative;
+		z-index: 3;
+	}
+
+	.mainSectionLeftHeader .Best{
 		background-color: rgb(255, 255, 255);
 		width: 300px;
 		height: 40px;
@@ -191,6 +212,21 @@
 		margin-left: 1%;
 	}
 
+	.mainSectionLeftHeader .AIaaS{
+		background-color: rgb(0, 34, 255);
+		width: auto;
+		padding: 0 20px;
+		height: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid black;
+		border-radius: 40px;
+		color: rgb(255, 255, 255);
+		margin-right: 5%;
+		margin-left: 1%;
+	}
+
 	.mainSectionLeftText{
 		width: 100%;
 		height: 86%;
@@ -199,8 +235,8 @@
 	.mainSectionLeftTextTitle {
 		width: 70%;
 		height: 100%;
-		padding-left: 1%;
 		font-size: clamp(6vw, 6vw, 6vw);
+		text-align: left;
 		font-family: system-ui;
 		color: white;
 	}
@@ -213,7 +249,7 @@
 		font-family: system-ui;
 	}
 
-	.mainSectionLeftButtons {
+	.mainSectionButtons {
 		width: 70%;
 		height: 7%;
 		color: rgb(48, 48, 48);
@@ -222,38 +258,53 @@
 		flex-direction: row;
 	}
 
-	.mainSectionLeftButtons.mobile-buttons{
+	.mainSectionButtons.mobile-buttons{
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+<<<<<<< HEAD
 		align-items: center;
 		width: 100%;
 		gap: 15px;
 		margin-top: 30px;
 		padding: 0 20px;
+=======
 	}
 
-	.leftBtn {
+	.ButtonSection {
+		width: 70%;
+		height: 100%;
+		color: rgb(48, 48, 48);
+		display: flex;
+		align-items: center;
+		flex-direction: row;
+		justify-content: flex-start;
+		gap: 5%;
+>>>>>>> 3b83ffc00aa1164688c88aad137d6ae20e05af62
+	}
+
+	.Button {
 		width: 200px;
 		height: 30px;
 		display: flex;
 		justify-content: center;
+		align-items: center;
 		border-radius: 40px;
 		color: black;
 		cursor: pointer;
+<<<<<<< HEAD
 		margin: 10px;
+=======
+		text-align: center;
+>>>>>>> 3b83ffc00aa1164688c88aad137d6ae20e05af62
 	}
 
-	.leftBtn.tech {
-		background-color: rgb(255, 255, 255);
-		border: 1px solid black;
-	}
-
-	.leftBtn.call {
+	.Button.call {
 		background-color: black;
 		border: 1px solid white;
 	}
 
+<<<<<<< HEAD
 	.AppointmentButton {
 		color: rgb(0, 0, 0);
 		font-size: 14px;
@@ -261,6 +312,39 @@
 		font-family: system-ui;  
 	}
 
+=======
+	.Button.tech {
+		background-color: rgb(255, 255, 255);
+		border: 1px solid black;
+	}
+
+	.buttontechtext, .buttoncalltext {
+		text-align: center;
+		display: block;
+		font-size: 18px;
+		font-weight: bold;
+		font-family: system-ui;  
+	}
+
+	.buttontechtext {
+		color: rgb(0, 0, 0);
+	}
+	
+	.buttoncalltext {
+		color: rgb(255, 255, 255);
+	}
+
+	/* Mobile styles */
+	.mobile-buttons {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		margin-top: 30px;
+		padding: 0 20px;
+	}
+
+>>>>>>> 3b83ffc00aa1164688c88aad137d6ae20e05af62
 	@media (max-width: 1024px) {
 		/* Force content to be scrollable */
 		:global(body) {
@@ -283,9 +367,18 @@
 
 		.mobile-content {
 			width: 100%;
-			padding: 20px;
+			padding: 10px;
 			position: relative;
 			z-index: 5;
+		}
+
+		.mainSectionLeftHeader {
+			justify-content: flex-end;
+			padding-right: 0px;
+		}
+
+		.mainSectionLeftHeader .Best {
+			display: none;
 		}
 
 		.mobile-image {
@@ -319,15 +412,38 @@
 		.mainSectionLeftTextTitle {
 			width: 100%;
 			height: auto;
-			padding: 1rem;
 			font-size: 50px;
+			text-align: left;
 			font-family: system-ui;
 			color: white;
-			text-align: center;
 		}
 
 		.mainSectionLeftText {
 			height: auto;
+		}
+
+		.ButtonSection {
+			flex-direction: column;
+		}
+
+		.Button.call {
+			margin-bottom: 20px;
+		}
+
+
+		.Button {
+			height: 40px;
+			width: 300px;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.buttoncalltext {
+			text-align: center;
+		}
+
+		.buttontechtext {
+			text-align: center;
 		}
 	}
 

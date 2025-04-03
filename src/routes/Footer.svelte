@@ -12,6 +12,24 @@
 		}
 </script>
 
+<<<<<<< HEAD
+=======
+{#if DatenschutzState}
+<div class="overlay">
+    <div class="DatenSchutzCard">
+		<div class="DatenSchutzCardHead">
+			<div class="impressumCardTitleSection">
+					<p class="impressumCardTitle">Datenschutz</p>
+				</div>
+			<div class="impressumCloseBtn">
+				<p class="closebtn" on:click={handleDatenschutzClick}>x</p>
+			</div>
+		</div>
+    </div>
+</div>
+{/if}
+
+>>>>>>> 3b83ffc00aa1164688c88aad137d6ae20e05af62
 {#if impressState}
 	<div class="overlay">
 			<div class="Card">
@@ -45,13 +63,13 @@
 		<div class="desktop-view">
 			<a href="/Datenschutz" class="footer-text right">Impressum</a>
 			<span class="separator-desktop">|</span>
-			<p class="footer-text right" on:click={handleDatenschutzClick}>Datenschutz</p>
+			<div class="footer-text right" on:click={() => window.location.href = '/Datenschutz'}>Datenschutz</div>
 		</div>
 		
 		<div class="mobile-view">
 			<a href="#Datenschutz" class="footer-text right">Impressum</a>
 			<p class="footer-text separator">-</p>
-			<p class="footer-text right" on:click={handleDatenschutzClick}>Datenschutz</p>
+			<div class="footer-text right" on:click={() => window.location.href = '/Datenschutz'}>Datenschutz</div>
 		</div>
 	</div>
 </footer>
@@ -131,10 +149,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
     }
 
     .footer-left-box {
@@ -195,7 +209,11 @@
     }
 
     /* Media query for mobile devices */
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
+		.footerSection {
+			display: none;
+		}
+
         .mobile-view {
             display: flex;
             flex-direction: column;
