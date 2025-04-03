@@ -241,6 +241,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		align-items: center;
 	}
 
 	.ButtonSection {
@@ -312,6 +313,10 @@
 			height: auto !important;
 			min-height: 100vh;
 			overflow-y: auto !important;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+
 		}
 
 		.mainSection {
@@ -320,6 +325,9 @@
 			min-height: 80vh;
 			display: flex;
 			flex-direction: column;
+			/* align-items: center; */
+			/* background-color: pink; */
+			width: 100%;
 		}
 
 		.mobile-content {
@@ -332,6 +340,7 @@
 		.mainSectionLeftHeader {
 			justify-content: flex-end;
 			padding-right: 0px;
+			background-color: rgb(58, 242, 16)197, 255, 192);
 		}
 
 		.mainSectionLeftHeader .Best {
