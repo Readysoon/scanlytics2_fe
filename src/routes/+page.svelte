@@ -74,7 +74,7 @@
 <main>
 	<Header />
 	<div class="mainSection">+
-		<!-- Header  -->
+		<!-- Headers  -->
 
 		<div class="mainSectionLeftHeader">
 			<p class="Best">Worlds fastest structured reporting</p>
