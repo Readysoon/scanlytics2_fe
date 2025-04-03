@@ -190,7 +190,7 @@
 	}
 
 	.mainSectionLeftHeader .AIaaS{
-		background-color: rgb(0, 34, 255);
+		background-color: rgb(70, 102, 135);
 		width: auto;
 		padding: 0 20px;
 		height: 40px;
