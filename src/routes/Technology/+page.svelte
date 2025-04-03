@@ -16,7 +16,11 @@
 	let extractedTexts: string[] = []; // Texts extracted from uploads
 	let editorContent = ''; // Content in the text editor
 	let isMobile = false;
+	let data = $props(
 
+	)
+
+	console.log('data', data.product);
 	if (typeof window !== 'undefined') {
 		isMobile = window.innerWidth <= 600;
 		window.addEventListener('resize', () => {

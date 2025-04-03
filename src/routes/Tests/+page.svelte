@@ -1,9 +1,14 @@
 <script lang="ts">
 	import Footer from '../Footer.svelte';
-	import AudioRecorder from '../Technology/AudioRecorder.svelte';
+	// import AudioRecorder from '../Technology/AudioRecorder.svelte';
+	import AudioRecorder from '../Tests/audioRecorder.svelte'
+	import { writable } from 'svelte/store';
+	
 
 	let text = $state('');
 	let currentStep = 3;
+	let {data} = $props();
+	
 
 	function goToStepFour() {
 		if (currentStep === 3) {
@@ -12,6 +17,15 @@
 			document.getElementById('step-4').classList.add('active');
 		}
 	}
+
+	// console.log('data', data.gpt);
+	// export const audioDataCall = (phrase) => {
+	// 	console.log('phrase is triggered', phrase);
+	// 	if(phrase){
+	// 		 const textdata = writable(phrase)
+	// 	}
+	// 	return phrase
+	// }
 
 	function appendTranscription(transcription: any) {
 		console.log('transcription', transcription);
@@ -28,7 +42,7 @@
 <main>
 	<div class="contentSection">
 		<div class="audiosection">
-			<AudioRecorder onTranscription={appendTranscription} />
+			<AudioRecorder onTranscription={appendTranscription} audiodata={data}/>
 
 
 		</div>

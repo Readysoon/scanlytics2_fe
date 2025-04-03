@@ -1,12 +1,12 @@
-
-
 <script>
-
 	let isRecording = false;
 	let recordingTimeout;
 	let recognition;
 	let transcript;
-	
+	let audiodata;
+	let gptclient = audiodata;
+
+	// console.log('audiodata', audiodata);
 
 	const transkriptionArr = [];
 	const arrList = [];
@@ -14,7 +14,16 @@
 	const handleUploadData = async (phrase) => {
 		if (phrase) {
 			try {
-				// console.log('in phrase');
+				const response = await fetch('/api/audiobot', {
+					method: 'POST',
+					body: JSON.stringify({data: phrase}),
+					headers: {
+						'content-type': 'application/json'
+					}
+				});
+
+				total = await response.json();
+				console.log('total', total);
 				// await load(phrase)
 			} catch {
 				console.error('Error uploading audio:', error);
@@ -78,7 +87,7 @@
 				const recordedPhrase = arrList.join(' ');
 				console.log('recordedPhrase', recordedPhrase);
 				handleUploadData(recordedPhrase);
-				if (recordedPhrase.includes('Stopp')) {
+				if (recordedPhrase.includes('Stopp' || 'stop')) {
 					console.log('recognition stopped');
 					recognition.stop();
 				}
