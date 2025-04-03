@@ -142,6 +142,8 @@
 
     .footerSection {
         width: 100%;
+		margin-top: 4%;
+		/* background-color: pink; */
         padding: 1em;
         display: flex;
         justify-content: space-between;
