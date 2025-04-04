@@ -5,16 +5,15 @@
 	let transcript;
 	let audiodata;
 	let gptclient = audiodata;
+	let arrList = $state([])
 
 	// console.log('audiodata', audiodata);
 
 	const transkriptionArr = [];
-	const arrList = [];
+	// const arrList = [];
 
-	const handleUploadData = async (phrase) => {
-		if (phrase) {
-			try {
-				const response = await fetch('/api/audiobot', {
+	const handleapiCall = async(phrase) =>{
+		const response = await fetch('/api/audiobot', {
 					method: 'POST',
 					body: JSON.stringify({data: phrase}),
 					headers: {
@@ -22,9 +21,33 @@
 					}
 				});
 
-				total = await response.json();
-				console.log('total', total);
+				const totalRes = await response.text();
+				
+				if(totalRes){
+					arrList = []
+					recognition.start();
+				}
+				console.log('gpt', totalRes);
 				// await load(phrase)
+	}
+
+	const handleUploadData = async (phraseArr) => {
+		if (phraseArr.includes('Stopp' || 'stop')) {
+			try {
+				const filteredStop  = phraseArr.filter(e => e !== "Stopp")
+				console.log('filteredStop', filteredStop);
+
+				const updatedPhrase = filteredStop.join(' ');
+				console.log('updatedPhrase', updatedPhrase);
+				recognition.stop();
+				if(updatedPhrase){
+					handleapiCall(updatedPhrase)
+				}
+				
+
+				
+
+				
 			} catch {
 				console.error('Error uploading audio:', error);
 			}
@@ -33,7 +56,6 @@
 	const handletranskriptionData = (event) => {
 		if (event) {
 			arrList.push(event);
-			console.log('event on handler', event);
 		}
 	};
 
@@ -54,6 +76,7 @@
 
 		recognition.onend = () => {
 			console.log('Speech recognition stopped.');
+	
 		};
 
 		// Event that runs when results are available (i.e., transcribed speech)
@@ -74,23 +97,19 @@
 
 				if (transkriptList) {
 					for (let word of transkriptList) {
-						console.log('word', word);
 						// transkriptionArr.push(word)
 						handletranskriptionData(word);
 					}
 				}
 			}
 
-			console.log('Final array list:', arrList);
-
+			// console.log('Final array list:', arrList);
+			
 			if (arrList.length != 0) {
-				const recordedPhrase = arrList.join(' ');
-				console.log('recordedPhrase', recordedPhrase);
-				handleUploadData(recordedPhrase);
-				if (recordedPhrase.includes('Stopp' || 'stop')) {
-					console.log('recognition stopped');
-					recognition.stop();
-				}
+				
+				handleUploadData(arrList);
+			
+				
 			}
 		};
 
@@ -100,6 +119,8 @@
 
 		recognition.onend = () => {
 			console.log('Speech recognition ended.');
+			// handleUploadData(arrList);
+			// recognition.stop();
 			// Automatically restart recognition
 			if (isRecording) {
 				recognition.start();
