@@ -22,4 +22,22 @@
       flex: 1;
     }
   </style>
+
+  <!--
+Layout Template Below
+
+<script>
+	import Layout from '../Layout.svelte';
+  </script>
+  
+  <Layout>
+
+  </Layout>
+  
+  <style>
+
+  </style>
+  
+
+  -->
   
