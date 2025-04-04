@@ -4,10 +4,10 @@
   </script>
   
   <main>
-    <div class="content-wrap">
-      <Header />
-      <slot></slot>
-    </div>
+    <Header />
+      <div class="slot-container">
+        <slot></slot>
+      </div>
     <Footer />
   </main>
   
@@ -17,8 +17,10 @@
       flex-direction: column;
       min-height: 100vh;
     }
-    
-    .content-wrap {
+
+    .slot-container {
+      display: flex;
+      flex-direction: column;
       flex: 1;
     }
   </style>
