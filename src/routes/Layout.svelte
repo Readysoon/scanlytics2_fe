@@ -27,16 +27,16 @@
 Layout Template Below
 
 <script>
-	import Layout from '../Layout.svelte';
-  </script>
-  
-  <Layout>
+  import Layout from '../Layout.svelte';
+</script>
 
-  </Layout>
-  
-  <style>
+<Layout>
 
-  </style>
+</Layout>
+
+<style>
+
+</style>
   
 
   -->
