@@ -74,8 +74,6 @@
 <main>
 	<Header />
 	<div class="mainSection">
-		<!-- Header  -->
-
 		<div class="mainSectionLeftHeader">
 			<p class="Best">Worlds fastest structured reporting</p>
 
@@ -192,7 +190,7 @@
 	}
 
 	.mainSectionLeftHeader .AIaaS{
-		background-color: rgb(4, 4, 4);
+		background-color: rgb(70, 102, 135);
 		width: auto;
 		padding: 0 20px;
 		height: 40px;
