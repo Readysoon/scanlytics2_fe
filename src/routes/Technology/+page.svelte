@@ -109,7 +109,9 @@
 	main {
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
-		overflow: hidden;
+		overflow-y: auto;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
 	}
 
 	.boxArea {

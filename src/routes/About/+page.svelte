@@ -8,7 +8,6 @@
 	window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
 	}
 
-
 	const handleImpressumClick = () => { 
 		impressState = !impressState
 	}
@@ -39,14 +38,12 @@
 						Doctor of Medicine (since 2021)<br>
 						Software Engineer (2021 - today)
 					</p>
-				
 				</div>
 			</div>
 
 			<div  class="profileCard">
 				<div class="profileImageCardSection" >
 					<img src="/Tobias_circle_portrait.png"  class="userProfileImg"/>
-
 				</div>
 				<div class="profileCardNameSection">
 					<p class="profileNameContent">
@@ -64,7 +61,6 @@
 			<div class="profileCard">
 				<div class="profileImageCardSection">
 					<img src="/emms1.jpg"  class="userProfileImg"/>
-
 				</div>
 				<div class="profileCardNameSection">
 					<p class="profileNameContent">
@@ -94,6 +90,8 @@
 	.mainSection {
 		height: 77%;
 		margin-top: 30px;
+		display: flex;
+		align-items: center;
 	}
 
 	.mainLeftContentSection {
@@ -101,13 +99,13 @@
 		justify-content: space-around;
 		align-items: center;
 		width: 100%;
-		height: 100%;
+		height: auto;
 		position: relative;
 	}
 
 	.profileCard{
 		width: 20%;
-		height: 50%;
+		height: auto;
 		background-color: rgba(41, 40, 41, 0.86);
 		display: flex;
 		border: 1px solid white; 
@@ -124,7 +122,7 @@
 
 	.profileCardNameSection{
 		/* background-color: rgb(21, 90, 34); */
-		min-height: 40px;
+		height: auto;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -140,7 +138,7 @@
 
 	.profileCardKnowHowSection{
 		/* background-color: rgb(194, 144, 255); */
-		min-height: 130px;
+		height: auto;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;

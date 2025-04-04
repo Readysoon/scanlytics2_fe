@@ -368,6 +368,9 @@
 			 <!-- Mobile view -->
 			<div class="mobile-view">
 				<div class="mobile-regions-grid">
+					<div class="pageTitle">
+						<div><p>World Vision</p></div>
+					</div>
 				<!-- America Region Box -->
 				<div class="mobile-region-box" class:active={activeMobileRegion === 'america'} on:click={() => setMobileRegion('america')}>
 					<div class="mobile-region-header">
@@ -485,15 +488,12 @@
 	</main>
 	
 <style>
-	:global(html), :global(body) {
-		height: 100%;
-		overflow-y: auto !important;
-	}
-
 	main {
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
-		overflow: hidden;
+		overflow-y: auto;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
 	}
 
 	a {
@@ -766,6 +766,19 @@
 		padding: 15px;
 		overflow-y: auto;
 	}
+
+	.pageTitle{
+		/* background-color: yellow; */
+		height: 21%;
+		font-size: 30px;
+		display: flex;
+		justify-content: center;
+		text-align: center;
+		align-items: center;
+		font-weight:900; 
+		color: rgba(255, 255, 255, 0.99);
+		font-family: system-ui;
+	}
 	
 	.mobile-regions-grid {
 		width: 100%;
@@ -773,6 +786,9 @@
 		flex-direction: column;
 		gap: 20px;
 		padding-bottom: 20px;
+		
+
+		/* background-color: pink; */
 	}
 	
 	.mobile-region-box {
