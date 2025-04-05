@@ -12,7 +12,7 @@ const handleApiAgentCall = async (userDataQuery) => {
 		if (!userDataQuery) {
 			return json('Empty userDataQuery');
 		}
-		console.log('userDataQuery before gpt trigger', userDataQuery);
+		// console.log('userDataQuery before gpt trigger', userDataQuery);
 		const response = await client.responses.create({
 			model: 'gpt-4o',
 			input:  `${userDataQuery}`
@@ -23,7 +23,6 @@ const handleApiAgentCall = async (userDataQuery) => {
 		console.log('error on handleApiAgentCall', error);
 	}
 };
-console.log('triggert');
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }) {
