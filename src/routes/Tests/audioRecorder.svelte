@@ -5,52 +5,104 @@
 	let transcript;
 	let audiodata;
 	let gptclient = audiodata;
-	let arrList = $state([])
+	let arrList = $state([]);
+	import { onDestroy } from 'svelte';
+	
 
 	// console.log('audiodata', audiodata);
 
 	const transkriptionArr = [];
 	// const arrList = [];
 
-	const handleapiCall = async(phrase) =>{
-		const response = await fetch('/api/audiobot', {
-					method: 'POST',
-					body: JSON.stringify({data: phrase}),
-					headers: {
-						'content-type': 'application/json'
-					}
-				});
+	const handleSpeechAgentCall = async (gptText) => {
+		// console.log('gptText', gptText);
+		try {
+			const response = await fetch('/api/speechbot', {
+			method: 'POST',
+			body: JSON.stringify({ data: gptText }),
+			headers: {
+				'content-type': 'application/json'
+			}
+		});
 
-				const totalRes = await response.text();
-				
-				if(totalRes){
-					arrList = []
-					recognition.start();
-				}
-				console.log('gpt', totalRes);
-				// await load(phrase)
-	}
+		console.log('response from speechagent', response );
+
+			
+			
+		} catch (error) {
+			console.log('Error on google cloud', error);
+		}
+	};
+
+	// Top-level await is allowed in ES modules
+
+	const handleapiCall = async (phrase) => {
+		const response = await fetch('/api/audiobot', {
+			method: 'POST',
+			body: JSON.stringify({ data: phrase }),
+			headers: {
+				'content-type': 'application/json'
+			}
+		});
+
+		const totalRes = await response.text();
+
+		if (totalRes) {
+			handleSpeechAgentCall(totalRes);
+			arrList = [];
+			// recognition.start();
+		}
+		console.log('gpt', totalRes);
+		// await load(phrase)
+	};
 
 	const handleUploadData = async (phraseArr) => {
+		console.log('phrase', phraseArr);
+		const phraseLen = phraseArr.length;
+		const phraseLastWord = phraseArr.at(-1);
+		console.log('phraselen', phraseLen);
+		console.log('phrase last word', phraseLastWord);
+
 		if (phraseArr.includes('Stopp' || 'stop')) {
 			try {
-				const filteredStop  = phraseArr.filter(e => e !== "Stopp")
+				const filteredStop = phraseArr.filter((e) => e !== 'Stopp');
 				console.log('filteredStop', filteredStop);
 
 				const updatedPhrase = filteredStop.join(' ');
 				console.log('updatedPhrase', updatedPhrase);
 				recognition.stop();
-				if(updatedPhrase){
-					handleapiCall(updatedPhrase)
+				if (updatedPhrase) {
+					handleapiCall(updatedPhrase);
 				}
-				
-
-				
-
-				
 			} catch {
 				console.error('Error uploading audio:', error);
 			}
+		} else {
+			// console.log('ping else');
+
+			const handleIntervalCount = () => {
+				const interval = setInterval(() => {
+					if (phraseLen && phraseLastWord) {
+						console.log('recording is stopped on voice pause');
+						const filteredStop = phraseArr.filter((e) => e !== 'Stopp');
+						console.log('filteredStop', filteredStop);
+
+						const updatedPhrase = filteredStop.join(' ');
+						console.log('updatedPhrase', updatedPhrase);
+						recognition.stop();
+						if (updatedPhrase) {
+							handleapiCall(updatedPhrase);
+						}
+						clearInterval(interval); // 💥 Stop interval after it runs once
+					}
+				}, 7000);
+
+				onDestroy(() => {
+					clearInterval(interval);
+				});
+			};
+
+			handleIntervalCount();
 		}
 	};
 	const handletranskriptionData = (event) => {
@@ -76,7 +128,6 @@
 
 		recognition.onend = () => {
 			console.log('Speech recognition stopped.');
-	
 		};
 
 		// Event that runs when results are available (i.e., transcribed speech)
@@ -104,12 +155,9 @@
 			}
 
 			// console.log('Final array list:', arrList);
-			
+
 			if (arrList.length != 0) {
-				
 				handleUploadData(arrList);
-			
-				
 			}
 		};
 
