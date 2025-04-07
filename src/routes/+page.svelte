@@ -160,10 +160,10 @@
 	}
 
 	.mainSectionRight {
-		width: 50%;
+		width: 55%;
 		position: absolute;
-		top: 9%;
-		right: -5%;
+		top: 3%;
+		right: -10%;
 		opacity: 0.8;
 		z-index: 1;
 	}
