@@ -10,7 +10,7 @@
 	let firstLoad = $state(true);
 	let menuToggle = $state(true);
 	let ItemToggle: any = $state(null);
-	let updateSelectedPdf = $state(1)
+	let updateSelectedPdf = $state(1);
 
 	// onDestroy(() => {
 	// 	console.log('hello');
@@ -39,9 +39,9 @@
 		}, 3000);
 	};
 
-	const handlePdfClick = (e: any)  => {
-		updateSelectedPdf = e
-	}
+	const handlePdfClick = (e: any) => {
+		updateSelectedPdf = e;
+	};
 	const handleSelectedEvent = (event: any) => {
 		console.log('e', event);
 		// alert("selected ")
@@ -81,13 +81,9 @@
 	}
 </script>
 
-
-
 <script>
-
 	let isChecked: any = $state({});
 	let isCheckInputData: any = $state({});
-
 
 	const requiredNames = ['Patient Information', 'Study Information', 'Examination'];
 
@@ -124,10 +120,10 @@
 						} else if (labelStudyInfo == 'Study Time') {
 							isCheckInputData[labelStudyInfo] = 'Today';
 						} else if (labelStudyInfo == 'Referring Physician') {
-							isCheckInputData[labelStudyInfo] = "Knee"
+							isCheckInputData[labelStudyInfo] = 'Knee';
 						} else if (labelStudyInfo == 'Clinical Indication') {
 							isCheckInputData[labelStudyInfo] = 'Male in treatment';
-						}else if(labelStudyInfo == "Previous Procedures"){
+						} else if (labelStudyInfo == 'Previous Procedures') {
 							isCheckInputData[labelStudyInfo] = 'implants, or interventions';
 						}
 					};
@@ -138,18 +134,17 @@
 						} else if (labelExamInfo == 'Patient Position') {
 							isCheckInputData[labelExamInfo] = 'liegend';
 						} else if (labelExamInfo == 'Projection') {
-							isCheckInputData[labelExamInfo] = "seitlich"
+							isCheckInputData[labelExamInfo] = 'seitlich';
 						} else if (labelExamInfo == 'Previous Comparison') {
 							isCheckInputData[labelExamInfo] = 'Keine Voruntersuchung vorliegend';
-						}else if(labelExamInfo == "Previous Examination Date"){
-							isCheckInputData[labelExamInfo] = "12.07.2024";
+						} else if (labelExamInfo == 'Previous Examination Date') {
+							isCheckInputData[labelExamInfo] = '12.07.2024';
 						}
-
-					}
+					};
 					handlePatientInformation(labelInfo);
 					handleStudyInformation(labelInfo);
 
-					handleExaminationInformation(labelInfo)
+					handleExaminationInformation(labelInfo);
 				});
 			}
 		});
@@ -158,182 +153,191 @@
 
 <div class="text-list">
 	{#if texts.length > 0}
-	<div class="ImageRecognitionArea">
-		<!-- <div class="placeholderObjecttext">Scanlytics AI Assistant</div> -->
-		{#if layerToggle}
-			<div class="StartOverlay">
-				<div class="conversationArea">
-					<div class="ImageArea">
-						<div class="imgScanSection">
-							<!-- <div class="conversationHeader">head</div> -->
-							{#if firstLoad}
-								<!-- hello -->
-							<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
-							 {:else}
-							<div class="aiContentArea">
-								<div class="ImageviewSection" style="width: {menuToggle ? ' 70% ' : '100%'};">
-									<img src="knie.jpg" alt="widget" class="selectedItemlogo" />
-								</div>
-								{#if menuToggle}
-									<div class="ImageReportSection">
-										<div class="imageReportSectionHeader">
-											<p class="assitantTitle">AI Reporting Assistant</p>
+		<div class="ImageRecognitionArea">
+			<!-- <div class="placeholderObjecttext">Scanlytics AI Assistant</div> -->
+			{#if layerToggle}
+				<div class="StartOverlay">
+					<div class="conversationArea">
+						<div class="ImageArea">
+							<div class="imgScanSection">
+								<!-- <div class="conversationHeader">head</div> -->
+								{#if firstLoad}
+									<!-- hello -->
+									<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
+								{:else}
+									<div class="aiContentArea">
+										<div class="ImageviewSection" style="width: {menuToggle ? ' 70% ' : '100%'};">
+											<img src="knie.jpg" alt="widget" class="selectedItemlogo" />
 										</div>
-										<div class="assistantContentSection">
-											<div class="metadataSection">
-												<div class="metadataContent">
-													<div class="metadataBox">
-														Title: {kneejsonData.title}
-													</div>
-													<div class="metadataBox">
-														Description: {kneejsonData.description}
-													</div>
-													<div class="metadataBox">
-														Date: {kneejsonData.metadata.date}
-													</div>
-													<div class="metadataBox">
-														Publisher: {kneejsonData.metadata.publisher}
-													</div>
+										{#if menuToggle}
+											<div class="ImageReportSection">
+												<div class="imageReportSectionHeader">
+													<p class="assitantTitle">AI Reporting Assistant</p>
 												</div>
-											</div>
-											<div class="aicontentSection">
-												<div class="aicontentSectionHeader">
-													<div>
-														<p class="questiontTitle">Questionnaire</p>
+												<div class="assistantContentSection">
+													<div class="metadataSection">
+														<div class="metadataContent">
+															<div class="metadataBox">
+																Title: {kneejsonData.title}
+															</div>
+															<div class="metadataBox">
+																Description: {kneejsonData.description}
+															</div>
+															<div class="metadataBox">
+																Date: {kneejsonData.metadata.date}
+															</div>
+															<div class="metadataBox">
+																Publisher: {kneejsonData.metadata.publisher}
+															</div>
+														</div>
 													</div>
-												</div>
-												<div class="aicontentSectionContent">
-													{#if kneejsonData.sections.length > 0}
-														{#each kneejsonData.sections as items (items)}
-															{#if ItemToggle != null && ItemToggle.name == items.name}
-																<div class="selected-item-area">
-																	<div class="selected-Item-header">
-																		<div class="selected-Item-title">{ItemToggle.name}</div>
-																		<div
-																			class="selected-Item-closeBtn"
-																			on:click={handleClosetogglebtn}
-																		>
-																			x
+													<div class="aicontentSection">
+														<div class="aicontentSectionHeader">
+															<div>
+																<p class="questiontTitle">Questionnaire</p>
+															</div>
+														</div>
+														<div class="aicontentSectionContent">
+															{#if kneejsonData.sections.length > 0}
+																{#each kneejsonData.sections as items (items)}
+																	{#if ItemToggle != null && ItemToggle.name == items.name}
+																		<div class="selected-item-area">
+																			<div class="selected-Item-header">
+																				<div class="selected-Item-title">{ItemToggle.name}</div>
+																				<div
+																					class="selected-Item-closeBtn"
+																					on:click={handleClosetogglebtn}
+																				>
+																					x
+																				</div>
+																			</div>
+																			<div class="select-Item-Content">
+																				{#each ItemToggle.questions as itemObj (itemObj)}
+																					<div class="selected-item-obj">
+																						{itemObj.label}
+
+																						<input
+																							type="text"
+																							class="textoption"
+																							value={isCheckInputData[itemObj.label]}
+																						/>
+																					</div>
+																				{/each}
+																			</div>
 																		</div>
-																	</div>
-																	<div class="select-Item-Content">
-																		{#each ItemToggle.questions as itemObj (itemObj)}
-																			<div class="selected-item-obj">
-																				{itemObj.label}
+																	{:else}
+																		<div
+																			class="text-item-name-area"
+																			style="border-color: {items.name == 'Findings'
+																				? 'rgb(43, 121, 194)'
+																				: 'white'};"
+																		>
+																			<div
+																				class="text-item-name"
+																				on:click={() => handleSelectedEvent(items)}
+																			>
+																				{items.name}
 
+																				{#if items.name == 'Findings'}
+																					<div>
+																						<img
+																							src="robo2.png"
+																							alt="widget"
+																							class="robologo"
+																							on:click={handleMenuClick}
+																						/>
+																					</div>
+																				{/if}
+																			</div>
+																			<div class="text-item-checkBox">
 																				<input
-																					type="text"
-																					class="textoption"
-																					value={isCheckInputData[itemObj.label]}
+																					type="checkbox"
+																					class="aicheckBox"
+																					bind:checked={isChecked[items.name]}
 																				/>
 																			</div>
-																		{/each}
-																	</div>
-																</div>
-															{:else}
-																<div
-																	class="text-item-name-area"
-																	style="border-color: {items.name == 'Findings'
-																		? 'rgb(43, 121, 194)'
-																		: 'white'};"
-																>
-																	<div
-																		class="text-item-name"
-																		on:click={() => handleSelectedEvent(items)}
-																	>
-																		{items.name}
-
-																		{#if items.name == 'Findings'}
-																			<div>
-																				<img
-																					src="robo2.png"
-																					alt="widget"
-																					class="robologo"
-																					on:click={handleMenuClick}
-																				/>
-																			</div>
-																		{/if}
-																	</div>
-																	<div class="text-item-checkBox">
-																		<input
-																			type="checkbox"
-																			class="aicheckBox"
-																			bind:checked={isChecked[items.name]}
-																		/>
-																	</div>
-																</div>
+																		</div>
+																	{/if}
+																{/each}
 															{/if}
-														{/each}
-													{/if}
+														</div>
+													</div>
 												</div>
+												<div></div>
 											</div>
-										</div>
-										<div></div>
+										{/if}
 									</div>
 								{/if}
 							</div>
-							{/if}
+							<!-- <div class="imgSectionListTab">2</div> -->
 						</div>
-						<!-- <div class="imgSectionListTab">2</div> -->
-					</div>
-					<div class="aiNavBar">
-						<div class="upperBar">
-							<div class="optionBox">
-								<img
-									src="widget.png"
-									alt="widget"
-									class="widgetlogo"
-									on:click={handleMenuClick}
-								/>
-							</div>
-							<div class="optionBox">
-								<img src="play.png" alt="widget" class="widgetlogo" />
-							</div>
+						<div class="aiNavBar">
+							<div class="upperBar">
+								<div class="optionBox">
+									<img
+										src="widget.png"
+										alt="widget"
+										class="widgetlogo"
+										on:click={handleMenuClick}
+									/>
+								</div>
+								<div class="optionBox">
+									<img src="play.png" alt="widget" class="widgetlogo" />
+								</div>
 
-							<div class="optionBox">
-								<img src="her1.png" alt="widget" class="widgetlogo" />
-							</div>
+								<div class="optionBox">
+									<img src="her1.png" alt="widget" class="widgetlogo" />
+								</div>
 
-							<div class="optionBox" on:click={handlecloselayer}>
-								<img src="text.png" alt="widget" class="widgetlogo" />
+								<div class="optionBox" on:click={handlecloselayer}>
+									<img src="text.png" alt="widget" class="widgetlogo" />
+								</div>
+							</div>
+							<div class="middleBar">
+								<div class="freq1"></div>
 							</div>
 						</div>
-						<div class="middleBar">
-							<div class="freq1"></div>
-						</div>
-					</div>
-					<!-- <div class="questionArea">
+						<!-- <div class="questionArea">
 		  <div class="AudioListBody">2</div>
 		  <div class="AudioOption">3</div>
 
 		</div> -->
+					</div>
 				</div>
-			</div>
-		{/if}
-		<div class="headerSection" style="height: 10%; width:100%; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid rgb(175, 166, 166);">
+			{/if}
+			<div
+				class="headerSection"
+				style="height: 10%; width:100%; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid rgb(175, 166, 166);"
+			>
 				<div class="placeholderObjecttext">Select a Report</div>
-		</div>
-		<div class="listArea" style=" width: 100%; height:75%">
-			<div class="pdfIconArea">
-				<div class="pdfIconBox"  style="border: {  updateSelectedPdf == 1 ? "2px solid blue" : "0px solid blue"};" on:click={() => handlePdfClick(1)}>
+			</div>
+			<div class="listArea" style=" width: 100%; height:75%">
+				<div class="pdfIconArea">
+					<div
+						class="pdfIconBox"
+						style="border: {updateSelectedPdf == 1 ? '2px solid black' : '0px solid blue'};"
+						on:click={() => handlePdfClick(1)}
+					>
 						<img src="/pdfIcon.svg" alt="widget" class="pdfIcon1" />
-						<p class="pdfTitle">knee</p>
-				</div>
-				<div class="pdfIconBox"  style="border: {  updateSelectedPdf == 2 ? "2px solid blue" : "0px solid blue"};" on:click={() => handlePdfClick(2)}>
+						<p class="pdfTitle"> Structured Reporting knee 03-04-24 - scanlytics mock</p>
+					</div>
+					<div
+						class="pdfIconBox"
+						style="border: {updateSelectedPdf == 2 ? '2px solid black' : '0px solid blue'};"
+						on:click={() => handlePdfClick(2)}
+					>
 						<img src="/pdfIcon.svg" alt="widget" class="pdfIcon1" />
-						<p class="pdfTitle">knee.pt2</p>
+						<p class="pdfTitle"> Structured Reporting knee 03-04-24 - scanlytics mock</p>
 
+					</div>
 				</div>
 			</div>
-		
+			<div class="pdfArea">
+				<div class="pdfContentSectionBtn">
+					<button class="startBtn" on:click={handleAIReportingStartLayer}>Start Reporting</button>
+				</div>
 
-		</div>
-		<div class="pdfArea">
-			<div class="pdfContentSectionBtn">
-				<button class="startBtn" on:click={handleAIReportingStartLayer}>Start Reporting</button>
-			</div>
-
-			<!-- <div class="pdfContentSectionArr">
+				<!-- <div class="pdfContentSectionArr">
 		<div class="mockPfd">0</div>
 		<div class="mockPfd">2</div>
 		<div class="mockPfd">1</div>
@@ -341,200 +345,12 @@
 	   
 
 	  </div> -->
+			</div>
 		</div>
-	</div>
 	{:else}
-		<!-- <div class="defaultText">
-          <div class="placeholderObjecttext">Scanlytics AI Assistant</div>
-      </div> -->
-
-	  <div class="ImageRecognitionArea">
-		<!-- <div class="placeholderObjecttext">Scanlytics AI Assistant</div> -->
-		{#if layerToggle}
-			<div class="StartOverlay">
-				<div class="conversationArea">
-					<div class="ImageArea">
-						<div class="imgScanSection">
-							<!-- <div class="conversationHeader">head</div> -->
-							{#if firstLoad}
-								<!-- hello -->
-							<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
-							 {:else}
-							<div class="aiContentArea">
-								<div class="ImageviewSection" style="width: {menuToggle ? ' 70% ' : '100%'};">
-									<img src="knie.jpg" alt="widget" class="selectedItemlogo" />
-								</div>
-								{#if menuToggle}
-									<div class="ImageReportSection">
-										<div class="imageReportSectionHeader">
-											<p class="assitantTitle">AI Reporting Assistant</p>
-										</div>
-										<div class="assistantContentSection">
-											<div class="metadataSection">
-												<div class="metadataContent">
-													<div class="metadataBox">
-														Title: {kneejsonData.title}
-													</div>
-													<div class="metadataBox">
-														Description: {kneejsonData.description}
-													</div>
-													<div class="metadataBox">
-														Date: {kneejsonData.metadata.date}
-													</div>
-													<div class="metadataBox">
-														Publisher: {kneejsonData.metadata.publisher}
-													</div>
-												</div>
-											</div>
-											<div class="aicontentSection">
-												<div class="aicontentSectionHeader">
-													<div>
-														<p class="questiontTitle">Questionnaire</p>
-													</div>
-												</div>
-												<div class="aicontentSectionContent">
-													{#if kneejsonData.sections.length > 0}
-														{#each kneejsonData.sections as items (items)}
-															{#if ItemToggle != null && ItemToggle.name == items.name}
-																<div class="selected-item-area">
-																	<div class="selected-Item-header">
-																		<div class="selected-Item-title">{ItemToggle.name}</div>
-																		<div
-																			class="selected-Item-closeBtn"
-																			on:click={handleClosetogglebtn}
-																		>
-																			x
-																		</div>
-																	</div>
-																	<div class="select-Item-Content">
-																		{#each ItemToggle.questions as itemObj (itemObj)}
-																			<div class="selected-item-obj">
-																				{itemObj.label}
-
-																				<input
-																					type="text"
-																					class="textoption"
-																					value={isCheckInputData[itemObj.label]}
-																				/>
-																			</div>
-																		{/each}
-																	</div>
-																</div>
-															{:else}
-																<div
-																	class="text-item-name-area"
-																	style="border-color: {items.name == 'Findings'
-																		? 'rgb(43, 121, 194)'
-																		: 'white'};"
-																>
-																	<div
-																		class="text-item-name"
-																		on:click={() => handleSelectedEvent(items)}
-																	>
-																		{items.name}
-
-																		{#if items.name == 'Findings'}
-																			<div>
-																				<img
-																					src="robo2.png"
-																					alt="widget"
-																					class="robologo"
-																					on:click={handleMenuClick}
-																				/>
-																			</div>
-																		{/if}
-																	</div>
-																	<div class="text-item-checkBox">
-																		<input
-																			type="checkbox"
-																			class="aicheckBox"
-																			bind:checked={isChecked[items.name]}
-																		/>
-																	</div>
-																</div>
-															{/if}
-														{/each}
-													{/if}
-												</div>
-											</div>
-										</div>
-										<div></div>
-									</div>
-								{/if}
-							</div>
-							{/if}
-						</div>
-						<!-- <div class="imgSectionListTab">2</div> -->
-					</div>
-					<div class="aiNavBar">
-						<div class="upperBar">
-							<div class="optionBox">
-								<img
-									src="widget.png"
-									alt="widget"
-									class="widgetlogo"
-									on:click={handleMenuClick}
-								/>
-							</div>
-							<div class="optionBox">
-								<img src="play.png" alt="widget" class="widgetlogo" />
-							</div>
-
-							<div class="optionBox">
-								<img src="her1.png" alt="widget" class="widgetlogo" />
-							</div>
-
-							<div class="optionBox" on:click={handlecloselayer}>
-								<img src="text.png" alt="widget" class="widgetlogo" />
-							</div>
-						</div>
-						<div class="middleBar">
-							<div class="freq1"></div>
-						</div>
-					</div>
-					<!-- <div class="questionArea">
-		  <div class="AudioListBody">2</div>
-		  <div class="AudioOption">3</div>
-
-		</div> -->
-				</div>
-			</div>
-		{/if}
-		<div class="headerSection" style="height: 10%; width:100%; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid rgb(175, 166, 166);">
-				<div class="placeholderObjecttext">Select a Report</div>
+		<div class="defaultText">
+			<div class="placeholderObjecttext">Scanlytics AI Assistant</div>
 		</div>
-		<div class="listArea" style=" width: 100%; height:75%">
-			<div class="pdfIconArea">
-				<div class="pdfIconBox"  style="border: {  updateSelectedPdf == 1 ? "2px solid blue" : "0px solid blue"};" on:click={() => handlePdfClick(1)}>
-						<img src="/pdfIcon.svg" alt="widget" class="pdfIcon1" />
-						<p class="pdfTitle">knee</p>
-				</div>
-				<div class="pdfIconBox"  style="border: {  updateSelectedPdf == 2 ? "2px solid blue" : "0px solid blue"};" on:click={() => handlePdfClick(2)}>
-						<img src="/pdfIcon.svg" alt="widget" class="pdfIcon1" />
-						<p class="pdfTitle">knee.pt2</p>
-
-				</div>
-			</div>
-		
-
-		</div>
-		<div class="pdfArea">
-			<div class="pdfContentSectionBtn">
-				<button class="startBtn" on:click={handleAIReportingStartLayer}>Start Reporting</button>
-			</div>
-
-			<!-- <div class="pdfContentSectionArr">
-		<div class="mockPfd">0</div>
-		<div class="mockPfd">2</div>
-		<div class="mockPfd">1</div>
-		<div class="mockPfd">0</div>
-	   
-
-	  </div> -->
-		</div>
-	</div>
-
-		
 	{/if}
 </div>
 
@@ -554,64 +370,11 @@
 		/* background-color: blueviolet; */
 	}
 
-
-
 	.text-item {
 		padding: 10px;
 		margin: 5px 0;
 		/* background: #f0f0f0; */
 		cursor: pointer;
-		/* background-color: blue; */
-	}
-
-	.pdfArea {
-		height: 15%;
-		/* background-color: orchid; */
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-
-		border-top: 1px solid rgb(175, 166, 166);
-	}
-
-	.pdfIconArea{
-		/* background-color: pink; */
-		height: 25%;
-		width: 100%;
-		display: flex;
-		justify-content: space-around;
-		align-items: center;
-		margin-top: 2%;
-
-	}
-
-	.pdfIconBox{
-		/* background-color: yellow; */
-		width: 15%;
-		height: 93%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		gap: 5px;
-		align-items: center;
-		color: black;
-		text-align: center;
-		border-radius: 7px;
-
-	}
-
-	.pdfIcon1{
-		width: 50px;
-		height: 50px;
-		cursor: pointer;
-	}
-	.pdfContentSectionBtn {
-		height: 90%;
-		width: 90%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		/* background-color: blue; */
 	}
 
@@ -666,6 +429,26 @@
 		/* border-radius: 7px; */
 	}
 
+	.listArea {
+		/* background-color: orange; */
+		width: 100%;
+		/* display: flex; */
+	}
+
+	.pdfIconArea{
+	 /* background-color: aqua; */
+	 width: 100%; 
+	 height: 100%;
+	 display: flex;
+	
+	  /* justify-content: center; */
+	/* align-content: center; */
+	align-items: center;
+	 flex-direction: column ;
+	 gap: 5%;
+	 margin-top: 2%;
+
+	}
 	.aiContentArea {
 		background-color: orange;
 		height: 93%;
@@ -1007,6 +790,21 @@
 		/* background-color: green; */
 	}
 
+	.pdfIconBox {
+		/* background-color: green; */
+		height: 15%;
+		width: 98%;
+		display: flex;
+		/* justify-content: center; */
+		align-items: center;
+		
+		/* gap: 5%; */
+	}
+	.pdfIcon1 {
+		height: 50px;
+		width: 57px;
+	}
+
 	.mockPfd {
 		height: 70%;
 		width: 10%;
@@ -1045,5 +843,24 @@
 	.robologo {
 		width: 27px;
 		height: 27px;
+	}
+
+	.defaultText {
+		/* Fixed the class name from defaulText to defaultText */
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.placeholderObjecttext {
+		font-size: 29px;
+		font-weight: bold;
+		font-family: sans-serif;
+		color: rgba(0, 0, 0, 0.403);
+		text-align: center;
+		/* Removed width: 0% which was preventing horizontal centering */
+		/* Removed height: 15% to allow the text to be naturally sized */
+		/* Removed margin-bottom: 10% as it was shifting the text down */
+		/* Removed display: flex and justify-content: center as they're redundant with the parent's centering */
 	}
 </style>

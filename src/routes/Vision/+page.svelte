@@ -318,7 +318,8 @@
 				<div class="mapSection">
 						<img src="/blue2.png" class="map" alt="Logo" height="100%" width="100%"  />
 					<div class="americaPoint">
-						<div class="americaPin" on:click={() => handlePinState("america")}>
+						<div class="americaPin" 
+							on:mouseover={() => handlePinState("america")}>
 
 							<img src="LocationUSA.png"  class="pinpoint" alt="Logo" height="100%" width="100%"  />
 
@@ -367,6 +368,9 @@
 			 <!-- Mobile view -->
 			<div class="mobile-view">
 				<div class="mobile-regions-grid">
+					<div class="pageTitle">
+						<div><p>World Vision</p></div>
+					</div>
 				<!-- America Region Box -->
 				<div class="mobile-region-box" class:active={activeMobileRegion === 'america'} on:click={() => setMobileRegion('america')}>
 					<div class="mobile-region-header">
@@ -379,7 +383,7 @@
 					</div>
 					<h3>The Pressures on US Radiology</h3>
 					<p>
-						Radiology in the US faces seven major challenges identified by 31 societies, including declining reimbursements, corporatization, staffing shortages, and imaging appropriateness issues, creating a complex and challenging business environment.
+						Although healthcare is on a high standard in the US, radiology faces seven major challenges identified by 31 societies. Automation offers potential solutions by streamlining administrative tasks, leveraging AI for improved imaging accuracy, and optimizing workflows to address staffing shortages and enhance productivity.
 					</p>
 					<a href="https://radiologybusiness.com/topics/healthcare-management/medical-practice-management/7-most-pressing-challenges-radiology-practice-perfect-storm-brewing" class="mobile-learn-more">Learn more</a>
 					</div>
@@ -397,7 +401,7 @@
 					</div>
 					<h3>Equitable Healthcare in Latin America</h3>
 					<p>
-						Latin America's healthcare system faces significant challenges exacerbated by the pandemic, including systemic inequities, resource constraints, an aging population, climate change impacts, and rising noncommunicable diseases.
+						Amid systemic inequities and resource constraints, automation offers transformative potential in Latin America, improving healthcare outcomes for an aging population and tackling the impacts of climate change and noncommunicable diseases.
 					</p>
 					<a href="https://www.thinkglobalhealth.org/article/health-latin-america-and-promise-artificial-intelligence" class="mobile-learn-more">Learn more</a>
 					</div>
@@ -415,7 +419,7 @@
 					</div>
 					<h3>Addressing Radiologist Shortages in England</h3>
 					<p>
-						Radiology in England struggles with growing radiologist shortages, increased scanner access, an aging population, and heightened service demands, prompting standardization efforts from the Royal College of Radiologists.
+						With automation, England can effectively address radiologist shortages, optimize scanner access, and manage the demands of an aging population, aligning with the Royal College of Radiologists' standardization efforts.
 					</p>
 					<a href="https://about.cmrad.com/articles/the-growing-radiologist-shortage-a-critical-healthcare-crisis" class="mobile-learn-more">Learn more</a>
 					</div>
@@ -433,7 +437,7 @@
 					</div>
 					<h3>Connecting Remote Areas</h3>
 					<p>
-						Radiology in Africa faces a triple challenge: severe specialist shortages, inadequate infrastructure, and limited access to advanced imaging technologies, resulting in delayed diagnoses and suboptimal care.
+						Automation presents a transformative opportunity for Africa's radiology sector, addressing specialist shortages, infrastructure gaps, and limited access to advanced imaging technologies to improve diagnostic timeliness and care quality.
 					</p>
 					<a href="https://www.nature.com/articles/s41467-024-46567-3" class="mobile-learn-more">Learn more</a>
 					</div>
@@ -451,7 +455,7 @@
 					</div>
 					<h3>Supplementing Specialist Availability Across Asia</h3>
 					<p>
-						Radiology in Asia faces three key challenges: limited support for interventional radiology, insufficient subspecialization training, and shortages of qualified radiologists and equipment, with significant regional variation.
+						Advanced technologies offer promising solutions for Asia's radiology sector, enhancing support for interventional radiology, improving subspecialization training, and alleviating shortages of qualified radiologists and equipment across diverse regions.
 					</p>
 					<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10550747/" class="mobile-learn-more">Learn more</a>
 					</div>
@@ -469,7 +473,7 @@
 					</div>
 					<h3>Addressing Urban-Rural Maldistribution</h3>
 					<p>
-						The radiology sector in Australia faces significant challenges, including severe urban-rural radiologist maldistribution, increasing workloads causing burnout, and pressure to meet growing demand from an aging population.
+						Innovative solutions offer promising ways to tackle Australia's radiology challenges, addressing urban-rural radiologist maldistribution, reducing workloads to prevent burnout, and meeting the growing demand from an aging population.
 					</p>
 					<a href="https://pubmed.ncbi.nlm.nih.gov/37899512/" class="mobile-learn-more">Learn more</a>
 					</div>
@@ -484,15 +488,12 @@
 	</main>
 	
 <style>
-	:global(html), :global(body) {
-		height: 100%;
-		overflow-y: auto !important;
-	}
-
 	main {
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
-		overflow: hidden;
+		overflow-y: auto;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
 	}
 
 	a {
@@ -547,7 +548,7 @@
 		color: rgb(255, 255, 255);
 	}
 
-	.map{
+	.map {
 		height: 100%;
 		width: 80%;
 		opacity: 0.9;
@@ -592,6 +593,7 @@
 		align-items: center;
 		justify-content: center;
 	}
+	
 	.brazilpin{
 		/* background-color: rgb(255, 68, 0); */
 		/* width: 50px;
@@ -764,6 +766,19 @@
 		padding: 15px;
 		overflow-y: auto;
 	}
+
+	.pageTitle{
+		/* background-color: yellow; */
+		height: 21%;
+		font-size: 30px;
+		display: flex;
+		justify-content: center;
+		text-align: center;
+		align-items: center;
+		font-weight:900; 
+		color: rgba(255, 255, 255, 0.99);
+		font-family: system-ui;
+	}
 	
 	.mobile-regions-grid {
 		width: 100%;
@@ -771,6 +786,9 @@
 		flex-direction: column;
 		gap: 20px;
 		padding-bottom: 20px;
+		
+
+		/* background-color: pink; */
 	}
 	
 	.mobile-region-box {

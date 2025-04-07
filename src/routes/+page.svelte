@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Header from './Header.svelte';
 	import Footer from './Footer.svelte';
+	import Header from './Header.svelte';
 	import { redirect } from '@sveltejs/kit';
 	import { onMount, onDestroy } from 'svelte';
 
@@ -9,7 +9,7 @@
 	let isMobile = false;
 
 	// Function to check if device is mobile
-	function checkIfMobile() {
+	export function checkIfMobile() {
 		isMobile = innerWidth <= 1024;
 	}
 
@@ -20,12 +20,12 @@
 	// Server initialization
 	onMount(async () => {
 		try {
-			const response = await fetch('https://scanlytics2-ml.fly.dev/', {
+			console.log('Pinging whisper server... ');
+			const response = await fetch('https://scanlytics2-whisper.fly.dev/', {
 				method: 'GET'
 			});
-			console.log('Pinging ml server... ');
 			if (response.ok) {
-				console.log('Ml server started successfully');
+				console.log('Whisper server started successfully');
 			} else {
 				console.error('Failed to start server', response.status);
 			}
@@ -36,12 +36,12 @@
 
 	onMount(async () => {
 		try {
-			console.log('Pinging whisper server... ');
-			const response = await fetch('https://scanlytics2-whisper.fly.dev/', {
+			const response = await fetch('https://scanlytics2-ml.fly.dev/', {
 				method: 'GET'
 			});
+			console.log('Pinging ml server... ');
 			if (response.ok) {
-				console.log('Whisper server started successfully');
+				console.log('Ml server started successfully');
 			} else {
 				console.error('Failed to start server', response.status);
 			}
@@ -73,20 +73,23 @@
 
 <main>
 	<Header />
-
 	<div class="mainSection">
+		<div class="mainSectionLeftHeader">
+			<!-- <p class="AIaaS">Conversational AI Assistant</p> -->
+
+			{#if isMobile}
+			<p class="AIaaS">AI as a Service</p>
+
+			{/if}
+		</div>
+
+
 		<!-- Gif Image - Positioned differently on mobile vs desktop -->
 		<div class="mainSectionRight" class:mobile-image={isMobile}>
-			<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" class="brain-gif" />
+			<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" class="brain-gif"   />
 		</div>
 
 		<div class="mainSectionLeft" class:mobile-content={isMobile}>
-			<!-- Header  -->
-			{#if !isMobile}
-				<div class="mainSectionLeftHeader">
-					<p>Worlds fastest structured reporting</p>
-				</div>
-			{/if}
 
 			<!-- Middle Area -->
 			<div class="mainSectionLeftText">
@@ -94,21 +97,23 @@
 				<div class="mainSectionLeftTextTitle">Revolutionizing Medical Reporting with AI</div>
 
 				<div class="mainSectionLeftTextSubtext">
-					With Scanlytics we revolutionize radiological reporting through our innovative conversational AI. As the only provider, the resulting structured reports are saved directly in the usual PDF format and can thus be seamlessly integrated into the radiological workflow. We offer 434 structured reports for CT, MRI, X-ray and ultrasound and are happy to create templates adapted to your reports. Whether for radiological practices, hospitals, teleradiology providers or research institutions - Scanlytics is the future of efficient reporting.
+					Building the future of structured reporting with our conversational AI. 
+					<br>
+					Visit our Technology Page to try yourself or book directly a Call with us. 
 				</div>
 
 			</div>
 
 
 			<!-- Button Area of left main section -->
-			<div class="mainSectionLeftButtons" class:mobile-buttons={isMobile}>
-				<div class="leftBtnSection">
-					<button class="leftBtn call" on:click={redirectUser}>
-						<a href="https://calendly.com/tobias-wedel-code/30min" class="bookCalllable">Book a Call</a>
+			<div class="mainSectionButtons" class:mobile-buttons={isMobile}>
+				<div class="ButtonSection">
+					<button class="Button call" on:click={redirectUser}>
+						<a href="https://calendly.com/tobias-wedel-code/30min" class="buttoncalltext">Book a Call</a>
 					</button>
 
-					<button class="leftBtn tech" on:click={redirectTechnologyPage}>
-						<a href="/Technology/" class="leftappointmentbtn">Technology</a>
+					<button class="Button tech" on:click={redirectTechnologyPage}>
+						<a href="/Technology/" class="buttontechtext">Technology</a>
 					</button>
 				</div>
 			</div>
@@ -124,7 +129,9 @@
 	main {
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
-		overflow: hidden;
+		overflow-y: auto;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
 	}
 
 	a {
@@ -134,16 +141,9 @@
 		font-family: system-ui;
 	}
 
-	.bookCalllable {
-		color: rgb(255, 255, 255);
-		font-size: 14px;
-		font-weight: 400;
-		font-family: system-ui;
-	}
-
 	.mainSection {
 		height: 77%;
-		margin-top: 30px;
+		margin-top: 26px;
 		position: relative;
 	}
 
@@ -155,20 +155,15 @@
 		position: relative;
 		z-index: 2;
 		justify-content: space-between;
-	}
-
-	.mainSectionLeftHeader {
-		width: 100%;
-		height: 7%;
-		display: flex;
-		align-items: center;
+		/* background-color: pink; */
+		margin-top: 2%;
 	}
 
 	.mainSectionRight {
-		width: 50%;
+		width: 55%;
 		position: absolute;
-		top: 11%;
-		right: 0;
+		top: 3%;
+		right: 0%;
 		opacity: 0.8;
 		z-index: 1;
 	}
@@ -176,9 +171,19 @@
 	.brain-gif {
 		width: 70%;
 		height: auto;
+		margin-left: 15%;
+		
 	}
 
 	.mainSectionLeftHeader {
+		display: flex;
+		justify-content: flex-start;
+		width: 100%;
+		position: relative;
+		z-index: 3;
+	}
+
+	.mainSectionLeftHeader .Best{
 		background-color: rgb(255, 255, 255);
 		width: 300px;
 		height: 40px;
@@ -188,7 +193,26 @@
 		border: 1px solid black;
 		border-radius: 40px;
 		color: black;
+		margin-left: 0.5%;
+		font-family: system-ui;
+
+	}
+
+	.mainSectionLeftHeader .AIaaS{
+		background-color: rgb(70, 102, 135);
+		width: auto;
+		padding: 0 20px;
+		height: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid rgb(155, 197, 234);
+		border-radius: 40px;
+		color: rgb(255, 255, 255);
+		margin-right: 5%;
 		margin-left: 1%;
+		font-family: system-ui;
+
 	}
 
 	.mainSectionLeftText{
@@ -199,8 +223,8 @@
 	.mainSectionLeftTextTitle {
 		width: 70%;
 		height: 100%;
-		padding-left: 1%;
 		font-size: clamp(6vw, 6vw, 6vw);
+		text-align: left;
 		font-family: system-ui;
 		color: white;
 	}
@@ -213,54 +237,69 @@
 		font-family: system-ui;
 	}
 
-	.mainSectionLeftButtons {
+	.mainSectionButtons {
 		width: 70%;
 		height: 7%;
 		color: rgb(48, 48, 48);
 		padding: 1%;
-	}
-
-	.mainSectionLeftButtons.mobile-buttons{
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
 	}
 
-	.leftBtnSection {
+	.mainSectionButtons.mobile-buttons{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.ButtonSection {
 		width: 70%;
 		height: 100%;
 		color: rgb(48, 48, 48);
 		display: flex;
+		align-items: center;
 		flex-direction: row;
 		justify-content: flex-start;
 		gap: 5%;
 	}
 
-	.leftBtn {
+	.Button {
 		width: 200px;
 		height: 30px;
 		display: flex;
 		justify-content: center;
+		align-items: center;
 		border-radius: 40px;
 		color: black;
 		cursor: pointer;
+		text-align: center;
 	}
 
-	.leftBtn.tech {
-		background-color: rgb(255, 255, 255);
-		border: 1px solid black;
-	}
-
-	.leftBtn.call {
+	.Button.call {
 		background-color: black;
 		border: 1px solid white;
 	}
 
-	.leftappointmentbtn {
-		color: rgb(0, 0, 0);
-		font-size: 14px;
+	.Button.tech {
+		background-color: rgb(255, 255, 255);
+		border: 1px solid black;
+	}
+
+	.buttontechtext, .buttoncalltext {
+		text-align: center;
+		display: block;
+		font-size: 16px;
 		font-weight: 400;
 		font-family: system-ui;  
+	}
+
+	.buttontechtext {
+		color: rgb(0, 0, 0);
+	}
+	
+	.buttoncalltext {
+		color: rgb(255, 255, 255);
 	}
 
 	/* Mobile styles */
@@ -283,6 +322,10 @@
 			height: auto !important;
 			min-height: 100vh;
 			overflow-y: auto !important;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+
 		}
 
 		.mainSection {
@@ -291,13 +334,27 @@
 			min-height: 80vh;
 			display: flex;
 			flex-direction: column;
+			/* align-items: center; */
+			/* background-color: pink; */
+			width: 100%;
 		}
 
 		.mobile-content {
 			width: 100%;
-			padding: 20px;
+			padding: 10px;
 			position: relative;
 			z-index: 5;
+		}
+
+		.mainSectionLeftHeader {
+			justify-content: flex-end;
+			padding-right: 0px;
+			/* background-color: rgb(58, 242, 16) */
+
+		}
+
+		.mainSectionLeftHeader .Best {
+			display: none;
 		}
 
 		.mobile-image {
@@ -317,6 +374,7 @@
 			width: 100%;
 			height: auto;
 			object-fit: cover;
+			margin-left: 0%;
 		}
 
 		.mainSectionLeftTextSubtext {
@@ -331,15 +389,39 @@
 		.mainSectionLeftTextTitle {
 			width: 100%;
 			height: auto;
-			padding: 1rem;
 			font-size: 50px;
+			text-align: left;
 			font-family: system-ui;
 			color: white;
-			text-align: center;
 		}
 
 		.mainSectionLeftText {
 			height: auto;
 		}
+
+		.ButtonSection {
+			flex-direction: column;
+		}
+
+		.Button.call {
+			margin-bottom: 20px;
+		}
+
+
+		.Button {
+			height: 40px;
+			width: 300px;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.buttoncalltext {
+			text-align: center;
+		}
+
+		.buttontechtext {
+			text-align: center;
+		}
 	}
+
 </style>

@@ -1,211 +1,101 @@
-<script lang="ts">
-	import Footer from "../Footer.svelte";
-  	import Header from "../Header.svelte";
-
-	let impressState: boolean = false;
-	let DatenschutzState: boolean = false;
-	function redirectUser(){ 
-	window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
-	}
-
-
-	const handleImpressumClick = () => { 
-		impressState = !impressState
-	}
-	
-	const handleDatenschutzClick = () => { 
-		DatenschutzState = !DatenschutzState
-	}
-
-</script>
-
-<main>
-
-	<Header />
-
-	<div class="mainSection">
-		<div class="mainLeftContentSection">
-			<div class="profileCard">
-				<di class="profileImageCardSection" >
-					<img src="/Philipp_circle_portrait.png"  class="userProfileImg"/>
-				</di>
-				<div class="profileCardNameSection">
-					 <p class="profileNameContent">
-					 Philipp Gallaschik
-					 </p>
-				</div>
-				<div class="profileCardKnowHowSection">
-					<p class="knowHowContent">
-						Doctor of Medicine (since 2021)<br>
-						Software Engineer (2021 - today)
-					</p>
-				
-				</div>
-			</div>
-
-			<div  class="profileCard">
-				<div class="profileImageCardSection" >
-					<img src="/Tobias_circle_portrait.png"  class="userProfileImg"/>
-
-				</div>
-				<div class="profileCardNameSection">
-					<p class="profileNameContent">
-						Tobias Wedel
-					</p>
-				</div>
-				<div class=profileCardKnowHowSection>
-					<p class="knowHowContent">
-						Product Manager (2022 - today)<br>
-						Software Engineer (2024 - today)
-					</p>
-				</div>
-			</div>
-			
-			<div class="profileCard">
-				<div class="profileImageCardSection">
-					<img src="/emms1.jpg"  class="userProfileImg"/>
-
-				</div>
-				<div class="profileCardNameSection">
-					<p class="profileNameContent">
-						Emmanuel Neuenhaus
-					</p>
-				</div>
-				<div class="profileCardKnowHowSection">
-					<p class="knowHowContent" >
-						Business Administration (2019 - 2022)<br>
-						Software Engineer (2022 - today)
-					</p>
-				</div>
+<script>
+	import Layout from '../Layout.svelte';
+  </script>
+  
+  <Layout>
+	<div class="page_container">
+		<div class="Above">
+			<h2>About us</h2>
+		</div>
+		<div class="Text">
+			<p>
+				Welcome to Scanlytics, where innovation meets healthcare excellence. We are dedicated to transforming the radiology sector by addressing critical challenges such as specialist shortages, infrastructure limitations, and access disparities. Through cutting-edge technologies and collaborative solutions, we aim to enhance diagnostic accuracy, streamline workflows, and improve patient outcomes across diverse regions. Join us on our mission to revolutionize radiology, empowering healthcare professionals and providing better care for communities worldwide.
+			</p>
+		</div>
+		<div class="GroupImage">
+			<h2>Team</h2>
+			<div class="image-container">
+				<img src="/ScanlyticsGroupImage4.jpg" alt="Group Image" />
 			</div>
 		</div>
 	</div>
-
-	<Footer />
-</main>
-
-<style>
-	main {
-		background-color: rgb(0, 0, 0);
-		height: 100vh;
-		overflow: hidden;
-	}
-
-	.mainSection {
-		height: 77%;
-		margin-top: 30px;
-	}
-
-	.mainLeftContentSection {
+  </Layout>
+  
+  <style>
+	.page_container {
 		display: flex;
-		justify-content: space-around;
+		flex-direction: column;
+		height: 100%; /* This is essential to make the content not overlap the footer */
+		flex: 1; /* This is essential to make the content not overlap the footer */
+	}
+
+	.Above {
+		padding-top: 10px;
+		flex-direction: row;
+		display: flex;
+		justify-content: center;
 		align-items: center;
-		width: 100%;
-		height: 100%;
+	}
+
+	.Above h2 {
+		color: white;
+		font-family: system-ui;
+	}
+
+	.Text {
+		flex-direction: row;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.Text p {
+		color: white;
+		width: 70%;
+		padding-top: 15px;
+		text-align: center;
+		font-family: system-ui;
+	}
+
+	.GroupImage {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 1;
+	}
+
+	.image-container {
+		width: 80%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 1;
 		position: relative;
 	}
 
-	.profileCard{
-		width: 20%;
-		height: 50%;
-		background-color: rgba(41, 40, 41, 0.86);
-		display: flex;
-		border: 1px solid white; 
-		border-radius: 7px;
-		flex-direction: column;
-	}
-
-	.profileImageCardSection{
-		padding: 10px 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.profileCardNameSection{
-		/* background-color: rgb(21, 90, 34); */
-		min-height: 40px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-top: 1px solid white;
-		border-bottom: 1px solid white;
-	}
-
-	.profileNameContent{
-		font-size: 30px;
-		color: white;
-		font-family: Arial, Helvetica, sans-serif;
-	}
-
-	.profileCardKnowHowSection{
-		/* background-color: rgb(194, 144, 255); */
-		min-height: 130px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		/* padding: 0.5rem; */
-		align-items: center;
-		padding-top: 5%;
-		height: 100%;
-	}
-
-	.profileCardKnowHowSection p{
+	.GroupImage h2 {
+		padding-top: 20px;
 		color: white;
 		font-family: system-ui;
-		font-size: 25px;
 	}
 
-	.knowHowContent {
-		padding: 20px;
-		text-align: center;
+	.GroupImage img {
+		max-height: 100%; /* Make image only as high as the container */
+		padding-top: 10px;
+		width: auto; /* Maintain aspect ratio */
+		object-fit: contain; /* Ensure the image fits within the container */
+		position: absolute; /* Position absolutely within the container */
+		top: 0;
+		bottom: 0;
+		margin: auto; /* Center vertically */
 	}
 
-
-	.userProfileImg{
-		height: 250px;
-		max-height: 250px;
-		max-width: 100%;
-		border-radius: 50%;
-		width: auto;
-	}
-
-
-	.mainImage {
-		max-width: 100%;
-		max-height: 100%;
-		width: auto;
-		height: auto;
-		object-fit: contain; /* Ensures the image scales while maintaining aspect ratio */
-	}
-
-	@media (max-width: 768px) {
-		/* Force content to be scrollable */
-		:global(body) {
-			overflow-y: auto !important;
+	@media (max-width: 1024px) {
+		.image-container {
+			margin-bottom: 50px;
 		}
+	}
 
-        .mainSection {
-            height: auto !important;
-            overflow-y: auto !important;
-        }
-        
-        .mainLeftContentSection {
-            flex-direction: column;
-            height: auto;
-            padding: 20px 0;
-            gap: 20px; /* Adds space between stacked cards */
-        }
-        
-        .profileCard {
-            width: 90%; /* Make cards wider on mobile */
-            height: auto; /* Let height adjust to content */
-            margin-bottom: 20px; /* Add space between cards */
-        }
-        
-        main {
-            height: auto !important; 
-            overflow-y: auto !important;
-        }
-    }
-</style>
+  </style>
