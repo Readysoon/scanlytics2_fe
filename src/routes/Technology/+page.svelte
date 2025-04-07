@@ -147,9 +147,9 @@
 	let isMobile = false;
 
 	if (typeof window !== 'undefined') {
-		isMobile = window.innerWidth <= 600;
+		isMobile = window.innerWidth <= 1024;
 		window.addEventListener('resize', () => {
-			isMobile = window.innerWidth <= 600;
+			isMobile = window.innerWidth <= 1024;
 		});
 	}
 
@@ -313,7 +313,7 @@
 								src="widget.png"
 								alt="widget"
 								class="widgetlogo"
-								on:click={handleMenuClick}
+								on:click={isMobile ? () => {} : handleMenuClick}
 							/>
 						</div>
 						<div class="optionBox">
