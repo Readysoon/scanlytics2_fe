@@ -9,7 +9,7 @@
 	let isMobile = false;
 
 	// Function to check if device is mobile
-	function checkIfMobile() {
+	export function checkIfMobile() {
 		isMobile = innerWidth <= 1024;
 	}
 
@@ -20,12 +20,12 @@
 	// Server initialization
 	onMount(async () => {
 		try {
-			const response = await fetch('https://scanlytics2-ml.fly.dev/', {
+			console.log('Pinging whisper server... ');
+			const response = await fetch('https://scanlytics2-whisper.fly.dev/', {
 				method: 'GET'
 			});
-			console.log('Pinging ml server... ');
 			if (response.ok) {
-				console.log('Ml server started successfully');
+				console.log('Whisper server started successfully');
 			} else {
 				console.error('Failed to start server', response.status);
 			}
@@ -36,12 +36,12 @@
 
 	onMount(async () => {
 		try {
-			console.log('Pinging whisper server... ');
-			const response = await fetch('https://scanlytics2-whisper.fly.dev/', {
+			const response = await fetch('https://scanlytics2-ml.fly.dev/', {
 				method: 'GET'
 			});
+			console.log('Pinging ml server... ');
 			if (response.ok) {
-				console.log('Whisper server started successfully');
+				console.log('Ml server started successfully');
 			} else {
 				console.error('Failed to start server', response.status);
 			}
@@ -73,9 +73,7 @@
 
 <main>
 	<Header />
-	<div class="mainSection">+
-		<!-- Headers  -->
-
+	<div class="mainSection">
 		<div class="mainSectionLeftHeader">
 			<p class="Best">Worlds fastest structured reporting</p>
 
@@ -128,7 +126,9 @@
 	main {
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
-		/* overflow: hidden  !important; */
+		overflow-y: auto;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
 	}
 
 	a {
@@ -140,7 +140,7 @@
 
 	.mainSection {
 		height: 77%;
-		margin-top: 30px;
+		margin-top: 26px;
 		position: relative;
 	}
 
@@ -197,7 +197,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border: 1px solid black;
+		border: 1px solid rgb(155, 197, 234);
 		border-radius: 40px;
 		color: rgb(255, 255, 255);
 		margin-right: 5%;
@@ -231,12 +231,15 @@
 		height: 7%;
 		color: rgb(48, 48, 48);
 		padding: 1%;
+		display: flex;
+		flex-direction: row;
 	}
 
 	.mainSectionButtons.mobile-buttons{
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		justify-content: center;
+		align-items: center;
 	}
 
 	.ButtonSection {
@@ -308,6 +311,10 @@
 			height: auto !important;
 			min-height: 100vh;
 			overflow-y: auto !important;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+
 		}
 
 		.mainSection {
@@ -316,6 +323,9 @@
 			min-height: 80vh;
 			display: flex;
 			flex-direction: column;
+			/* align-items: center; */
+			/* background-color: pink; */
+			width: 100%;
 		}
 
 		.mobile-content {
@@ -328,6 +338,8 @@
 		.mainSectionLeftHeader {
 			justify-content: flex-end;
 			padding-right: 0px;
+			/* background-color: rgb(58, 242, 16) */
+
 		}
 
 		.mainSectionLeftHeader .Best {
@@ -399,4 +411,5 @@
 			text-align: center;
 		}
 	}
+
 </style>

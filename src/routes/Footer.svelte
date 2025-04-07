@@ -58,13 +58,13 @@
 
 	<div class="footer-center-box">
 		<div class="desktop-view">
-			<p class="footer-text right" on:click={handleImpressumClick}>Impressum</p> 
+			<a href="/Datenschutz" class="footer-text right">Impressum</a>
 			<span class="separator-desktop">|</span>
 			<div class="footer-text right" on:click={() => window.location.href = '/Datenschutz'}>Datenschutz</div>
 		</div>
 		
 		<div class="mobile-view">
-			<p class="footer-text right" on:click={handleImpressumClick}>Impressum</p>
+			<a href="#Datenschutz" class="footer-text right">Impressum</a>
 			<p class="footer-text separator">-</p>
 			<div class="footer-text right" on:click={() => window.location.href = '/Datenschutz'}>Datenschutz</div>
 		</div>
@@ -72,6 +72,10 @@
 </footer>
 
 <style>
+	a {
+		text-decoration: none;
+	}
+
     .overlay{
 		background-color: rgba(0, 0, 0, 0.664);
 		position: absolute;
@@ -95,21 +99,6 @@
 
     .impressumCardHead{
 		height: 20%;
-		width: 100%;
-		display: flex;
-		/* background-color: green; */
-		border-bottom: 1px solid rgba(0, 0, 0, 0.259);
-	}
-
-    .DatenSchutzCard{
-		background-color: white;
-		height: 70%;
-		width: 40%;
-		border-radius: 7px;
-	}
-
-	.DatenSchutzCardHead{
-		height: 7%;
 		width: 100%;
 		display: flex;
 		/* background-color: green; */
@@ -153,6 +142,8 @@
 
     .footerSection {
         width: 100%;
+		margin-top: 4%;
+		/* background-color: pink; */
         padding: 1em;
         display: flex;
         justify-content: space-between;

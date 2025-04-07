@@ -43,6 +43,7 @@
 
 	.Text {
 		flex-direction: row;
+
 		display: flex;
 		justify-content: center;
 		align-items: center;
