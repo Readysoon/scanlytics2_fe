@@ -4,10 +4,10 @@
   </script>
   
   <main>
-    <Header />
-      <div class="slot-container">
-        <slot></slot>
-      </div>
+    <div class="content-wrap">
+      <Header />
+      <slot></slot>
+    </div>
     <Footer />
   </main>
   
@@ -17,29 +17,9 @@
       flex-direction: column;
       min-height: 100vh;
     }
-
-    .slot-container {
-      display: flex;
-      flex-direction: column;
+    
+    .content-wrap {
       flex: 1;
     }
   </style>
-
-  <!--
-Layout Template Below
-
-<script>
-  import Layout from '../Layout.svelte';
-</script>
-
-<Layout>
-
-</Layout>
-
-<style>
-
-</style>
-  
-
-  -->
   
