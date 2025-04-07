@@ -10,6 +10,7 @@
 	let audioUrl = $state('');
 	let audioElement;
 	let updateAudioState = $state(false)
+	let btnState =  $state(false)
 
 	
 	
@@ -243,7 +244,11 @@
 </script>
 
 <button on:click={toggleRecording} class:is-recording={isRecording}>
-	<img src="/mic.png" alt="Microphone" class="mic-icon" />
+	{#if btnState}
+	<img src="/pause.png" alt="Microphone" class="mic-icon" />
+	{:else}
+	<img src="/play.png" alt="Microphone" class="mic-icon" />
+	{/if}
 </button>
 
 <style>
@@ -251,6 +256,18 @@
 		width: 24px;
 		height: 24px;
 	}
+	button {
+    background: none; /* Removes the background */
+    border: none; /* Optionally, remove border if you don't want it */
+    color: #000; /* Set text color (optional) */
+    padding: 10px 20px; /* Add some padding for better button appearance */
+    cursor: pointer; /* Make the button look clickable */
+  }
+
+  
+  button.is-recording {
+    background: #ff0000; /* Change the background if recording (for example red) */
+  }
 
 </style>
 
