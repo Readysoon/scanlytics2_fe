@@ -160,7 +160,7 @@
 	.mainSectionRight {
 		width: 50%;
 		position: absolute;
-		top: 11%;
+		top: 0%;
 		right: 0;
 		opacity: 0.8;
 		z-index: 1;
