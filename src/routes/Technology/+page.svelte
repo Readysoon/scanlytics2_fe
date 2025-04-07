@@ -16,7 +16,7 @@
 	let currentStep = $state(2); // Assuming the current step is managed globally
 	let layerToggle = $state(true);
 	let firstLoad = $state(true);
-	let menuToggle = $state(true);
+	let menuToggle = $state(false);
 	let ItemToggle: any = $state(null);
 	let updateSelectedPdf = $state(1);
 	let isChecked: any = $state({});
