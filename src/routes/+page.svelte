@@ -155,13 +155,15 @@
 		position: relative;
 		z-index: 2;
 		justify-content: space-between;
+		/* background-color: pink; */
+		margin-top: 2%;
 	}
 
 	.mainSectionRight {
 		width: 50%;
 		position: absolute;
-		top: 0%;
-		right: 0;
+		top: 9%;
+		right: -5%;
 		opacity: 0.8;
 		z-index: 1;
 	}
