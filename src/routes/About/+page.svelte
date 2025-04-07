@@ -5,7 +5,7 @@
   <Layout>
 	<div class="page_container">
 		<div class="Above">
-			<h2>Startup Information</h2>
+			<h2>About us</h2>
 		</div>
 		<div class="Text">
 			<p>
@@ -13,7 +13,7 @@
 			</p>
 		</div>
 		<div class="GroupImage">
-			<h2>Our Team</h2>
+			<h2>Team</h2>
 			<div class="image-container">
 				<img src="/ScanlyticsGroupImage4.jpg" alt="Group Image" />
 			</div>
@@ -39,6 +39,7 @@
 
 	.Above h2 {
 		color: white;
+		font-family: system-ui;
 	}
 
 	.Text {
@@ -54,6 +55,7 @@
 		width: 70%;
 		padding-top: 15px;
 		text-align: center;
+		font-family: system-ui;
 	}
 
 	.GroupImage {
@@ -76,10 +78,12 @@
 	.GroupImage h2 {
 		padding-top: 20px;
 		color: white;
+		font-family: system-ui;
 	}
 
 	.GroupImage img {
 		max-height: 100%; /* Make image only as high as the container */
+		padding-top: 10px;
 		width: auto; /* Maintain aspect ratio */
 		object-fit: contain; /* Ensure the image fits within the container */
 		position: absolute; /* Position absolutely within the container */
