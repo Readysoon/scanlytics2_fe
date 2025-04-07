@@ -251,6 +251,18 @@
 	<img src="/play.png" alt="Microphone" class="mic-icon" />
 	{/if} 
 </button> 
+
+{#if updateAudioState}
+<audio autoplay 
+on:ended={handleAudioEnd}
+
+>
+	<source src={`${audioUrl}?t=${Date.now()}`} type="audio/mp3" />
+	Your browser does not support the audio element.
+</audio>
+
+
+{/if}
  
 
 <style>
@@ -273,15 +285,3 @@
   }
 
 </style>
-
-{#if updateAudioState}
-<audio autoplay 
-on:ended={handleAudioEnd}
-
->
-	<source src={`${audioUrl}?t=${Date.now()}`} type="audio/mp3" />
-	Your browser does not support the audio element.
-</audio>
-
-
-{/if}
