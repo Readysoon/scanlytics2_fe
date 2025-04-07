@@ -147,9 +147,9 @@
 	let isMobile = false;
 
 	if (typeof window !== 'undefined') {
-		isMobile = window.innerWidth <= 600;
+		isMobile = window.innerWidth <= 1024;
 		window.addEventListener('resize', () => {
-			isMobile = window.innerWidth <= 600;
+			isMobile = window.innerWidth <= 1024;
 		});
 	}
 
@@ -181,6 +181,31 @@
 	function handleUploadSuccess(parsedTexts: string[]) {
 		extractedTexts = parsedTexts;
 	}
+
+	function downloadreport() {
+		// Create a link element
+		const link = document.createElement('a');
+		
+		// Set the download attribute and file path
+		link.download = 'structured_report.pdf';
+		
+		// Set the href to the PDF file path
+		// If your PDF is in the static or public folder:
+		link.href = 'hidden_structured_report.pdf';
+		
+		// Append to the document
+		document.body.appendChild(link);
+		
+		// Trigger the click event
+		link.click();
+		
+		// Clean up - remove the link from the document
+		document.body.removeChild(link);
+		
+		// Optional: Add analytics or tracking
+		console.log('Report downloaded');
+	}
+
 </script>
 
 <head>
@@ -313,7 +338,7 @@
 								src="widget.png"
 								alt="widget"
 								class="widgetlogo"
-								on:click={handleMenuClick}
+								on:click={isMobile ? () => {} : handleMenuClick}
 							/>
 						</div>
 						<div class="optionBox">
@@ -321,7 +346,12 @@
 						</div>
 
 						<div class="optionBox">
-							<img src="her1.png" alt="widget" class="widgetlogo" />
+							<img 
+								src="her1.png" 
+								alt="widget" 
+								class="widgetlogo" 
+								on:click={downloadreport}
+							/>
 						</div>
 
 						<div class="optionBox" on:click={handlecloselayer}>
@@ -498,7 +528,7 @@
 	}
 
 	.mainSection {
-		background-color: rgb(205, 35, 35);
+		background-color: #0d1117;
 		height: 88%;
 		margin-top: 30px;
 	}
@@ -511,62 +541,6 @@
 		position: relative;
 	}
 
-	@media (max-width: 768px) {
-		/* Force content to be scrollable */
-		:global(body) {
-			overflow-y: auto !important;
-		}
-
-		main {
-			height: auto !important;
-			overflow-y: auto !important;
-		}
-		
-		.mainSection {
-			height: auto !important;
-			overflow: visible !important;
-			margin-top: 15px;
-		}
-		
-		.boxArea {
-			flex-direction: column;
-			height: auto;
-			padding: 15px;
-			margin-left: 0;
-		}
-		
-		.boxSelectArea {
-			width: 100%;
-			height: auto;
-			margin-bottom: 20px;
-		}
-		
-		.boxSelectAreaLayer {
-			height: auto;
-			min-height: 200px;
-		}
-		
-		.boxAreaMl {
-			width: 100%;
-			flex-direction: column;
-			margin-left: 0;
-		}
-		
-		.box {
-			width: 100%;
-			margin: 10px 0;
-			height: auto;
-		}
-		
-		.explainArea {
-			height: auto;
-			margin-top: 20px;
-		}
-		
-		.mainLeftContentSection {
-			height: auto;
-		}
-	}
 	.StartOverlay {
 		height: 100%;
 		width: 100%;
@@ -576,6 +550,7 @@
 		background-color: rgba(18, 17, 17, 0.686);
 		z-index: 6;
 	}
+
 	.conversationArea {
 		height: 100%;
 		/* background-color: rgba(42, 176, 42, 0.126); */
@@ -645,15 +620,16 @@
 		display: flex;
 		flex-direction: row;
 	}
+
 	.ImageviewSection {
 		background-color: #0d1117;
 		height: 100%;
-
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
 	}
+	
 	.ImageReportSection {
 		background-color: #0d1117;
 		height: 100%;
@@ -895,7 +871,7 @@
 
 	.aiNavBar {
 		height: 100%;
-		width: 3%;
+		width: 40px;
 		background-color: #0d1117;
 		border: 1px solid rgba(255, 255, 255, 0.175);
 		flex-direction: column;
@@ -916,7 +892,7 @@
 
 	.optionBox {
 		width: 80%;
-		height: 15%;
+		height: 100%;
 		/* background-color: #7d2a2a; */
 		display: flex;
 		justify-content: center;
@@ -926,7 +902,7 @@
 
 	.selectedItemlogo {
 		height: 95%;
-		width: 76%;
+		width: auto;
 		/* background-size: cover; */
 	}
 
@@ -1051,5 +1027,82 @@
 		/* Removed height: 15% to allow the text to be naturally sized */
 		/* Removed margin-bottom: 10% as it was shifting the text down */
 		/* Removed display: flex and justify-content: center as they're redundant with the parent's centering */
+	}
+
+	@media (max-width: 1024px) {
+		/* Force content to be scrollable */
+		:global(body) {
+			overflow-y: auto !important;
+		}
+
+		main {
+			height: auto !important;
+			overflow-y: auto !important;
+		}
+		
+		.mainSection {
+			height: auto !important;
+			overflow: visible !important;
+			margin-top: 15px;
+		}
+		
+		.boxArea {
+			flex-direction: column;
+			height: auto;
+			padding: 15px;
+			margin-left: 0;
+		}
+		
+		.boxSelectArea {
+			width: 100%;
+			height: auto;
+			margin-bottom: 20px;
+		}
+		
+		.boxSelectAreaLayer {
+			height: auto;
+			min-height: 200px;
+		}
+		
+		.boxAreaMl {
+			width: 100%;
+			flex-direction: column;
+			margin-left: 0;
+		}
+		
+		.box {
+			width: 100%;
+			margin: 10px 0;
+			height: auto;
+		}
+		
+		.explainArea {
+			height: auto;
+			margin-top: 20px;
+		}
+		
+		.mainLeftContentSection {
+			height: auto;
+		}
+
+		.conversationArea {
+			flex-direction:  column !important;
+			width: 100% !important;
+		}
+
+		.aiNavBar {
+			width: 100% !important;
+			height: auto !important;
+			flex-direction: row !important;
+			justify-content: space-between !important;
+			border: none !important;
+		}
+
+		.upperBar {
+			height: 70px !important;
+			width: auto !important;
+			flex-direction: row !important;
+			justify-content: space-between !important;
+		}
 	}
 </style>
