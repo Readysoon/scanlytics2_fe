@@ -9,15 +9,13 @@
 		</div>
 		<div class="Text">
 			<p>
-				Scanlytics is a company that specializes in providing advanced analytics solutions for various industries. 
-				Our mission is to empower businesses with data-driven insights to enhance their decision-making processes and drive growth.
-				We offer a range of services, including data analysis, predictive modeling, and machine learning solutions. Our team of experts is dedicated to delivering high-quality results and helping our clients achieve their goals.
+				Welcome to Scanlytics, where innovation meets healthcare excellence. We are dedicated to transforming the radiology sector by addressing critical challenges such as specialist shortages, infrastructure limitations, and access disparities. Through cutting-edge technologies and collaborative solutions, we aim to enhance diagnostic accuracy, streamline workflows, and improve patient outcomes across diverse regions. Join us on our mission to revolutionize radiology, empowering healthcare professionals and providing better care for communities worldwide.
 			</p>
 		</div>
 		<div class="GroupImage">
 			<h2>Our Team</h2>
 			<div class="image-container">
-				<img src="/VisianaGroupImage.jpg" alt="Group Image" />
+				<img src="/ScanlyticsGroupImage.jpg" alt="Group Image" />
 			</div>
 		</div>
 	</div>
