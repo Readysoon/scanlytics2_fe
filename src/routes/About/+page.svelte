@@ -25,23 +25,23 @@
 	.page_container {
 		display: flex;
 		flex-direction: column;
-		height: 100%;
+		height: 100%; /* This is essential to make the content not overlap the footer */
+		flex: 1; /* This is essential to make the content not overlap the footer */
 	}
 
 	.Above {
-		height: 15%;
 		padding-top: 10px;
 		flex-direction: row;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
+
 	.Above h2 {
 		color: white;
 	}
 
 	.Text {
-		height: 20%;
 		flex-direction: row;
 		display: flex;
 		justify-content: center;
@@ -60,26 +60,32 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-top: 10px;
-		width: auto;
-		height: 65%;
-		overflow: hidden;
+		flex-grow: 1;
 	}
 
 	.image-container {
-		max-height: 80%;
-		width: 70%;
+		width: 80%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-grow: 1;
+		position: relative;
 	}
 
 	.GroupImage img {
-		max-height: 450px;
-		max-width: 100%;
-		object-fit: contain;
-		height: auto;
-		width: auto;
+		max-height: 100%; /* Make image only as high as the container */
+		width: auto; /* Maintain aspect ratio */
+		object-fit: contain; /* Ensure the image fits within the container */
+		position: absolute; /* Position absolutely within the container */
+		top: 0;
+		bottom: 0;
+		margin: auto; /* Center vertically */
+	}
+
+	@media (max-width: 1024px) {
+		.image-container {
+			margin-bottom: 50px;
+		}
 	}
 
   </style>
