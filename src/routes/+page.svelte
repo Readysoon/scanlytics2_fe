@@ -75,9 +75,12 @@
 	<Header />
 	<div class="mainSection">
 		<div class="mainSectionLeftHeader">
-			<p class="Best">Worlds fastest structured reporting</p>
+			<p class="Best">Conversational AI Assistant</p>
 
+			{#if isMobile}
 			<p class="AIaaS">AI as a Service</p>
+
+			{/if}
 		</div>
 
 
@@ -170,7 +173,7 @@
 
 	.mainSectionLeftHeader {
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-start;
 		width: 100%;
 		position: relative;
 		z-index: 3;
@@ -187,6 +190,8 @@
 		border-radius: 40px;
 		color: black;
 		margin-left: 1%;
+		font-family: system-ui;
+
 	}
 
 	.mainSectionLeftHeader .AIaaS{
@@ -202,6 +207,8 @@
 		color: rgb(255, 255, 255);
 		margin-right: 5%;
 		margin-left: 1%;
+		font-family: system-ui;
+
 	}
 
 	.mainSectionLeftText{
