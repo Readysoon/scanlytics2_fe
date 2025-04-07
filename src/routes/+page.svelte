@@ -75,15 +75,18 @@
 	<Header />
 	<div class="mainSection">
 		<div class="mainSectionLeftHeader">
-			<p class="Best">Worlds fastest structured reporting</p>
+			<!-- <p class="AIaaS">Conversational AI Assistant</p> -->
 
+			{#if isMobile}
 			<p class="AIaaS">AI as a Service</p>
+
+			{/if}
 		</div>
 
 
 		<!-- Gif Image - Positioned differently on mobile vs desktop -->
 		<div class="mainSectionRight" class:mobile-image={isMobile}>
-			<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" class="brain-gif" />
+			<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" class="brain-gif"   />
 		</div>
 
 		<div class="mainSectionLeft" class:mobile-content={isMobile}>
@@ -152,13 +155,15 @@
 		position: relative;
 		z-index: 2;
 		justify-content: space-between;
+		/* background-color: pink; */
+		margin-top: 2%;
 	}
 
 	.mainSectionRight {
-		width: 50%;
+		width: 55%;
 		position: absolute;
-		top: 11%;
-		right: 0;
+		top: 3%;
+		right: 0%;
 		opacity: 0.8;
 		z-index: 1;
 	}
@@ -166,11 +171,13 @@
 	.brain-gif {
 		width: 70%;
 		height: auto;
+		margin-left: 15%;
+		
 	}
 
 	.mainSectionLeftHeader {
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-start;
 		width: 100%;
 		position: relative;
 		z-index: 3;
@@ -186,7 +193,9 @@
 		border: 1px solid black;
 		border-radius: 40px;
 		color: black;
-		margin-left: 1%;
+		margin-left: 0.5%;
+		font-family: system-ui;
+
 	}
 
 	.mainSectionLeftHeader .AIaaS{
@@ -202,6 +211,8 @@
 		color: rgb(255, 255, 255);
 		margin-right: 5%;
 		margin-left: 1%;
+		font-family: system-ui;
+
 	}
 
 	.mainSectionLeftText{
@@ -278,8 +289,8 @@
 	.buttontechtext, .buttoncalltext {
 		text-align: center;
 		display: block;
-		font-size: 18px;
-		font-weight: bold;
+		font-size: 16px;
+		font-weight: 400;
 		font-family: system-ui;  
 	}
 
@@ -363,6 +374,7 @@
 			width: 100%;
 			height: auto;
 			object-fit: cover;
+			margin-left: 0%;
 		}
 
 		.mainSectionLeftTextSubtext {
