@@ -215,6 +215,7 @@
 		if (!isRecording) {
 			try {
 				console.log('toggled recording');
+				btnState = !btnState
 				handleRecording();
 			} catch (error) {
 				console.error('Error accessing media devices:', error);
@@ -243,36 +244,37 @@
 
 </script>
 
-<button on:click={toggleRecording} class:is-recording={isRecording}>
-	{#if btnState}
+<button on:click={toggleRecording} class="btnstring" class:is-recording={isRecording}> 
+	{#if btnState} 
 	<img src="/pause.png" alt="Microphone" class="mic-icon" />
 	{:else}
 	<img src="/play.png" alt="Microphone" class="mic-icon" />
-	{/if}
-</button>
+	{/if} 
+</button> 
+ 
 
 <style>
 	.mic-icon {
 		width: 24px;
 		height: 24px;
 	}
-	button {
-    background: none; /* Removes the background */
-    border: none; /* Optionally, remove border if you don't want it */
-    color: #000; /* Set text color (optional) */
-    padding: 10px 20px; /* Add some padding for better button appearance */
-    cursor: pointer; /* Make the button look clickable */
-  }
 
   
   button.is-recording {
     background: #ff0000; /* Change the background if recording (for example red) */
   }
 
+  button{
+	background: none;
+    border: none; /* Optionally, remove border if you don't want it */
+    color: #000; /* Set text color (optional) */
+    cursor: pointer; 
+	width: 100%;
+  }
+
 </style>
 
 {#if updateAudioState}
-<p>pinh</p>
 <audio autoplay 
 on:ended={handleAudioEnd}
 
@@ -280,8 +282,6 @@ on:ended={handleAudioEnd}
 	<source src={`${audioUrl}?t=${Date.now()}`} type="audio/mp3" />
 	Your browser does not support the audio element.
 </audio>
-{:else}
 
- <p>Hello</p> 
 
 {/if}

@@ -10,6 +10,8 @@
 	// import TextEditor, { bindingTtext } from './TextEditor.svelte';
 	import { Circle2 } from 'svelte-loading-spinners';
 	import * as kneejsonData from '../../../static/knee.json';
+	import AudioRecorder from '../Tests/audioRecorder.svelte'
+
 
 	let texts = $state([]);
 	// export let onSelect: any;
@@ -210,6 +212,14 @@
 		console.log('Report downloaded');
 	}
 
+	function appendTranscription(transcription: any) {
+		console.log('transcription', transcription);
+		if (transcription) {
+			text += (text ? '\n' : '') + transcription;
+		} else {
+			console.log('Hola im in appendTranscription function');
+		}
+	}
 </script>
 
 <head>
@@ -346,7 +356,10 @@
 							/>
 						</div>
 						<div class="optionBox">
-							<img src="play.png" alt="widget" class="widgetlogo" />
+							<AudioRecorder onTranscription={appendTranscription}/>
+
+							<!-- <img src="play.png" alt="widget" class="widgetlogo" />
+							  -->
 						</div>
 
 						<div class="optionBox">
