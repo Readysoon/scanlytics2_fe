@@ -498,7 +498,7 @@
 	}
 
 	.mainSection {
-		background-color: rgb(205, 35, 35);
+		background-color: #0d1117;
 		height: 88%;
 		margin-top: 30px;
 	}
@@ -590,6 +590,7 @@
 		display: flex;
 		flex-direction: row;
 	}
+
 	.ImageviewSection {
 		background-color: #0d1117;
 		height: 100%;
@@ -861,7 +862,7 @@
 
 	.optionBox {
 		width: 80%;
-		height: 15%;
+		height: 100%;
 		/* background-color: #7d2a2a; */
 		display: flex;
 		justify-content: center;
@@ -1068,6 +1069,7 @@
 		}
 
 		.upperBar {
+			height: 70px !important;
 			width: auto !important;
 			flex-direction: row !important;
 			justify-content: space-between !important;
