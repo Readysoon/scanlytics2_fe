@@ -499,7 +499,7 @@
 
 	.mainSection {
 		background-color: rgb(205, 35, 35);
-		height: 90%;
+		height: 88%;
 		margin-top: 30px;
 	}
 
