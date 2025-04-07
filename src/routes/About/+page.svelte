@@ -5,7 +5,7 @@
   <Layout>
 	<div class="page_container">
 		<div class="Above">
-			<h2>Project Information</h2>
+			<h2>Startup Information</h2>
 		</div>
 		<div class="Text">
 			<p>
