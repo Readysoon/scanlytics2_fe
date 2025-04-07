@@ -75,7 +75,7 @@
 	<Header />
 	<div class="mainSection">
 		<div class="mainSectionLeftHeader">
-			<p class="Best">Conversational AI Assistant</p>
+			<!-- <p class="AIaaS">Conversational AI Assistant</p> -->
 
 			{#if isMobile}
 			<p class="AIaaS">AI as a Service</p>
@@ -189,7 +189,7 @@
 		border: 1px solid black;
 		border-radius: 40px;
 		color: black;
-		margin-left: 1%;
+		margin-left: 0.5%;
 		font-family: system-ui;
 
 	}
@@ -285,8 +285,8 @@
 	.buttontechtext, .buttoncalltext {
 		text-align: center;
 		display: block;
-		font-size: 18px;
-		font-weight: bold;
+		font-size: 16px;
+		font-weight: 400;
 		font-family: system-ui;  
 	}
 
