@@ -181,6 +181,31 @@
 	function handleUploadSuccess(parsedTexts: string[]) {
 		extractedTexts = parsedTexts;
 	}
+
+	function downloadreport() {
+		// Create a link element
+		const link = document.createElement('a');
+		
+		// Set the download attribute and file path
+		link.download = 'structured_report.pdf';
+		
+		// Set the href to the PDF file path
+		// If your PDF is in the static or public folder:
+		link.href = 'hidden_structured_report.pdf';
+		
+		// Append to the document
+		document.body.appendChild(link);
+		
+		// Trigger the click event
+		link.click();
+		
+		// Clean up - remove the link from the document
+		document.body.removeChild(link);
+		
+		// Optional: Add analytics or tracking
+		console.log('Report downloaded');
+	}
+
 </script>
 
 <head>
@@ -321,7 +346,12 @@
 						</div>
 
 						<div class="optionBox">
-							<img src="her1.png" alt="widget" class="widgetlogo" />
+							<img 
+								src="her1.png" 
+								alt="widget" 
+								class="widgetlogo" 
+								on:click={downloadreport}
+							/>
 						</div>
 
 						<div class="optionBox" on:click={handlecloselayer}>
