@@ -1,4 +1,4 @@
-<script>
+<script >
 	let isRecording = false;
 	let recordingTimeout;
 	let recognition;
@@ -7,12 +7,23 @@
 	let gptclient = audiodata;
 	let arrList = $state([]);
 	import { onDestroy } from 'svelte';
+	let audioUrl = $state('');
+	let audioElement;
+	let updateAudioState = $state(false)
+	
 	
 
 	// console.log('audiodata', audiodata);
 
 	const transkriptionArr = [];
 	// const arrList = [];
+
+
+	const handleAudioEnd = () => {
+		updateAudioState = false
+
+		recognition.start();
+	}
 
 	const handleSpeechAgentCall = async (gptText) => {
 		// console.log('gptText', gptText);
@@ -25,7 +36,20 @@
 			}
 		});
 
-		console.log('response from speechagent', response );
+		// console.log('response from speechagent', response );
+
+		const result = await response.json()
+
+		if(result.success){
+			console.log('inside success result');
+		    audioUrl = await result.audioUrl;
+			if(audioUrl){
+				console.log('updateAudioState', updateAudioState);
+				updateAudioState = true
+			}
+			console.log('audioUrl', audioUrl);
+
+		}
 
 			
 			
@@ -50,7 +74,7 @@
 		if (totalRes) {
 			handleSpeechAgentCall(totalRes);
 			arrList = [];
-			// recognition.start();
+			
 		}
 		console.log('gpt', totalRes);
 		// await load(phrase)
@@ -93,9 +117,9 @@
 						if (updatedPhrase) {
 							handleapiCall(updatedPhrase);
 						}
-						clearInterval(interval); // 💥 Stop interval after it runs once
+						clearInterval(interval); 
 					}
-				}, 7000);
+				}, 2000);
 
 				onDestroy(() => {
 					clearInterval(interval);
@@ -200,6 +224,21 @@
 			isRecording = false;
 		}
 	};
+
+	console.log('audioUrl', audioUrl);
+
+
+//   $effect(() => {
+	
+// 	if (updateAudioState) {
+//     audioElement.load();   // reload new source
+//     audioElement.play().catch(e => {
+//       console.warn("Autoplay failed:", e);
+//     });
+//   }
+// 	});
+  
+
 </script>
 
 <button on:click={toggleRecording} class:is-recording={isRecording}>
@@ -211,4 +250,20 @@
 		width: 24px;
 		height: 24px;
 	}
+
 </style>
+
+{#if updateAudioState}
+<p>pinh</p>
+<audio autoplay 
+on:ended={handleAudioEnd}
+
+>
+	<source src={`${audioUrl}?t=${Date.now()}`} type="audio/mp3" />
+	Your browser does not support the audio element.
+</audio>
+{:else}
+
+ <p>Hello</p> 
+
+{/if}
