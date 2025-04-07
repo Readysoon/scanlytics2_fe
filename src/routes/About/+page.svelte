@@ -43,6 +43,7 @@
 	.Text {
 		height: 20%;
 		flex-direction: row;
+
 		display: flex;
 		justify-content: center;
 		align-items: center;
