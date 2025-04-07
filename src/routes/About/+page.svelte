@@ -5,7 +5,7 @@
   <Layout>
 	<div class="page_container">
 		<div class="Above">
-			<h2>Project Information</h2>
+			<h2>About us</h2>
 		</div>
 		<div class="Text">
 			<p>
@@ -13,9 +13,9 @@
 			</p>
 		</div>
 		<div class="GroupImage">
-			<h2>Our Team</h2>
+			<h2>Team</h2>
 			<div class="image-container">
-				<img src="/ScanlyticsGroupImage.jpg" alt="Group Image" />
+				<img src="/ScanlyticsGroupImage4.jpg" alt="Group Image" />
 			</div>
 		</div>
 	</div>
@@ -25,23 +25,24 @@
 	.page_container {
 		display: flex;
 		flex-direction: column;
-		height: 100%;
+		height: 100%; /* This is essential to make the content not overlap the footer */
+		flex: 1; /* This is essential to make the content not overlap the footer */
 	}
 
 	.Above {
-		height: 15%;
 		padding-top: 10px;
 		flex-direction: row;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
+
 	.Above h2 {
 		color: white;
+		font-family: system-ui;
 	}
 
 	.Text {
-		height: 20%;
 		flex-direction: row;
 
 		display: flex;
@@ -54,6 +55,7 @@
 		width: 70%;
 		padding-top: 15px;
 		text-align: center;
+		font-family: system-ui;
 	}
 
 	.GroupImage {
@@ -61,26 +63,39 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-top: 10px;
-		width: auto;
-		height: 65%;
-		overflow: hidden;
+		flex-grow: 1;
 	}
 
 	.image-container {
-		max-height: 80%;
-		width: 70%;
+		width: 80%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-grow: 1;
+		position: relative;
+	}
+
+	.GroupImage h2 {
+		padding-top: 20px;
+		color: white;
+		font-family: system-ui;
 	}
 
 	.GroupImage img {
-		max-height: 450px;
-		max-width: 100%;
-		object-fit: contain;
-		height: auto;
-		width: auto;
+		max-height: 100%; /* Make image only as high as the container */
+		padding-top: 10px;
+		width: auto; /* Maintain aspect ratio */
+		object-fit: contain; /* Ensure the image fits within the container */
+		position: absolute; /* Position absolutely within the container */
+		top: 0;
+		bottom: 0;
+		margin: auto; /* Center vertically */
+	}
+
+	@media (max-width: 1024px) {
+		.image-container {
+			margin-bottom: 50px;
+		}
 	}
 
   </style>
