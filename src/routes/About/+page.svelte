@@ -15,7 +15,7 @@
 		<div class="GroupImage">
 			<h2>Our Team</h2>
 			<div class="image-container">
-				<img src="/ScanlyticsGroupImage.jpg" alt="Group Image" />
+				<img src="/ScanlyticsGroupImage4.jpg" alt="Group Image" />
 			</div>
 		</div>
 	</div>
@@ -71,6 +71,11 @@
 		align-items: center;
 		flex-grow: 1;
 		position: relative;
+	}
+
+	.GroupImage h2 {
+		padding-top: 20px;
+		color: white;
 	}
 
 	.GroupImage img {
