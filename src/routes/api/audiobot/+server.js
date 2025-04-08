@@ -1,12 +1,12 @@
 import { json } from '@sveltejs/kit';
-import { env } from '$env/static/private';
+import { SECRET_OPENAIKEY } from '$env/static/private';
 import OpenAI from 'openai';
 
 
 export const prerender = true;
 
 const client = new OpenAI({
-	apiKey: env.SECRET_OPENAIKEY
+	apiKey: SECRET_OPENAIKEY
 });
 
 
