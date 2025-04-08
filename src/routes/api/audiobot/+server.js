@@ -4,11 +4,11 @@ import OpenAI from 'openai';
 
 
 const client = new OpenAI({
-	apiKey: env.OPENAI_API_KEY
+	apiKey: env.SECRET_OPENAI_API_KEY
 });
 
 
-console.log('SECRET_OPENAIKEY', SECRET_OPENAIKEY);
+// console.log('SECRET_OPENAIKEY', SECRET_OPENAIKEY);
 
 let stateNum = 0;
 
