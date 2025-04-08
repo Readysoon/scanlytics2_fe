@@ -10,19 +10,19 @@
 	// import TextEditor, { bindingTtext } from './TextEditor.svelte';
 	import { Circle2 } from 'svelte-loading-spinners';
 	import * as kneejsonData from '../../../static/knee.json';
-	import AudioRecorder from '../Tests/audioRecorder.svelte'
-
+	import AudioRecorder from '../Tests/audioRecorder.svelte';
 
 	let texts = $state([]);
 	// export let onSelect: any;
 	let currentStep = $state(2); // Assuming the current step is managed globally
 	let layerToggle = $state(true);
 	let firstLoad = $state(true);
-	let menuToggle = $state(false);
+	let menuToggle: boolean = $state(false);
 	let ItemToggle: any = $state(null);
 	let updateSelectedPdf = $state(1);
 	let isChecked: any = $state({});
 	let isCheckInputData: any = $state({});
+	let scansToggle = $state(false);
 
 	const requiredNames = ['Patient Information', 'Study Information', 'Examination'];
 
@@ -112,6 +112,10 @@
 		menuToggle = !menuToggle;
 	};
 
+	const handleScansClick = () => {
+		scansToggle = !scansToggle;
+	};
+
 	const handleAIReportingStartLayer = () => {
 		layerToggle = !layerToggle;
 		setTimeout(() => {
@@ -138,8 +142,8 @@
 		// layerToggle = !layerToggle;
 		// firstLoad = !firstLoad;
 	};
-	
-	function redirectUser(){ 
+
+	function redirectUser() {
 		window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
 	}
 
@@ -147,9 +151,7 @@
 	let extractedTexts: string[] = []; // Texts extracted from uploads
 	let editorContent = ''; // Content in the text editor
 	let isMobile = false;
-	let data = $props(
-
-	)
+	let data = $props();
 
 	console.log('data', data.product);
 	if (typeof window !== 'undefined') {
@@ -167,12 +169,12 @@
 		if (index !== -1) {
 			// Remove the selected text from the list
 			extractedTexts = extractedTexts.filter((t) => t !== text);
-			
+
 			// Add it to the editor (now decoupled)
 			appendToEditor(text);
 		}
 	}
-	
+
 	// Function to append text to the editor
 	function appendToEditor(text: string) {
 		editorContent += (editorContent ? '\n' : '') + text;
@@ -191,23 +193,23 @@
 	function downloadreport() {
 		// Create a link element
 		const link = document.createElement('a');
-		
+
 		// Set the download attribute and file path
 		link.download = 'structured_report.pdf';
-		
+
 		// Set the href to the PDF file path
 		// If your PDF is in the static or public folder:
 		link.href = 'hidden_structured_report.pdf';
-		
+
 		// Append to the document
 		document.body.appendChild(link);
-		
+
 		// Trigger the click event
 		link.click();
-		
+
 		// Clean up - remove the link from the document
 		document.body.removeChild(link);
-		
+
 		// Optional: Add analytics or tracking
 		console.log('Report downloaded');
 	}
@@ -232,6 +234,11 @@
 	<div class="mainSection">
 		<div class="StartOverlay">
 			<div class="conversationArea">
+				{#if scansToggle}
+					<div class="scansToggleArea">
+						<Selectpage />
+					</div>
+				{/if}
 				<div class="ImageArea">
 					<div class="imgScanSection">
 						<!-- <div class="conversationHeader">head</div> -->
@@ -240,8 +247,14 @@
 							<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
 						{:else}
 							<div class="aiContentArea">
-								<div class="ImageviewSection" style="width: {menuToggle ? ' 70% ' : '100%'};">
+								<!-- <div class="ImageviewSection" style="width: {menuToggle ? ' 70% ' : '100%'};">
 									<img src="knie.jpg" alt="widget" class="selectedItemlogo" />
+								</div> -->
+								<div class="imgConectSection" 
+								style="width: {menuToggle ? '70%': '100%'};"
+								>
+									<ImageUploader />
+
 								</div>
 								{#if menuToggle}
 									<div class="ImageReportSection">
@@ -354,36 +367,38 @@
 								class="widgetlogo"
 								on:click={isMobile ? () => {} : handleMenuClick}
 							/>
+							<p>Menu</p>
 						</div>
-						<div class="optionBox">
-							<AudioRecorder onTranscription={appendTranscription}/>
+						<div class="optionBox" on:click={handleScansClick}>
+							<!-- <AudioRecorder onTranscription={appendTranscription} /> -->
 
-							<!-- <img src="play.png" alt="widget" class="widgetlogo" />
-							  -->
+							<img src="/xr5.png" alt="widget" class="widgetlogo" />
+							<p>Scans</p>
 						</div>
 
 						<div class="optionBox">
-							<img 
-								src="her1.png" 
-								alt="widget" 
-								class="widgetlogo" 
-								on:click={downloadreport}
-							/>
+							<img src="her1.png" alt="widget" class="widgetlogo" on:click={downloadreport} />
+							<p>Download</p>
 						</div>
 
 						<div class="optionBox" on:click={handlecloselayer}>
 							<img src="text.png" alt="widget" class="widgetlogo" />
+							<p>Editor</p>
 						</div>
 					</div>
 					<div class="middleBar">
-						<div class="freq1"></div>
+						<div class="freq1">
+							<div class="uvMeter">1</div>
+							<div class="assistantPlayArea">
+								<AudioRecorder onTranscription={appendTranscription} />
+								<!-- <img src="robo2.png" alt="widget" class="robologo" on:click={handleMenuClick} /> -->
+								<!-- <img src="play.png" alt="widget" class="widgetlogo" />
+								  -->
+								<p>Assistant</p>
+							</div>
+						</div>
 					</div>
 				</div>
-				<!-- <div class="questionArea">
-  <div class="AudioListBody">2</div>
-  <div class="AudioOption">3</div>
-
-</div> -->
 			</div>
 		</div>
 	</div>
@@ -396,8 +411,8 @@
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
 		overflow-y: auto;
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+		-ms-overflow-style: none; /* IE and Edge */
 	}
 
 	.boxArea {
@@ -409,7 +424,7 @@
 		margin-left: 0.6%;
 	}
 
-    .boxSelectArea {
+	.boxSelectArea {
 		/* background-color: rgb(65, 47, 167); */
 		width: 35%;
 		height: 100%;
@@ -419,16 +434,15 @@
 		align-items: center;
 		gap: 5%;
 		/* background-color: rgb(211, 210, 209); */
-
 	}
-	.boxSelectAreaLayer{
+	.boxSelectAreaLayer {
 		background-color: rgb(211, 210, 209);
 		height: 100%;
 		display: flex;
 		width: 100%;
 		height: 89%;
 	}
-	.boxSelectContentLayer{
+	.boxSelectContentLayer {
 		/* background-color: rgba(60, 60, 60, 0.753); */
 		/* background-color: rgb(157, 157, 157); */
 		height: 100%;
@@ -439,8 +453,7 @@
 		border-right: 1px solid rgb(175, 166, 166);
 	}
 
-
-	.imgPreviewArea{
+	.imgPreviewArea {
 		/* background-color: rgb(214, 12, 12); */
 		padding-top: 15%;
 		height: 90%;
@@ -451,7 +464,7 @@
 		flex-direction: column;
 		align-items: center;
 	}
-	.imgPreviewAddArea{
+	.imgPreviewAddArea {
 		background-color: rgba(211, 210, 209, 0.64);
 		height: 10%;
 		width: 100%;
@@ -459,10 +472,9 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-
 	}
 
-	.boxSelectContent{
+	.boxSelectContent {
 		width: 80%;
 		height: 25%;
 		display: flex;
@@ -474,8 +486,8 @@
 		border: 1px solid rgba(255, 255, 255, 0.066);
 		position: relative;
 	}
-	
-	.patientInfo{
+
+	.patientInfo {
 		width: 97%;
 		height: 10%;
 		/* background-color: green; */
@@ -490,8 +502,8 @@
 		align-items: center;
 		opacity: 0.7;
 	}
-	
-	.patientInfoData{
+
+	.patientInfoData {
 		width: 97%;
 		height: 30%;
 		/* background-color: green; */
@@ -508,7 +520,7 @@
 		font-size: 7px;
 	}
 
-	.patientB_Date{
+	.patientB_Date {
 		font-size: 7px;
 	}
 
@@ -518,16 +530,14 @@
 		display: flex;
 		align-items: center;
 		margin-left: 2%;
-
 	}
-	.box1{
+	.box1 {
 		flex: 1;
 		width: 100%;
 		height: 100%;
 		background-color: rgb(211, 210, 209);
 		/* background-color: red; */
 		border: 1px solid #ccc;
-
 	}
 
 	.box {
@@ -545,11 +555,10 @@
 	}
 
 	.mainSection {
-		background-color: #0d1117;
+		/* background-color: #0d1117; */
 		height: 88%;
 		margin-top: 30px;
 	}
-
 
 	.mainLeftContentSection {
 		/* background-color: rgb(255, 23, 193); */
@@ -564,7 +573,7 @@
 		/* position: absolute;
 		top: 0%;
 		left: 0%; */
-		background-color: rgba(18, 17, 17, 0.686);
+		background-color: rgba(228, 40, 40, 0.686);
 		z-index: 6;
 	}
 
@@ -616,42 +625,55 @@
 		/* display: flex; */
 	}
 
-	.pdfIconArea{
-	 /* background-color: aqua; */
-	 width: 100%; 
-	 height: 100%;
-	 display: flex;
-	
-	  /* justify-content: center; */
-	/* align-content: center; */
-	align-items: center;
-	 flex-direction: column ;
-	 gap: 5%;
-	 margin-top: 2%;
+	.pdfIconArea {
+		/* background-color: aqua; */
+		width: 100%;
+		height: 100%;
+		display: flex;
 
+		/* justify-content: center; */
+		/* align-content: center; */
+		align-items: center;
+		flex-direction: column;
+		gap: 5%;
+		margin-top: 2%;
 	}
 	.aiContentArea {
-		background-color: orange;
+		/* background-color: orange; */
 		height: 93%;
 		width: 100%;
 		display: flex;
 		flex-direction: row;
 	}
 
+
+
 	.ImageviewSection {
 		background-color: #0d1117;
+		/* background-color: orange; */
 		height: 100%;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
 	}
-	
+
 	.ImageReportSection {
 		background-color: #0d1117;
+		/* background-color: orange; */
 		height: 100%;
 		width: 30%;
 		border-left: 1px solid rgba(255, 255, 255, 0.175);
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+	}
+
+	.scansToggleArea {
+		background-color: #0d1117;
+		/* background-color: orange; */
+		height: 100%;
+		width: 12%;
+		border-right: 1px solid rgba(255, 255, 255, 0.175);
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 	}
@@ -888,7 +910,7 @@
 
 	.aiNavBar {
 		height: 100%;
-		width: 40px;
+		width: 3%;
 		background-color: #0d1117;
 		border: 1px solid rgba(255, 255, 255, 0.175);
 		flex-direction: column;
@@ -909,22 +931,30 @@
 
 	.optionBox {
 		width: 80%;
-		height: 100%;
+		height: 14%;
 		/* background-color: #7d2a2a; */
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-direction: column;
+		color: white;
+		font-family: sans-serif;
+		gap: 8%;
+		font-size: 11px;
 		cursor: pointer;
 	}
 
 	.selectedItemlogo {
 		height: 95%;
 		width: auto;
+
 		/* background-size: cover; */
 	}
 
 	.widgetlogo {
 		height: 25px;
+		/* background-color: #f7f1f1; */
+		/* cursor: pointer; */
 	}
 	.middleBar {
 		height: 50%;
@@ -938,10 +968,36 @@
 
 	.freq1 {
 		height: 98%;
-		width: 100%;
+		width: 80%;
 		/* background-color: rgb(18, 223, 49); */
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
+	}
+	.uvMeter {
+		/* background-color: rgb(69, 71, 69); */
+		height: 80%;
+		width: 100%;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+	}
+
+	.assistantPlayArea {
+		/* background-color: rgb(69, 48, 223); */
+		height: 20%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+		align-items: center;
+		color: white;
+		font-family: sans-serif;
+
+		gap: 8%;
+		font-size: 10px;
 	}
 
 	.questionAreaHeader {
@@ -979,7 +1035,7 @@
 		display: flex;
 		/* justify-content: center; */
 		align-items: center;
-		
+
 		/* gap: 5%; */
 	}
 	.pdfIcon1 {
@@ -1056,54 +1112,54 @@
 			height: auto !important;
 			overflow-y: auto !important;
 		}
-		
+
 		.mainSection {
 			height: auto !important;
 			overflow: visible !important;
 			margin-top: 15px;
 		}
-		
+
 		.boxArea {
 			flex-direction: column;
 			height: auto;
 			padding: 15px;
 			margin-left: 0;
 		}
-		
+
 		.boxSelectArea {
 			width: 100%;
 			height: auto;
 			margin-bottom: 20px;
 		}
-		
+
 		.boxSelectAreaLayer {
 			height: auto;
 			min-height: 200px;
 		}
-		
+
 		.boxAreaMl {
 			width: 100%;
 			flex-direction: column;
 			margin-left: 0;
 		}
-		
+
 		.box {
 			width: 100%;
 			margin: 10px 0;
 			height: auto;
 		}
-		
+
 		.explainArea {
 			height: auto;
 			margin-top: 20px;
 		}
-		
+
 		.mainLeftContentSection {
 			height: auto;
 		}
 
 		.conversationArea {
-			flex-direction:  column !important;
+			flex-direction: column !important;
 			width: 100% !important;
 		}
 

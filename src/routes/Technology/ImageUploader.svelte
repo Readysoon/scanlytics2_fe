@@ -11,6 +11,7 @@
 	import 'svelte-material-ui/bare.css';
 	import { writable } from 'svelte/store';
 	import loading, { handleprogressbar } from './loadingbar.svelte';
+	export let menuToggle;
 
 	let progress = 0;
 	let closed = false;
@@ -21,7 +22,14 @@
 	let mlSelectedFile: File | null = null;
 	let currentStep: number = 1;
 	let imgPreview = $state('');
+	
 
+	console.log('menutoggle on ImageUpload', menuToggle);
+
+
+		if(menuToggle){
+			console.log('triggered the menutoggle');
+		}
 	const uploadToML = async () => {
 		// handleprogressbar()
 
@@ -123,9 +131,9 @@
 <div class="image-uploader">
 	<div class="imgSection">
 		{#if imgPreview}
-			<img src={imgPreview} class="imgPreview" alt="Uploaded image" height="400px" width="500" />
+			<img src={imgPreview} class="imgPreview" alt="Uploaded image" />
 		{:else}
-			<img src="/xr3.png" class="xrLogo" alt="Logo" height="100" width="108"  />
+			<!-- <img src="/xr4.png" class="xrLogo" alt="Logo" height="100" width="108"  /> -->
 
 			<div class="placeholderObjecttext">Select an Object</div>
 		{/if}
@@ -148,11 +156,11 @@
 		{/if} -->
 	</div>
 
-	<div class="btnSection">
+	<!-- <div class="btnSection"> -->
 		<!-- <input bind:this={fileInput} type="file" accept="image/*" on:change={handleFileChange} hidden /> -->
-		<button on:click={uploadToML}>Generate Report</button>
+		<!-- <button on:click={uploadToML}>Generate Report</button> -->
 		<!-- <button on:click={uploadImageToMl}>Generate Report</button> -->
-	</div>
+	<!-- </div> -->
 
 	{#if mlMessage}
 		<p>{mlMessage}</p>
@@ -172,7 +180,7 @@
 	.imgSection {
 		/* background-color: rgb(0, 255, 166); */
 
-		height: 90%;
+		height: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -182,12 +190,15 @@
 		gap: 10px;
 	}
 	.imgPreview {
-		width: 400px; /* Set the desired width */
-		height: 390px; /* Set the desired height */
+		width: 80%; /* Set the desired width */
+		height: 100%; /* Set the desired height */
+		background-size: cover;
 	}
 	
 	.xrLogo{
-	opacity: 0.4;
+	/* opacity: 0.4; */
+	height: 50px;
+	width: 200px;
 	/* margin-bottom: 10%; */
   }
 	.btnSection {
@@ -210,7 +221,7 @@
 		color: red;
 	}
 	.placeholderObjecttext {
-		font-size: 25px;
+		font-size: 65px;
 		font-weight: bold;
 		font-family: sans-serif;
 		color: rgba(0, 0, 0, 0.403);

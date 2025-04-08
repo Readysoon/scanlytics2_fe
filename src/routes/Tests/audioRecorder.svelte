@@ -244,13 +244,17 @@
 
 </script>
 
-<button on:click={toggleRecording} class="btnstring" class:is-recording={isRecording}> 
-	{#if btnState} 
-	<img src="/pause.png" alt="Microphone" class="mic-icon" />
-	{:else}
-	<img src="/play.png" alt="Microphone" class="mic-icon" />
-	{/if} 
-</button> 
+<div>
+	<button on:click={toggleRecording} class="btnstring" class:is-recording={isRecording}> 
+		{#if btnState} 
+		<img src="/pause.png" alt="Microphone" class="mic-icon" />
+		{:else}
+		<img src="/play.png" alt="Microphone" class="mic-icon" />
+		{/if} 
+	</button> 
+
+</div>
+
 
 {#if updateAudioState}
 <audio autoplay 

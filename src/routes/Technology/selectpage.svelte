@@ -11,7 +11,7 @@
 	let fileInput: HTMLInputElement;
 	let imgArr = $state([]);
 
-	const images = [ `knie.jpg`];
+	const images = [`knie.jpg`, `knee2.jpg`, `knee3.jpeg`];
 
 	export function triggerclickEvent() {
 		fileInput.click();
@@ -50,47 +50,65 @@
 
 	const handleSelectedFile = async (event: any) => {
 		const res = await fetch(event);
-		if (!res.ok) throw new Error("Failed to fetch image");
+		if (!res.ok) throw new Error('Failed to fetch image');
 		const blob = await res.blob();
 		const imageName = event.split('/').pop() || 'unknown.jpg';
 		const file = new File([blob], imageName, { type: blob.type });
 		return file;
 	};
-
-	
 </script>
 
 <div class="boxSelectContentLayer">
+	<div class="imgPrevieTitleArea">
+		<p>Scans</p>
+	</div>
 	<div class="imgPreviewArea">
-		{#if imageUrl}
+		<div class="imgPreviewAreaContent">
+			{#if imageUrl}
 			{#if imgArr.length > 0}
 				{#each imgArr as img, i}
 					<img
 						src={img}
 						alt="Uploaded image"
-						height="150px"
-						width="150"
+						height="300"
+						width="100%"
+						class="imgScan"
 						on:click={() => handletrigger(img)}
 					/>
 				{/each}
 			{/if}
 		{:else}
 			{#each images as image}
-				<img
-					src={image}
-					alt="images"
-					height="150px"
-					width="150"
-					on:click={() => handletrigger(image)}
-				/>
+				<div class="defaultImageSelectionArea">
+					<img
+						src={image}
+						alt="images"
+						height="250"
+						width="100%"
+						on:click={() => handletrigger(image)}
+					/>
+				</div>
 			{/each}
 		{/if}
+
+		</div>
+	
 	</div>
 
 	<div class="imgPreviewAddArea">
-		<input bind:this={fileInput} type="file" accept="image/*" on:change={handleFileChange} hidden />
+		<div class="imgPreviewAddAreaContent">
+			<input
+				bind:this={fileInput}
+				type="file"
+				accept="image/*"
+				on:change={handleFileChange}
+				hidden
+			/>
 
-		<button class="read-btn" on:click={triggerclickEvent}>upload</button>
+			<!-- <button class="read-btn" on:click={triggerclickEvent}>upload</button> -->
+			<img src={'/add1.png'} alt="images" height="40px" width="40" on:click={triggerclickEvent} />
+			<p>Upload Scan</p>
+		</div>
 	</div>
 </div>
 
@@ -100,12 +118,12 @@
 		/* background-color: rgb(157, 157, 157); */
 
 		height: 100%;
-		width: 30%;
+		width: 100%;
 		display: flex;
 		/* gap: 10%; */
 		flex-direction: column;
 		align-items: center;
-		border-right: 1px solid rgb(175, 166, 166);
+		/* border-right: 1px solid rgb(175, 166, 166); */
 
 		/* padding-top: 5%; */
 		/* justify-content: space-around; */
@@ -122,10 +140,39 @@
 		margin-bottom: 10%;
 	}
 
+	.imgPrevieTitleArea {
+		height: 7%;
+		width: 100%;
+		color: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 25px;
+		font-family: system-ui;
+		opacity: 0.6;
+	}
 	.imgPreviewArea {
 		/* background-color: rgb(214, 12, 12); */
+		/* padding-top: 15%; */
+		height: 83%;
+		width: 100%;
+		/* overflow: auto;
+		display: flex; */
+		/* flex-direction: column; */
+		/* align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 25%;
+		padding-bottom: 40%; */
+		/* margin-top: 5%;
+		margin-bottom: 5%; */
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+	}
+
+	.imgPreviewAreaContent{
+		/* background-color: rgb(214, 12, 12); */
 		padding-top: 15%;
-		height: 90%;
+		height: 100%;
 		width: 100%;
 		overflow: auto;
 		display: flex;
@@ -133,18 +180,52 @@
 		align-items: center;
 		justify-content: center;
 		flex-wrap: wrap;
-		gap: 10%;
+		gap: 26%;
+		padding-bottom: 20%;
+		/* margin-top: 5%;2
+		margin-bottom: 5%; */
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+
+	}
+	.imgScan{
+		width: 50%;
+		height: 40px;
+	}
+	.imgPreviewArea {
+		overflow: auto;
+		scrollbar-width: none; /* Firefox */
+		-ms-overflow-style: none; /* IE and Edge */
+	}
+	.imgPreviewAreaContent::-webkit-scrollbar {
+		display: none; /* Chrome, Safari */
 	}
 	.imgPreviewAddArea {
-		background-color: rgba(211, 210, 209, 0.64);
+		/* background-color: rgba(211, 210, 209, 0.64); */
 		height: 10%;
 		width: 100%;
-		border-top: 1px solid rgb(175, 166, 166);
+		/* border-top: 1px solid rgb(175, 166, 166); */
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+		opacity: 0.6;
+	}
+
+	.imgPreviewAddAreaContent {
+		height: 100%;
+		width: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-direction: column;
+		gap: 10%;
+		color: white;
+		text-align: center;
+		font-family: system-ui;
 	}
 
+	.defaultImageSelectionArea {
+		/* background-color: rgba(211, 210, 209, 0.64); */
+		height: 33%;
+		width: 100%;
+	}
 	.boxSelectContent {
 		/* flex: 1; */
 		/* margin: 30px; */
