@@ -3,7 +3,6 @@ import { SECRET_OPENAIKEY } from '$env/static/private';
 import OpenAI from 'openai';
 
 
-
 const client = new OpenAI({
 	apiKey: SECRET_OPENAIKEY
 });
