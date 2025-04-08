@@ -135,7 +135,7 @@
 		{:else}
 			<!-- <img src="/xr4.png" class="xrLogo" alt="Logo" height="100" width="108"  /> -->
 
-			<div class="placeholderObjecttext">Select an Object</div>
+			<div class="placeholderObjecttext">Scanlytics AI Assistant</div>
 		{/if}
 		<!-- {#if imageUrl}  
 		{#if imgArr.length > 0}
