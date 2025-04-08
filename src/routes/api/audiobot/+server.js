@@ -143,6 +143,9 @@ const handleApiAgentCall = async (userDataQuery) => {
 		if (!userDataQuery) {
 			return json('Empty userDataQuery');
 		}
+
+		console.log('OPENAI_API_KEY:', env.OPENAI_API_KEY)
+
 		// console.log('userDataQuery before gpt trigger', userDataQuery);
 		// const response = await client.responses.create({
 		// 	model: 'gpt-4o',
