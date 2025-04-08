@@ -11,7 +11,15 @@ WORKDIR /app
 COPY --from=builder /app/build build/
 COPY --from=builder /app/node_modules node_modules/
 COPY package.json .
+
+# Declare a build argument for SECRET_OPENAIKEY
+ARG SECRET_OPENAIKEY
+
+# Set the environment variable inside the container
+ENV SECRET_OPENAIKEY=${SECRET_OPENAIKEY}
+
 EXPOSE 3000
 ENV NODE_ENV=production
+
 CMD [ "node", "build" ]
 
