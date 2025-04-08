@@ -13,10 +13,10 @@ COPY --from=builder /app/node_modules node_modules/
 COPY package.json .
 
 # Declare a build argument for SECRET_OPENAIKEY
-ARG SECRET_OPENAIKEY
+ARG OPENAI_API_KEY
 
 # Set the environment variable inside the container
-ENV SECRET_OPENAIKEY=${SECRET_OPENAIKEY}
+ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 
 EXPOSE 3000
 ENV NODE_ENV=production
