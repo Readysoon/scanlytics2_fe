@@ -4,7 +4,7 @@ import OpenAI from 'openai';
 
 
 const client = new OpenAI({
-	apiKey: env.OPENAI_API_KEY
+	apiKey: env.SECRET_OPENAIKEY
 });
 
 
