@@ -10,6 +10,8 @@ node_modules
 /.svelte-kit
 /build
 
+scanlytics-key.json
+
 # OS
 .DS_Store
 Thumbs.db
