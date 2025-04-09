@@ -2,14 +2,14 @@ import { json } from '@sveltejs/kit';
 // import textToSpeech from '@google-cloud/text-to-speech';
 import { TextToSpeechClient } from '@google-cloud/text-to-speech';
 import { writeFile } from 'node:fs/promises';
-import { env } from '$env/dynamic/private';
+import { GOOGLE_CLOUD_KEY_B64 } from '$env/static/private';
 import path from 'path';
 import fs from 'fs';
 
 
 // const rawKey = env.GOOGLE_CLOUD_KEY_B64;
 
-console.log('GOOGLE_CLOUD_KEY_B64:', env.GOOGLE_CLOUD_KEY_B64 ? 'Available' : 'Not Available');
+console.log('GOOGLE_CLOUD_KEY_B64:', GOOGLE_CLOUD_KEY_B64 ? 'Available' : 'Not Available');
 
 // console.log('rawkey', rawKey);
 // if (!rawKey) {
