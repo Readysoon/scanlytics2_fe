@@ -7,23 +7,23 @@ import path from 'path';
 import fs from 'fs';
 
 
-const rawKey = env.GOOGLE_CLOUD_KEY_B64;
+// const rawKey = env.GOOGLE_CLOUD_KEY_B64;
 
-console.log('GOOGLE_CLOUD_KEY_B64:', env.GOOGLE_CLOUD_KEY_B64 ? 'Available' : 'Not Available');
+// console.log('GOOGLE_CLOUD_KEY_B64:', env.GOOGLE_CLOUD_KEY_B64 ? 'Available' : 'Not Available');
 
-console.log('rawkey', rawKey);
-if (!rawKey) {
-  throw new Error('Missing GOOGLE_CLOUD_KEY_B64 env variable');
-}
+// console.log('rawkey', rawKey);
+// if (!rawKey) {
+//   throw new Error('Missing GOOGLE_CLOUD_KEY_B64 env variable');
+// }
 
 
-const keyPath = '/tmp/google-key.json';
-fs.writeFileSync(keyPath, Buffer.from(rawKey, 'base64'));
+// const keyPath = '/tmp/google-key.json';
+// fs.writeFileSync(keyPath, Buffer.from(rawKey, 'base64'));
 
 
 // const client = new TextToSpeechClient();
 const client = new TextToSpeechClient({
-	keyFilename: keyPath
+	credentials: JSON.parse(Buffer.from(env.GOOGLE_CLOUD_KEY_B64, 'base64').toString())
 });
 
 const handlespeechBot = async (botText) => {
