@@ -573,7 +573,7 @@
 		/* position: absolute;
 		top: 0%;
 		left: 0%; */
-		background-color: rgba(228, 40, 40, 0.686);
+		background-color: #0d1117;
 		z-index: 6;
 	}
 
