@@ -4,10 +4,23 @@ import { TextToSpeechClient } from '@google-cloud/text-to-speech';
 import { writeFile } from 'node:fs/promises';
 import { env } from '$env/dynamic/private';
 import path from 'path';
+import fs from 'fs';
+
+
+const rawKey = env.GOOGLE_CLOUD_JSON_KEY_B6;
+
+if (!rawKey) {
+  throw new Error('Missing GOOGLE_CLOUD_KEY_B64 env variable');
+}
+
+
+const keyPath = '/tmp/google-key.json';
+fs.writeFileSync(keyPath, Buffer.from(rawKey, 'base64'));
+
 
 // const client = new TextToSpeechClient();
 const client = new TextToSpeechClient({
-	keyFilename: path.resolve(env.GOOGLE_CLOUD_JSON_KEY)
+	keyFilename: keyPath
 });
 
 const handlespeechBot = async (botText) => {

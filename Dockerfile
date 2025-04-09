@@ -8,11 +8,6 @@ ARG OPENAI_API_KEY
 # Set the environment variable inside the container
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 
-# Declare a build argument for SECRET_OPENAIKEY
-ARG GOOGLE_CLOUD_JSON_KEY
-
-# Set the environment variable inside the container
-ENV GOOGLE_CLOUD_JSON_KEY=${GOOGLE_CLOUD_JSON_KEY}
 
 COPY . .
 RUN npm run build
