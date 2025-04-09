@@ -20,7 +20,9 @@ import fs from 'fs';
 // const keyPath = '/tmp/google-key.json';
 // fs.writeFileSync(keyPath, Buffer.from(rawKey, 'base64'));
 
+const json = JSON.parse(Buffer.from(env.GOOGLE_CLOUD_KEY_B64, 'base64').toString())
 
+console.log('json', json);
 // const client = new TextToSpeechClient();
 const client = new TextToSpeechClient({
 	credentials: JSON.parse(Buffer.from(env.GOOGLE_CLOUD_KEY_B64, 'base64').toString())
