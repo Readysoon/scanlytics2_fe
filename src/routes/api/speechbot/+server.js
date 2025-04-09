@@ -2,30 +2,29 @@ import { json } from '@sveltejs/kit';
 // import textToSpeech from '@google-cloud/text-to-speech';
 import { TextToSpeechClient } from '@google-cloud/text-to-speech';
 import { writeFile } from 'node:fs/promises';
-import { GOOGLE_CLOUD_KEY_B64 } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import path from 'path';
 import fs from 'fs';
 
 
-// const rawKey = env.GOOGLE_CLOUD_KEY_B64;
+// Log the status of the secret environment variable
+console.log('GOOGLE_CLOUD_KEY_B64:', env.GOOGLE_CLOUD_KEY_B64 ? 'Available' : 'Not Available');
 
-console.log('GOOGLE_CLOUD_KEY_B64:', GOOGLE_CLOUD_KEY_B64 ? 'Available' : 'Not Available');
+// Proceed with writing the key to a temporary file if available
+if (!env.GOOGLE_CLOUD_KEY_B64) {
+  throw new Error('Missing GOOGLE_CLOUD_KEY_B64 env variable');
+}
 
-// console.log('rawkey', rawKey);
-// if (!rawKey) {
-//   throw new Error('Missing GOOGLE_CLOUD_KEY_B64 env variable');
-// }
+// Decode the base64-encoded key
+const rawKey = env.GOOGLE_CLOUD_KEY_B64;
+const keyPath = '/tmp/google-key.json';
 
+// Write the decoded key to a temporary file
+fs.writeFileSync(keyPath, Buffer.from(rawKey, 'base64'));
 
-// const keyPath = '/tmp/google-key.json';
-// fs.writeFileSync(keyPath, Buffer.from(rawKey, 'base64'));
-
-const jsonstring = JSON.parse(Buffer.from(env.GOOGLE_CLOUD_KEY_B64, 'base64').toString())
-
-console.log('json', jsonstring);
-// const client = new TextToSpeechClient();
+// Create the TextToSpeech client with the key file
 const client = new TextToSpeechClient({
-	credentials: JSON.parse(Buffer.from(env.GOOGLE_CLOUD_KEY_B64, 'base64').toString())
+  keyFilename: keyPath
 });
 
 const handlespeechBot = async (botText) => {
