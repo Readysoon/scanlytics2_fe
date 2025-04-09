@@ -9,6 +9,7 @@ import fs from 'fs';
 
 const rawKey = env.GOOGLE_CLOUD_KEY_B64;
 
+console.log('rawkey', rawKey);
 if (!rawKey) {
   throw new Error('Missing GOOGLE_CLOUD_KEY_B64 env variable');
 }
