@@ -8,7 +8,10 @@ ARG OPENAI_API_KEY
 # Set the environment variable inside the container
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 
+ARG GOOGLE_CLOUD_KEY_B64
+
 ENV GOOGLE_CLOUD_KEY_B64=${GOOGLE_CLOUD_KEY_B64}
+
 COPY . .
 RUN npm run build
 RUN npm prune --production
