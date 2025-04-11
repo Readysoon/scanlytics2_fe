@@ -7,13 +7,6 @@ import path from 'path';
 import fs from 'fs';
 
 
-// Log the status of the secret environment variable
-console.log('GOOGLE_CLOUD_KEY_B64:', env.GOOGLE_CLOUD_KEY_B64 ? 'Available' : 'Not Available');
-
-// Proceed with writing the key to a temporary file if available
-if (!env.GOOGLE_CLOUD_KEY_B64) {
-  throw new Error('Missing GOOGLE_CLOUD_KEY_B64 env variable');
-}
 
 // Decode the base64-encoded key
 const rawKey = env.GOOGLE_CLOUD_KEY_B64;
