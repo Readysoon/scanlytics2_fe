@@ -17,12 +17,18 @@
 	let currentStep = $state(2); // Assuming the current step is managed globally
 	let layerToggle = $state(true);
 	let firstLoad = $state(true);
-	let menuToggle: boolean = $state(false);
+	let menuToggle: boolean = $state(true);
 	let ItemToggle: any = $state(null);
 	let updateSelectedPdf = $state(1);
 	let isChecked: any = $state({});
 	let isCheckInputData: any = $state({});
 	let scansToggle = $state(false);
+	let navAssistantToggle_Structured = $state(true);
+	let navAssistantToggle_History = $state(false);
+	let enterPageToggle = $state(true)
+	let inputValue = $state("")
+	let resultAreaToggle = $state(false);
+
 
 	const requiredNames = ['Patient Information', 'Study Information', 'Examination'];
 
@@ -96,6 +102,18 @@
 	// 	console.log('hello');
 	// });
 
+	const handlestructuredNav = () => { 
+		navAssistantToggle_Structured = true
+		navAssistantToggle_History = false
+
+	}
+
+	const handleHistoryNav= () => {
+		navAssistantToggle_Structured = false
+		navAssistantToggle_History = true
+	}
+
+
 	function handleClick(text: any) {
 		// onSelect(text);
 		// if (currentStep === 2) {
@@ -143,6 +161,17 @@
 		// firstLoad = !firstLoad;
 	};
 
+	const handleInputSubmit = (event) => {
+		console.log('event on handleInputSubmit', event);
+
+		if(event == "777"){
+			enterPageToggle = true
+		}
+	}
+
+	const handleStartMedicalReport = () => {
+		resultAreaToggle = true
+	}
 	function redirectUser() {
 		window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
 	}
@@ -233,13 +262,34 @@
 
 	<div class="mainSection">
 		<div class="StartOverlay">
+
+
+			<div class="conversationNav">
+			
+				<div class="conversationNavContent">
+					<div class="StucturedReport" 
+					style="background-color: { navAssistantToggle_Structured ? '#ea7900b1' : '#0d1117'}"
+					on:click={handlestructuredNav}
+					
+					> Structured Report </div>
+					<div class="MedicalReport"
+						style="background-color: { navAssistantToggle_History ? '#ea7900b1' : '#0d1117'}"
+					 on:click={handleHistoryNav}> Medical History Report</div>
+				</div>
+			</div>
+
+			{#if enterPageToggle}
+
+
+			{#if navAssistantToggle_Structured}
 			<div class="conversationArea">
+				<!-- Select Image Area  -->
 				{#if scansToggle}
 					<div class="scansToggleArea">
 						<Selectpage />
 					</div>
 				{/if}
-				<div class="ImageArea">
+				<!-- Image Area  -->
 					<div class="imgScanSection">
 						<!-- <div class="conversationHeader">head</div> -->
 						{#if firstLoad}
@@ -357,7 +407,7 @@
 						{/if}
 					</div>
 					<!-- <div class="imgSectionListTab">2</div> -->
-				</div>
+				<!-- Navbar Area -->
 				<div class="aiNavBar">
 					<div class="upperBar">
 						<div class="optionBox">
@@ -400,6 +450,68 @@
 					</div>
 				</div>
 			</div>
+			{/if}
+
+			{#if navAssistantToggle_History}
+					<div class="medicalConversationArea">
+								<div class="imgScanSection">
+									<div class="medicalAIImageContent">
+
+										<div class="medicalAIImageArea"
+										style="width: {resultAreaToggle ? '50%': '100%'};"
+
+										>
+
+											<div class="medicalImageSection">
+												<img
+												src="amnese.jpg"
+												alt="widget"
+												class="amnesebogen"
+												style="width: {resultAreaToggle ? '60%': '30%'};"
+												on:click={handleMenuClick}
+											/>
+											</div>
+											<div class="medicalImagebtnAreaSection" on:click={handleStartMedicalReport}> <button>Start Conversation</button></div>
+										</div>
+
+										{#if resultAreaToggle}
+											<div class="medicalResultArea"> result</div>
+
+										{/if}
+									</div>
+									
+								</div>
+					</div>
+			{/if}	
+			{:else}
+			<div class="emailSectionArea"> 
+				<div class="imgScanSection">
+					<div class="emailRequestSection">
+						<div class="placeholderObjecttext">
+							<p>Scanlytics AI Assistant</p>
+	   
+					   </div>
+					   <div class="subTextEmailRequestArea">
+						   <p>Please enter the code: 777 </p>
+	   
+					   </div>
+
+					   <div>
+						<input type="text" bind:value={inputValue} class="emailInputContent" >
+					
+						</div>
+					   <div>
+						<button on:click={() => handleInputSubmit(inputValue)}>Submit</button>
+					   </div>
+
+					</div>
+					
+				</div>
+				
+			</div>
+
+			{/if}
+
 		</div>
 	</div>
 
@@ -570,19 +682,198 @@
 	.StartOverlay {
 		height: 100%;
 		width: 100%;
-		/* position: absolute;
-		top: 0%;
-		left: 0%; */
+	
 		background-color: #0d1117;
 		z-index: 6;
 	}
 
-	.conversationArea {
+	.conversationNav{
+		background-color: orange;
+		background-color: #0d1117;
+		height: 4%;
+		border-left: 1px solid rgba(255, 255, 255, 0.175);
+		border-right: 1px solid rgba(255, 255, 255, 0.175);
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+
+	
+
+	}
+
+	.conversationNavContent{
+		/* background-color: green; */
+		width: 30%;
 		height: 100%;
-		/* background-color: rgba(42, 176, 42, 0.126); */
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 3%;
+
+
+	}
+
+	.StucturedReport{
+		width: 40%;
+		height: 100%;
+		/* background-color: blue; */
+		/* background-color: #ea7900b1; */
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		margin-top: 1%;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		border-top: 1px solid rgba(255, 255, 255, 0.175); 
+		border-left: 1px solid rgba(255, 255, 255, 0.175);
+		border-right: 1px solid rgba(255, 255, 255, 0.175);
+		color: white;
+		font-family: system-ui;
+		cursor: pointer;
+
+
+
+	}
+	.MedicalReport{
+		width: 40%;
+		height: 100%;
+
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		margin-top: 1%;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		border-top: 1px solid rgba(255, 255, 255, 0.175); 
+		border-left: 1px solid rgba(255, 255, 255, 0.175);
+		border-right: 1px solid rgba(255, 255, 255, 0.175);
+		color: white;
+		font-family: system-ui;
+		cursor: pointer;
+	
+
+	}
+
+	.conversationArea {
+		height: 96%;
+		/* background-color: rgba(37, 241, 37, 0.126); */
 		width: 100%;
 		display: flex;
 		flex-direction: row;
+		border-left: 1px solid rgba(255, 255, 255, 0.175);
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+
+	}
+
+	.medicalConversationArea{
+		height: 96%;
+		/* background-color: rgba(37, 241, 37, 0.126); */
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		border-top: 1px solid rgba(255, 255, 255, 0.175); 
+		border-left: 1px solid rgba(255, 255, 255, 0.175);
+		border-right: 1px solid rgba(255, 255, 255, 0.175);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+
+
+	}
+
+	.emailSectionArea{
+		height: 96%;
+		/* background-color: rgba(37, 241, 37, 0.126); */
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding-bottom: 6%;
+		border-top: 1px solid rgba(255, 255, 255, 0.175); 
+		border-left: 1px solid rgba(255, 255, 255, 0.175);
+		border-right: 1px solid rgba(255, 255, 255, 0.175);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+	}
+
+	.emailRequestSection{
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 5%;
+	}
+	.placeholderObjecttext {
+		font-size: 105px;
+		font-weight: bold;
+		font-family: sans-serif;
+
+		color: rgba(220, 215, 215, 0.403);
+	}
+
+	.subTextEmailRequestArea{
+		font-size: 35px;
+		font-weight: bold;
+		font-family: sans-serif;
+
+		color: rgba(249, 249, 249, 0.845);
+	}
+
+	.emailInputContent{
+		width: 500px;
+		height: 40px;
+		border-radius: 50px;
+		background-color: #72717121;
+		border: 1px solid white;
+		color: white;
+		/* padding-left: 4%; */
+		text-align: center;
+	}
+	.medicalAIImageContent{
+		height: 100%;
+		width: 100%;
+		/* background-color: orange; */
+		display: flex;
+	}
+
+	.medicalAIImageArea{
+		height: 100%;
+		/* width: 50%; */
+		/* background-color: rgb(20, 211, 224); */
+		border-right: 1px solid rgba(255, 255, 255, 0.175); 
+
+	}
+
+	.medicalImageSection{
+		height: 94%;
+		width: 100%;
+		/* background-color: rgb(93, 90, 93); */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+	}
+	.amnesebogen{
+		width: 60%;
+		height: 90%;
+	}
+	.medicalImagebtnAreaSection{
+		height: 6%;
+		width: 100%;
+		/* background-color: rgb(136, 224, 20); */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-top: 1px solid rgba(255, 255, 255, 0.175); 
+
+	}
+
+	.medicalResultArea{
+		height: 100%;
+		width: 50%;
+		/* background-color: rgb(224, 20, 149); */
 	}
 	.conversationHeader {
 		background-color: rgba(137, 43, 226, 0.468);
@@ -607,15 +898,16 @@
 	}
 	.imgScanSection {
 		background-color: #0d1117;
+
 		height: 100%;
 		width: 100%;
 		position: relative;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border-left: 1px solid rgba(255, 255, 255, 0.175);
+		/* border-left: 1px solid rgba(255, 255, 255, 0.175);
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
 		/* border-radius: 7px; */
 	}
 
@@ -1066,17 +1358,7 @@
 		color: #ffffff;
 		text-align: center;
 	}
-	.placeholderObjecttext {
-		font-size: 29px;
-		font-weight: bold;
-		font-family: sans-serif;
-		color: rgba(0, 0, 0, 0.403);
-		text-align: center;
-		/* Removed width: 0% which was preventing horizontal centering */
-		/* Removed height: 15% to allow the text to be naturally sized */
-		/* Removed margin-bottom: 10% as it was shifting the text down */
-		/* Removed display: flex and justify-content: center as they're redundant with the parent's centering */
-	}
+
 
 	.robologo {
 		width: 27px;
@@ -1090,17 +1372,7 @@
 		justify-content: center;
 		align-items: center;
 	}
-	.placeholderObjecttext {
-		font-size: 29px;
-		font-weight: bold;
-		font-family: sans-serif;
-		color: rgba(0, 0, 0, 0.403);
-		text-align: center;
-		/* Removed width: 0% which was preventing horizontal centering */
-		/* Removed height: 15% to allow the text to be naturally sized */
-		/* Removed margin-bottom: 10% as it was shifting the text down */
-		/* Removed display: flex and justify-content: center as they're redundant with the parent's centering */
-	}
+	
 
 	@media (max-width: 1024px) {
 		/* Force content to be scrollable */
