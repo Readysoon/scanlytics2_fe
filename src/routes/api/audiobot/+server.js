@@ -189,6 +189,13 @@ const handleApiAgentCall = async (userDataQuery) => {
 			stateNum = currentState.next;
 			return `${currentState.question}`;
 		  }
+
+		  const startWord = ["restart", "starte", "von" , "neu"];
+
+		  if ( userDataQuery.toLowerCase().includes(startWord)) {
+			stateNum = 0
+			return 'Ich starte die Abfrage nochmal von vorn.'
+		  }
 	  
 		  // Hole nächste Frage
 		  const nextState = currentState.next;
