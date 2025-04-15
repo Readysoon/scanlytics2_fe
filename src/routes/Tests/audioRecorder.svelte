@@ -43,13 +43,13 @@
 		const result = await response.json()
 
 		if(result.success){
-			console.log('inside success result');
+			// console.log('inside success result');
 		    audioUrl = await result.audioUrl;
 			if(audioUrl){
-				console.log('updateAudioState', updateAudioState);
+				// console.log('updateAudioState', updateAudioState);
 				updateAudioState = true
 			}
-			console.log('audioUrl', audioUrl);
+			// console.log('audioUrl', audioUrl);
 
 		}
 
@@ -78,24 +78,24 @@
 			arrList = [];
 			
 		}
-		console.log('gpt', totalRes);
+		// console.log('gpt', totalRes);
 		// await load(phrase)
 	};
 
 	const handleUploadData = async (phraseArr) => {
-		console.log('phrase', phraseArr);
+		// console.log('phrase', phraseArr);
 		const phraseLen = phraseArr.length;
 		const phraseLastWord = phraseArr.at(-1);
-		console.log('phraselen', phraseLen);
-		console.log('phrase last word', phraseLastWord);
+		// console.log('phraselen', phraseLen);
+		// console.log('phrase last word', phraseLastWord);
 
 		if (phraseArr.includes('Stopp' || 'stop')) {
 			try {
 				const filteredStop = phraseArr.filter((e) => e !== 'Stopp');
-				console.log('filteredStop', filteredStop);
+				// console.log('filteredStop', filteredStop);
 
 				const updatedPhrase = filteredStop.join(' ');
-				console.log('updatedPhrase', updatedPhrase);
+				// console.log('updatedPhrase', updatedPhrase);
 				recognition.stop();
 				if (updatedPhrase) {
 					handleapiCall(updatedPhrase);
@@ -109,12 +109,12 @@
 			const handleIntervalCount = () => {
 				const interval = setInterval(() => {
 					if (phraseLen && phraseLastWord) {
-						console.log('recording is stopped on voice pause');
+						// console.log('recording is stopped on voice pause');
 						const filteredStop = phraseArr.filter((e) => e !== 'Stopp');
-						console.log('filteredStop', filteredStop);
+						// console.log('filteredStop', filteredStop);
 
 						const updatedPhrase = filteredStop.join(' ');
-						console.log('updatedPhrase', updatedPhrase);
+						// console.log('updatedPhrase', updatedPhrase);
 						recognition.stop();
 						if (updatedPhrase) {
 							handleapiCall(updatedPhrase);
@@ -149,18 +149,19 @@
 		recognition.interimResults = true; // Get interim results while speaking
 
 		recognition.onstart = () => {
-			console.log('Speech recognition started...');
+			// console.log('Speech recognition started...');
 		};
 
 		recognition.onend = () => {
-			console.log('Speech recognition stopped.');
+			// console.log('Speech recognition stopped.');
 		};
 
 		// Event that runs when results are available (i.e., transcribed speech)
 		recognition.onresult = (event) => {
 			let interimTranscript = '';
 			let finalTranscript = '';
-			console.log('event', event);
+			// console.log('event', event);
+
 
 			for (let i = event.resultIndex; i < event.results.length; i++) {
 				const result = event.results[i];
@@ -192,13 +193,13 @@
 		};
 
 		recognition.onend = () => {
-			console.log('Speech recognition ended.');
+			// console.log('Speech recognition ended.');
 			// handleUploadData(arrList);
 			// recognition.stop();
 			// Automatically restart recognition
 			if (isRecording) {
 				recognition.start();
-				console.log('Speech recognition restarted...');
+				// console.log('Speech recognition restarted...');
 			}
 		};
 		recognition.start();
@@ -214,21 +215,21 @@
 	const toggleRecording = () => {
 		if (!isRecording) {
 			try {
-				console.log('toggled recording');
+				// console.log('toggled recording');
 				btnState = !btnState
 				handleRecording();
 			} catch (error) {
 				console.error('Error accessing media devices:', error);
 			}
 		} else {
-			console.log('Stopping recording...');
+			// console.log('Stopping recording...');
 			// clearTimeout(recordingTimeout);
 			recognition.stop();
 			isRecording = false;
 		}
 	};
 
-	console.log('audioUrl', audioUrl);
+	// console.log('audioUrl', audioUrl);
 
 
 //   $effect(() => {
