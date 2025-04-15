@@ -35,13 +35,13 @@
 			) {
 				isChecked[i.name] = true;
 				i.questions?.map((labelItem: any) => {
-					console.log('labelItem', labelItem);
+					// console.log('labelItem', labelItem);
 
 					const labelInfo = labelItem.label;
 
 					const handlePatientInformation = (labelPatientInfo: any) => {
 						if (labelPatientInfo == 'Patient Name') {
-							console.log('side');
+							// console.log('side');
 							isCheckInputData[labelPatientInfo] = 'Tom Müller';
 						} else if (labelPatientInfo == 'Patient ID') {
 							isCheckInputData[labelPatientInfo] = 'DKU2324342';
