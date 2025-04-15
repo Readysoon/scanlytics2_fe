@@ -28,7 +28,7 @@
 	}
 
 	const handleSpeechAgentCall = async (gptText) => {
-		// console.log('gptText', gptText);
+		console.log('gptText', gptText);
 		try {
 			const response = await fetch('/api/speechbot', {
 			method: 'POST',
@@ -44,6 +44,7 @@
 
 		if(result.success){
 			// console.log('inside success result');
+			console.log('result on auto', result);
 		    audioUrl = await result.audioUrl;
 			if(audioUrl){
 				// console.log('updateAudioState', updateAudioState);
@@ -265,6 +266,13 @@ on:ended={handleAudioEnd}
 	<source src={`${audioUrl}?t=${Date.now()}`} type="audio/mp3" />
 	Your browser does not support the audio element.
 </audio>
+<!-- <audio autoplay 
+on:ended={handleAudioEnd}
+
+>
+	<source src={audioUrl} type="audio/mp3" />
+	Your browser does not support the audio element.
+</audio> -->
 
 
 {/if}

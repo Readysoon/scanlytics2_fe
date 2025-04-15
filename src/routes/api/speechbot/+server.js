@@ -40,9 +40,15 @@ const handlespeechBot = async (botText) => {
 	// Performs the text-to-speech request
 	const [response] = await client.synthesizeSpeech(request);
 
-	const filePath = path.join('/tmp', 'output.mp3');
+	const filePath = path.join('static', 'output.mp3');
 	const audioFile = await writeFile(filePath, response.audioContent, 'binary');
 	
+	// const uniqueFileName = `output-${Date.now()}.mp3`;
+	// const filePath = path.join('static', uniqueFileName);
+	// const audioFile = await writeFile(filePath, response.audioContent, 'binary');
+	
+
+	// return `/${uniqueFileName}`;
 
 	return '/output.mp3';
 };

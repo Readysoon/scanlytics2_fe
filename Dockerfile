@@ -18,6 +18,9 @@ ARG GOOGLE_CLOUD_KEY_B64
 ENV GOOGLE_CLOUD_KEY_B64=${GOOGLE_CLOUD_KEY_B64}
 
 RUN npm run build
+# Ensure the static directory is writable
+RUN mkdir -p static && chmod -R 777 static
+
 RUN npm prune --production
 
 FROM node:22-alpine
