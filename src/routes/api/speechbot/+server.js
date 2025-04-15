@@ -5,6 +5,7 @@ import { writeFile } from 'node:fs/promises';
 import { env } from '$env/dynamic/private';
 import path from 'path';
 import fs from 'fs';
+import fsp from 'fs/promises';
 
 
 
@@ -20,6 +21,32 @@ const client = new TextToSpeechClient({
   keyFilename: keyPath
 });
 
+
+const handleCleanUp = async (audioUrl) => {
+	const staticDir = 'static';
+		
+	try {
+		// Read all files in the static directory
+		const files = await fsp.readdir(staticDir);
+		console.log('triggere cleaning files:', files);
+
+		// Loop through each file in the directory
+		for (const file of files) {
+
+			// Skip the current file (the one being used as audioUrl)
+			if (file.startsWith('output') && file !== audioUrl) {
+				// Construct the full path to the file
+				const filePath = path.join(staticDir, file);
+
+				// Delete the file
+				await fsp.unlink(filePath);
+				console.log(`Deleted old file: ${file}`);
+			}
+		}
+	} catch (error) {
+		console.error('Error cleaning static folder:', error);
+	}
+};
 const handlespeechBot = async (botText) => {
 	// The text to synthesize
 	const text = botText;
@@ -40,17 +67,18 @@ const handlespeechBot = async (botText) => {
 	// Performs the text-to-speech request
 	const [response] = await client.synthesizeSpeech(request);
 
-	const filePath = path.join('static', 'output.mp3');
-	const audioFile = await writeFile(filePath, response.audioContent, 'binary');
-	
-	// const uniqueFileName = `output-${Date.now()}.mp3`;
-	// const filePath = path.join('static', uniqueFileName);
+	// const filePath = path.join('static', 'output.mp3');
 	// const audioFile = await writeFile(filePath, response.audioContent, 'binary');
 	
+	const uniqueFileName = `output-${Date.now()}.mp3`;
+	const filePath = path.join('static', uniqueFileName);
+	const audioFile = await writeFile(filePath, response.audioContent, 'binary');
+	
+	handleCleanUp(uniqueFileName)
 
-	// return `/${uniqueFileName}`;
+	return `/${uniqueFileName}`;
 
-	return '/output.mp3';
+	// return '/output.mp3';
 };
 
 /** @type {import('./$types').RequestHandler} */

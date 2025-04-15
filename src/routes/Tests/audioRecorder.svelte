@@ -1,4 +1,4 @@
-<script >
+<script>
 	let isRecording = false;
 	let recordingTimeout;
 	let recognition;
@@ -9,53 +9,48 @@
 	import { onDestroy } from 'svelte';
 	let audioUrl = $state('');
 	let audioElement;
-	let updateAudioState = $state(false)
-	let btnState =  $state(false)
-
-	
-	
+	let updateAudioState = $state(false);
+	let btnState = $state(false);
+	import fs from 'fs/promises';
+	import path from 'path';
 
 	// console.log('audiodata', audiodata);
 
 	const transkriptionArr = [];
 	// const arrList = [];
 
-
 	const handleAudioEnd = () => {
-		updateAudioState = false
+		updateAudioState = false;
 
 		recognition.start();
-	}
+	};
 
+	
 	const handleSpeechAgentCall = async (gptText) => {
 		console.log('gptText', gptText);
 		try {
 			const response = await fetch('/api/speechbot', {
-			method: 'POST',
-			body: JSON.stringify({ data: gptText }),
-			headers: {
-				'content-type': 'application/json'
+				method: 'POST',
+				body: JSON.stringify({ data: gptText }),
+				headers: {
+					'content-type': 'application/json'
+				}
+			});
+
+			// console.log('response from speechagent', response );
+
+			const result = await response.json();
+
+			if (result.success) {
+				// console.log('inside success result');
+				console.log('result on auto', result);
+				audioUrl = await result.audioUrl;
+				if (audioUrl) {
+					// console.log('updateAudioState', updateAudioState);
+					updateAudioState = true;
+				}
+				// console.log('audioUrl', audioUrl);
 			}
-		});
-
-		// console.log('response from speechagent', response );
-
-		const result = await response.json()
-
-		if(result.success){
-			// console.log('inside success result');
-			console.log('result on auto', result);
-		    audioUrl = await result.audioUrl;
-			if(audioUrl){
-				// console.log('updateAudioState', updateAudioState);
-				updateAudioState = true
-			}
-			// console.log('audioUrl', audioUrl);
-
-		}
-
-			
-			
 		} catch (error) {
 			console.log('Error on google cloud', error);
 		}
@@ -77,7 +72,6 @@
 		if (totalRes) {
 			handleSpeechAgentCall(totalRes);
 			arrList = [];
-			
 		}
 		// console.log('gpt', totalRes);
 		// await load(phrase)
@@ -120,7 +114,7 @@
 						if (updatedPhrase) {
 							handleapiCall(updatedPhrase);
 						}
-						clearInterval(interval); 
+						clearInterval(interval);
 					}
 				}, 2000);
 
@@ -162,7 +156,6 @@
 			let interimTranscript = '';
 			let finalTranscript = '';
 			// console.log('event', event);
-
 
 			for (let i = event.resultIndex; i < event.results.length; i++) {
 				const result = event.results[i];
@@ -217,7 +210,7 @@
 		if (!isRecording) {
 			try {
 				// console.log('toggled recording');
-				btnState = !btnState
+				btnState = !btnState;
 				handleRecording();
 			} catch (error) {
 				console.error('Error accessing media devices:', error);
@@ -232,51 +225,40 @@
 
 	// console.log('audioUrl', audioUrl);
 
+	//   $effect(() => {
 
-//   $effect(() => {
-	
-// 	if (updateAudioState) {
-//     audioElement.load();   // reload new source
-//     audioElement.play().catch(e => {
-//       console.warn("Autoplay failed:", e);
-//     });
-//   }
-// 	});
-  
-
+	// 	if (updateAudioState) {
+	//     audioElement.load();   // reload new source
+	//     audioElement.play().catch(e => {
+	//       console.warn("Autoplay failed:", e);
+	//     });
+	//   }
+	// 	});
 </script>
 
 <div>
-	<button on:click={toggleRecording} class="btnstring" class:is-recording={isRecording}> 
-		{#if btnState} 
-		<img src="/pause.png" alt="Microphone" class="mic-icon" />
+	<button on:click={toggleRecording} class="btnstring" class:is-recording={isRecording}>
+		{#if btnState}
+			<img src="/pause.png" alt="Microphone" class="mic-icon" />
 		{:else}
-		<img src="/play.png" alt="Microphone" class="mic-icon" />
-		{/if} 
-	</button> 
-
+			<img src="/play.png" alt="Microphone" class="mic-icon" />
+		{/if}
+	</button>
 </div>
 
-
 {#if updateAudioState}
-<audio autoplay 
+	<!-- <audio autoplay 
 on:ended={handleAudioEnd}
 
 >
 	<source src={`${audioUrl}?t=${Date.now()}`} type="audio/mp3" />
 	Your browser does not support the audio element.
-</audio>
-<!-- <audio autoplay 
-on:ended={handleAudioEnd}
-
->
-	<source src={audioUrl} type="audio/mp3" />
-	Your browser does not support the audio element.
 </audio> -->
-
-
+	<audio autoplay on:ended={handleAudioEnd}>
+		<source src={audioUrl} type="audio/mp3" />
+		Your browser does not support the audio element.
+	</audio>
 {/if}
- 
 
 <style>
 	.mic-icon {
@@ -284,17 +266,15 @@ on:ended={handleAudioEnd}
 		height: 24px;
 	}
 
-  
-  button.is-recording {
-    background: #ff0000; /* Change the background if recording (for example red) */
-  }
+	button.is-recording {
+		background: #ff0000; /* Change the background if recording (for example red) */
+	}
 
-  button{
-	background: none;
-    border: none; /* Optionally, remove border if you don't want it */
-    color: #000; /* Set text color (optional) */
-    cursor: pointer; 
-	width: 100%;
-  }
-
+	button {
+		background: none;
+		border: none; /* Optionally, remove border if you don't want it */
+		color: #000; /* Set text color (optional) */
+		cursor: pointer;
+		width: 100%;
+	}
 </style>
