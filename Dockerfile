@@ -4,10 +4,6 @@ COPY package*.json ./
 RUN npm ci
 
 
-ARG GOOGLE_CLOUD_KEY_B64
-
-ENV GOOGLE_CLOUD_KEY_B64=${GOOGLE_CLOUD_KEY_B64}
-
 # Declare a build argument for SECRET_OPENAIKEY
 ARG OPENAI_API_KEY
 
@@ -15,7 +11,16 @@ ARG OPENAI_API_KEY
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 
 COPY . .
+
+
+ARG GOOGLE_CLOUD_KEY_B64
+
+ENV GOOGLE_CLOUD_KEY_B64=${GOOGLE_CLOUD_KEY_B64}
+
 RUN npm run build
+# Ensure the static directory is writable
+RUN mkdir -p static && chmod -R 777 static
+
 RUN npm prune --production
 
 FROM node:22-alpine
