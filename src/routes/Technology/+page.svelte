@@ -1396,9 +1396,10 @@
 		}
 		.conversationArea{
 			flex-direction: column;
-			height: 90svh;
+			height: 90dvh;
+			width: auto;
 			/* padding: 15px; */
-			margin-left: 0;
+			/* margin-left: 0; */
 		}
 
 		/* .boxArea {
