@@ -547,23 +547,7 @@
 		gap: 5%;
 		/* background-color: rgb(211, 210, 209); */
 	}
-	.boxSelectAreaLayer {
-		background-color: rgb(211, 210, 209);
-		height: 100%;
-		display: flex;
-		width: 100%;
-		height: 89%;
-	}
-	.boxSelectContentLayer {
-		/* background-color: rgba(60, 60, 60, 0.753); */
-		/* background-color: rgb(157, 157, 157); */
-		height: 100%;
-		width: 30%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		border-right: 1px solid rgb(175, 166, 166);
-	}
+	
 
 	.imgPreviewArea {
 		/* background-color: rgb(214, 12, 12); */
@@ -1391,12 +1375,39 @@
 			margin-top: 15px;
 		}
 
-		.boxArea {
+		.StartOverlay{
+			/* background-color: pink; */
+			flex-direction: column;
+			height: auto;
+			/* padding: 15px; */
+			/* margin-left: 0; */
+		}
+		.conversationNav{
+			display: none;
+		}
+
+		.imgConectSection{
+			/* background-color: pink; */
+			width: 100%;
+		}
+
+		.ImageReportSection{
+			display: none;
+		}
+		.conversationArea{
+			flex-direction: column;
+			height: 90svh;
+			/* padding: 15px; */
+			margin-left: 0;
+		}
+
+		/* .boxArea {
+		background-color: pink;
 			flex-direction: column;
 			height: auto;
 			padding: 15px;
 			margin-left: 0;
-		}
+		} */
 
 		.boxSelectArea {
 			width: 100%;
