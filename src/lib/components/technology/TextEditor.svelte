@@ -1,8 +1,8 @@
 <script lang="ts" module>
-  import AudioRecorder from './AudioRecorder.svelte';
+  // import AudioRecorder from './version1/AudioRecorder.svelte';
   import Loadingbar from './loadingbar.svelte';
   import { Circle2 } from 'svelte-loading-spinners';
-	import TextList from './TextList.svelte';
+	// import TextList from './TextList.svelte';
   
 
   let text = $state('');
@@ -44,7 +44,7 @@
 <div class="text-editor">
   <textarea bind:value={text} on:focus={goToStepFour}></textarea>
   <div class="button-group">
-    <AudioRecorder onTranscription={appendTranscription} />
+    <!-- <AudioRecorder onTranscription={appendTranscription} /> -->
 
     {#if circleLoadingBarState}
         <!-- <Loadingbar/> -->

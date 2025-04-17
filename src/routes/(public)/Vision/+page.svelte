@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Footer from '../Footer.svelte';
-	import Header from '../Header.svelte';
+	import Footer from '../../Footer.svelte';
+	import Header from '../../Header.svelte';
 	import { onMount } from 'svelte';
 
 	// Mobile detection state

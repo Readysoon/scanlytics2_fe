@@ -1,4 +1,4 @@
-<script>
+<script >
 	let isRecording = false;
 	let recordingTimeout;
 	let recognition;
@@ -29,7 +29,7 @@
 	const handleSpeechAgentCall = async (gptText) => {
 		console.log('gptText', gptText);
 		try {
-			const response = await fetch('/api/speechbot', {
+			const response = await fetch('/api/technology/speechbot', {
 				method: 'POST',
 				body: JSON.stringify({ data: gptText }),
 				headers: {
@@ -59,7 +59,7 @@
 	// Top-level await is allowed in ES modules
 
 	const handleapiCall = async (phrase) => {
-		const response = await fetch('/api/audiobot', {
+		const response = await fetch('/api/technology/audiobot', {
 			method: 'POST',
 			body: JSON.stringify({ data: phrase }),
 			headers: {

@@ -1,7 +1,7 @@
 <script>
-	import Layout from '../Layout.svelte';
+	import Layout from '../../Layout.svelte';
 
-	import { isMobile } from '../../stores/device.js';
+	import { isMobile } from '../../../stores/device.js';
   </script>
   
   <Layout>
