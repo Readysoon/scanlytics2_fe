@@ -17,8 +17,6 @@ The following image shows the Technology subpage. Use the menu buttons on the ri
 <img width="1438" alt="Screenshot 2025-04-18 at 18 03 34" src="https://github.com/user-attachments/assets/67245362-5039-4648-a0f4-ead4ac9c56c8" />
 
 
-
-
 # Local Installation
 
 To get our Scanlytics Website running locally for development purposes follow the following steps:
@@ -70,4 +68,20 @@ You can preview the production build with `npm run preview`.
 
 # Git Strategy
 
+## Branching Strategy
+
+Feature Branching: Each new feature is developed in its own branch (e.g., ⁠feature/login-system), allowing for isolated development and easier testing before merging into the main branch.
+
+## Commit Strategy
+
+1.	Atomic Commits: Each commit should encapsulate a single change (e.g. “Add user authentication feature” instead of “Update multiple files”). 	
+2.	Descriptive Messages: Commit messages should be clear and informative (e.g. “Fix issue with user session timeout” rather than “Fix stuff”).
+3.	Consistent Formatting: Use a consistent format for commit messages (e.g. 'Refactoring: #Topic'). 
+
 # Clean Code Strategy
+
+## Divs
+
+1. Try to avoid unecessary Divs.
+2. Try to reduce the amount of Divs per Page, by for example exporting functionalities as compononents. 
+3. Please also nest the Names of the Divs respectively, e.g. MainMenuDownload. This makes refactoring much easier.
