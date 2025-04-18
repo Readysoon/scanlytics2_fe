@@ -1,27 +1,36 @@
-# sv
+# Local Installation
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+To get our Scanlytics Website running locally for development purposes follow the following steps:
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
+## Check if you have the necessary libraries installed
 
 ```bash
-# create a new project in the current directory
-npx sv create
+node -v
+npm -v
+```
 
-# create a new project in my-app
-npx sv create my-app
+## If not install Node (and with it npm) from the official Website:
+
+[nodejs.org](https://nodejs.org/en)
+
+## Clone the repository and navigate to it
+
+```bash
+git clone https://github.com/Readysoon/scanlytics2_fe.git
+cd scanlytics2_fe
 ```
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Install the dependencies (you can also use `pnpm install` or `yarn`):
 
 ```bash
-npm run dev
+npm install
+```
 
-# or start the server and open the app in a new browser tab
+Start a development server (and open a new tab with the local Website in your Browser):
+
+```bash
 npm run dev -- --open
 ```
 
@@ -35,4 +44,9 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+> To deploy the app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+
+# Git Strategy
+
+# Clean Code Strategy
