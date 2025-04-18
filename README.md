@@ -70,7 +70,9 @@ You can preview the production build with `npm run preview`.
 
 ## Branching Strategy
 
-Feature Branching: Each new feature is developed in its own branch (e.g., ⁠feature/login-system), allowing for isolated development and easier testing before merging into the main branch.
+1. Feature Branching: Each new feature is developed in its own branch (e.g., ⁠feature/login-system), allowing for isolated development and easier testing before merging into the main branch.
+2. Always Pull Request: Always assign a fellow Coder to review your about to be merged Branch to get a review on your code. The Assignee is supposed to pull the code and run it on their machine. Only if the Code runs without errors the branch can be merged.
+3. Delete after Merging: This reduces the amount of branches and therefor helps maintain a clean Version Controll!
 
 ## Commit Strategy
 
@@ -85,3 +87,8 @@ Feature Branching: Each new feature is developed in its own branch (e.g., ⁠fea
 1. Try to avoid unecessary Divs.
 2. Try to reduce the amount of Divs per Page, by for example exporting functionalities as compononents. 
 3. Please also nest the Names of the Divs respectively, e.g. MainMenuDownload. This makes refactoring much easier.
+
+
+
+
+# Happy Coding! :)
