@@ -1,3 +1,17 @@
+# The Project 
+
+Scanlytics aims to support Radiologists in their daily reporting tasks by automating key elements of their workflow. While the first iteration focused on image recognotion and providing report templates, the second Version (Scanlytics2) is a AI Chat Bot that guides the doctors through and returns a structured report. 
+
+You can visit the deployed Website here:
+
+[www.scanlytics.de](https://scanlytics.de/)
+
+Upon visiting it you will see the Frontpage, with the Header displaying the subpages 'Home' (current), 'Vision' (illustrative Page presenting our Vision and Mission), 'Technology' (showcasing the actual Chat Bot) and 'About' on which you can find more information about the Project and the Team behind it.  
+
+<img width="1438" alt="Screenshot 2025-04-18 at 17 56 22" src="https://github.com/user-attachments/assets/c3886c0c-1710-446a-9482-50f05d88f1a0" />
+
+
+
 # Local Installation
 
 To get our Scanlytics Website running locally for development purposes follow the following steps:
