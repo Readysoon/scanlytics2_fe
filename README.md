@@ -10,6 +10,13 @@ Upon visiting it you will see the Frontpage, with the Header displaying the subp
 
 <img width="1438" alt="Screenshot 2025-04-18 at 17 56 22" src="https://github.com/user-attachments/assets/c3886c0c-1710-446a-9482-50f05d88f1a0" />
 
+## Technology subpage
+
+The following image shows the Technology subpage. Use the menu buttons on the right (from top to bottom) to toggle the structured report menu, toggle the scan menu, download the report with the structured report embedded as a JSON in the metadata, switch to directly editing the PDF and at the very bottom turn the Chat Bot on (and off).
+
+<img width="1438" alt="Screenshot 2025-04-18 at 18 03 34" src="https://github.com/user-attachments/assets/67245362-5039-4648-a0f4-ead4ac9c56c8" />
+
+
 
 
 # Local Installation
