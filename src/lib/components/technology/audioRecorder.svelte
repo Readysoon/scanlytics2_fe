@@ -1,4 +1,4 @@
-<script >
+<script  module>
 	let isRecording = false;
 	let recordingTimeout;
 	let recognition;
@@ -13,14 +13,16 @@
 	let btnState = $state(false);
 	import fs from 'fs/promises';
 	import path from 'path';
+	import Wavesurfer, {getWaveaudi} from './wavesurfer.svelte';
 
 	// console.log('audiodata', audiodata);
 
 	const transkriptionArr = [];
 	// const arrList = [];
 
-	const handleAudioEnd = () => {
-		updateAudioState = false;
+	export function handleAudioEnd(){
+		console.log('triggert ');
+		// updateAudioState = false;
 
 		recognition.start();
 	};
@@ -47,7 +49,10 @@
 				audioUrl = await result.audioUrl;
 				if (audioUrl) {
 					// console.log('updateAudioState', updateAudioState);
-					updateAudioState = true;
+
+					// updateAudioState = true;
+					getWaveaudi(audioUrl)
+
 				}
 				// console.log('audioUrl', audioUrl);
 			}
@@ -73,8 +78,7 @@
 			handleSpeechAgentCall(totalRes);
 			arrList = [];
 		}
-		// console.log('gpt', totalRes);
-		// await load(phrase)
+		
 	};
 
 	const handleUploadData = async (phraseArr) => {
@@ -236,6 +240,7 @@
 	// 	});
 </script>
 
+
 <div>
 	<button on:click={toggleRecording} class="btnstring" class:is-recording={isRecording}>
 		{#if btnState}
@@ -246,19 +251,16 @@
 	</button>
 </div>
 
-{#if updateAudioState}
-	<!-- <audio autoplay 
+<!-- {#if updateAudioState}
+	<audio autoplay 
 on:ended={handleAudioEnd}
 
 >
 	<source src={`${audioUrl}?t=${Date.now()}`} type="audio/mp3" />
 	Your browser does not support the audio element.
 </audio> -->
-	<audio autoplay on:ended={handleAudioEnd}>
-		<source src={audioUrl} type="audio/mp3" />
-		Your browser does not support the audio element.
-	</audio>
-{/if}
+
+<!-- {/if} -->
 
 <style>
 	.mic-icon {
