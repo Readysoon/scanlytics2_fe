@@ -170,6 +170,12 @@ const handleApiAgentCall = async (userDataQuery) => {
 			return `Natürlich, hier ist die letzte Frage erneut:\n${repeatQuestion}`;
 		  }
 	  
+
+		  if ( userDataQuery.toLowerCase().includes("restart")) {
+			stateNum = 0
+			return 'Ich starte die Abfrage nochmal von vorn.'
+		  }
+	  
 		  console.log('stateNum',stateNum);
 		  const currentState = brunoPromptMap[stateNum];
 		  console.log('currentState', currentState);
@@ -190,13 +196,7 @@ const handleApiAgentCall = async (userDataQuery) => {
 			return `${currentState.question}`;
 		  }
 
-		//   const startWord = ["restart", "starte", "von" , "neu"];
-
-		//   if ( userDataQuery.toLowerCase().includes(startWord)) {
-		// 	stateNum = 0
-		// 	return 'Ich starte die Abfrage nochmal von vorn.'
-		//   }
-	  
+		 
 		  // Hole nächste Frage
 		  const nextState = currentState.next;
 		  const nextQuestion = brunoPromptMap[nextState]?.question || "Es sind keine weiteren Fragen vorhanden.";
