@@ -11,11 +11,6 @@
 		<div class="Above">
 			<h2>Test Image Scroller</h2>
 		</div>
-		<div class="Text">
-			<p>
-				Scroll through the images using your mouse wheel or touchpad. This is a test page to demonstrate the image scroller functionality. The images are loaded dynamically, and you can scroll through them seamlessly.
-			</p>
-		</div>
 		<ImageScroller />
 	</div>
   </Layout>

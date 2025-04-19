@@ -12,11 +12,23 @@
     // Add scroll event listener
     window.addEventListener('wheel', handleScroll);
     
-    // Cleanup the event listener on component destroy
+    // Add touch event listeners
+    const imageScroller = document.querySelector('.image-scroller');
+    imageScroller.addEventListener('touchstart', handleTouchStart);
+    imageScroller.addEventListener('touchmove', handleTouchMove);
+    imageScroller.addEventListener('touchend', handleTouchEnd);
+    
+    // Cleanup the event listeners on component destroy
     return () => {
       window.removeEventListener('wheel', handleScroll);
+      imageScroller.removeEventListener('touchstart', handleTouchStart);
+      imageScroller.removeEventListener('touchmove', handleTouchMove);
+      imageScroller.removeEventListener('touchend', handleTouchEnd);
     };
   });
+
+  let startY = 0; // Starting Y position for touch
+  let isDragging = false; // To track if the user is dragging
 
   function handleScroll(event) {
     if (event.deltaY > 0) {
@@ -24,6 +36,31 @@
     } else {
       previousImage();
     }
+  }
+
+  function handleTouchStart(event) {
+    startY = event.touches[0].clientY; // Get the initial touch position
+    isDragging = true; // Set dragging flag
+  }
+
+  function handleTouchMove(event) {
+    if (!isDragging) return; // If not dragging, do nothing
+
+    const currentY = event.touches[0].clientY; // Get the current touch position
+    const diffY = startY - currentY; // Calculate the difference
+
+    // Determine if we should change the image based on the swipe direction
+    if (diffY > 50) { // Swipe up
+      nextImage();
+      startY = currentY; // Reset start position
+    } else if (diffY < -50) { // Swipe down
+      previousImage();
+      startY = currentY; // Reset start position
+    }
+  }
+
+  function handleTouchEnd() {
+    isDragging = false; // Reset dragging flag
   }
 
   function nextImage() {
