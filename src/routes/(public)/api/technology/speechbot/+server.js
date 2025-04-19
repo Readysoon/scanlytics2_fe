@@ -6,7 +6,6 @@ import { env } from '$env/dynamic/private';
 import path from 'path';
 import fs from 'fs';
 import fsp from 'fs/promises';
-import { env } from '$env/dynamic/private';
 import { S3Client, ListBucketsCommand ,  DeleteObjectsCommand, GetObjectCommand, ListObjectsV2Command, HeadObjectCommand, PutObjectCommand, DeleteObjectCommand} from '@aws-sdk/client-s3';
 
 
