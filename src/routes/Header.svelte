@@ -46,7 +46,7 @@
         <a href="/Vision/" class={$page.url.pathname.startsWith('/Vision') ? 'active' : ''}>Vision</a>
         <a href="/Technology/" class={$page.url.pathname.startsWith('/Technology') ? 'active' : ''}>Technology</a>
         <a href="/About/" class={$page.url.pathname.startsWith('/About') ? 'active' : ''}>About</a>
-        <a href="/Tests/" class={$page.url.pathname.startsWith('/Tests') ? 'active' : ''}>Tests</a>
+        <!-- <a href="/Tests/" class={$page.url.pathname.startsWith('/Tests') ? 'active' : ''}>Tests</a> -->
 
         <button class="bookCallBtn" on:click={redirectUser}>Book a Call</button>
     </div>
