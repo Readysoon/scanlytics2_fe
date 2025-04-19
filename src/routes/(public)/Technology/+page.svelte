@@ -5,8 +5,8 @@
 	import { Circle2 } from 'svelte-loading-spinners';
 	import * as kneejsonData from '../../../../static/knee.json';
 	// import AudioRecorder from '../../components/technology/audioRecorder.svelte'
-	import AudioRecorder from '../../../lib/components/technology/audioRecorder.svelte'
-
+	import AudioRecorder from '../../../lib/components/technology/audioRecorder.svelte';
+	import Wavesurfer from '$lib/components/technology/wavesurfer.svelte';
 
 	let firstLoad = $state(true);
 	let menuToggle: boolean = $state(true);
@@ -16,14 +16,11 @@
 	let scansToggle = $state(false);
 	let navAssistantToggle_Structured = $state(true);
 	let navAssistantToggle_History = $state(false);
-	let enterPageToggle = $state(true)
-	let inputValue = $state("")
+	let enterPageToggle = $state(true);
+	let inputValue = $state('');
 	let resultAreaToggle = $state(false);
 	let isMobile = false;
 	let data = $props();
-
-
-
 
 	// Handle patient info default binding toggle
 	$effect(() => {
@@ -92,16 +89,12 @@
 	});
 	// ------------------------------------------------------------------------------
 
-
-	
-	// Handle navigation toggle header 
+	// Handle navigation toggle header
 	const handleNavCall = (nav: string) => {
-		navAssistantToggle_Structured = nav == "structured" ? true : false
-		navAssistantToggle_History  = nav == "history" ? true : false
-
-	}
+		navAssistantToggle_Structured = nav == 'structured' ? true : false;
+		navAssistantToggle_History = nav == 'history' ? true : false;
+	};
 	// ------------------------------------------------------------------------------
-
 
 	// Handle menu toggle
 	const handleMenuAIClick = () => {
@@ -112,7 +105,7 @@
 		scansToggle = !scansToggle;
 	};
 
-	const  handleMenuDownloadClick = () => {
+	const handleMenuDownloadClick = () => {
 		// Create a link element
 		const link = document.createElement('a');
 
@@ -134,13 +127,11 @@
 
 		// Optional: Add analytics or tracking
 		console.log('Report downloaded');
-	}
+	};
 	// ------------------------------------------------------------------------------
-
 
 	// Handle AI content toggle
 	const handleSelectedEvent = (event: any) => {
-
 		ItemToggle = ItemToggle == ItemToggle ? event : null;
 	};
 
@@ -149,8 +140,6 @@
 	};
 	// ------------------------------------------------------------------------------
 
-
-
 	// Handle Responsiveness toggle
 	if (typeof window !== 'undefined') {
 		isMobile = window.innerWidth <= 1024;
@@ -158,11 +147,6 @@
 			isMobile = window.innerWidth <= 1024;
 		});
 	}
-
-	
-
-
-
 </script>
 
 <head>
@@ -174,275 +158,270 @@
 
 	<div class="mainSection">
 		<div class="StartOverlay">
-
-
 			<div class="conversationNav">
-			
 				<div class="conversationNavContent">
-					<div class="StucturedReport" 
-					style="background-color: { navAssistantToggle_Structured ? '#ea7900b1' : '#0d1117'}"
-					on:click={() => handleNavCall('structured')}
-					
-					> Structured Report </div>
-					<div class="MedicalReport"
-						style="background-color: { navAssistantToggle_History ? '#ea7900b1' : '#0d1117'}"
-					 on:click={() => handleNavCall('history')}> Medical History Report</div>
+					<div
+						class="StucturedReport"
+						style="background-color: {navAssistantToggle_Structured ? '#ea7900b1' : '#0d1117'}"
+						on:click={() => handleNavCall('structured')}
+					>
+						Structured Report
+					</div>
+					<div
+						class="MedicalReport"
+						style="background-color: {navAssistantToggle_History ? '#ea7900b1' : '#0d1117'}"
+						on:click={() => handleNavCall('history')}
+					>
+						Medical History Report
+					</div>
+				</div>
+
+				<div class="conversationBotLayer">
+					<div class="botNav">
+						<img src="/robo.png" alt="Microphone" class="roboIcon" />
+
+					</div>
+					<div class="blockContentSection">
+						<div class="botContent">
+							<Wavesurfer/>
+						</div>
+					</div>
+
+
 				</div>
 			</div>
 
 			{#if enterPageToggle}
-
-
-			{#if navAssistantToggle_Structured}
-			<div class="conversationArea">
-				<!-- Select Image Area  -->
-				{#if scansToggle}
-					<div class="scansToggleArea">
-						<Selectpage />
-					</div>
-				{/if}
-				<!-- Image Area  -->
-					<div class="imgScanSection">
-						<!-- <div class="conversationHeader">head</div> -->
-						{#if firstLoad}
-							<!-- hello -->
-							<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
-						{:else}
-							<div class="aiContentArea">
-								<!-- <div class="ImageviewSection" style="width: {menuToggle ? ' 70% ' : '100%'};">
-									<img src="knie.jpg" alt="widget" class="selectedItemlogo" />
-								</div> -->
-								<div class="imgConectSection" 
-								style="width: {menuToggle ? '70%': '100%'};"
-								>
-									<ImageUploader />
-
-								</div>
-								{#if menuToggle}
-									<div class="ImageReportSection">
-										<div class="imageReportSectionHeader">
-											<p class="assitantTitle">AI Reporting Assistant</p>
-										</div>
-										<div class="assistantContentSection">
-											<div class="metadataSection">
-												<div class="metadataContent">
-													<div class="metadataBox">
-														Title: {kneejsonData.title}
-													</div>
-													<div class="metadataBox">
-														Description: {kneejsonData.description}
-													</div>
-													<div class="metadataBox">
-														Date: {kneejsonData.metadata.date}
-													</div>
-													<div class="metadataBox">
-														Publisher: {kneejsonData.metadata.publisher}
-													</div>
-												</div>
-											</div>
-											<div class="aicontentSection">
-												<div class="aicontentSectionHeader">
-													<div>
-														<p class="questiontTitle">Questionnaire</p>
-													</div>
-												</div>
-												<div class="aicontentSectionContent">
-													{#if kneejsonData.sections.length > 0}
-														{#each kneejsonData.sections as items (items)}
-															{#if ItemToggle != null && ItemToggle.name == items.name}
-																<div class="selected-item-area">
-																	<div class="selected-Item-header">
-																		<div class="selected-Item-title">{ItemToggle.name}</div>
-																		<div
-																			class="selected-Item-closeBtn"
-																			on:click={handleClosetogglebtn}
-																		>
-																			x
-																		</div>
-																	</div>
-																	<div class="select-Item-Content">
-																		{#each ItemToggle.questions as itemObj (itemObj)}
-																			<div class="selected-item-obj">
-																				{itemObj.label}
-
-																				<input
-																					type="text"
-																					class="textoption"
-																					value={isCheckInputData[itemObj.label]}
-																				/>
-																			</div>
-																		{/each}
-																	</div>
-																</div>
-															{:else}
-																<div
-																	class="text-item-name-area"
-																	style="border-color: {items.name == 'Findings'
-																		? 'rgb(43, 121, 194)'
-																		: 'white'};"
-																>
-																	<div
-																		class="text-item-name"
-																		on:click={() => handleSelectedEvent(items)}
-																	>
-																		{items.name}
-
-																		{#if items.name == 'Findings'}
-																			<div>
-																				<img
-																					src="robo2.png"
-																					alt="widget"
-																					class="robologo"
-																					on:click={handleMenuAIClick}
-																				/>
-																			</div>
-																		{/if}
-																	</div>
-																	<div class="text-item-checkBox">
-																		<input
-																			type="checkbox"
-																			class="aicheckBox"
-																			bind:checked={isChecked[items.name]}
-																		/>
-																	</div>
-																</div>
-															{/if}
-														{/each}
-													{/if}
-												</div>
-											</div>
-										</div>
-										<div></div>
-									</div>
-								{/if}
+				{#if navAssistantToggle_Structured}
+					<div class="conversationArea">
+						<!-- Select Image Area  -->
+						{#if scansToggle}
+							<div class="scansToggleArea">
+								<Selectpage />
 							</div>
 						{/if}
-					</div>
-					<!-- <div class="imgSectionListTab">2</div> -->
-				<!-- Navbar Area -->
-				<div class="aiNavBar">
-					<div class="upperBar">
-						<div class="optionBox">
-							<img
-								src="widget.png"
-								alt="widget"
-								class="widgetlogo"
-								on:click={isMobile ? () => {} : handleMenuAIClick}
-							/>
-							<p>Menu</p>
-						</div>
-						<div class="optionBox" on:click={handleMenuScansClick}>
-							<!-- <AudioRecorder onTranscription={appendTranscription} /> -->
+						<!-- Image Area  -->
+						<div class="imgScanSection">
+							<!-- <div class="conversationHeader">head</div> -->
+							{#if firstLoad}
+								<!-- hello -->
+								<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
+							{:else}
+								<div class="aiContentArea">
+									<!-- <div class="ImageviewSection" style="width: {menuToggle ? ' 70% ' : '100%'};">
+									<img src="knie.jpg" alt="widget" class="selectedItemlogo" />
+								</div> -->
+									<div class="imgConectSection" style="width: {menuToggle ? '70%' : '100%'};">
+										<ImageUploader />
+									</div>
+									{#if menuToggle}
+										<div class="ImageReportSection">
+											<div class="imageReportSectionHeader">
+												<p class="assitantTitle">AI Reporting Assistant</p>
+											</div>
+											<div class="assistantContentSection">
+												<div class="metadataSection">
+													<div class="metadataContent">
+														<div class="metadataBox">
+															Title: {kneejsonData.title}
+														</div>
+														<div class="metadataBox">
+															Description: {kneejsonData.description}
+														</div>
+														<div class="metadataBox">
+															Date: {kneejsonData.metadata.date}
+														</div>
+														<div class="metadataBox">
+															Publisher: {kneejsonData.metadata.publisher}
+														</div>
+													</div>
+												</div>
+												<div class="aicontentSection">
+													<div class="aicontentSectionHeader">
+														<div>
+															<p class="questiontTitle">Questionnaire</p>
+														</div>
+													</div>
+													<div class="aicontentSectionContent">
+														{#if kneejsonData.sections.length > 0}
+															{#each kneejsonData.sections as items (items)}
+																{#if ItemToggle != null && ItemToggle.name == items.name}
+																	<div class="selected-item-area">
+																		<div class="selected-Item-header">
+																			<div class="selected-Item-title">{ItemToggle.name}</div>
+																			<div
+																				class="selected-Item-closeBtn"
+																				on:click={handleClosetogglebtn}
+																			>
+																				x
+																			</div>
+																		</div>
+																		<div class="select-Item-Content">
+																			{#each ItemToggle.questions as itemObj (itemObj)}
+																				<div class="selected-item-obj">
+																					{itemObj.label}
 
-							<img src="/xr5.png" alt="widget" class="widgetlogo" />
-							<p>Scans</p>
-						</div>
+																					<input
+																						type="text"
+																						class="textoption"
+																						value={isCheckInputData[itemObj.label]}
+																					/>
+																				</div>
+																			{/each}
+																		</div>
+																	</div>
+																{:else}
+																	<div
+																		class="text-item-name-area"
+																		style="border-color: {items.name == 'Findings'
+																			? 'rgb(43, 121, 194)'
+																			: 'white'};"
+																	>
+																		<div
+																			class="text-item-name"
+																			on:click={() => handleSelectedEvent(items)}
+																		>
+																			{items.name}
 
-						<div class="optionBox">
-							<img src="her1.png" alt="widget" class="widgetlogo" on:click={handleMenuDownloadClick} />
-							<p>Download</p>
+																			{#if items.name == 'Findings'}
+																				<div>
+																					<img
+																						src="robo2.png"
+																						alt="widget"
+																						class="robologo"
+																						on:click={handleMenuAIClick}
+																					/>
+																				</div>
+																			{/if}
+																		</div>
+																		<div class="text-item-checkBox">
+																			<input
+																				type="checkbox"
+																				class="aicheckBox"
+																				bind:checked={isChecked[items.name]}
+																			/>
+																		</div>
+																	</div>
+																{/if}
+															{/each}
+														{/if}
+													</div>
+												</div>
+											</div>
+											<div></div>
+										</div>
+									{/if}
+								</div>
+							{/if}
 						</div>
+						<!-- <div class="imgSectionListTab">2</div> -->
+						<!-- Navbar Area -->
+						<div class="aiNavBar">
+							<div class="upperBar">
+								<div class="optionBox">
+									<img
+										src="widget.png"
+										alt="widget"
+										class="widgetlogo"
+										on:click={isMobile ? () => {} : handleMenuAIClick}
+									/>
+									<p>Menu</p>
+								</div>
+								<div class="optionBox" on:click={handleMenuScansClick}>
+									<!-- <AudioRecorder onTranscription={appendTranscription} /> -->
 
-						<div class="optionBox">
-							<img src="text.png" alt="widget" class="widgetlogo" />
-							<p>Editor</p>
-						</div>
-					</div>
-					<div class="middleBar">
-						<div class="freq1">
-							<div class="uvMeter">1</div>
-							<div class="assistantPlayArea">
-								<AudioRecorder />
-								<!-- <img src="robo2.png" alt="widget" class="robologo" on:click={handleMenuClick} /> -->
-								<!-- <img src="play.png" alt="widget" class="widgetlogo" />
+									<img src="/xr5.png" alt="widget" class="widgetlogo" />
+									<p>Scans</p>
+								</div>
+
+								<div class="optionBox">
+									<img
+										src="her1.png"
+										alt="widget"
+										class="widgetlogo"
+										on:click={handleMenuDownloadClick}
+									/>
+									<p>Download</p>
+								</div>
+
+								<div class="optionBox">
+									<img src="text.png" alt="widget" class="widgetlogo" />
+									<p>Editor</p>
+								</div>
+							</div>
+							<div class="middleBar">
+								<div class="freq1">
+									<div class="uvMeter">1</div>
+									<div class="assistantPlayArea">
+										<AudioRecorder />
+										<!-- <img src="robo2.png" alt="widget" class="robologo" on:click={handleMenuClick} /> -->
+										<!-- <img src="play.png" alt="widget" class="widgetlogo" />
 								  -->
-								<p>Assistant</p>
+										<p>Assistant</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{/if}
+
+				{#if navAssistantToggle_History}
+					<div class="medicalConversationArea">
+						<div class="imgScanSection">
+							<div class="medicalAIImageContent">
+								<div class="medicalAIImageArea" style="width: {resultAreaToggle ? '50%' : '100%'};">
+									<div class="medicalImageSection">
+										<img
+											src="amnese.jpg"
+											alt="widget"
+											class="amnesebogen"
+											style="width: {resultAreaToggle ? '60%' : '30%'};"
+											on:click={handleMenuAIClick}
+										/>
+									</div>
+									<div class="medicalImagebtnAreaSection"><button>Start Conversation</button></div>
+								</div>
+
+								{#if resultAreaToggle}
+									<div class="medicalResultArea">result</div>
+								{/if}
+							</div>
+						</div>
+					</div>
+				{/if}
+			{:else}
+				<div class="emailSectionArea">
+					<div class="imgScanSection">
+						<div class="emailRequestSection">
+							<div class="placeholderObjecttext">
+								<p>Scanlytics AI Assistant</p>
+							</div>
+							<div class="subTextEmailRequestArea">
+								<p>Please enter the code: 777</p>
+							</div>
+
+							<div>
+								<input type="text" bind:value={inputValue} class="emailInputContent" />
+							</div>
+							<div>
+								<button>Submit</button>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 			{/if}
-
-			{#if navAssistantToggle_History}
-					<div class="medicalConversationArea">
-								<div class="imgScanSection">
-									<div class="medicalAIImageContent">
-
-										<div class="medicalAIImageArea"
-										style="width: {resultAreaToggle ? '50%': '100%'};"
-
-										>
-
-											<div class="medicalImageSection">
-												<img
-												src="amnese.jpg"
-												alt="widget"
-												class="amnesebogen"
-												style="width: {resultAreaToggle ? '60%': '30%'};"
-												on:click={handleMenuAIClick}
-											/>
-											</div>
-											<div class="medicalImagebtnAreaSection" > <button>Start Conversation</button></div>
-										</div>
-
-										{#if resultAreaToggle}
-											<div class="medicalResultArea"> result</div>
-
-										{/if}
-									</div>
-									
-								</div>
-					</div>
-			{/if}	
-			{:else}
-			<div class="emailSectionArea"> 
-				<div class="imgScanSection">
-					<div class="emailRequestSection">
-						<div class="placeholderObjecttext">
-							<p>Scanlytics AI Assistant</p>
-	   
-					   </div>
-					   <div class="subTextEmailRequestArea">
-						   <p>Please enter the code: 777 </p>
-	   
-					   </div>
-
-					   <div>
-						<input type="text" bind:value={inputValue} class="emailInputContent" >
-					
-						</div>
-					   <div>
-						<button >Submit</button>
-					   </div>
-
-					</div>
-					
-				</div>
-				
-			</div>
-
-			{/if}
-
 		</div>
 	</div>
-
 </main>
 
 <style>
-
-
 	main {
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
 		overflow-y: auto;
 		scrollbar-width: none; /* Firefox */
 		-ms-overflow-style: none; /* IE and Edge */
-		
-
-
 	}
-	
 
 	.mainSection {
 		/* background-color: #0d1117; */
@@ -450,29 +429,25 @@
 		margin-top: 30px;
 	}
 
-
-
 	.StartOverlay {
 		height: 100%;
 		width: 100%;
-	
+
 		background-color: #0d1117;
 		z-index: 6;
 	}
 
-	.conversationNav{
-		background-color: orange;
-		background-color: #0d1117;
+	.conversationNav {
+		/* background-color: #126df4; */
 		height: 4%;
 		border-left: 1px solid rgba(255, 255, 255, 0.175);
 		border-right: 1px solid rgba(255, 255, 255, 0.175);
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
-
-	
-
+		display: flex;
+		justify-content: space-between;
 	}
 
-	.conversationNavContent{
+	.conversationNavContent {
 		/* background-color: green; */
 		width: 30%;
 		height: 100%;
@@ -481,11 +456,80 @@
 		align-items: center;
 		justify-content: center;
 		gap: 3%;
+	}
 
+	.conversationBotLayer {
+		/* background-color: green; */
+		width: 18%;
+		height: 100%;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		/* gap: 3%; */
+		/* border-left: 1px solid rgba(255, 255, 255, 0.175); */
+		/* border-right: 1px solid rgba(255, 255, 255, 0.175); */
+	}
+
+	.botNav{
+		/* background-color: orange; */
+		height: 100%;
+		width: 15%;
+		border-left: 1px solid rgba(255, 255, 255, 0.175);
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
 
 	}
 
-	.StucturedReport{
+	.blockContentSection {
+		/* background-color: pink; */
+		height: 100%;
+		width: 85%;
+		border-left: 1px solid rgba(255, 255, 255, 0.175);
+		/* border-right: 1px solid rgba(255, 255, 255, 0.175); */
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-end;
+		margin-right: 3%;
+	}
+
+	.roboIcon{
+		height: 70%;
+		width:  50%;
+		opacity: 0.9;
+		cursor: pointer;
+	}
+	.botContent {
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px); 
+		background: linear-gradient(to top left, rgba(0, 0, 0, 0.7),rgba(37, 37, 37, 0.4), rgba(0, 0, 0, 0.4)),
+			linear-gradient(rgba(255, 255, 255, 0.175) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(255, 255, 255, 0.175) 1px, transparent 1px);
+		background-size:
+			cover,
+			30px 10px,
+			10px 10px;
+			/* background-color: pink; */
+			
+		/* background-blend-mode: overlay; */
+		/* box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 0 40px rgba(255, 255, 255, 0.05); */
+		width: 97%;
+		height: 70%;
+		border-radius: 50px;
+		display: flex;
+		/* margin-right: 5%; */
+		/* flex-direction: row; */
+		/* align-items: center; */
+		justify-content: center;
+		border: 2px solid rgba(255, 255, 255, 0.175);
+	}
+	
+	
+
+	.StucturedReport {
 		width: 40%;
 		height: 100%;
 		/* background-color: blue; */
@@ -497,17 +541,14 @@
 		margin-top: 1%;
 		border-top-left-radius: 5px;
 		border-top-right-radius: 5px;
-		border-top: 1px solid rgba(255, 255, 255, 0.175); 
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
 		border-left: 1px solid rgba(255, 255, 255, 0.175);
 		border-right: 1px solid rgba(255, 255, 255, 0.175);
 		color: white;
 		font-family: system-ui;
 		cursor: pointer;
-
-
-
 	}
-	.MedicalReport{
+	.MedicalReport {
 		width: 40%;
 		height: 100%;
 
@@ -518,14 +559,12 @@
 		margin-top: 1%;
 		border-top-left-radius: 5px;
 		border-top-right-radius: 5px;
-		border-top: 1px solid rgba(255, 255, 255, 0.175); 
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
 		border-left: 1px solid rgba(255, 255, 255, 0.175);
 		border-right: 1px solid rgba(255, 255, 255, 0.175);
 		color: white;
 		font-family: system-ui;
 		cursor: pointer;
-	
-
 	}
 
 	.conversationArea {
@@ -537,24 +576,21 @@
 		border-left: 1px solid rgba(255, 255, 255, 0.175);
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
-
 	}
 
-	.medicalConversationArea{
+	.medicalConversationArea {
 		height: 96%;
 		/* background-color: rgba(37, 241, 37, 0.126); */
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		border-top: 1px solid rgba(255, 255, 255, 0.175); 
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
 		border-left: 1px solid rgba(255, 255, 255, 0.175);
 		border-right: 1px solid rgba(255, 255, 255, 0.175);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
-
-
 	}
 
-	.emailSectionArea{
+	.emailSectionArea {
 		height: 96%;
 		/* background-color: rgba(37, 241, 37, 0.126); */
 		width: 100%;
@@ -563,13 +599,13 @@
 		justify-content: center;
 		align-items: center;
 		padding-bottom: 6%;
-		border-top: 1px solid rgba(255, 255, 255, 0.175); 
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
 		border-left: 1px solid rgba(255, 255, 255, 0.175);
 		border-right: 1px solid rgba(255, 255, 255, 0.175);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
-	.emailRequestSection{
+	.emailRequestSection {
 		height: 100%;
 		width: 100%;
 		display: flex;
@@ -586,7 +622,7 @@
 		color: rgba(220, 215, 215, 0.403);
 	}
 
-	.subTextEmailRequestArea{
+	.subTextEmailRequestArea {
 		font-size: 35px;
 		font-weight: bold;
 		font-family: sans-serif;
@@ -594,7 +630,7 @@
 		color: rgba(249, 249, 249, 0.845);
 	}
 
-	.emailInputContent{
+	.emailInputContent {
 		width: 500px;
 		height: 40px;
 		border-radius: 50px;
@@ -604,46 +640,43 @@
 		/* padding-left: 4%; */
 		text-align: center;
 	}
-	.medicalAIImageContent{
+	.medicalAIImageContent {
 		height: 100%;
 		width: 100%;
 		/* background-color: orange; */
 		display: flex;
 	}
 
-	.medicalAIImageArea{
+	.medicalAIImageArea {
 		height: 100%;
 		/* width: 50%; */
 		/* background-color: rgb(20, 211, 224); */
-		border-right: 1px solid rgba(255, 255, 255, 0.175); 
-
+		border-right: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
-	.medicalImageSection{
+	.medicalImageSection {
 		height: 94%;
 		width: 100%;
 		/* background-color: rgb(93, 90, 93); */
 		display: flex;
 		justify-content: center;
 		align-items: center;
-
 	}
-	.amnesebogen{
+	.amnesebogen {
 		width: 60%;
 		height: 90%;
 	}
-	.medicalImagebtnAreaSection{
+	.medicalImagebtnAreaSection {
 		height: 6%;
 		width: 100%;
 		/* background-color: rgb(136, 224, 20); */
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border-top: 1px solid rgba(255, 255, 255, 0.175); 
-
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
-	.medicalResultArea{
+	.medicalResultArea {
 		height: 100%;
 		width: 50%;
 		/* background-color: rgb(224, 20, 149); */
@@ -671,9 +704,6 @@
 		display: flex;
 		flex-direction: row;
 	}
-
-
-
 
 	.ImageReportSection {
 		background-color: #0d1117;
@@ -949,8 +979,6 @@
 		cursor: pointer;
 	}
 
-
-
 	.widgetlogo {
 		height: 25px;
 		/* background-color: #f7f1f1; */
@@ -1000,8 +1028,6 @@
 		font-size: 10px;
 	}
 
-
-
 	.assitantTitle {
 		font-size: 20px;
 		font-weight: bold;
@@ -1010,16 +1036,10 @@
 		text-align: center;
 	}
 
-
 	.robologo {
 		width: 27px;
 		height: 27px;
 	}
-
-
-
-
-	
 
 	@media (max-width: 1024px) {
 		/* Force content to be scrollable */
@@ -1038,26 +1058,26 @@
 			margin-top: 15px;
 		}
 
-		.StartOverlay{
+		.StartOverlay {
 			/* background-color: pink; */
 			flex-direction: column;
 			height: auto;
 			/* padding: 15px; */
 			/* margin-left: 0; */
 		}
-		.conversationNav{
+		.conversationNav {
 			display: none;
 		}
 
-		.imgConectSection{
+		.imgConectSection {
 			/* background-color: pink; */
 			width: 100%;
 		}
 
-		.ImageReportSection{
+		.ImageReportSection {
 			display: none;
 		}
-		.conversationArea{
+		.conversationArea {
 			flex-direction: column;
 			height: 90dvh;
 			width: auto;
@@ -1065,9 +1085,6 @@
 			/* margin-left: 0; */
 		}
 
-
-		
-		
 		.conversationArea {
 			flex-direction: column !important;
 			width: 100% !important;
