@@ -9,16 +9,15 @@
 		<div class="Above">
 			<h2>About us</h2>
 		</div>
-		<div class="Text">
-			{#if $isMobile}
-			<p>
-				Welcome to Scanlytics, where innovation meets healthcare excellence. We are dedicated to transforming the radiology sector by addressing critical challenges such as specialist shortages, infrastructure limitations, and access disparities. 
-			</p>
-			{:else}
-			<p>
-				Welcome to Scanlytics, where innovation meets healthcare excellence. We are dedicated to transforming the radiology sector by addressing critical challenges such as specialist shortages, infrastructure limitations, and access disparities. Through cutting-edge technologies and collaborative solutions, we aim to enhance diagnostic accuracy, streamline workflows, and improve patient outcomes across diverse regions. Join us on our mission to revolutionize radiology, empowering healthcare professionals and providing better care for communities worldwide.
-			</p>
-			{/if}
+		<div class="Vision">
+			<div class="Text">
+				<p>
+					Welcome to Scanlytics, where innovation meets healthcare excellence. We are dedicated to transforming the radiology sector by addressing critical challenges such as specialist shortages, infrastructure limitations, and access disparities. 
+				</p>
+			</div>
+			<div>
+				<img src="/HighTechVision.png" alt="Group Image" />
+			</div>
 		</div>
 		<div class="GroupImage">
 			<h2>Team</h2>
@@ -30,6 +29,14 @@
   </Layout>
   
   <style>
+	.Vision {
+		flex-direction: row;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 1;
+	}
+
 	.page_container {
 		display: flex;
 		flex-direction: column;
@@ -52,7 +59,6 @@
 
 	.Text {
 		flex-direction: row;
-
 		display: flex;
 		justify-content: center;
 		align-items: center;
