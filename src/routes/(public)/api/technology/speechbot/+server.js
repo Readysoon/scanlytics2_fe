@@ -9,20 +9,20 @@ import fsp from 'fs/promises';
 import { env } from '$env/dynamic/private';
 import { S3Client, ListBucketsCommand ,  DeleteObjectsCommand, GetObjectCommand, ListObjectsV2Command, HeadObjectCommand, PutObjectCommand, DeleteObjectCommand} from '@aws-sdk/client-s3';
 
-console.log('env id', env.AWS_ACCESSKEYID);
-console.log('env region', env.AWS_REGION);
-console.log('env AWS_BUCKET_NAME', env.AWS_BUCKET_NAME);
-console.log('env key', env.AWS_SECRETACCESSKEY);
+// console.log('env id', env.AWS_ACCESSKEYID);
+// console.log('env region', env.AWS_REGION);
+// console.log('env AWS_BUCKET_NAME', env.AWS_BUCKET_NAME);
+// console.log('env key', env.AWS_SECRETACCESSKEY);
 
-const s3Client = new S3Client({
-	region: "auto", // Specify the AWS region from environment variables
-	endpoint: "https://fly.storage.tigris.dev",
-	forcePathStyle: true,
-	credentials: {
-		accessKeyId: env.AWS_ACCESSKEYID, // Access key ID from environment variables
-		secretAccessKey: env.AWS_SECRETACCESSKEY // Secret access key from environment variables
-	}
-});
+// const s3Client = new S3Client({
+// 	region: "auto", // Specify the AWS region from environment variables
+// 	endpoint: "https://fly.storage.tigris.dev",
+// 	forcePathStyle: true,
+// 	credentials: {
+// 		accessKeyId: env.AWS_ACCESSKEYID, // Access key ID from environment variables
+// 		secretAccessKey: env.AWS_SECRETACCESSKEY // Secret access key from environment variables
+// 	}
+// });
 
 // Decode the base64-encoded key
 const rawKey = env.GOOGLE_CLOUD_KEY_B64;
@@ -83,26 +83,26 @@ const handlespeechBot = async (botText) => {
 	// const filePath = path.join('static', 'output.mp3');
 	// const audioFile = await writeFile(filePath, response.audioContent, 'binary');
 
-	const uniqueFileName = `output-${Date.now()}.mp3`;
-	const bucketName = env.AWS_BUCKET_NAME; // replace with your bucket name
+	// const uniqueFileName = `output-${Date.now()}.mp3`;
+	// const bucketName = env.AWS_BUCKET_NAME; // replace with your bucket name
 
-	const uploadParams = {
-		Bucket: bucketName,
-		Key: uniqueFileName,
-		Body: response.audioContent, // this is your binary buffer
-		ContentType: 'audio/mpeg',
-		ACL: 'public-read' // optional: makes the file publicly accessible
-	};
+	// const uploadParams = {
+	// 	Bucket: bucketName,
+	// 	Key: uniqueFileName,
+	// 	Body: response.audioContent, // this is your binary buffer
+	// 	ContentType: 'audio/mpeg',
+	// 	ACL: 'public-read' // optional: makes the file publicly accessible
+	// };
 
 	
-		const audiores = await s3Client.send(new PutObjectCommand(uploadParams));
+	// 	const audiores = await s3Client.send(new PutObjectCommand(uploadParams));
 
-		// https://scanlytics-chatbot-audio.fly.storage.tigris.dev/output-1745101448235.mp3
-		const publicUrl = `https://${bucketName}.fly.storage.tigris.dev/${uniqueFileName}`;
+	// 	// https://scanlytics-chatbot-audio.fly.storage.tigris.dev/output-1745101448235.mp3
+	// 	const publicUrl = `https://${bucketName}.fly.storage.tigris.dev/${uniqueFileName}`;
 
 
-		// const publicUrl = `https://scanlytics-chatbot-audio.fly.storage.tigris.dev/${uniqueFileName}`
-		return publicUrl;
+	// 	// const publicUrl = `https://scanlytics-chatbot-audio.fly.storage.tigris.dev/${uniqueFileName}`
+	// 	return publicUrl;
 
 	
 		

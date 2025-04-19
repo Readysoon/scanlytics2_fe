@@ -10,6 +10,32 @@ ARG OPENAI_API_KEY
 # Set the environment variable inside the container
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 
+
+# Declare a build argument for SECRET_OPENAIKEY
+ARG AWS_BUCKET_NAME
+
+# Set the environment variable inside the container
+ENV AWS_BUCKET_NAME=${AWS_BUCKET_NAME}
+
+# Declare a build argument for SECRET_OPENAIKEY
+ARG AWS_ACCESSKEYID
+
+# Set the environment variable inside the container
+ENV AWS_ACCESSKEYID=${AWS_ACCESSKEYID}
+
+# Declare a build argument for SECRET_OPENAIKEY
+ARG AWS_SECRETACCESSKEY
+
+# Set the environment variable inside the container
+ENV AWS_SECRETACCESSKEY=${AWS_SECRETACCESSKEY}
+
+# Declare a build argument for SECRET_OPENAIKEY
+ARG AWS_REGION
+
+# Set the environment variable inside the container
+ENV AWS_REGION=${AWS_REGION}
+
+
 COPY . .
 
 
