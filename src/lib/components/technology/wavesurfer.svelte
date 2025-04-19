@@ -20,7 +20,6 @@
 
 	$effect(() => {
 		if (audioUrl) {
-			console.log('inside audiourl waversurfercall ', audioUrl);
 			onMount(() => {
 				// if (instance) {
 				// 	console.log('Destroying previous WaveSurfer instance...');
@@ -43,12 +42,10 @@
 				instance.play();
 				// Play the audio after loading
 				instance.on('ready', () => {
-					console.log('triigerd in play ');
 					instance.play();
 				});
 
 				instance.on('finish', () => {
-					console.log('Audio finished playing');
 					handleAudioEnd();
 					instance.destroy();
 				});

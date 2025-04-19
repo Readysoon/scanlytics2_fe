@@ -94,14 +94,14 @@ const handlespeechBot = async (botText) => {
 		ACL: 'public-read' // optional: makes the file publicly accessible
 	};
 
-	console.log('uploadParams', uploadParams);
 	
 		const audiores = await s3Client.send(new PutObjectCommand(uploadParams));
 
 		// https://scanlytics-chatbot-audio.fly.storage.tigris.dev/output-1745101448235.mp3
+		const publicUrl = `https://${bucketName}.fly.storage.tigris.dev/${uniqueFileName}`;
 
-		const publicUrl = `https://scanlytics-chatbot-audio.fly.storage.tigris.dev/${uniqueFileName}`
-		console.log('url audio', publicUrl);
+
+		// const publicUrl = `https://scanlytics-chatbot-audio.fly.storage.tigris.dev/${uniqueFileName}`
 		return publicUrl;
 
 	
