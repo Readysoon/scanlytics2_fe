@@ -14,6 +14,8 @@
 	import fs from 'fs/promises';
 	import path from 'path';
 	import Wavesurfer, {getWaveaudi} from './wavesurfer.svelte';
+	import { loadtoggleCall } from '../../../routes/(public)/Technology/+page.svelte';
+
 
 	// console.log('audiodata', audiodata);
 
@@ -96,6 +98,7 @@
 				const updatedPhrase = filteredStop.join(' ');
 				// console.log('updatedPhrase', updatedPhrase);
 				recognition.stop();
+				loadtoggleCall()
 				if (updatedPhrase) {
 					handleapiCall(updatedPhrase);
 				}
@@ -115,6 +118,7 @@
 						const updatedPhrase = filteredStop.join(' ');
 						// console.log('updatedPhrase', updatedPhrase);
 						recognition.stop();
+						loadtoggleCall()
 						if (updatedPhrase) {
 							handleapiCall(updatedPhrase);
 						}
@@ -148,7 +152,8 @@
 		recognition.interimResults = true; // Get interim results while speaking
 
 		recognition.onstart = () => {
-			// console.log('Speech recognition started...');
+			console.log('Speech recognition started...');
+			loadtoggleCall()
 		};
 
 		recognition.onend = () => {
@@ -196,6 +201,7 @@
 			// recognition.stop();
 			// Automatically restart recognition
 			if (isRecording) {
+				
 				recognition.start();
 				// console.log('Speech recognition restarted...');
 			}

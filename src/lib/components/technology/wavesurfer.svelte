@@ -3,7 +3,6 @@
 	import AudioRecorder, { handleAudioEnd } from './audioRecorder.svelte';
 	let audioUrl = $state('');
 	let container;
-	import { loadtoggleCall } from '../../../routes/(public)/Technology/+page.svelte';
 
 
 	
@@ -49,14 +48,12 @@
 				// Play the audio after loading
 				instance.on('ready', () => {
 					instance.play();
-					loadtoggleCall()
 
 				});
 
 				instance.on('finish', () => {
 					handleAudioEnd();
 					instance.destroy();
-					loadtoggleCall()
 					// updateAILogo_bot()
 				});
 
