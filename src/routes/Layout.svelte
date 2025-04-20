@@ -13,17 +13,18 @@
   
   <style>
     main {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Ensure the main takes at least full viewport height */
     }
 
     .slot-container {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
+        display: flex;
+        flex-direction: column;
+        flex: 1; /* Allow the slot container to grow */
+        overflow: auto; /* Enable scrolling if the content exceeds the height */
     }
-  </style>
+</style>
 
   <!--
 Layout Template Below
