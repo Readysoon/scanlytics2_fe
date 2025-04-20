@@ -43,6 +43,7 @@
 	scrollbar-width: none; /* Firefox */
 	-ms-overflow-style: none; /* IE and Edge */
 	}
+
 .Vision {
     flex-direction: row;
     display: flex;
@@ -94,6 +95,7 @@
     align-items: center;
     flex-grow: 1;
     margin-top: 20px; /* Add some space above the group image */
+	max-width: 80%;
 }
 
 .vision-image-container {
