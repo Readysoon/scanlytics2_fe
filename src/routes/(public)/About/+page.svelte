@@ -29,96 +29,97 @@
   </Layout>
   
   <style>
-	.Vision {
-		flex-direction: row;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-grow: 1;
-	}
+.Vision {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
 
-	.page_container {
-		display: flex;
-		flex-direction: column;
-		height: 100%; /* This is essential to make the content not overlap the footer */
-		flex: 1; /* This is essential to make the content not overlap the footer */
-	}
+.page_container {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Allow the content to grow */
+    min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds the viewport height */
+    padding-bottom: 50px; /* Optional: Add padding at the bottom for better spacing */
+}
 
-	.Above {
-		padding-top: 70px;
-		flex-direction: row;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
+.Above {
+    padding-top: 70px;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-	.Above h2 {
-		color: white;
-		font-family: system-ui;
-	}
+.Above h2 {
+    color: white;
+    font-family: system-ui;
+}
 
-	.Text {
-		flex-direction: row;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
+.Text {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-	.Text p {
-		color: white;
-		width: 70%;
-		padding-top: 15px;
-		text-align: center;
-		font-family: system-ui;
-	}
+.Text p {
+    color: white;
+    width: 70%;
+    padding-top: 15px;
+    text-align: center;
+    font-family: system-ui;
+}
 
-	.GroupImage {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex-grow: 1;
-	}
-	.vision-image-container {
-		width: 80%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-grow: 1;
-		position: relative;
-		margin-right: 50px;
-	}
+.GroupImage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    margin-top: 20px; /* Add some space above the group image */
+}
 
-	.image-container {
-		width: 80%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-grow: 1;
-		position: relative;
-	}
+.vision-image-container {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    position: relative;
+    margin-right: 50px;
+}
 
-	.GroupImage h2 {
-		padding-top: 20px;
-		color: white;
-		font-family: system-ui;
-	}
+.image-container {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    position: relative;
+}
 
-	.GroupImage img {
-		max-height: 100%; /* Make image only as high as the container */
-		padding-top: 10px;
-		width: auto; /* Maintain aspect ratio */
-		object-fit: contain; /* Ensure the image fits within the container */
-		position: absolute; /* Position absolutely within the container */
-		top: 0;
-		bottom: 0;
-		margin: auto; /* Center vertically */
-	}
+.GroupImage h2 {
+    padding-top: 20px;
+    color: white;
+    font-family: system-ui;
+}
 
-	@media (max-width: 1024px) {
-		.image-container {
-			margin-bottom: 50px;
-		}
-	}
+.GroupImage img {
+    max-height: 100%; /* Make image only as high as the container */
+    padding-top: 10px;
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the image fits within the container */
+    position: relative; /* Change to relative for better flow */
+    max-width: 100%; /* Ensure the image does not overflow the container */
+}
 
+@media (max-width: 1024px) {
+    .image-container {
+        margin-bottom: 50px;
+    }
+}
   </style>
