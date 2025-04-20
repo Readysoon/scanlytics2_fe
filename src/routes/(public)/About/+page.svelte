@@ -15,7 +15,7 @@
 					Welcome to Scanlytics, where innovation meets healthcare excellence. We are dedicated to transforming the radiology sector by addressing critical challenges such as specialist shortages, infrastructure limitations, and access disparities. 
 				</p>
 			</div>
-			<div>
+			<div class= "vision-image-container">
 				<img src="/HighTechVision.png" alt="Group Image" />
 			</div>
 		</div>
@@ -45,7 +45,7 @@
 	}
 
 	.Above {
-		padding-top: 10px;
+		padding-top: 70px;
 		flex-direction: row;
 		display: flex;
 		justify-content: center;
@@ -78,6 +78,15 @@
 		justify-content: center;
 		align-items: center;
 		flex-grow: 1;
+	}
+	.vision-image-container {
+		width: 80%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 1;
+		position: relative;
+		margin-right: 50px;
 	}
 
 	.image-container {
