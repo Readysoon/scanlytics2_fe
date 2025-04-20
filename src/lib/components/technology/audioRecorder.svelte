@@ -118,7 +118,7 @@
 						const updatedPhrase = filteredStop.join(' ');
 						// console.log('updatedPhrase', updatedPhrase);
 						recognition.stop();
-						if (updatedPhrase) {
+							if (updatedPhrase) {
 							handleapiCall(updatedPhrase);
 						}
 						clearInterval(interval);

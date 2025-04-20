@@ -2,6 +2,10 @@
 	import { T, useTask } from '@threlte/core';
 	import { interactivity, OrbitControls } from '@threlte/extras';
 	import { Spring } from 'svelte/motion';
+	import { Color } from 'three';
+
+
+	let color = new Color('red')
 
 	interactivity();
 	const scale = new Spring(3);
@@ -11,12 +15,12 @@
 		rotation += delta;
 	});
    
-    const cubeSize = 5
+    const cubeSize = 4
 	const pointsPerAxis = 10
 
 	const positions = []
 
-	const radius = cubeSize / 3
+	const radius = cubeSize /3
 
 for (let x = 0; x < pointsPerAxis; x++) {
 	for (let y = 0; y < pointsPerAxis; y++) {
@@ -39,9 +43,9 @@ for (let x = 0; x < pointsPerAxis; x++) {
 
 <T.PerspectiveCamera
 	makeDefault
-	position={[10, 9, 5]}
+	position={[1, 1, 4]}
 	oncreate={(ref) => {
-		ref.lookAt(0, 1, 0);
+		ref.lookAt(0, 2, 0);
 	}}
 >
 <OrbitControls autoRotate />
@@ -65,7 +69,7 @@ for (let x = 0; x < pointsPerAxis; x++) {
 	</T.BufferGeometry>
 	<T.PointsMaterial
 		size={0.65}
-		color={0xff6d2d}
+		color={0xe77900b1}
 		sizeAttenuation={true}
 		transparent={true}
 		alphaTest={0.5}

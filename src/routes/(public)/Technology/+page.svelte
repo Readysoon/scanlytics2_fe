@@ -27,16 +27,15 @@ export function loadtoggleCall(){
 	let scansToggle = $state(false);
 	let navAssistantToggle_Structured = $state(true);
 	let navAssistantToggle_History = $state(false);
-	let enterPageToggle = $state(true);
+	let enterPageToggle = $state(false);
 	let inputValue = $state('');
 	let resultAreaToggle = $state(false);
 	let isMobile = false;
-	// import { uploadbot } from '$lib/components/technology/wavesurfer.svelte';
-	// let data = $props();
-	// let {uploadbot} = $props();
+	import { Canvas } from '@threlte/core'
+    import Scene from '$lib/components/technology/threlte/scene.svelte';
 
-	// console.log('uploadbot', uploadbot);
-	// Handle patient info default binding toggle
+
+	
 
 
 	$effect(() => {
@@ -165,6 +164,11 @@ export function loadtoggleCall(){
 		window.addEventListener('resize', () => {
 			isMobile = window.innerWidth <= 1024;
 		});
+	}
+
+
+	const handleEnterPage = () => { 
+		enterPageToggle=true
 	}
 </script>
 
@@ -423,18 +427,23 @@ export function loadtoggleCall(){
 				<div class="emailSectionArea">
 					<div class="imgScanSection">
 						<div class="emailRequestSection">
+							<div class="avaterSection">
+								<Canvas>
+								<Scene/>
+							</Canvas>
+						</div>
 							<div class="placeholderObjecttext">
 								<p>Scanlytics AI Assistant</p>
 							</div>
 							<div class="subTextEmailRequestArea">
-								<p>Please enter the code: 777</p>
+								<p>Welcome to scnalytics AI Assistant version 2.0 Bruno </p>
 							</div>
 
 							<div>
-								<input type="text" bind:value={inputValue} class="emailInputContent" />
+								<!-- <input type="text" bind:value={inputValue} class="emailInputContent" /> -->
 							</div>
 							<div>
-								<button>Submit</button>
+								<button class="StartBtn" on:click={handleEnterPage}>S T A R T</button>
 							</div>
 						</div>
 					</div>
@@ -644,6 +653,17 @@ export function loadtoggleCall(){
 		align-items: center;
 		gap: 5%;
 	}
+
+	.avaterSection{
+            height: 50%;
+            width: 40%;
+            /* background-color: rgba(255, 21, 21, 0.271); */
+            position: absolute;
+            top: 41%;
+            left: 12%;
+            transform: translate(-50%, -50%);
+
+        }
 	.placeholderObjecttext {
 		font-size: 105px;
 		font-weight: bold;
@@ -657,7 +677,10 @@ export function loadtoggleCall(){
 		font-weight: bold;
 		font-family: sans-serif;
 
-		color: rgba(249, 249, 249, 0.845);
+		/* color: rgba(249, 249, 249, 0.845);
+		 */
+		 color: rgba(220, 215, 215, 0.403);
+
 	}
 
 	.emailInputContent {
@@ -727,6 +750,26 @@ export function loadtoggleCall(){
 		/* border-radius: 7px; */
 	}
 
+
+	.StartBtn{
+		height: 50px;
+		width: 300px;
+		background-color: rgba(202, 202, 202, 0.045);
+		border: 1px solid rgb(49, 48, 48);
+		border-radius: 7px;
+		color: rgb(210, 206, 206);
+		font-family: sans-serif;
+		font-weight: bold;
+		font-size: 19px;
+		cursor: pointer;
+	}
+
+	.StartBtn:hover{
+		background-color: rgba(254, 127, 0, 0.767);
+		border: 1px  solid black;
+		color: black;
+
+	}
 	.aiContentArea {
 		/* background-color: orange; */
 		height: 93%;
