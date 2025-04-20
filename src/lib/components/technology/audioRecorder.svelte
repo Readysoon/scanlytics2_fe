@@ -53,6 +53,7 @@
 					// console.log('updateAudioState', updateAudioState);
 
 					// updateAudioState = true;
+					loadtoggleCall()
 					getWaveaudi(audioUrl)
 
 				}
@@ -98,7 +99,6 @@
 				const updatedPhrase = filteredStop.join(' ');
 				// console.log('updatedPhrase', updatedPhrase);
 				recognition.stop();
-				loadtoggleCall()
 				if (updatedPhrase) {
 					handleapiCall(updatedPhrase);
 				}
@@ -118,7 +118,6 @@
 						const updatedPhrase = filteredStop.join(' ');
 						// console.log('updatedPhrase', updatedPhrase);
 						recognition.stop();
-						loadtoggleCall()
 						if (updatedPhrase) {
 							handleapiCall(updatedPhrase);
 						}
