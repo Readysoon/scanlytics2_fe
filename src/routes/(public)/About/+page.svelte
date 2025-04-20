@@ -58,6 +58,7 @@
     flex: 1; /* Allow the content to grow */
     min-height: 100vh; /* Ensure the container takes at least the full viewport height */
     overflow: auto; /* Enable scrolling if content exceeds the viewport height */
+	align-items: center;
 }
 
 .Above {
@@ -136,5 +137,16 @@
     .image-container {
         margin-bottom: 50px;
     }
+
+	.Vision {
+		flex-direction: column !important;
+	}
+
+	.vision-image-container {
+		margin-top: 50px;
+		margin-left: 90px;
+		margin-right: 90px;
+}
+
 }
   </style>
