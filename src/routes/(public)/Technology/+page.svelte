@@ -1,3 +1,13 @@
+<script module>
+	let loadBotToggle = $state(false)
+
+export function loadtoggleCall(){
+	console.log('hit on load page');
+	console.log('loadBotToggle', loadBotToggle);
+	loadBotToggle = !loadBotToggle
+}
+</script>
+
 <script lang="ts">
 	import Header from '../../Header.svelte';
 	import ImageUploader from '../../../lib/components/technology/ImageUploader.svelte';
@@ -7,7 +17,8 @@
 	// import AudioRecorder from '../../components/technology/audioRecorder.svelte'
 	import AudioRecorder from '../../../lib/components/technology/audioRecorder.svelte';
 	import Wavesurfer from '$lib/components/technology/wavesurfer.svelte';
-
+	// import { updateAILogo_bot } from '$lib/components/technology/wavesurfer.svelte';
+	
 	let firstLoad = $state(true);
 	let menuToggle: boolean = $state(true);
 	let ItemToggle: any = $state(null);
@@ -20,10 +31,18 @@
 	let inputValue = $state('');
 	let resultAreaToggle = $state(false);
 	let isMobile = false;
-	let data = $props();
+	// import { uploadbot } from '$lib/components/technology/wavesurfer.svelte';
+	// let data = $props();
+	// let {uploadbot} = $props();
 
+	// console.log('uploadbot', uploadbot);
 	// Handle patient info default binding toggle
+
+
 	$effect(() => {
+
+		
+		
 		kneejsonData.sections.map((i) => {
 			if (
 				i.name == 'Patient Information' ||
@@ -178,7 +197,18 @@
 
 				<div class="conversationBotLayer">
 					<div class="botNav">
-						<img src="/robo.png" alt="Microphone" class="roboIcon" />
+						{#if loadBotToggle}
+							<Circle2 size="25" colorOuter="orange" unit="px" durationInner="3s" />
+
+						 {:else}
+						 	<img src="/robo.png" alt="Microphone" class="roboIcon" />
+							
+
+
+
+						{/if}
+					 
+						<!-- <img src="/robo.png" alt="Microphone" class="roboIcon" /> -->
 
 					</div>
 					<div class="blockContentSection">
