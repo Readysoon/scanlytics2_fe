@@ -18,7 +18,7 @@
 		<div class="Vision">
 			<div class="Text">
 				<p>
-					Welcome to Scanlytics, where innovation meets healthcare excellence. We are dedicated to transforming the radiology sector by addressing critical challenges such as specialist shortages, infrastructure limitations, and access disparities. 
+					In Scanlytics we want to create the Radiologist of the future. We want to transform their workflow from a monotonous and isolated environment to an intelligent and interactive one. In our first step we create a Conversational AI Assistant that helps Radiologists to create structured reports in a very efficient way. 
 				</p>
 			</div>
 			<div class= "vision-image-container">
@@ -99,7 +99,7 @@
 }
 
 .vision-image-container {
-    width: 80%;
+    min-width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
