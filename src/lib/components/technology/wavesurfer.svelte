@@ -3,10 +3,15 @@
 	import AudioRecorder, { handleAudioEnd } from './audioRecorder.svelte';
 	let audioUrl = $state('');
 	let container;
+	import { loadtoggleCall } from '../../../routes/(public)/Technology/+page.svelte';
 
+
+	
 	export function getWaveaudi(audionode) {
 		console.log('node in waveform', audionode);
 		audioUrl = audionode;
+		
+
 		return 'ths is a test';
 	}
 </script>
@@ -14,6 +19,7 @@
 <script>
 	let container;
 	import { onMount } from 'svelte';
+	// import { stat } from 'fs';
 
 	if (audioUrl) {
 	}
@@ -39,15 +45,19 @@
 
 				// instance.load(`${audioUrl}?t=${Date.now()}`);
 				instance.load(audioUrl)
-				instance.play();
+				// instance.play();
 				// Play the audio after loading
 				instance.on('ready', () => {
 					instance.play();
+					loadtoggleCall()
+
 				});
 
 				instance.on('finish', () => {
 					handleAudioEnd();
 					instance.destroy();
+					loadtoggleCall()
+					// updateAILogo_bot()
 				});
 
 				}catch(error){
