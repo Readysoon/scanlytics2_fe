@@ -177,7 +177,13 @@ export function loadtoggleCall(){
 		}, 3000);
 
 
+
+
 		
+	}
+
+	const handleStartConversation = () =>  {
+		resultAreaToggle = true
 	}
 </script>
 
@@ -422,7 +428,7 @@ export function loadtoggleCall(){
 											on:click={handleMenuAIClick}
 										/>
 									</div>
-									<div class="medicalImagebtnAreaSection"><button>Start Conversation</button></div>
+									<div class="medicalImagebtnAreaSection" on:click={handleStartConversation}><button>Start Conversation</button></div>
 								</div>
 
 								{#if resultAreaToggle}
