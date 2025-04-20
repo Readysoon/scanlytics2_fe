@@ -101,9 +101,10 @@ export function loadtoggleCall(){
 				});
 			}
 		});
-		setTimeout(() => {
-			firstLoad = false;
-		}, 3000);
+		// setTimeout(() => {
+		// 	firstLoad = false;
+		// }, 3000);
+		
 	});
 	// ------------------------------------------------------------------------------
 
@@ -166,9 +167,17 @@ export function loadtoggleCall(){
 		});
 	}
 
-
+	// Handle AI Asisstant page toggle and loading componenet
 	const handleEnterPage = () => { 
-		enterPageToggle=true
+		
+		enterPageToggle = true
+
+		setTimeout(() => {
+			firstLoad = false;
+		}, 3000);
+
+
+		
 	}
 </script>
 
@@ -436,7 +445,7 @@ export function loadtoggleCall(){
 								<p>Scanlytics AI Assistant</p>
 							</div>
 							<div class="subTextEmailRequestArea">
-								<p>Welcome to scnalytics AI Assistant version 2.0 Bruno </p>
+								<p>Welcome to Scanlytics AI Assistant version 2.0 - Bruno </p>
 							</div>
 
 							<div>
@@ -1141,6 +1150,7 @@ export function loadtoggleCall(){
 		.conversationNav {
 			display: none;
 		}
+
 
 		.imgConectSection {
 			/* background-color: pink; */
