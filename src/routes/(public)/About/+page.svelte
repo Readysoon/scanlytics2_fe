@@ -1,10 +1,16 @@
 <script>
 	import Layout from '../../Layout.svelte';
 
+	import Footer from '../../Footer.svelte';
+	import Header from '../../Header.svelte';
+
 	import { isMobile } from '../../../stores/device.js';
   </script>
-  
-  <Layout>
+
+
+<main>
+	<Header />
+
 	<div class="page_container">
 		<div class="Above">
 			<h2>About us</h2>
@@ -26,9 +32,17 @@
 			</div>
 		</div>
 	</div>
-  </Layout>
+	<Footer />
+</main>
   
   <style>
+	main {
+	background-color:	 rgb(0, 0, 0);
+	height: 100vh;
+	overflow-y: auto;
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* IE and Edge */
+	}
 .Vision {
     flex-direction: row;
     display: flex;
@@ -42,8 +56,7 @@
     flex-direction: column;
     flex: 1; /* Allow the content to grow */
     min-height: 100vh; /* Ensure the container takes at least the full viewport height */
-    overflow-y: auto; /* Enable vertical scrolling if content exceeds the viewport height */
-    padding-bottom: 50px; /* Optional: Add padding at the bottom for better spacing */
+    overflow: auto; /* Enable scrolling if content exceeds the viewport height */
 }
 
 .Above {
