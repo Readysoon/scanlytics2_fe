@@ -442,16 +442,16 @@ export function loadtoggleCall(){
 				<div class="emailSectionArea">
 					<div class="imgScanSection">
 						<div class="emailRequestSection">
-							<div class="avaterSection">
+							<!-- <div class="avaterSection">
 								<Canvas>
 								<Scene/>
 							</Canvas>
-						</div>
+						</div> -->
 							<div class="placeholderObjecttext">
 								<p>Scanlytics AI Assistant</p>
 							</div>
 							<div class="subTextEmailRequestArea">
-								<p>Welcome to Scanlytics AI Assistant version 2.0 - Bruno </p>
+								<p>Welcome to Scanlytics AI Assistant version - Bruno.0.01 </p>
 							</div>
 
 							<div>
@@ -679,7 +679,9 @@ export function loadtoggleCall(){
             transform: translate(-50%, -50%);
 
         }
+	
 	.placeholderObjecttext {
+		/* background-color: rgb(61, 48, 24); */
 		font-size: 105px;
 		font-weight: bold;
 		font-family: sans-serif;
@@ -1129,29 +1131,37 @@ export function loadtoggleCall(){
 		height: 27px;
 	}
 
-	@media (max-width: 1024px) {
+	@media (max-width: 790px) {
 		/* Force content to be scrollable */
 		:global(body) {
 			overflow-y: auto !important;
 		}
 
 		main {
-			height: auto !important;
-			overflow-y: auto !important;
+			/* height: auto !important; */
+			/* overflow-y: auto !important; */
+			/* min-height: 90svh; */
+			overflow: hidden;
+
 		}
 
 		.mainSection {
 			height: auto !important;
 			overflow: visible !important;
 			margin-top: 15px;
+
 		}
 
 		.StartOverlay {
 			/* background-color: pink; */
 			flex-direction: column;
-			height: auto;
+			/* height: auto; */
 			/* padding: 15px; */
 			/* margin-left: 0; */
+			min-height: 100svh;
+			overflow: hidden;
+
+
 		}
 		.conversationNav {
 			display: none;
@@ -1159,12 +1169,16 @@ export function loadtoggleCall(){
 
 
 		.imgConectSection {
-			/* background-color: pink; */
 			width: 100%;
+			min-height: 100svh;
+
+
 		}
 
 		.ImageReportSection {
 			display: none;
+			min-height: 100svh;
+
 		}
 		.conversationArea {
 			flex-direction: column;
@@ -1186,6 +1200,51 @@ export function loadtoggleCall(){
 			justify-content: space-between !important;
 			border: none !important;
 		}
+
+		.emailRequestSection{
+			/* background-color: green; */
+		/* height: 100%;
+		 */
+		 min-height: 99svh;
+		/* width: 100%; */
+		 display: flex; 
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		/* gap: 5%; */
+
+	}
+		.placeholderObjecttext{
+			/* background-color: rgba(230, 29, 63, 0.103); */
+			min-height: 50svh;
+			font-size: 75px;
+			font-weight: bold;
+			font-family: sans-serif;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+
+			color: rgba(247, 244, 244, 0.522);
+			}
+
+	.subTextEmailRequestArea {
+		/* background-color: rgba(255, 0, 0, 0.1); */
+		min-height: 29svh;
+		width: 95%;
+		font-size: 31px;
+		font-weight: bold;
+		font-family: sans-serif;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		text-align: center;
+
+		/* color: rgba(249, 249, 249, 0.845);
+		 */
+		 color: rgba(220, 215, 215, 0.403);
+
+	}
 
 		.upperBar {
 			height: 70px !important;
