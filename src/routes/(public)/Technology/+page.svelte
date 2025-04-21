@@ -1,12 +1,5 @@
-<script module>
-	let loadBotToggle = $state(false)
 
-export function loadtoggleCall(){
-	console.log('hit on load page');
-	console.log('loadBotToggle', loadBotToggle);
-	loadBotToggle = !loadBotToggle
-}
-</script>
+
 
 <script lang="ts">
 	import Header from '../../Header.svelte';
@@ -14,34 +7,29 @@ export function loadtoggleCall(){
 	import Selectpage from '../../../lib/components/technology/selectpage.svelte';
 	import { Circle2 } from 'svelte-loading-spinners';
 	import * as kneejsonData from '../../../../static/knee.json';
-	// import AudioRecorder from '../../components/technology/audioRecorder.svelte'
 	import AudioRecorder from '../../../lib/components/technology/audioRecorder.svelte';
-	import Wavesurfer from '$lib/components/technology/wavesurfer.svelte';
-	// import { updateAILogo_bot } from '$lib/components/technology/wavesurfer.svelte';
+	import MedicalForm from '$lib/components/technology/medicalForm/medicalForm.svelte';
+	import Techstart from '$lib/components/technology/startComponent/techstart.svelte';
+	import Navigation from '$lib/components/technology/navigation/navigation.svelte';
 	
+	
+	// Declarations
 	let firstLoad = $state(true);
 	let menuToggle: boolean = $state(true);
 	let ItemToggle: any = $state(null);
 	let isChecked: any = $state({});
 	let isCheckInputData: any = $state({});
+	
 	let scansToggle = $state(false);
 	let navAssistantToggle_Structured = $state(true);
 	let navAssistantToggle_History = $state(false);
 	let enterPageToggle = $state(false);
 	let inputValue = $state('');
-	let resultAreaToggle = $state(false);
 	let isMobile = false;
-	import { Canvas } from '@threlte/core'
-    import Scene from '$lib/components/technology/threlte/scene.svelte';
+	// ------------------------------------------------------------------------------
 
-
-	
-
-
+	// Binds the json text to the input value
 	$effect(() => {
-
-		
-		
 		kneejsonData.sections.map((i) => {
 			if (
 				i.name == 'Patient Information' ||
@@ -104,14 +92,28 @@ export function loadtoggleCall(){
 		// setTimeout(() => {
 		// 	firstLoad = false;
 		// }, 3000);
-		
 	});
 	// ------------------------------------------------------------------------------
 
+	// Handle AI Asisstant page toggle and loading componenet
+	const handleEnterPage = () => {
+		enterPageToggle = true;
+
+		setTimeout(() => {
+			firstLoad = false;
+		}, 3000);
+	};
+	// ------------------------------------------------------------------------------
+
 	// Handle navigation toggle header
-	const handleNavCall = (nav: string) => {
-		navAssistantToggle_Structured = nav == 'structured' ? true : false;
-		navAssistantToggle_History = nav == 'history' ? true : false;
+	const handleStructureToggle = () => {
+		navAssistantToggle_Structured =  true 
+		navAssistantToggle_History = false;
+	};
+	const handleHistoryToggle = () => {
+		navAssistantToggle_History = true;
+		navAssistantToggle_Structured =  false 
+
 	};
 	// ------------------------------------------------------------------------------
 
@@ -166,25 +168,9 @@ export function loadtoggleCall(){
 			isMobile = window.innerWidth <= 1024;
 		});
 	}
+	// ------------------------------------------------------------------------------
 
-	// Handle AI Asisstant page toggle and loading componenet
-	const handleEnterPage = () => { 
-		
-		enterPageToggle = true
-
-		setTimeout(() => {
-			firstLoad = false;
-		}, 3000);
-
-
-
-
-		
-	}
-
-	const handleStartConversation = () =>  {
-		resultAreaToggle = true
-	}
+	
 </script>
 
 <head>
@@ -196,64 +182,24 @@ export function loadtoggleCall(){
 
 	<div class="mainSection">
 		<div class="StartOverlay">
-			<div class="conversationNav">
-				<div class="conversationNavContent">
-					<div
-						class="StucturedReport"
-						style="background-color: {navAssistantToggle_Structured ? '#ea7900b1' : '#0d1117'}"
-						on:click={() => handleNavCall('structured')}
-					>
-						Structured Report
-					</div>
-					<div
-						class="MedicalReport"
-						style="background-color: {navAssistantToggle_History ? '#ea7900b1' : '#0d1117'}"
-						on:click={() => handleNavCall('history')}
-					>
-						Medical History Report
-					</div>
-				</div>
-
-				<div class="conversationBotLayer">
-					<div class="botNav">
-						{#if loadBotToggle}
-							<Circle2 size="25" colorOuter="orange" unit="px" durationInner="3s" />
-
-						 {:else}
-						 	<img src="/robo.png" alt="Microphone" class="roboIcon" />
-							
+			<!-- Navigation Area -->
+			<Navigation
+			on:structured={handleStructureToggle}
+			on:history={handleHistoryToggle}
+			/>
 
 
-
-						{/if}
-					 
-						<!-- <img src="/robo.png" alt="Microphone" class="roboIcon" /> -->
-
-					</div>
-					<div class="blockContentSection">
-						<div class="botContent">
-							<Wavesurfer/>
-						</div>
-					</div>
-
-
-				</div>
-			</div>
-
+			<!-- Main Component -->
 			{#if enterPageToggle}
 				{#if navAssistantToggle_Structured}
 					<div class="conversationArea">
 						<!-- Select Image Area  -->
 						{#if scansToggle}
-							<div class="scansToggleArea">
-								<Selectpage />
-							</div>
+							<Selectpage />
 						{/if}
 						<!-- Image Area  -->
 						<div class="imgScanSection">
-							<!-- <div class="conversationHeader">head</div> -->
 							{#if firstLoad}
-								<!-- hello -->
 								<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
 							{:else}
 								<div class="aiContentArea">
@@ -363,7 +309,6 @@ export function loadtoggleCall(){
 								</div>
 							{/if}
 						</div>
-						<!-- <div class="imgSectionListTab">2</div> -->
 						<!-- Navbar Area -->
 						<div class="aiNavBar">
 							<div class="upperBar">
@@ -414,57 +359,13 @@ export function loadtoggleCall(){
 					</div>
 				{/if}
 
+				<!-- Medical History Form Component -->
 				{#if navAssistantToggle_History}
-					<div class="medicalConversationArea">
-						<div class="imgScanSection">
-							<div class="medicalAIImageContent">
-								<div class="medicalAIImageArea" style="width: {resultAreaToggle ? '50%' : '100%'};">
-									<div class="medicalImageSection">
-										<img
-											src="amnese.jpg"
-											alt="widget"
-											class="amnesebogen"
-											style="width: {resultAreaToggle ? '60%' : '30%'};"
-											on:click={handleMenuAIClick}
-										/>
-									</div>
-									<div class="medicalImagebtnAreaSection" on:click={handleStartConversation}><button>Start Conversation</button></div>
-								</div>
-
-								{#if resultAreaToggle}
-									<div class="medicalResultArea">result</div>
-								{/if}
-							</div>
-						</div>
-					</div>
+						<MedicalForm/>
 				{/if}
 			{:else}
-				<div class="emailSectionArea">
-					<div class="imgScanSection">
-						<div class="emailRequestSection">
-							<!-- <div class="avaterSection">
-								<Canvas>
-								<Scene/>
-							</Canvas>
-						</div> -->
-							<div class="placeholderObjecttext">
-								<p>Scanlytics AI Assistant</p>
-							</div>
-							<div class="subTextEmailRequestArea">
-								<div class="subtTextContent">	
-									<p>Bruno v.0.1 </p>
-								</div>
-							</div>
-
-							<div>
-								<!-- <input type="text" bind:value={inputValue} class="emailInputContent" /> -->
-							</div>
-							<div>
-								<button class="StartBtn" on:click={handleEnterPage}>S T A R T</button>
-							</div>
-						</div>
-					</div>
-				</div>
+			<!-- Default enter component  -->
+					<Techstart on:enterPage={handleEnterPage}/>
 			{/if}
 		</div>
 	</div>
@@ -475,12 +376,11 @@ export function loadtoggleCall(){
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
 		overflow-y: auto;
-		scrollbar-width: none; /* Firefox */
-		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none;
+		-ms-overflow-style: none;
 	}
 
 	.mainSection {
-		/* background-color: #0d1117; */
 		height: 88%;
 		margin-top: 30px;
 	}
@@ -493,139 +393,9 @@ export function loadtoggleCall(){
 		z-index: 6;
 	}
 
-	.conversationNav {
-		/* background-color: #126df4; */
-		height: 4%;
-		border-left: 1px solid rgba(255, 255, 255, 0.175);
-		border-right: 1px solid rgba(255, 255, 255, 0.175);
-		border-top: 1px solid rgba(255, 255, 255, 0.175);
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.conversationNavContent {
-		/* background-color: green; */
-		width: 30%;
-		height: 100%;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		gap: 3%;
-	}
-
-	.conversationBotLayer {
-		/* background-color: green; */
-		width: 18%;
-		height: 100%;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		/* gap: 3%; */
-		/* border-left: 1px solid rgba(255, 255, 255, 0.175); */
-		/* border-right: 1px solid rgba(255, 255, 255, 0.175); */
-	}
-
-	.botNav{
-		/* background-color: orange; */
-		height: 100%;
-		width: 15%;
-		border-left: 1px solid rgba(255, 255, 255, 0.175);
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-
-	}
-
-	.blockContentSection {
-		/* background-color: pink; */
-		height: 100%;
-		width: 85%;
-		border-left: 1px solid rgba(255, 255, 255, 0.175);
-		/* border-right: 1px solid rgba(255, 255, 255, 0.175); */
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: flex-end;
-		margin-right: 3%;
-	}
-
-	.roboIcon{
-		height: 70%;
-		width:  50%;
-		opacity: 0.9;
-		cursor: pointer;
-	}
-	.botContent {
-		backdrop-filter: blur(10px);
-		-webkit-backdrop-filter: blur(10px); 
-		background: linear-gradient(to top left, rgba(0, 0, 0, 0.7),rgba(37, 37, 37, 0.4), rgba(0, 0, 0, 0.4)),
-			linear-gradient(rgba(255, 255, 255, 0.175) 1px, transparent 1px),
-			linear-gradient(90deg, rgba(255, 255, 255, 0.175) 1px, transparent 1px);
-		background-size:
-			cover,
-			30px 10px,
-			10px 10px;
-			/* background-color: pink; */
-			
-		/* background-blend-mode: overlay; */
-		/* box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 0 40px rgba(255, 255, 255, 0.05); */
-		width: 97%;
-		height: 70%;
-		border-radius: 50px;
-		display: flex;
-		/* margin-right: 5%; */
-		/* flex-direction: row; */
-		/* align-items: center; */
-		justify-content: center;
-		border: 2px solid rgba(255, 255, 255, 0.175);
-	}
 	
-	
-
-	.StucturedReport {
-		width: 40%;
-		height: 100%;
-		/* background-color: blue; */
-		/* background-color: #ea7900b1; */
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		margin-top: 1%;
-		border-top-left-radius: 5px;
-		border-top-right-radius: 5px;
-		border-top: 1px solid rgba(255, 255, 255, 0.175);
-		border-left: 1px solid rgba(255, 255, 255, 0.175);
-		border-right: 1px solid rgba(255, 255, 255, 0.175);
-		color: white;
-		font-family: system-ui;
-		cursor: pointer;
-	}
-	.MedicalReport {
-		width: 40%;
-		height: 100%;
-
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		margin-top: 1%;
-		border-top-left-radius: 5px;
-		border-top-right-radius: 5px;
-		border-top: 1px solid rgba(255, 255, 255, 0.175);
-		border-left: 1px solid rgba(255, 255, 255, 0.175);
-		border-right: 1px solid rgba(255, 255, 255, 0.175);
-		color: white;
-		font-family: system-ui;
-		cursor: pointer;
-	}
-
 	.conversationArea {
 		height: 96%;
-		/* background-color: rgba(37, 241, 37, 0.126); */
 		width: 100%;
 		display: flex;
 		flex-direction: row;
@@ -634,165 +404,24 @@ export function loadtoggleCall(){
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
-	.medicalConversationArea {
-		height: 96%;
-		/* background-color: rgba(37, 241, 37, 0.126); */
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		border-top: 1px solid rgba(255, 255, 255, 0.175);
-		border-left: 1px solid rgba(255, 255, 255, 0.175);
-		border-right: 1px solid rgba(255, 255, 255, 0.175);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
-	}
-
-	.emailSectionArea {
-		height: 96%;
-		/* background-color: rgba(37, 241, 37, 0.126); */
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding-bottom: 6%;
-		border-top: 1px solid rgba(255, 255, 255, 0.175);
-		border-left: 1px solid rgba(255, 255, 255, 0.175);
-		border-right: 1px solid rgba(255, 255, 255, 0.175);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
-	}
-
-	.emailRequestSection {
-		height: 100%;
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		gap: 5%;
-		position: relative;
-	}
-
-	.avaterSection{
-            height: 50%;
-            width: 40%;
-            /* background-color: rgba(255, 21, 21, 0.271); */
-            position: absolute;
-            top: 41%;
-            left: 12%;
-            transform: translate(-50%, -50%);
-
-        }
 	
-	.placeholderObjecttext {
-		/* background-color: rgb(61, 48, 24); */
-		font-size: 105px;
-		font-weight: bold;
-		font-family: sans-serif;
-		text-align: center;
+	
 
-		color: rgba(220, 215, 215, 0.403);
-	}
 
-	.subTextEmailRequestArea {
-		font-size: 35px;
-		font-weight: bold;
-		font-family: sans-serif;
 
-		/* color: rgba(249, 249, 249, 0.845);
-		 */
-		 color: rgba(220, 215, 215, 0.403);
-
-	}
-
-	.emailInputContent {
-		width: 500px;
-		height: 40px;
-		border-radius: 50px;
-		background-color: #72717121;
-		border: 1px solid white;
-		color: white;
-		/* padding-left: 4%; */
-		text-align: center;
-	}
-	.medicalAIImageContent {
-		height: 100%;
-		width: 100%;
-		/* background-color: orange; */
-		display: flex;
-	}
-
-	.medicalAIImageArea {
-		height: 100%;
-		/* width: 50%; */
-		/* background-color: rgb(20, 211, 224); */
-		border-right: 1px solid rgba(255, 255, 255, 0.175);
-	}
-
-	.medicalImageSection {
-		height: 94%;
-		width: 100%;
-		/* background-color: rgb(93, 90, 93); */
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-	.amnesebogen {
-		width: 60%;
-		height: 90%;
-	}
-	.medicalImagebtnAreaSection {
-		height: 6%;
-		width: 100%;
-		/* background-color: rgb(136, 224, 20); */
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-top: 1px solid rgba(255, 255, 255, 0.175);
-	}
-
-	.medicalResultArea {
-		height: 100%;
-		width: 50%;
-		/* background-color: rgb(224, 20, 149); */
-	}
 
 	.imgScanSection {
 		background-color: #0d1117;
-
 		height: 100%;
 		width: 100%;
 		position: relative;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		/* border-left: 1px solid rgba(255, 255, 255, 0.175);
-		border-top: 1px solid rgba(255, 255, 255, 0.175);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
-		/* border-radius: 7px; */
 	}
 
-
-	.StartBtn{
-		height: 50px;
-		width: 300px;
-		background-color: rgba(202, 202, 202, 0.045);
-		border: 1px solid rgb(49, 48, 48);
-		border-radius: 7px;
-		color: rgb(210, 206, 206);
-		font-family: sans-serif;
-		font-weight: bold;
-		font-size: 19px;
-		cursor: pointer;
-	}
-
-	.StartBtn:hover{
-		background-color: rgba(254, 127, 0, 0.767);
-		border: 1px  solid black;
-		color: black;
-
-	}
+	
 	.aiContentArea {
-		/* background-color: orange; */
 		height: 93%;
 		width: 100%;
 		display: flex;
@@ -801,7 +430,6 @@ export function loadtoggleCall(){
 
 	.ImageReportSection {
 		background-color: #0d1117;
-		/* background-color: orange; */
 		height: 100%;
 		width: 30%;
 		border-left: 1px solid rgba(255, 255, 255, 0.175);
@@ -811,7 +439,6 @@ export function loadtoggleCall(){
 
 	.scansToggleArea {
 		background-color: #0d1117;
-		/* background-color: orange; */
 		height: 100%;
 		width: 12%;
 		border-right: 1px solid rgba(255, 255, 255, 0.175);
@@ -820,7 +447,6 @@ export function loadtoggleCall(){
 	}
 
 	.imageReportSectionHeader {
-		/* background-color: rgba(137, 43, 226, 0.168); */
 		height: 5.9%;
 		width: 100%;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
@@ -833,7 +459,6 @@ export function loadtoggleCall(){
 	.assistantContentSection {
 		height: 94%;
 		width: 100%;
-		/* background-color: rgb(77, 77, 14); */
 		font-family: sans-serif;
 		color: white;
 		display: flex;
@@ -845,31 +470,23 @@ export function loadtoggleCall(){
 	.metadataSection {
 		height: 20%;
 		width: 100%;
-		/* background-color: rgb(255, 7, 106); */
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		/* padding: 1rem; */
 	}
 
 	.metadataContent {
 		height: 95%;
 		width: 96%;
-		/* background-color: rgb(151, 20, 160); */
 		color: white;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
-		/* gap: 5px; */
 		font-family: sans-serif;
-		/* align-items: center; */
-
-		/* padding: 1rem; */
 	}
 
 	.metadataBox {
-		/* background-color: aqua; */
 		width: 100%;
 		height: 15%;
 		display: flex;
@@ -879,8 +496,6 @@ export function loadtoggleCall(){
 	.aicontentSection {
 		height: 80%;
 		width: 100%;
-		/* background-color: rgb(255, 152, 7); */
-		/* padding: 1rem; */
 		display: flex;
 		flex-direction: column;
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
@@ -894,8 +509,6 @@ export function loadtoggleCall(){
 		justify-content: flex-end;
 		align-items: center;
 		padding-right: 3%;
-
-		/* background-color: pink; */
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
@@ -912,29 +525,22 @@ export function loadtoggleCall(){
 		display: flex;
 		flex-direction: column;
 		gap: 32px;
-		/* border-top: 1px solid rgba(255, 255, 255, 0.175); */
-		/* background-color: rgb(7, 98, 255); */
 		padding: 1rem;
 		margin-top: 3%;
 	}
 
 	.text-item-name-area {
-		/* background-color: rgb(18, 147, 6); */
 		border: 1px solid white;
 		height: 6%;
 		width: 100%;
 		border-radius: 50px;
 		display: flex;
 		flex-direction: row;
-		/* align-items: center; */
-		/* justify-content: space-between; */
 		padding-left: 2%;
 		cursor: pointer;
 	}
 
 	.text-item-name {
-		/* background-color: pink; */
-
 		width: 95%;
 		height: 100%;
 		display: flex;
@@ -949,11 +555,6 @@ export function loadtoggleCall(){
 		height: 56%;
 		width: 100%;
 		border-radius: 7px;
-		/* display: flex;
-		flex-direction: row;
-		align-items: center;
-		padding-left: 5%;
-		cursor: pointer; */
 	}
 
 	.selected-Item-header {
@@ -963,14 +564,12 @@ export function loadtoggleCall(){
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		/* background-color: #b8babe; */
 		border-top-left-radius: 7px;
 		border-top-right-radius: 7px;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
 	.selected-Item-title {
-		/* background-color: orange; */
 		height: 100%;
 		width: 90%;
 		display: flex;
@@ -983,7 +582,6 @@ export function loadtoggleCall(){
 	.selected-Item-closeBtn {
 		color: red;
 		font-size: 22px;
-		/* background-color: pink; */
 		height: 100%;
 		width: 10%;
 		display: flex;
@@ -995,16 +593,12 @@ export function loadtoggleCall(){
 	.select-Item-Content {
 		height: 85%;
 		width: 100%;
-		/* padding-left: 2%; */
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		/* background-color: #2f7cf0; */
 		overflow: auto;
 		gap: 20px;
-
-		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
 	}
 
 	.selected-item-obj {
@@ -1023,7 +617,6 @@ export function loadtoggleCall(){
 	}
 
 	.text-item-checkBox {
-		/* background-color: rgb(7, 102, 255); */
 		width: 10%;
 		height: 100%;
 		display: flex;
@@ -1043,13 +636,11 @@ export function loadtoggleCall(){
 		background-color: #0d1117;
 		border: 1px solid rgba(255, 255, 255, 0.175);
 		flex-direction: column;
-		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
 	}
 
 	.upperBar {
 		height: 50%;
 		width: 100%;
-		/* background-color: green; */
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
@@ -1061,7 +652,6 @@ export function loadtoggleCall(){
 	.optionBox {
 		width: 80%;
 		height: 14%;
-		/* background-color: #7d2a2a; */
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -1075,13 +665,10 @@ export function loadtoggleCall(){
 
 	.widgetlogo {
 		height: 25px;
-		/* background-color: #f7f1f1; */
-		/* cursor: pointer; */
 	}
 	.middleBar {
 		height: 50%;
 		width: 100%;
-		/* background-color: rgb(223, 155, 18); */
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -1091,23 +678,19 @@ export function loadtoggleCall(){
 	.freq1 {
 		height: 98%;
 		width: 80%;
-		/* background-color: rgb(18, 223, 49); */
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
 	}
 	.uvMeter {
-		/* background-color: rgb(69, 71, 69); */
 		height: 80%;
 		width: 100%;
 		border: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
 	.assistantPlayArea {
-		/* background-color: rgb(69, 48, 223); */
 		height: 20%;
 		width: 100%;
 		display: flex;
@@ -1142,54 +725,35 @@ export function loadtoggleCall(){
 		}
 
 		main {
-			/* height: auto !important; */
-			/* overflow-y: auto !important; */
-			/* min-height: 90svh; */
 			overflow: hidden;
-
 		}
 
 		.mainSection {
 			height: auto !important;
 			overflow: visible !important;
 			margin-top: 15px;
-
 		}
 
 		.StartOverlay {
-			/* background-color: pink; */
 			flex-direction: column;
-			/* height: auto; */
-			/* padding: 15px; */
-			/* margin-left: 0; */
 			min-height: 100svh;
 			overflow: hidden;
-
-
 		}
-		.conversationNav {
-			display: none;
-		}
-
+	
 
 		.imgConectSection {
 			width: 100%;
 			min-height: 100svh;
-
-
 		}
 
 		.ImageReportSection {
 			display: none;
 			min-height: 100svh;
-
 		}
 		.conversationArea {
 			flex-direction: column;
 			height: 90dvh;
 			width: auto;
-			/* padding: 15px; */
-			/* margin-left: 0; */
 		}
 
 		.conversationArea {
@@ -1205,72 +769,6 @@ export function loadtoggleCall(){
 			border: none !important;
 		}
 
-		.emailRequestSection{
-			/* background-color: green; */
-		/* height: 100%;
-		 */
-		 min-height: 99svh;
-		/* width: 100%; */
-		 display: flex; 
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: center;
-		position: reltve;
-		/* gap: 5%; */
-
-	}
-		.placeholderObjecttext{
-			/* background-color: rgba(230, 29, 63, 0.103); */
-			min-height: 50svh;
-			font-size: 65px;
-			font-weight: bold;
-			font-family: sans-serif;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			text-align: center;
-
-			color: rgba(247, 244, 244, 0.522);
-			}
-
-	.subTextEmailRequestArea {
-		/* background-color: rgba(255, 0, 0, 0.1); */
-		min-height: 32svh;
-		/* height: 50%; */
-
-		width: 80%;
-		font-size: 31px;
-		font-weight: bold;
-		font-family: sans-serif;
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-		text-align: center;
-		position: relative;
-		/* top: -50%; */
-		/* left: -10%; */
-		z-index: 4;
-
-		/* color: rgba(249, 249, 249, 0.845);
-		 */
-		 color: rgba(220, 215, 215, 0.403);
-
-	}
-	.subtTextContent{
-		position: absolute;
-		/* background-color: orange; */
-		font-size: 34px;
-		width: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		text-align: center;
-		position: relative;
-
-		height: 100%;
-		/* top: -13%; */
-		/* left: 30%; */
-	}
 
 		.upperBar {
 			height: 70px !important;

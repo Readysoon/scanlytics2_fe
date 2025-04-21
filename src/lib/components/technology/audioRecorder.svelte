@@ -14,8 +14,8 @@
 	import fs from 'fs/promises';
 	import path from 'path';
 	import Wavesurfer, {getWaveaudi} from './wavesurfer.svelte';
-	import { loadtoggleCall } from '../../../routes/(public)/Technology/+page.svelte';
-
+	// import { loadtoggleCall } from '../../../routes/(public)/Technology/+page.svelte';
+	import { loadtoggleCall } from './navigation/navigation.svelte';
 
 	// console.log('audiodata', audiodata);
 

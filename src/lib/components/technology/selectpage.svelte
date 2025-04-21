@@ -1,7 +1,6 @@
 <script lang="ts" module>
 	import ImageUploader, { imageupload } from './ImageUploader.svelte';
 
-	//  let toggleupload = false
 	ImageUploader;
 
 	let imageUrl = $state('') as string;
@@ -58,6 +57,8 @@
 	};
 </script>
 
+
+<div class="scansToggleArea">   
 <div class="boxSelectContentLayer">
 	<div class="imgPrevieTitleArea">
 		<p>Scans</p>
@@ -111,8 +112,17 @@
 		</div>
 	</div>
 </div>
+</div>
 
 <style>
+	.scansToggleArea {
+		background-color: #0d1117;
+		height: 100%;
+		width: 12%;
+		border-right: 1px solid rgba(255, 255, 255, 0.175);
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+	}
 	.boxSelectContentLayer {
 		/* background-color: rgba(60, 60, 60, 0.753); */
 		/* background-color: rgb(157, 157, 157); */
@@ -135,10 +145,6 @@
 		list-style: none;
 	}
 
-	.xrLogo {
-		opacity: 0.4;
-		margin-bottom: 10%;
-	}
 
 	.imgPrevieTitleArea {
 		height: 7%;
