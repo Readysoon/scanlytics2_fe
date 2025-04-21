@@ -451,7 +451,9 @@ export function loadtoggleCall(){
 								<p>Scanlytics AI Assistant</p>
 							</div>
 							<div class="subTextEmailRequestArea">
-								<p>Welcome to Scanlytics AI Assistant version - Bruno.0.01 </p>
+								<div class="subtTextContent">	
+									<p>Conversation AI Assistant Bruno v.0.1 </p>
+								</div>
 							</div>
 
 							<div>
@@ -667,6 +669,7 @@ export function loadtoggleCall(){
 		justify-content: center;
 		align-items: center;
 		gap: 5%;
+		position: relative;
 	}
 
 	.avaterSection{
@@ -1131,7 +1134,7 @@ export function loadtoggleCall(){
 		height: 27px;
 	}
 
-	@media (max-width: 790px) {
+	@media (max-width: 420px) {
 		/* Force content to be scrollable */
 		:global(body) {
 			overflow-y: auto !important;
@@ -1211,13 +1214,14 @@ export function loadtoggleCall(){
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: center;
+		position: reltve;
 		/* gap: 5%; */
 
 	}
 		.placeholderObjecttext{
 			/* background-color: rgba(230, 29, 63, 0.103); */
 			min-height: 50svh;
-			font-size: 75px;
+			font-size: 65px;
 			font-weight: bold;
 			font-family: sans-serif;
 			display: flex;
@@ -1231,7 +1235,9 @@ export function loadtoggleCall(){
 	.subTextEmailRequestArea {
 		/* background-color: rgba(255, 0, 0, 0.1); */
 		min-height: 29svh;
-		width: 95%;
+		/* height: 50%; */
+
+		width: 80%;
 		font-size: 31px;
 		font-weight: bold;
 		font-family: sans-serif;
@@ -1239,11 +1245,25 @@ export function loadtoggleCall(){
 		align-items: center;
 		justify-content: flex-start;
 		text-align: center;
+		position: relative;
+		/* top: -50%; */
+		/* left: -10%; */
+		z-index: 4;
 
 		/* color: rgba(249, 249, 249, 0.845);
 		 */
 		 color: rgba(220, 215, 215, 0.403);
 
+	}
+	.subtTextContent{
+		position: absolute;
+		/* background-color: orange; */
+		font-size: 34px;
+		width: 100%;
+
+		height: 100%;
+		top: -13%;
+		/* left: 30%; */
 	}
 
 		.upperBar {
