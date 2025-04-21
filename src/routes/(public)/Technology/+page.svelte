@@ -452,7 +452,7 @@ export function loadtoggleCall(){
 							</div>
 							<div class="subTextEmailRequestArea">
 								<div class="subtTextContent">	
-									<p>Conversation AI Assistant Bruno v.0.1 </p>
+									<p>Bruno v.0.1 </p>
 								</div>
 							</div>
 
@@ -688,6 +688,7 @@ export function loadtoggleCall(){
 		font-size: 105px;
 		font-weight: bold;
 		font-family: sans-serif;
+		text-align: center;
 
 		color: rgba(220, 215, 215, 0.403);
 	}
@@ -1234,7 +1235,7 @@ export function loadtoggleCall(){
 
 	.subTextEmailRequestArea {
 		/* background-color: rgba(255, 0, 0, 0.1); */
-		min-height: 29svh;
+		min-height: 32svh;
 		/* height: 50%; */
 
 		width: 80%;
@@ -1260,9 +1261,14 @@ export function loadtoggleCall(){
 		/* background-color: orange; */
 		font-size: 34px;
 		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		position: relative;
 
 		height: 100%;
-		top: -13%;
+		/* top: -13%; */
 		/* left: 30%; */
 	}
 
