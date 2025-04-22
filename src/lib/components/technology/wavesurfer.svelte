@@ -1,66 +1,43 @@
 <script module>
-	import WaveSurfer from 'wavesurfer.js'
+	import WaveSurfer from 'wavesurfer.js';
 	import AudioRecorder, { handleAudioEnd } from './audioRecorder.svelte';
 	let audioUrl = $state('');
-	let container;
 
-
-	
+	// Receives the updated audio data
 	export function getWaveaudi(audionode) {
-		console.log('node in waveform', audionode);
 		audioUrl = audionode;
-		
-
-		return 'ths is a test';
 	}
 </script>
 
 <script>
 	let container;
 	import { onMount } from 'svelte';
-	// import { stat } from 'fs';
 
-	if (audioUrl) {
-	}
-
+	// Plays the WaveSurfer audio when the audioUrl state is updated
 	$effect(() => {
 		if (audioUrl) {
 			onMount(() => {
-				// if (instance) {
-				// 	console.log('Destroying previous WaveSurfer instance...');
-				// 	instance.destroy();
-				
-
-				try{
-				
+				try {
 					const instance = WaveSurfer.create({
-					container: container,
-					responsive: true, // Ensures it resizes with the container
-					height: 30, // Match the height of your .waveform div
-					waveColor: 'violet',
-					progressColor: '#ea7900b1',
-					
-				});
+						container: container,
+						responsive: true,
+						height: 30,
+						waveColor: 'violet',
+						progressColor: '#ea7900b1'
+					});
 
-				// instance.load(`${audioUrl}?t=${Date.now()}`);
-				instance.load(audioUrl)
-				// instance.play();
-				// Play the audio after loading
-				instance.on('ready', () => {
-					instance.play();
+					instance.load(audioUrl);
+					instance.on('ready', () => {
+						instance.play();
+					});
 
-				});
-
-				instance.on('finish', () => {
-					handleAudioEnd();
-					instance.destroy();
-					// updateAILogo_bot()
-				});
-
-				}catch(error){
+					instance.on('finish', () => {
+						handleAudioEnd();
+						instance.destroy();
+					});
+				} catch (error) {
 					console.log('error on wavesurfer', error);
 				}
-				
 			});
 		}
 	});
@@ -68,19 +45,15 @@
 
 <div class="waveform">
 	{#if audioUrl}
-		<!-- <div use:waveform="{audioUrl}"/> -->
 		<div bind:this={container} />
 	{/if}
 </div>
 
 <style>
 	.waveform {
-		/* background-color: green; */
 		width: 100%;
-		height: 100%; /* or something visible */
+		height: 100%;
 		overflow: hidden;
-		/* display: flex; */
 		justify-content: center;
-		/* align-items: center; */
 	}
 </style>
