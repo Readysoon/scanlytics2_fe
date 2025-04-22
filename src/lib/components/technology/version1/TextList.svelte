@@ -1,7 +1,7 @@
 <script lang="ts" module>
-	import TextEditor, { bindingTtext } from './TextEditor.svelte';
+	import TextEditor, { bindingTtext } from '../TextEditor.svelte';
 	import { Circle2 } from 'svelte-loading-spinners';
-	import * as kneejsonData from '../../../../static/knee.json';
+	import * as kneejsonData from '../../../../../static/knee.json';
 
 	let texts = $state([]);
 	export let onSelect: any;

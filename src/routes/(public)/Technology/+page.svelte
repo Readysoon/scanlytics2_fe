@@ -11,7 +11,7 @@
 	import MedicalForm from '$lib/components/technology/medicalForm/medicalForm.svelte';
 	import Techstart from '$lib/components/technology/startComponent/techstart.svelte';
 	import Navigation from '$lib/components/technology/navigation/navigation.svelte';
-	
+	import TextEditor from '$lib/components/technology/TextEditor.svelte';
 	
 	// Declarations
 	let firstLoad = $state(true);
@@ -19,7 +19,8 @@
 	let ItemToggle: any = $state(null);
 	let isChecked: any = $state({});
 	let isCheckInputData: any = $state({});
-	
+	let imageUploadToggle = $state(true);
+	let textEditToggle =  $state(false);
 	let scansToggle = $state(false);
 	let navAssistantToggle_Structured = $state(true);
 	let navAssistantToggle_History = $state(false);
@@ -120,6 +121,8 @@
 	// Handle menu toggle
 	const handleMenuAIClick = () => {
 		menuToggle = !menuToggle;
+		imageUploadToggle = true
+	    textEditToggle =   false
 	};
 
 	const handleMenuScansClick = () => {
@@ -149,6 +152,12 @@
 		// Optional: Add analytics or tracking
 		console.log('Report downloaded');
 	};
+
+	const handleTextEditorToggle = () => { 
+		textEditToggle = true
+		menuToggle = true;
+		imageUploadToggle = false
+	}
 	// ------------------------------------------------------------------------------
 
 	// Handle AI content toggle
@@ -203,12 +212,31 @@
 								<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
 							{:else}
 								<div class="aiContentArea">
-									<!-- <div class="ImageviewSection" style="width: {menuToggle ? ' 70% ' : '100%'};">
-									<img src="knie.jpg" alt="widget" class="selectedItemlogo" />
-								</div> -->
+								
+									{#if imageUploadToggle}
 									<div class="imgConectSection" style="width: {menuToggle ? '70%' : '100%'};">
 										<ImageUploader />
 									</div>
+									{/if}
+									{#if textEditToggle}
+									<div class="imgConectSection" style="
+									width: {menuToggle ? '70%' : '100%'};
+									display: {menuToggle ? 'flex' : 'flex'};
+									align-items: {menuToggle ? 'center' : 'center'};
+									justify-content:  {menuToggle ? 'center' : 'center'};
+									">
+										{#if menuToggle}
+										<div class="TexteditorObj"
+										style="width: {menuToggle ? '50%' : '50%'};"
+										>
+											<TextEditor/>
+										</div>
+										{:else}
+											<TextEditor/>
+										{/if}
+									</div>
+									{/if}
+
 									{#if menuToggle}
 										<div class="ImageReportSection">
 											<div class="imageReportSectionHeader">
@@ -338,7 +366,7 @@
 									<p>Download</p>
 								</div>
 
-								<div class="optionBox">
+								<div class="optionBox" on:click={handleTextEditorToggle}>
 									<img src="text.png" alt="widget" class="widgetlogo" />
 									<p>Editor</p>
 								</div>
@@ -404,6 +432,15 @@
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
+	.TexteditorObj{
+		/* width: 50%; */
+		height: 100%;
+		/* display: flex; */
+		/* justify-content: center; */
+		/* background-color: pink; */
+	
+	}
+
 	
 	
 
@@ -437,14 +474,7 @@
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
-	.scansToggleArea {
-		background-color: #0d1117;
-		height: 100%;
-		width: 12%;
-		border-right: 1px solid rgba(255, 255, 255, 0.175);
-		border-top: 1px solid rgba(255, 255, 255, 0.175);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
-	}
+
 
 	.imageReportSectionHeader {
 		height: 5.9%;
