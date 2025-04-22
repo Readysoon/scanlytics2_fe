@@ -43,8 +43,7 @@
     {#if circleLoadingBarState}
         <Circle2 size="40" colorOuter="blue" unit="px" durationInner="1s" />
 
-      {:else}
-      <!-- <div class="placeholderObjecttext">Text Editor</div> -->
+      
     {/if}
 
   </div>
@@ -69,12 +68,7 @@
     align-items: center;
   }
 
-  .placeholderObjecttext {
-		font-size: 25px;
-		font-weight: bold;
-		font-family: sans-serif;
-		color: rgba(0, 0, 0, 0.403);
-	}
+
 
 
 
