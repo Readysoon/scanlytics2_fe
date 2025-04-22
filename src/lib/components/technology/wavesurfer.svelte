@@ -1,6 +1,6 @@
 <script module>
 	import WaveSurfer from 'wavesurfer.js';
-	import AudioRecorder, { handleAudioEnd } from './audioRecorder.svelte';
+	import AudioRecorder, { handleAudioStart } from './audioRecorder.svelte';
 	let audioUrl = $state('');
 
 	// Receives the updated audio data
@@ -36,7 +36,7 @@
 					});
 
 					instance.on('finish', () => {
-						handleAudioEnd();
+						handleAudioStart();
 						instance.destroy();
 					});
 				} catch (error) {
