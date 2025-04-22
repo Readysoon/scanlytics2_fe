@@ -9,27 +9,26 @@
 	let currentStep: number = 1;
 	let imgPreview = $state('');
 
-	if (menuToggle) {
-		console.log('triggered the menutoggle');
-	}
+	
 	const uploadToML = async () => {
-		// handleprogressbar()
+		try {
+			if (imgfileData == null) {
+				mlMessage = 'Please select a file first.';
+				return;
+			}
 
-		if (imgfileData == null) {
-			mlMessage = 'Please select a file first.';
-			return;
-		}
+			const backendresData = await handleRequestToClassifier(imgfileData);
 
-		const backendresData = await sendImgDataToBackend(imgfileData);
-
-		if (backendresData) {
-			await handleResponseArr(backendresData);
+			if (backendresData) {
+				await handleResponseArr(backendresData);
+			}
+		} catch (error) {
+			console.error('Error in uploadToML:', error);
 		}
 	};
 
-	const sendImgDataToBackend = async (imgfileData: File) => {
+	const handleRequestToClassifier = async (imgfileData: File) => {
 		try {
-			console.log('imgfileData in api call data:', imgfileData);
 			const formData = new FormData();
 			formData.append('file', imgfileData);
 
@@ -38,22 +37,15 @@
 					'Content-Type': 'multipart/form-data'
 				}
 			});
-			console.log('responseData', response.data);
 			return response.data;
 		} catch (error) {
-			console.error('Error uploading file to ML:', error);
-			mlMessage = 'Error uploading file to ML';
+			console.error('Error in handleRequestToClassifier', error);
 		}
 	};
 
 	const handleResponseArr = async (backendresData: any) => {
-		console.log('backendresData1', backendresData);
 		if (Array.isArray(backendresData) && backendresData.length > 0) {
-			console.log('in array section');
-
 			const parsedTexts = backendresData.map((item: { text: string }) => parseText(item.text));
-
-			console.log('parsedText', parsedTexts);
 			if (parsedTexts) {
 				mlMessage = 'File uploaded successfully!';
 				onUploadSuccess(parsedTexts);
@@ -62,32 +54,49 @@
 		} else {
 			mlMessage = 'Server starting... Please generate again.';
 		}
+		try {
+		} catch (error) {
+			console.error('Error in handleResponseArr:', error);
+		}
 	};
 
+	// Handels text processing
 	function parseText(text: string) {
-		return text.replace(/\[dropdown:([^\]]+)\]/g, (match, options) => {
-			return options.split(',')[0];
-		});
+		try {
+			return text.replace(/\[dropdown:([^\]]+)\]/g, (match, options) => {
+				return options.split(',')[0];
+			});
+		} catch (error) {
+			console.error('Error in parseText:', error);
+		}
 	}
 
 	function goToNextStep() {
-		const step1 = document.getElementById('step-1');
-		const step2 = document.getElementById('step-2');
-		if (step1 && step2) {
-			step1.classList.remove('active');
-			currentStep = 2;
-			step2.classList.add('active');
+		try {
+			const step1 = document.getElementById('step-1');
+			const step2 = document.getElementById('step-2');
+			if (step1 && step2) {
+				step1.classList.remove('active');
+				currentStep = 2;
+				step2.classList.add('active');
+			}
+		} catch (error) {
+			console.error('Error in goToNextStep:', error);
 		}
 	}
 
 	export function imageupload(event: any, selectedImgFileData: any) {
-		if (event) {
-			imgPreview = event;
+		try {
+			if (event) {
+				imgPreview = event;
 
-			imgfileData = selectedImgFileData;
-			if (imgfileData) {
-				mlMessage = '';
+				imgfileData = selectedImgFileData;
+				if (imgfileData) {
+					mlMessage = '';
+				}
 			}
+		} catch (error) {
+			console.error('Error in imageupload export function:', error);
 		}
 	}
 </script>

@@ -13,7 +13,7 @@
       "types": ["svelte"],
       "allowSyntheticDefaultImports": true
     },
-    "include": ["src/**/*.ts", "src/**/*.svelte", "src/routes/Technology/API/+page.server.js", "src/lib/server/audiorecordText.server.js"],
+    "include": ["src/**/*.ts", "src/**/*.svelte", "src/routes/Technology/API/+page.server.js", "src/lib/server/audiorecordText.server.js", "src/lib/server/technology/ImgtoClassifier.js"],
     "exclude": ["node_modules"],
     "extends": "./.svelte-kit/tsconfig.json"
   }
