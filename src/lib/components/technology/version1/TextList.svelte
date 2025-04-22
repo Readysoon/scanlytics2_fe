@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import TextEditor, { bindingTtext } from '../TextEditor.svelte';
+	import TextEditor, { bindingText } from '../TextEditor.svelte';
 	import { Circle2 } from 'svelte-loading-spinners';
 	import * as kneejsonData from '../../../../../static/knee.json';
 
@@ -25,7 +25,7 @@
 		//   goToStepThree();
 		// }
 		console.log('in handler click ');
-		bindingTtext(text);
+		bindingText(text);
 	}
 
 	const handleMenuClick = () => {

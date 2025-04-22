@@ -5,7 +5,11 @@
 
 	// Receives the updated audio data
 	export function getWaveaudi(audionode) {
-		audioUrl = audionode;
+		try {
+			audioUrl = audionode;
+		} catch (error) {
+			console.log('Error in getWaveaudi export function:', error);
+		}
 	}
 </script>
 
@@ -36,7 +40,7 @@
 						instance.destroy();
 					});
 				} catch (error) {
-					console.log('error on wavesurfer', error);
+					console.error('error in Wavesurfer call:', error);
 				}
 			});
 		}
