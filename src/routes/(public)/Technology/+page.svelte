@@ -134,11 +134,11 @@
 		const link = document.createElement('a');
 
 		// Set the download attribute and file path
-		link.download = 'structured_report.pdf';
+		link.download = 'scanlytics-report.pdf';
 
 		// Set the href to the PDF file path
 		// If your PDF is in the static or public folder:
-		link.href = 'hidden_structured_report.pdf';
+		link.href = 'scanlytics-report.pdf';
 
 		// Append to the document
 		document.body.appendChild(link);
