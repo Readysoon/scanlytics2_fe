@@ -106,7 +106,7 @@
 		{#if imgPreview}
 			<img src={imgPreview} class="imgPreview" alt="Uploaded image" />
 		{:else}
-			<img src={'/knee2.jpg'} class="imgPreview" alt="Uploaded image" />
+			<img src={'/prostateMRI14.jpg'} class="imgPreview" alt="Uploaded image" />
 		{/if}
 	</div>
 
