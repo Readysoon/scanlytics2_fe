@@ -8,10 +8,12 @@
 
 	import Wavesurfer, { getWaveaudi } from './wavesurfer.svelte';
 	import { loadtoggleCall } from './navigation/navigation.svelte';
+	import {handleRecordBtnUpdate} from '../../../routes/(public)/Technology/+page.svelte'
 
 	export function handleAudioStart() {
 		recognition.start();
 	}
+
 
 	const handleTTSReq = async (gptText) => {
 		try {
@@ -69,6 +71,7 @@
 					const filteredStop = phraseArr.filter((e) => e !== 'Stopp');
 					const updatedPhrase = filteredStop.join(' ');
 					recognition.stop();
+					handleRecordBtnUpdate()
 					if (updatedPhrase) {
 						handleAIReq(updatedPhrase);
 					}
@@ -116,7 +119,7 @@
 		recognition.interimResults = true; // Get interim results while speaking
 
 		recognition.onstart = () => {
-			console.log('Speech recognition started...');
+			// console.log('Speech recognition started...');
 			loadtoggleCall();
 		};
 
@@ -170,43 +173,27 @@
 			}
 		};
 		recognition.start();
-		// recordingTimeout = setTimeout(() => {
-		// 	if (isRecording) {
-		// 		mediaRecorder.stop();
-		// 		isRecording = false;
-		// 	}
-		// }, 60000);
+		
 	};
 
-	// console.log('arrList', arrList);
 	const toggleRecording = () => {
 		if (!isRecording) {
 			try {
 				// console.log('toggled recording');
 				btnState = !btnState;
 				handleRecording();
+				handleRecordBtnUpdate()
 			} catch (error) {
 				console.error('Error accessing media devices:', error);
 			}
 		} else {
-			// console.log('Stopping recording...');
-			// clearTimeout(recordingTimeout);
+			
 			recognition.stop();
 			isRecording = false;
 		}
 	};
 
-	// console.log('audioUrl', audioUrl);
 
-	//   $effect(() => {
-
-	// 	if (updateAudioState) {
-	//     audioElement.load();   // reload new source
-	//     audioElement.play().catch(e => {
-	//       console.warn("Autoplay failed:", e);
-	//     });
-	//   }
-	// 	});
 </script>
 
 <div>
@@ -237,13 +224,13 @@ on:ended={handleAudioEnd}
 	}
 
 	button.is-recording {
-		background: #ff0000; /* Change the background if recording (for example red) */
+		background: #ff0000; 
 	}
 
 	button {
 		background: none;
-		border: none; /* Optionally, remove border if you don't want it */
-		color: #000; /* Set text color (optional) */
+		border: none; 
+		color: #000;
 		cursor: pointer;
 		width: 100%;
 	}

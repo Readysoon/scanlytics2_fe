@@ -182,6 +182,16 @@
 	
 </script>
 
+
+<script lang="ts" module>
+	let recordState = $state(false)
+
+
+ export function handleRecordBtnUpdate(){
+	recordState = !recordState
+ }
+
+</script>
 <head>
 	<title>Scanlytics</title>
 </head>
@@ -373,6 +383,13 @@
 							</div>
 							<div class="middleBar">
 								<div class="freq1">
+									<div class="audioPort">
+										{#if recordState}
+										 <img src="live.png" alt="widget" class="audioLogoON" /> 
+										{:else}
+										<img src="liveOff.png" alt="widget" class="audioLogoON" /> 
+										{/if}												
+									</div>
 									<div class="uvMeter">1</div>
 									<div class="assistantPlayArea">
 										<AudioRecorder />
@@ -714,8 +731,23 @@
 		justify-content: center;
 		align-items: center;
 	}
+	.audioPort{
+		/* background-color: green; */
+		height: 15%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+
+	}
+
+	.audioLogoON{
+		height: 40%;
+		width: 55%;
+	}
 	.uvMeter {
-		height: 80%;
+		height: 65%;
 		width: 100%;
 		border: 1px solid rgba(255, 255, 255, 0.175);
 	}
