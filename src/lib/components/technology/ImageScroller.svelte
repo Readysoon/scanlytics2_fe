@@ -91,8 +91,8 @@
   }
 
   img {
-    max-width: 100%;
-    height: 200vh; /* Adjust based on your layout */
+    width: 100%;
+    height: 100%; /* Adjust based on your layout */
     margin: 20px 0;
   }
 </style>
