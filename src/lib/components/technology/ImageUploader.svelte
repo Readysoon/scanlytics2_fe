@@ -3,6 +3,7 @@
 	export let onUploadSuccess: (parsedTexts: string[]) => void;
 	import 'svelte-material-ui/bare.css';
 	export let menuToggle;
+	import ImageScroller from './ImageScroller.svelte';
 
 	let mlMessage = $state('');
 	let imgfileData: File | null = null;
@@ -106,7 +107,11 @@
 		{#if imgPreview}
 			<img src={imgPreview} class="imgPreview" alt="Uploaded image" />
 		{:else}
-			<img src={'/prostateMRI14.jpg'} class="imgPreview" alt="Uploaded image" />
+			<!-- <img src="/xr4.png" class="xrLogo" alt="Logo" height="100" width="108"  /> -->
+
+			<!-- <div class="placeholderObjecttext">Scanlytics AI Assistant</div> -->
+			<!--<img src={'/knee2.jpg'} class="imgPreview" alt="Uploaded image" />-->
+			<ImageScroller />
 		{/if}
 	</div>
 
