@@ -12,6 +12,7 @@
 	import { writable } from 'svelte/store';
 	import loading, { handleprogressbar } from './loadingbar.svelte';
 	export let menuToggle;
+	import ImageScroller from './ImageScroller.svelte';
 
 	let progress = 0;
 	let closed = false;
@@ -136,7 +137,8 @@
 			<!-- <img src="/xr4.png" class="xrLogo" alt="Logo" height="100" width="108"  /> -->
 
 			<!-- <div class="placeholderObjecttext">Scanlytics AI Assistant</div> -->
-			<img src={'/knee2.jpg'} class="imgPreview" alt="Uploaded image" />
+			<!--<img src={'/knee2.jpg'} class="imgPreview" alt="Uploaded image" />-->
+			<ImageScroller />
 		{/if}
 		<!-- {#if imageUrl}  
 		{#if imgArr.length > 0}

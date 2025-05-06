@@ -92,7 +92,7 @@
 
   img {
     max-width: 100%;
-    max-height: 80vh; /* Adjust based on your layout */
+    height: 200vh; /* Adjust based on your layout */
     margin: 20px 0;
   }
 </style>
