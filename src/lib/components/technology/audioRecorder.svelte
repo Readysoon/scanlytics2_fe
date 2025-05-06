@@ -65,6 +65,7 @@
 		try {
 			const phraseLen = phraseArr.length;
 			const phraseLastWord = phraseArr.at(-1);
+			console.log('phaseARR', phraseArr);
 
 			if (phraseArr.includes('Stopp' || 'stop')) {
 				try {

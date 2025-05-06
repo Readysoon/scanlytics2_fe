@@ -19,6 +19,7 @@
 	let ItemToggle: any = $state(null);
 	let isChecked: any = $state({});
 	let isCheckInputData: any = $state({});
+	let findingsCheckBoxState: any = $state([])
 	let imageUploadToggle = $state(true);
 	let textEditToggle =  $state(false);
 	let scansToggle = $state(false);
@@ -27,6 +28,10 @@
 	let enterPageToggle = $state(false);
 	let inputValue = $state('');
 	let isMobile = false;
+	let disableAiStartBtn = $state(true)
+
+
+	
 	// ------------------------------------------------------------------------------
 
 	// Binds the json text to the input value
@@ -90,6 +95,8 @@
 				});
 			}
 		});
+
+
 		// setTimeout(() => {
 		// 	firstLoad = false;
 		// }, 3000);
@@ -167,6 +174,8 @@
 
 	const handleClosetogglebtn = () => {
 		ItemToggle = null;
+		disableAiStartBtn = true
+
 	};
 	// ------------------------------------------------------------------------------
 
@@ -179,6 +188,23 @@
 	}
 	// ------------------------------------------------------------------------------
 
+
+	const addCheckbtnToArr= (id: any) => {
+		if(!findingsCheckBoxState.includes(id)){
+			findingsCheckBoxState.push(id)
+		}else{
+			const newArr = findingsCheckBoxState.filter((prevId: any) => prevId != id)
+			findingsCheckBoxState = newArr
+		}
+
+		if(findingsCheckBoxState.length >= 3){
+			disableAiStartBtn = false
+		}else {
+			disableAiStartBtn = true
+
+		}
+
+	}
 	
 </script>
 
@@ -271,6 +297,10 @@
 												</div>
 												<div class="aicontentSection">
 													<div class="aicontentSectionHeader">
+														<div >
+															<p class="questiontTitle">Selects:  {findingsCheckBoxState.length} | 10</p>
+
+														</div>
 														<div>
 															<p class="questiontTitle">Questionnaire</p>
 														</div>
@@ -292,6 +322,16 @@
 																		<div class="select-Item-Content">
 																			{#each ItemToggle.questions as itemObj (itemObj)}
 																				<div class="selected-item-obj">
+																					{#if items.name == 'Findings' }
+																					<input
+																					type="checkbox"
+																					class="findingsCheckBox"
+																					on:change={() => addCheckbtnToArr(itemObj.id)}
+
+
+																				/>
+
+																					{/if}
 																					{itemObj.label}
 
 																					<input
@@ -340,8 +380,24 @@
 														{/if}
 													</div>
 												</div>
+												<div class="aiContentStartSection">
+													<button class="startBtn"
+													style="background-color: { disableAiStartBtn
+													? 'rgba(38, 38, 38, 0.262)'
+													: 'rgba(17, 100, 243, 0.912)'};
+													"
+													
+
+													 disabled={disableAiStartBtn}
+													>
+													{#if disableAiStartBtn}
+													Please select your questions
+													{:else}
+													Start Reporting
+													{/if}
+													</button>
+												</div>
 											</div>
-											<div></div>
 										</div>
 									{/if}
 								</div>
@@ -541,11 +597,36 @@
 	}
 
 	.aicontentSection {
-		height: 80%;
+		height: 70%;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
+		/* background-color: #36070766; */
+	}
+
+	.aiContentStartSection{
+		/* background: rgba(0, 128, 0, 0.075); */
+		width: 100%;
+		height: 10%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	
+	}
+
+	.startBtn{
+		height: 40%;
+		width: 50%;
+		/* border: 1px solid rgb(43, 121, 194); */
+		border: 1px solid grey;
+		border-radius: 7px;
+		/* background-color: rgba(58, 139, 210, 0.262); */
+		background-color: rgba(17, 100, 243, 0.912);
+	
+		color: white;
+		cursor: pointer;
+
 	}
 
 	.aicontentSectionHeader {
@@ -553,15 +634,17 @@
 		width: 100%;
 		display: flex;
 		flex-direction: row;
-		justify-content: flex-end;
+		justify-content: space-between;
 		align-items: center;
-		padding-right: 3%;
+		padding-right: 2%;
+		padding-left: 2%;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+		/* background-color: green; */
 	}
 
 	.questiontTitle {
 		color: rgba(255, 255, 255, 0.727);
-		font-size: 20px;
+		font-size: 17px;
 		font-weight: 600;
 		font-family: sans-serif;
 	}
@@ -643,9 +726,12 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-around;
 		overflow: auto;
-		gap: 20px;
+		overflow-y: auto;
+		gap: 14%;
+		/* background-color: green; */
+		padding-top: 1%;
 	}
 
 	.selected-item-obj {
@@ -669,6 +755,14 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+	}
+
+	.findingsCheckBox{
+		background-color: #4CAF50; /* green background */
+		background-size: cover;
+		background-position: center;
+		border-color: #4CAF50;
+
 	}
 
 	.aicheckBox {
