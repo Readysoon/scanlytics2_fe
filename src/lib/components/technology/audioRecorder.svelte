@@ -9,6 +9,7 @@
 	import Wavesurfer, { getWaveaudi } from './wavesurfer.svelte';
 	import { loadtoggleCall } from './navigation/navigation.svelte';
 	import {handleRecordBtnUpdate} from '../../../routes/(public)/Technology/+page.svelte'
+	import {handleAITextData} from '../../../routes/(public)/Technology/+page.svelte'
 
 	export function handleAudioStart() {
 		recognition.start();
@@ -32,6 +33,7 @@
 				audioUrl = await result.audioUrl;
 				if (audioUrl) {
 					loadtoggleCall();
+					handleAITextData(gptText)
 					getWaveaudi(audioUrl);
 				}
 			}
@@ -53,6 +55,7 @@
 			const totalRes = await response.text();
 
 			if (totalRes) {
+
 				handleTTSReq(totalRes);
 				arrList = [];
 			}
@@ -65,7 +68,7 @@
 		try {
 			const phraseLen = phraseArr.length;
 			const phraseLastWord = phraseArr.at(-1);
-			console.log('phaseARR', phraseArr);
+			// console.log('phaseARR', phraseArr);
 
 			if (phraseArr.includes('Stopp' || 'stop')) {
 				try {
@@ -93,9 +96,7 @@
 					}
 				}, 2000);
 
-				onDestroy(() => {
-					clearInterval(interval);
-				});
+				
 			}
 		} catch (error) {
 			console.log('Error in handlespeechRecognitionData:', error);
