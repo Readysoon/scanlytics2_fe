@@ -33,6 +33,8 @@
 	let disableAiStartBtn = $state(true)
 	let stateobj = $state([])
 	let selectedQuestionToggle = $state(false)
+	let selectedToggle: any = $state([])
+	let selectedRowToggle  = $state(false)
 
 
 	
@@ -174,11 +176,24 @@
 	// Handle AI content toggle
 	const handleSelectedEvent = (event: any) => {
 		ItemToggle = ItemToggle == ItemToggle ? event : null;
+
+		if( selectedToggle.length > 0){
+			selectedRowToggle  = true
+
+
+		}
+
 	};
 
 	const handleClosetogglebtn = () => {
 		ItemToggle = null;
 		disableAiStartBtn = true
+
+		if( selectedToggle.length > 0){
+			selectedRowToggle = !selectedRowToggle
+
+
+		}
 
 	};
 	// ------------------------------------------------------------------------------
@@ -214,10 +229,27 @@
 	const handleStartAI = (selectedReportObj:any) => {
 
 		stateobj = selectedReportObj
+
+		const updateArr = ItemToggle.questions
+		const arr = []
+
+		for(const x of stateobj){
+			arr.push(updateArr[x])
+		}
+		selectedToggle = arr
 		ItemToggle = null;
 		selectedQuestionToggle = true 
 
-		console.log('triggert in selectedReportObj in handleStartAI',selectedReportObj );
+	}
+
+
+	const handleResetQuestion = () => {
+		stateobj = []
+		findingsCheckBoxState = []
+		selectedToggle = []
+		selectedRowToggle  = false
+		selectedQuestionToggle = false
+		disableAiStartBtn = true
 	}
 </script>
 
@@ -347,11 +379,49 @@
 																					</p>
 																				</div>
 
-																				<div class="select-Text-Lable">
+
+																				{#if selectedToggle.length > 0}
+																				 <div class="stateObjItem-contentLayer">
+																			   {#each stateobj as stateObjItem (stateObjItem)}
+																						   <div class="stateObjItem-contentItem">
+																							   <!-- {stateObjItem} -->
+																							   {#if stateObjItem}
+																							   <div class="stateObjItem-contentIn"></div>
+																							   {/if}
+																						   </div>
+																			   {/each}
+																			    </div>
+
+																				<div class="select-Text-Lable"
+																				
+																				>
+																							<!-- selectedToggle = arr -->
+
+																						<img
+																						src="undo.png"
+																						alt="widget"
+																						class="resetbtn"
+																					 	on:click={handleResetQuestion}
+																					/>
+
+
+																				</div>
+
+																				{:else}
+																					<div class="select-Text-Lable"
+																				
+																				>
+																							<!-- selectedToggle = arr -->
+
 																					 <p > {findingsCheckBoxState.length} | 10 </p>
 
 
 																				</div>
+
+																				 {/if}
+																	
+
+																				
 																				
 
 																			</div>
@@ -363,7 +433,27 @@
 																			</div>
 																		</div>
 																		<div class="select-Item-Content">
+																			
+
+																			{#if selectedToggle.length > 0}
+																				{#each selectedToggle as selectObj (selectObj)}
+																				<div class="selected-item-obj">
+																					
+																					{selectObj.label}
+
+																					<input
+																						type="text"
+																						class="textoption"
+																						value={isCheckInputData[selectObj.label]}
+																					/>
+																				</div>
+
+																				{/each}
+																			{:else}
 																			{#each ItemToggle.questions as itemObj (itemObj)}
+																						<!-- {itemObj.id} -->
+																			
+
 																				<div class="selected-item-obj">
 																					{#if items.name == 'Findings' }
 																					<input
@@ -373,6 +463,7 @@
 
 
 																				/>
+
 
 																					{/if}
 																					{itemObj.label}
@@ -384,6 +475,10 @@
 																					/>
 																				</div>
 																			{/each}
+
+
+																			{/if}
+																			
 																		</div>
 																	</div>
 																{:else}
@@ -437,24 +532,30 @@
 														{/if}
 													</div>
 												</div>
-												<div class="aiContentStartSection">
+												<div class="aiContentStartSection" 
+												style="display: { selectedRowToggle 
+															? 'none'
+															: 'flex'};" 
+												>
 													{#if selectedQuestionToggle}
 
-															<div class="selectedQueston">
+															<div class="selectedQueston"
+															
+															>
 																{#if aiBotText}
-																<div class="canvasSection">
+																<!-- <div class="canvasSection">
 																	<Canvas>
 																		<Scene/>
 																	</Canvas>
-																</div>
+																</div> -->
 																
 																			{aiBotText}
 																{:else}
-																<div class="canvasSection">
+																<!-- <div class="canvasSection">
 																	<Canvas>
 																		<Scene/>
 																	</Canvas>
-																</div>
+																</div> -->
 																<div class="selectedTextSection">
 																	<p class="defaultStartTextAI">Press on the Assistant to start Reporting</p>
 																</div>
@@ -465,7 +566,8 @@
 													<button class="startBtn"
 													style="background-color: { disableAiStartBtn
 													? 'rgba(38, 38, 38, 0.262)'
-													: 'rgba(17, 100, 243, 0.912)'};
+													: 'rgba(17, 100, 243, 0.912)'}; 
+
 													"
 													
 													 on:click={ () => handleStartAI(findingsCheckBoxState)}
@@ -707,7 +809,7 @@
 		width: 90%;
 		height: 100%;
 		border-radius: 7px;
-		border: 1px solid rgba(255, 255, 255, 0.175);
+		border: 1px solid rgb(43, 121, 194);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -1080,6 +1182,12 @@
 	.robologo {
 		width: 27px;
 		height: 27px;
+	}
+
+	.resetbtn{
+		width: 22px;
+		height: 22px;
+		cursor: pointer;
 	}
 
 	@media (max-width: 420px) {
