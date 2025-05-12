@@ -281,7 +281,6 @@
  }
 
  export function handleAITextData(aiText: any){
-	console.log('triggert in handleAITextData',aiText);
 	if (typeof aiText === 'string') {
 		aiBotText = aiText.replace(/^"(.*)"$/, '$1');
   }

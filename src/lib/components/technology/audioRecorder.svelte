@@ -84,10 +84,9 @@
 				// recognition.stop();
 			}
 
-			console.log('userprevQAnswer', userprevQAnswer);
-			console.log('userprevQState', userprevQState);
+			
 			if(userprevQAnswer !== "" && userprevQState !== null){
-				console.log('triggert in binding response');
+				// console.log('triggert in binding response');
 			}
 			// HandlesTTS logic
 			if (totalRes) {
