@@ -16,7 +16,7 @@
 	import { Canvas } from '@threlte/core';
 
 	// Declarations
-	let firstLoad = $state(false);  //back to true - default 
+	let firstLoad = $state(true);  //back to true - default 
 	let menuToggle: boolean = $state(true);
 	let ItemToggle: any = $state(null);
 	let isChecked: any = $state({});
@@ -27,7 +27,7 @@
 	let scansToggle = $state(false);
 	let navAssistantToggle_Structured = $state(true);
 	let navAssistantToggle_History = $state(false);
-	let enterPageToggle = $state(true); //back to false - default 
+	let enterPageToggle = $state(false); //back to false - default 
 	let inputValue = $state('');
 	let isMobile = false;
 	let disableAiStartBtn = $state(true)
@@ -143,6 +143,13 @@
 	};
 
 	const handleMenuDownloadClick = () => {
+
+		firstLoad = true;
+
+		const intervalId = setTimeout(() => {
+			firstLoad = false;
+			clearInterval(intervalId)
+		}, 1500);
 		// Create a link element
 		const link = document.createElement('a');
 
@@ -533,13 +540,14 @@
 													</div>
 												</div>
 												<div class="aiContentStartSection" 
-												style="display: { selectedRowToggle 
-															? 'none'
-															: 'flex'};" 
+												
 												>
 													{#if selectedQuestionToggle}
 
 															<div class="selectedQueston"
+															style="display: { selectedRowToggle 
+															? 'none'
+															: 'flex'};" 
 															
 															>
 																{#if aiBotText}
@@ -593,35 +601,63 @@
 						<!-- Navbar Area -->
 						<div class="aiNavBar">
 							<div class="upperBar">
-								<div class="optionBox">
+								<div class="optionBox" on:click={handleMenuAIClick}>
+
+									{#if menuToggle}
+									<img
+										src="widget2.png"
+										alt="widget"
+										class="widgetlogo"
+									/>
+									<p class="selectedMenuText">Menu</p>
+
+									{:else}
 									<img
 										src="widget.png"
 										alt="widget"
 										class="widgetlogo"
-										on:click={isMobile ? () => {} : handleMenuAIClick}
 									/>
-									<p>Menu</p>
+									<p class="defaultMenuText">Menu</p>
+
+									{/if}
+									
 								</div>
+
 								<div class="optionBox" on:click={handleMenuScansClick}>
-									<!-- <AudioRecorder onTranscription={appendTranscription} /> -->
+									{#if scansToggle}
 
+										<img src="/xr6.png" alt="widget" class="widgetlogo" />
+										<p class="selectedMenuText">Scans</p>
+
+									{:else}
 									<img src="/xr5.png" alt="widget" class="widgetlogo" />
-									<p>Scans</p>
+									<p class="defaultMenuText">Scans</p>
+
+									{/if}
+
+									
 								</div>
 
-								<div class="optionBox">
+								<div class="optionBox" on:click={handleMenuDownloadClick} >
 									<img
 										src="her1.png"
 										alt="widget"
 										class="widgetlogo"
-										on:click={handleMenuDownloadClick}
 									/>
-									<p>Download</p>
+									<p  class="defaultMenuText">Download</p>
 								</div>
 
 								<div class="optionBox" on:click={handleTextEditorToggle}>
-									<img src="text.png" alt="widget" class="widgetlogo" />
-									<p>Editor</p>
+
+									{#if textEditToggle}
+									<img src="text1.png" alt="widget" class="widgetlogo" />
+									<p class="selectedMenuText">Editor</p>
+									{:else}
+									 <img src="text.png" alt="widget" class="widgetlogo" />
+									<p class="defaultMenuText">Editor</p>
+
+									{/if}
+									
 								</div>
 							</div>
 							<div class="middleBar">
@@ -700,6 +736,9 @@
 		/* background-color: pink; */
 	
 	}
+
+
+
 
 	
 	
@@ -1116,6 +1155,17 @@
 
 	.widgetlogo {
 		height: 25px;
+	}
+
+
+
+	.defaultMenuText{
+			color: white;
+	}
+
+	.selectedMenuText{
+		color: rgba(254, 127, 0, 0.767);
+
 	}
 	.middleBar {
 		height: 50%;
