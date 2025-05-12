@@ -1,19 +1,32 @@
-<script module>
+ 
+
+<script  module>
 	let isRecording = false;
 	let recognition;
 	let arrList = $state([]);
 	import { onDestroy } from 'svelte';
 	let audioUrl = $state('');
 	let btnState = $state(false);
-
 	import Wavesurfer, { getWaveaudi } from './wavesurfer.svelte';
 	import { loadtoggleCall } from './navigation/navigation.svelte';
 	import {handleRecordBtnUpdate} from '../../../routes/(public)/Technology/+page.svelte'
 	import {handleAITextData} from '../../../routes/(public)/Technology/+page.svelte'
+	let audioState =  $state(0);
 
 	export function handleAudioStart() {
-		recognition.start();
+		if(audioState == 1){
+			console.log('inside audioState update call 1');
+			toggleRecording()
+			recognition.stop();
+			isRecording = false;
+
+		}else{
+			recognition.start();
+
+		}
 	}
+
+
 
 
 	const handleTTSReq = async (gptText) => {
@@ -29,7 +42,6 @@
 			const result = await response.json();
 
 			if (result.success) {
-				console.log('result on auto', result);
 				audioUrl = await result.audioUrl;
 				if (audioUrl) {
 					loadtoggleCall();
@@ -42,18 +54,42 @@
 		}
 	};
 
-	const handleAIReq = async (phrase) => {
+	const handleAIReq = async (phrase, selVal) => {
 		try {
 			const response = await fetch('/api/technology/audiobot', {
 				method: 'POST',
-				body: JSON.stringify({ data: phrase }),
+				body: JSON.stringify({ 
+					data: phrase, 
+					selecteState: selVal
+
+				 }),
 				headers: {
 					'content-type': 'application/json'
 				}
 			});
 
-			const totalRes = await response.text();
+			const result = await response.json();
+			
+			// const totalRes = result.botmessage.text();
 
+			const totalRes = result.botmessage;
+			const recordState =  result.recordState
+			const userprevQAnswer = result.userAnswer
+			const userprevQState = result.userPrevQeustion
+
+		
+
+			if(recordState == 1){
+				audioState = recordState
+				// recognition.stop();
+			}
+
+			console.log('userprevQAnswer', userprevQAnswer);
+			console.log('userprevQState', userprevQState);
+			if(userprevQAnswer !== "" && userprevQState !== null){
+				console.log('triggert in binding response');
+			}
+			// HandlesTTS logic
 			if (totalRes) {
 
 				handleTTSReq(totalRes);
@@ -64,7 +100,8 @@
 		}
 	};
 
-	const handlespeechRecognitionData = async (phraseArr) => {
+	const handlespeechRecognitionData = async (phraseArr, selectVal) => {
+
 		try {
 			const phraseLen = phraseArr.length;
 			const phraseLastWord = phraseArr.at(-1);
@@ -77,7 +114,7 @@
 					recognition.stop();
 					handleRecordBtnUpdate()
 					if (updatedPhrase) {
-						handleAIReq(updatedPhrase);
+						handleAIReq(updatedPhrase, selectVal);
 					}
 				} catch {
 					console.error('Error uploading audio:', error);
@@ -90,7 +127,7 @@
 						const updatedPhrase = filteredStop.join(' ');
 						recognition.stop();
 						if (updatedPhrase) {
-							handleAIReq(updatedPhrase);
+							handleAIReq(updatedPhrase, selectVal);
 						}
 						clearInterval(interval);
 					}
@@ -109,7 +146,7 @@
 		}
 	};
 
-	const handleRecording = () => {
+	const handleRecording = (selectArrValue) => {
 		// Set up SpeechRecognition
 		if (!(window.SpeechRecognition || window.webkitSpeechRecognition)) {
 			alert('Speech recognition not supported in this browser');
@@ -156,7 +193,7 @@
 			// console.log('Final array list:', arrList);
 
 			if (arrList.length != 0) {
-				handlespeechRecognitionData(arrList);
+				handlespeechRecognitionData(arrList, selectArrValue);
 			}
 		};
 
@@ -178,12 +215,13 @@
 		
 	};
 
-	const toggleRecording = () => {
+	const toggleRecording = (selectedQuestion) => {
+
 		if (!isRecording) {
 			try {
-				// console.log('toggled recording');
+				const selectedQuestionArr = selectedQuestion
 				btnState = !btnState;
-				handleRecording();
+				handleRecording(selectedQuestionArr);
 				handleRecordBtnUpdate()
 			} catch (error) {
 				console.error('Error accessing media devices:', error);
@@ -198,14 +236,33 @@
 
 </script>
 
+
+<script>
+	let {selectedArr} = $props();
+	let arrValue = $state([])
+
+	$effect(() => {
+		arrValue = selectedArr
+		// console.log('selectedArr', selectedArr);
+	})	
+
+
+
+	
+
+</script>
+
+ 
+
 <div>
-	<button on:click={toggleRecording} class="btnstring" class:is-recording={isRecording}>
+	<button on:click={() => toggleRecording(arrValue)} class="btnstring" class:is-recording={isRecording}>
 		{#if btnState}
 			<img src="/pause.png" alt="Microphone" class="mic-icon" />
 		{:else}
 			<img src="/play.png" alt="Microphone" class="mic-icon" />
 		{/if}
 	</button>
+	
 </div>
 
 <!-- {#if updateAudioState}

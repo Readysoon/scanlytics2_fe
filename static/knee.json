@@ -107,36 +107,51 @@
         "questions":[
           {
             "id": 0,
-            "label": "Wie ist der Zustand der Darmreinigung?"
+            "label": "Wie ist die Qualität der Untersuchung?"
            
           },
            {
             "id": 1,
-            "label": "Welche Feldstärke wurde verwendet?"
+            "label": "Wie ist der Zustand der Darmreinigung?"
           },
           {
             "id": 2,
-            "label": "Welches Kontrastmittel wurde verwendet?"
+            "label": "Welche Feldstärke wurde verwendet?"
            
           },
           {
             "id": 3,
-            "label": "Wie viel Kontrastmittel (in ml) wurde verwendet?"
+            "label": "Welches Kontrastmittel wurde verwendet?"
             
           },
           {
             "id": 4,
-            "label": "Was ist der aktuelle PSA-Wert?"
+            "label": "Wie viel Kontrastmittel (in ml) wurde verwendet?"
            
           },
            {
             "id": 5,
-            "label": "Gibt es eine PSA-Vorgeschichte?"
+            "label": "Was ist der aktuelle PSA-Wert?"
             
           },
           {
             "id": 6,
-            "label": "Was wurde bei vorherigen Biopsien festgestellt?"
+            "label": "Gibt es eine PSA-Vorgeschichte?"
+            
+          },
+            {
+            "id": 7,
+            "label":"Was wurde bei vorherigen Biopsien festgestellt?"
+            
+          },
+              {
+            "id": 8,
+            "label": "Was war das Ergebnis der digitalen rektalen Untersuchung?"
+            
+          },
+            {
+            "id": 9,
+            "label": "Wie groß ist die Prostata (in mm)?"
             
           }
         ],

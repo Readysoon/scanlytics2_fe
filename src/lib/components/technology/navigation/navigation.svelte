@@ -3,7 +3,6 @@
 
 	// Handles the AI bot loading action when button is pressed
 	export function loadtoggleCall() {
-        console.log('tirgger inside load ');
 		loadBotToggle = !loadBotToggle;
 	}
 </script>

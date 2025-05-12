@@ -35,6 +35,7 @@
 	let selectedQuestionToggle = $state(false)
 	let selectedToggle: any = $state([])
 	let selectedRowToggle  = $state(false)
+	let selectedArrVal = $state([])
 
 
 	
@@ -101,6 +102,12 @@
 				});
 			}
 		});
+
+
+		if(stateobj.length > 0){
+			selectedArrVal = stateobj
+			
+		}
 
 
 		// setTimeout(() => {
@@ -258,6 +265,9 @@
 		selectedQuestionToggle = false
 		disableAiStartBtn = true
 	}
+
+
+	
 </script>
 
 
@@ -566,7 +576,7 @@
 																	</Canvas>
 																</div> -->
 																<div class="selectedTextSection">
-																	<p class="defaultStartTextAI">Press on the Assistant to start Reporting</p>
+																	<p class="defaultStartTextAI">Press on the Assistant to start Reporting and say "Hallo Bruno"</p>
 																</div>
 
 																{/if}
@@ -672,7 +682,7 @@
 									</div>
 									<div class="uvMeter">1</div>
 									<div class="assistantPlayArea">
-										<AudioRecorder />
+										<AudioRecorder selectedArr={selectedArrVal} />
 										<!-- <img src="robo2.png" alt="widget" class="robologo" on:click={handleMenuClick} /> -->
 										<!-- <img src="play.png" alt="widget" class="widgetlogo" />
 								  -->
