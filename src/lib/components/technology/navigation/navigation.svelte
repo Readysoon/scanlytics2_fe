@@ -3,7 +3,6 @@
 
 	// Handles the AI bot loading action when button is pressed
 	export function loadtoggleCall() {
-        console.log('tirgger inside load ');
 		loadBotToggle = !loadBotToggle;
 	}
 </script>
@@ -41,7 +40,7 @@
     <div class="conversationNavContent">
         <div
             class="StucturedReport"
-            style="background-color: {navAssistantToggle_Structured ? '#ea7900b1' : '#0d1117'}"
+            style="background-color: {navAssistantToggle_Structured ? 'rgba(254, 127, 0, 0.767)' : '#0d1117'}"
             on:click={handleStructureNavCall}
         >
             Structured Report
