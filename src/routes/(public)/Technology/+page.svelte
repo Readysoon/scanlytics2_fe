@@ -198,7 +198,9 @@
 		}
 
 	};
+	// ------------------------------------------------------------------------------
 
+	// Handle Close toggle
 	const handleClosetogglebtn = () => {
 		ItemToggle = null;
 		disableAiStartBtn = true
@@ -266,6 +268,7 @@
 		disableAiStartBtn = true
 	}
 
+	
 
 	
 </script>
@@ -277,12 +280,33 @@
 	let stateAnswer = $state([])
 	let textState = $state([])
 	let answerdInputData: any = $state({});
+	let audioTrackArrState: any= $state([]);
+	let audioData = $state([]);
 
 
 
  export function handleRecordBtnUpdate(){
 	recordState = !recordState
  }
+
+
+ export function AudioTracker(audioRecordData: any){ 
+	console.log('audioRecordData', audioRecordData);
+	audioData = audioRecordData
+	if(audioRecordData){
+		audioTrackArrState.push(audioData)
+	}
+
+if (audioTrackArrState.length !== 0) {
+	let timeout = setTimeout(() => {
+		audioTrackArrState.pop();
+		clearTimeout(timeout); // Correct method for setTimeout
+	}, 1000);
+}
+ }
+
+ console.log('audioTrackArrState', audioTrackArrState);
+
 
 //  Binding the input and updating the question background state 
  export function handleUpdateQuestionState(AnswerArr: any, StateArr: any){
@@ -313,6 +337,17 @@
   }
 	// aiBotText = aiText
  }
+
+   function getColorByIndex(index: any) {
+	console.log('index', index);
+    if (index >= 0 && index <= 2) {
+      return 'rgba(52, 255, 1, 0.837)'; // Green
+    } else if (index >= 3 && index <= 5) {
+      return 'orange';
+    } else if (index >= 6 && index <= 7) {
+      return 'red';
+    }
+  }
 
 </script>
 <head>
@@ -721,7 +756,22 @@
 										<img src="liveOff.png" alt="widget" class="audioLogoON" /> 
 										{/if}												
 									</div>
-									<div class="uvMeter">1</div>
+									<div class="uvMeter">
+										
+										{#if audioData}
+										{#each audioTrackArrState as item, index}
+											<div
+												class="audioStateObjStyle"
+												style="background-color: {getColorByIndex(index)};
+												border-top: 1px solid rgba(255, 255, 255, 0.175)
+												"
+											></div>
+										{/each}
+
+										{/if}
+
+
+									</div>
 									<div class="assistantPlayArea">
 										<AudioRecorder selectedArr={selectedArrVal} />
 										<!-- <img src="robo2.png" alt="widget" class="robologo" on:click={handleMenuClick} /> -->
@@ -792,7 +842,6 @@
 
 
 
-	
 	
 
 
@@ -1268,6 +1317,22 @@
 		height: 65%;
 		width: 100%;
 		border: 1px solid rgba(255, 255, 255, 0.175);
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: flex-start;
+
+	}
+
+	
+	.audioStateObjStyle{
+		/* background-color: pink; */
+		width: 100%;
+		height: 10%;
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: flex-end;
+		/* justify-content: flex-end; */
+
 	}
 
 	.assistantPlayArea {

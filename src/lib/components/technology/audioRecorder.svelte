@@ -6,6 +6,7 @@
 	import {handleRecordBtnUpdate} from '../../../routes/(public)/Technology/+page.svelte'
 	import {handleAITextData} from '../../../routes/(public)/Technology/+page.svelte'
 	import {handleUpdateQuestionState} from '../../../routes/(public)/Technology/+page.svelte'
+	import {AudioTracker} from '../../../routes/(public)/Technology/+page.svelte'
 
 	let isRecording = false;
 	let recognition;
@@ -114,7 +115,7 @@
 		try {
 			const phraseLen = phraseArr.length;
 			const phraseLastWord = phraseArr.at(-1);
-			// console.log('phaseARR', phraseArr);
+			console.log('phaseARR', phraseArr);
 
 			if (phraseArr.includes('Stopp' || 'stop')) {
 				try {
@@ -185,8 +186,13 @@
 				const result = event.results[i];
 				if (result.isFinal) {
 					finalTranscript += result[0].transcript; // Final text
+				} else {
+					interimTranscript += result[0].transcript;
+					AudioTracker(interimTranscript)
 				}
 			}
+
+
 
 			if (finalTranscript) {
 				let transkriptList = finalTranscript.split(' ');
