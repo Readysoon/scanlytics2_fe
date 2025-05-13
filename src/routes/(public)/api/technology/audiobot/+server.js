@@ -198,10 +198,8 @@ const handleApiAgentCall = async (userDataQuery, selectedArrState) => {
 			return json('Empty userDataQuery');
 		}
 
-		console.log('selectedArrState', selectedArrState);
 		if(stateNum === -1){
-			console.log('userDataQuery on last', userDataQuery);
-			console.log('selectedArrState', selectedArrState.at(-1));
+			
 			handleUpdateState(userDataQuery, selectedArrState.at(-1))
 			stateNum = 0
 			recordValue = 1
@@ -223,7 +221,7 @@ const handleApiAgentCall = async (userDataQuery, selectedArrState) => {
 		  if ( userDataQuery.toLowerCase().includes("restart")) {
 			stateNum = 0
 			convoArr = []
-			return 'Ich starte die Abfrage nochmal von vorn.'
+			return 'Ich starte die Abfrage nochmal von vorn. Bitte sagen sie "Hallo Bruno"'
 		  }
 	  
 		  const currentState = brunoPromptMap[stateNum];
@@ -367,7 +365,7 @@ export async function POST({ request }) {
 	// console.log('selecteState', selecteState);
 	if (data) {
 		const botRes = await handleApiAgentCall(data, selecteState);
-		console.log('botRes', botRes);
+		// console.log('botRes', botRes);
 		return json({botmessage: botRes, recordState: recordValue, userAnswer: userReply, userPrevQeustion: stateQuestion});
 	}
 	// return json('succesful');
