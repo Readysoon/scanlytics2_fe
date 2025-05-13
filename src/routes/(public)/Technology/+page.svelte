@@ -16,7 +16,7 @@
 	import { Canvas } from '@threlte/core';
 
 	// Declarations
-	let firstLoad = $state(false);  //back to true - default 
+	let firstLoad = $state(true);  //back to true - default 
 	let menuToggle: boolean = $state(true);
 	let ItemToggle: any = $state(null);
 	let isChecked: any = $state({});
@@ -27,7 +27,7 @@
 	let scansToggle = $state(false);
 	let navAssistantToggle_Structured = $state(true);
 	let navAssistantToggle_History = $state(false);
-	let enterPageToggle = $state(true); //back to false - default 
+	let enterPageToggle = $state(false); //back to false - default 
 	let inputValue = $state('');
 	let isMobile = false;
 	let disableAiStartBtn = $state(true)
@@ -308,7 +308,6 @@
 }
 
  export function handleAITextData(aiText: any){
-	console.log('triggert in handleAITextData',aiText);
 	if (typeof aiText === 'string') {
 		aiBotText = aiText.replace(/^"(.*)"$/, '$1');
   }

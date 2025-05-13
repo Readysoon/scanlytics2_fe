@@ -56,6 +56,7 @@ const handleCleanUp = async (audioUrl) => {
 		console.error('Error cleaning static folder:', error);
 	}
 };
+
 const handlespeechBot = async (botText) => {
 	// The text to synthesize
 	const text = botText;

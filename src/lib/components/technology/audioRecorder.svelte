@@ -94,7 +94,7 @@
 				// recognition.stop();
 			}
 
-			
+			// Handels the updating states on question
 			if(userprevQAnswer !== "" && userprevQState !== null){
 				handleUpdateQuestionState(userprevQAnswer, userprevQState)
 			}
