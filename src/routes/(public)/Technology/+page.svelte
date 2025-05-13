@@ -274,11 +274,38 @@
 <script lang="ts" module>
 	let recordState = $state(false)
 	let aiBotText = $state("")
+	let stateAnswer = $state([])
+	let textState = $state([])
+	let answerdInputData: any = $state({});
+
 
 
  export function handleRecordBtnUpdate(){
 	recordState = !recordState
  }
+
+//  Binding the input and updating the question background state 
+ export function handleUpdateQuestionState(AnswerArr: any, StateArr: any){
+	
+		stateAnswer = StateArr
+		textState = AnswerArr
+		let trackArr:any = []
+		let trackArrString: any = []
+		if(stateAnswer.length > 0){
+			for(const i in textState){
+				stateAnswer.map((item: any) => { 
+				
+
+						if(!trackArr.includes(item) && !trackArrString.includes(textState[i])){
+							answerdInputData[item] = textState[i]
+							trackArr.push(item)
+							trackArrString.push(textState[i])
+						}
+					
+			})
+		}
+		}
+}
 
  export function handleAITextData(aiText: any){
 	console.log('triggert in handleAITextData',aiText);
@@ -400,12 +427,20 @@
 																				{#if selectedToggle.length > 0}
 																				 <div class="stateObjItem-contentLayer">
 																			   {#each stateobj as stateObjItem (stateObjItem)}
-																						   <div class="stateObjItem-contentItem">
-																							   <!-- {stateObjItem} -->
-																							   {#if stateObjItem}
-																							   <div class="stateObjItem-contentIn"></div>
-																							   {/if}
-																						   </div>
+
+																			   {#if stateObjItem}
+																	
+																				<div class="stateObjItem-contentItem"
+																				style="background-color: {stateAnswer.includes(stateObjItem)
+																				? 'rgba(52, 255, 1, 0.837)'
+																				: 'black'};"
+																				></div>
+																						   
+																		
+																						
+																					
+
+																				{/if}
 																			   {/each}
 																			    </div>
 
@@ -448,7 +483,7 @@
 																			</div>
 																		</div>
 																		<div class="select-Item-Content">
-																			
+																			<!-- Selected Questions -->
 																		{#if items.name == 'Findings' && selectedToggle.length > 0 }
 																				{#each selectedToggle as selectObj (selectObj)}
 																				<div class="selected-item-obj">
@@ -458,13 +493,14 @@
 																					<input
 																						type="text"
 																						class="textoption"
-																						value={isCheckInputData[selectObj.label]}
+																						value={answerdInputData[selectObj.id]}
 																					/>
 																				</div>
 
 																				{/each}
 																			{:else}
 																		
+																			<!-- default Questions -->
 																			{#each ItemToggle.questions as itemObj (itemObj)}
 																					
 																					
@@ -483,7 +519,6 @@
 
 																					{/if}
 																					{itemObj.label}
-
 																					<input
 																						type="text"
 																						class="textoption"
@@ -517,12 +552,20 @@
 																			{#if stateobj}
 																			<div class="stateObjItem-contentLayer">
 																			   {#each stateobj as stateObjItem (stateObjItem)}
-																						   <div class="stateObjItem-contentItem">
-																							   <!-- {stateObjItem} -->
-																							   {#if stateObjItem}
-																							   <div class="stateObjItem-contentIn"></div>
-																							   {/if}
-																						   </div>
+
+																			   {#if stateObjItem}
+																	
+																				<div class="stateObjItem-contentItem"
+																				style="background-color: {stateAnswer.includes(stateObjItem)
+																				? 'rgba(52, 255, 1, 0.837)'
+																				: 'black'};"
+																				></div>
+																						   
+																		
+																						
+																					
+
+																				{/if}
 																			   {/each}
 																			</div>
 		   
@@ -532,7 +575,6 @@
 																						src="robo2.png"
 																						alt="widget"
 																						class="robologo"
-																						on:click={handleMenuAIClick}
 																					/>
 																				</div>
 																			{/if}
@@ -970,7 +1012,7 @@
 		background-color: rgba(21, 4, 4, 0.204);
 		width: 7%;
 		height: 12px;
-		font-ize: 1px;
+		/* font-size: 1px; */
 		color: rgb(4, 4, 4);
 		border: 2px solid rgba(248, 244, 238, 0.241);
 
@@ -984,11 +1026,23 @@
 	}
 
 	.stateObjItem-contentIn{
-		/* background-color: rgba(129, 218, 106, 0.533); */
+		background-color: rgba(129, 218, 106, 0.533);
 		border-radius: 50%;
 
 		width: 100%;
 		height: 100%;
+	}
+
+	.answeredStateoBJ{
+		background-color: rgba(52, 255, 1, 0.837);
+		width: 7%;
+		height: 12px;
+		/* font-size: 1px; */
+		color: rgb(4, 4, 4);
+		border: 2px solid rgba(248, 244, 238, 0.241);
+
+		border-radius: 50%;
+		
 	}
 	.questiontTitle {
 		color: rgba(255, 255, 255, 0.727);

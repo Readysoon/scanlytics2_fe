@@ -18,9 +18,10 @@ let updateState = 0
 let prevlastQuestion = ""
 let updateQuestion = ""
 let recordValue = 0
-let userReply = ""
-let stateQuestion = null
+let userReply = []
+let stateQuestion = []
 let addUpState = 0
+let lastQuestionNum = 0
 
 const brunoPromptMap = {
 	0: {
@@ -148,19 +149,48 @@ const brunoPromptMap = {
   
 
 
-const handleUpdateState =  (answer, state) => {
+const handleUpdateState =  async(answer, state) => {
 
-	console.log('inside handlestate');
-	if(answer && state){
-		console.log('updating state userReply', answer);
-		console.log('stateQuestion', state);
-	userReply = answer
-	stateQuestion = state
+	
 
+	if(!userReply.includes(answer) && !stateQuestion.includes(state) ){
+		userReply.push(answer)
+	stateQuestion.push(state)
 	}
+	
+
+	
 
 
 }
+
+// const handleSecUpdateState =  (answer, state) => {
+
+// 	console.log('inside handlestate on sec Update ');
+// 	if(answer && state){
+// 		console.log('updating state userReply', answer);
+// 		console.log('stateQuestion', state);
+// 	userReply = answer
+// 	stateQuestion = state
+
+// 	}
+
+
+// }
+
+// const handleSecUpdateState =  (answer, state) => {
+
+// 	console.log('inside handlestate on sec Update ');
+// 	if(answer && state){
+// 		console.log('updating state userReply', answer);
+// 		console.log('stateQuestion', state);
+// 	userReply = answer
+// 	stateQuestion = state
+
+// 	}
+
+
+// }
   
 const handleApiAgentCall = async (userDataQuery, selectedArrState) => {
 	try {
@@ -168,9 +198,14 @@ const handleApiAgentCall = async (userDataQuery, selectedArrState) => {
 			return json('Empty userDataQuery');
 		}
 
-		console.log('stateNum', stateNum);
-		if(stateNum === 22){
+		console.log('selectedArrState', selectedArrState);
+		if(stateNum === -1){
+			console.log('userDataQuery on last', userDataQuery);
+			console.log('selectedArrState', selectedArrState.at(-1));
+			handleUpdateState(userDataQuery, selectedArrState.at(-1))
+			stateNum = 0
 			recordValue = 1
+
 			return 'Super, ich habe alle Fragen notiert. Bitte navigieren Sie zur Textseite, um Ihren Befund zu bearbeiten.'
 		}
 
@@ -187,6 +222,7 @@ const handleApiAgentCall = async (userDataQuery, selectedArrState) => {
 
 		  if ( userDataQuery.toLowerCase().includes("restart")) {
 			stateNum = 0
+			convoArr = []
 			return 'Ich starte die Abfrage nochmal von vorn.'
 		  }
 	  
@@ -223,7 +259,7 @@ const handleApiAgentCall = async (userDataQuery, selectedArrState) => {
 	      
 		
 		  convoArr = newArr[0]
-		  console.log('convoArr', newArr);
+		//   console.log('convoArr', newArr);
 
 		  let updateConvoState = convoArr+=1
 
@@ -240,7 +276,7 @@ const handleApiAgentCall = async (userDataQuery, selectedArrState) => {
 		  updateQuestion = nextQuestion
 
 
-			convoArr = newArr.filter((item) => item !== newArr[0]);
+		  convoArr = newArr.filter((item) => item !== newArr[0]);
 
 
 
@@ -258,7 +294,7 @@ const handleApiAgentCall = async (userDataQuery, selectedArrState) => {
 
 		
 
-
+		//   console.log('convoArr',convoArr);
 		  let addUpState = convoArr[0] 
 		
 		  const nextState = addUpState+=1;
@@ -272,7 +308,11 @@ const handleApiAgentCall = async (userDataQuery, selectedArrState) => {
 		  });
 		  
 
-		  stateNum = 22;
+
+		  stateNum = -1;
+		//   console.log('newArr', newArr);
+		//   console.log('firstNum', newArr[0]);
+		  await handleUpdateState(userDataQuery,  newArr[0])
 
 		  return response.output_text;
 
@@ -282,7 +322,6 @@ const handleApiAgentCall = async (userDataQuery, selectedArrState) => {
 		}else{
 		 
 
-			console.log('convoArr'), convoArr;
 		  	addUpState = convoArr[0]
 
 		//   const nextState = currentState.next;
@@ -301,7 +340,7 @@ const handleApiAgentCall = async (userDataQuery, selectedArrState) => {
 	
 
 		  
-		  handleUpdateState(userDataQuery, addUpState)
+		  await handleSecUpdateState(userDataQuery, addUpState)
 		  convoArr = convoArr.filter((item) => item !== convoArr[0]);
 
 

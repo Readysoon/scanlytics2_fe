@@ -1,24 +1,31 @@
  
 
 <script  module>
+	import Wavesurfer, { getWaveaudi } from './wavesurfer.svelte';
+	import { loadtoggleCall } from './navigation/navigation.svelte';
+	import {handleRecordBtnUpdate} from '../../../routes/(public)/Technology/+page.svelte'
+	import {handleAITextData} from '../../../routes/(public)/Technology/+page.svelte'
+	import {handleUpdateQuestionState} from '../../../routes/(public)/Technology/+page.svelte'
+
 	let isRecording = false;
 	let recognition;
 	let arrList = $state([]);
 	import { onDestroy } from 'svelte';
 	let audioUrl = $state('');
 	let btnState = $state(false);
-	import Wavesurfer, { getWaveaudi } from './wavesurfer.svelte';
-	import { loadtoggleCall } from './navigation/navigation.svelte';
-	import {handleRecordBtnUpdate} from '../../../routes/(public)/Technology/+page.svelte'
-	import {handleAITextData} from '../../../routes/(public)/Technology/+page.svelte'
 	let audioState =  $state(0);
-
+	let stateTracker = $state(false);
+	
 	export function handleAudioStart() {
 		if(audioState == 1){
-			console.log('inside audioState update call 1');
-			toggleRecording()
+			if(stateTracker == false){
+			stateTracker = true 
+			handleRecordBtnUpdate()
 			recognition.stop();
 			isRecording = false;
+			btnState = false;
+			}
+			
 
 		}else{
 			recognition.start();
@@ -26,6 +33,8 @@
 		}
 	}
 
+
+	
 
 
 
@@ -81,13 +90,13 @@
 
 			if(recordState == 1){
 				audioState = recordState
+				handleAudioStart()
 				// recognition.stop();
 			}
 
-			console.log('userprevQAnswer', userprevQAnswer);
-			console.log('userprevQState', userprevQState);
+			
 			if(userprevQAnswer !== "" && userprevQState !== null){
-				console.log('triggert in binding response');
+				handleUpdateQuestionState(userprevQAnswer, userprevQState)
 			}
 			// HandlesTTS logic
 			if (totalRes) {
