@@ -120,7 +120,7 @@ const handlespeechBot = async (botText) => {
 export async function POST({ request }) {
 	const { data } = await request.json();
 
-	console.log('data from gpt in areach ttS', data);
+	// console.log('data from gpt in areach ttS', data);
 	const botAudioFileData = await handlespeechBot(data);
 
 	return json({ success: true, audioUrl: botAudioFileData });
