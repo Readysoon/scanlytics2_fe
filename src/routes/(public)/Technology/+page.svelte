@@ -13,6 +13,7 @@
 	import Navigation from '$lib/components/technology/navigation/navigation.svelte';
 	import TextEditor from '$lib/components/technology/TextEditor.svelte';
 	import Scene from '$lib/components/technology/threlte/scene.svelte';	
+	import Patients from '$lib/components/technology/patients/patients.svelte';
 	import { Canvas } from '@threlte/core';
 
 	// Declarations
@@ -25,8 +26,9 @@
 	let imageUploadToggle = $state(true);
 	let textEditToggle =  $state(false);
 	let scansToggle = $state(false);
-	let navAssistantToggle_Structured = $state(true);
+	let navAssistantToggle_Structured = $state(false);
 	let navAssistantToggle_History = $state(false);
+	let navAssistantToggle_Patient = $state(true);
 	let enterPageToggle = $state(false); //back to false - default 
 	let inputValue = $state('');
 	let isMobile = false;
@@ -136,6 +138,19 @@
 		navAssistantToggle_Structured =  false 
 
 	};
+
+	const hanldePatientToggle = () => { 
+
+		navAssistantToggle_Patient = true
+		navAssistantToggle_Structured =  false 
+
+	}
+
+	const handleUserPage = () => { 
+		navAssistantToggle_Patient = true 
+		navAssistantToggle_Structured =  false 
+
+	}
 	// ------------------------------------------------------------------------------
 
 	// Handle menu toggle
@@ -363,6 +378,7 @@ if (audioTrackArrState.length !== 0) {
 			<Navigation
 			on:structured={handleStructureToggle}
 			on:history={handleHistoryToggle}
+			on:patient={hanldePatientToggle}
 			/>
 
 
@@ -787,7 +803,10 @@ if (audioTrackArrState.length !== 0) {
 
 				<!-- Medical History Form Component -->
 				{#if navAssistantToggle_History}
-						<MedicalForm/>
+						<!-- <MedicalForm/> -->
+				{/if}
+				{#if navAssistantToggle_Patient}
+						 <Patients/>
 				{/if}
 			{:else}
 			<!-- Default enter component  -->

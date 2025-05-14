@@ -16,29 +16,59 @@
     const dispath = createEventDispatcher();
     let navAssistantToggle_Structured = $state(true);
 	let navAssistantToggle_History = $state(false);
+	let patientToggle = $state(true);
+	let structuredToggle = $state(false);
 
 
     const handleStructureNavCall = () => {
-        navAssistantToggle_Structured = true
-        navAssistantToggle_History = false
+        // navAssistantToggle_Structured = true
+		structuredToggle = true
+		patientToggle = false
+        // navAssistantToggle_History = false
         dispath('structured')
 
     } 
 
     const handleHistoryCall = () => {
-        navAssistantToggle_History = true
-        navAssistantToggle_Structured = false
+        // navAssistantToggle_History = true
+        // navAssistantToggle_Structured = false
+		
         dispath('history')
 
 
     } 
+
+	const handlePatientCall = () => { 
+	 patientToggle = true
+	 structuredToggle = false
+	   dispath('patient')
+
+
+	}
 
 </script>
 
 
 <div class="conversationNav">
     <div class="conversationNavContent">
-        <div
+		        <div class="userNav"
+				style="background-color: {patientToggle ? '#0a39c669' : '#0d1117'}"
+				on:click={handlePatientCall}
+
+				>
+				 <img src="user.png" alt="Microphone" class="userIcon" />
+				</div>
+				<div class="StructuredNav"
+				style="background-color: {structuredToggle ? '#0a39c669' : '#0d1117'}"
+				on:click={handleStructureNavCall}
+
+				>
+					
+				 <img src="tree.png" alt="Microphone" class="userIcon" />
+				</div>
+
+
+        <!-- <div
             class="StucturedReport"
             style="background-color: {navAssistantToggle_Structured ? 'rgba(254, 127, 0, 0.767)' : '#0d1117'}"
             on:click={handleStructureNavCall}
@@ -51,7 +81,7 @@
             on:click={handleHistoryCall}
         >
             Medical History Report
-        </div>
+        </div> -->
     </div>
 
     <div class="conversationBotLayer">
@@ -84,13 +114,14 @@
 	}
 
 	.conversationNavContent {
+		/* background: pink; */
 		width: 30%;
 		height: 100%;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		justify-content: center;
-		gap: 3%;
+		justify-content: flex-start;
+		/* gap: 3%; */
 	}
 
 	.conversationBotLayer {
@@ -112,6 +143,42 @@
 		justify-content: center;
 	}
 
+	.userNav{
+		/* background-color: #ffa3a3(255, 255, 255, 0.175); */
+		height: 100%;
+		width: 10%;
+		/* border-left: 1px solid rgba(255, 255, 255, 0.175); */
+		border-right: 1px solid rgba(255, 255, 255, 0.175);
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+
+
+	}
+
+	.userIcon{
+		height: 59%;
+		width: 39%;
+		opacity: 0.9;
+	}
+
+
+	.StructuredNav{
+		/* background-color: #0a39c669; */
+		height: 100%;
+		width: 10%;
+		/* border-left: 1px solid rgba(255, 255, 255, 0.175); */
+		border-right: 1px solid rgba(255, 255, 255, 0.175);
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+
+	}
+
 	.blockContentSection {
 		height: 100%;
 		width: 85%;
@@ -129,6 +196,8 @@
 		opacity: 0.9;
 		cursor: pointer;
 	}
+
+
 	.botContent {
 		backdrop-filter: blur(10px);
 		-webkit-backdrop-filter: blur(10px);

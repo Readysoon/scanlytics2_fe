@@ -1,0 +1,125 @@
+{
+  "patientHeader": {
+    "IDHead": "PatientenNr.",
+    "DatumHead": "Datum",
+    "NameHead": "Name",
+    "StatusHead": "Status",
+    "UntersuchungHead": "Untersuchung",
+    "berichtHead": "Befundungstyp",
+    "dateiHead": "Datei",
+    "downloadHead": "Download",
+    "weiterleitungHead": "Weiterleitung"
+  },
+  "patientContent": [
+    {
+      "ID": 1,
+      "Datum": "4.4.2025",
+      "Name": "Vicky Baum",
+      "Status": "gut",
+      "Untersuchung": "MRT Thorax",
+      "bericht": true,
+      "datei": true,
+      "download": true,
+      "weiterleitung": true
+    },
+    {
+      "ID": 2,
+      "Datum": "4.4.2025",
+      "Name": "Lena Meier",
+      "Status": "schlecht",
+      "Untersuchung": "CT Abdomen",
+      "bericht": true,
+      "datei": true,
+      "download": true,
+      "weiterleitung": true
+    },
+    {
+      "ID": 3,
+      "Datum": "4.4.2025",
+      "Name": "Jonas Müller",
+      "Status": "okay",
+      "Untersuchung": "Röntgen Fuß",
+      "bericht": true,
+      "datei": true,
+      "download": true,
+      "weiterleitung": true
+    },
+    {
+      "ID": 4,
+      "Datum": "4.4.2025",
+      "Name": "Sofia Becker",
+      "Status": "gut",
+      "Untersuchung": "MRT HWS",
+      "bericht": true,
+      "datei": true,
+      "download": true,
+      "weiterleitung": true
+    },
+    {
+      "ID": 5,
+      "Datum": "4.4.2025",
+      "Name": "Tobias Richter",
+      "Status": "schlecht",
+      "Untersuchung": "CT Thorax",
+      "bericht": true,
+      "datei": true,
+      "download": true,
+      "weiterleitung": true
+    },
+    {
+      "ID": 6,
+      "Datum": "4.4.2025",
+      "Name": "Mia Schneider",
+      "Status": "okay",
+      "Untersuchung": "Röntgen HWS",
+      "bericht": true,
+      "datei": true,
+      "download": true,
+      "weiterleitung": true
+    },
+    {
+      "ID": 7,
+      "Datum": "4.4.2025",
+      "Name": "Felix Wagner",
+      "Status": "gut",
+      "Untersuchung": "MRT Abdomen",
+      "bericht": true,
+      "datei": true,
+      "download": true,
+      "weiterleitung": true
+    },
+    {
+      "ID": 8,
+      "Datum": "4.4.2025",
+      "Name": "Laura Hofmann",
+      "Status": "schlecht",
+      "Untersuchung": "CT Fuß",
+      "bericht": true,
+      "datei": true,
+      "download": true,
+      "weiterleitung": true
+    },
+    {
+      "ID": 9,
+      "Datum": "4.4.2025",
+      "Name": "Ben Krause",
+      "Status": "okay",
+      "Untersuchung": "Röntgen Thorax",
+      "bericht": true,
+      "datei": true,
+      "download": true,
+      "weiterleitung": true
+    },
+    {
+      "ID": 10,
+      "Datum": "4.4.2025",
+      "Name": "Nina Vogel",
+      "Status": "gut",
+      "Untersuchung": "CT HWS",
+      "bericht": true,
+      "datei": true,
+      "download": true,
+      "weiterleitung": true
+    }
+  ]
+}
