@@ -46,7 +46,11 @@
 				{#each patientJson.patientContent as patientData  (patientData)}
 
 			
-				<div class="patientContent">
+				<div class="patientContent"
+				style="border-color: {patientData.ID >= 9 && patientData.ID <= 9 
+				? 'rgba(4, 163, 249, 0.911)'
+				: 'black'};"
+				>
 					
 					<div class="patientId">
 						{patientData.ID} 
@@ -63,7 +67,18 @@
 					</div>
 
 					<div class="patientStatus">
-						status
+						{#if patientData.ID >= 0 && patientData.ID <= 8 }
+								<img src="happy.png" alt="widget" class="emotionLogo" />
+							
+							{:else if  patientData.ID >= 9 && patientData.ID <= 9 }
+								<img src="sad.png" alt="widget" class="emotionLogo" />
+
+							{:else if  patientData.ID >= 10 && patientData.ID <= 13 }
+
+								<img src="open.png" alt="widget" class="emotionLogo" />
+
+
+						{/if}
 					</div>
 
 					<div class="patientUntersuchung">
@@ -170,7 +185,7 @@
 
 		background-color: #2326281c;
 		height: 2%;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
 	}
 
 	.topHeaderItem{
@@ -399,6 +414,11 @@
 		opacity: 0.8;
 		cursor: pointer;
 
+	}
+
+	.emotionLogo{
+		height: 50%;
+		width: 20%;
 	}
 	/* .medicalAIImageArea { */
 		/* height: 100%;
