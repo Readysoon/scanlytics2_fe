@@ -1,0 +1,162 @@
+{
+  "patientHeader": {
+    "IDHead": "SKU",
+    "TimeHead": "Uhrzeit",
+    "vorNameHead": "Vorname",
+    "NameHead": "Name",
+    "StatusHead": "Status",
+    "UntersuchungHead": "Untersuchung",
+    "berichtHead": "Befundungsart",
+    "Patienteninformationen": "Patienteninformationen",
+    "Funktionen": "Funktionen",
+    "weiterleitungHead": "Weiterleitung"
+  },
+"patientContent": [
+  {
+    "ID": 1,
+    "Time": "08:00",
+    "vorName": "Vicky",
+    "Name": "Baum",
+    "Status": "gut",
+    "Untersuchung": "MRT Thorax",
+    "bericht": true,
+    "datei": true,
+    "download": true,
+    "weiterleitung": true
+  },
+  {
+    "ID": 2,
+    "Time": "08:30",
+    "vorName": "Lena",
+    "Name": "Meier",
+    "Status": "schlecht",
+    "Untersuchung": "CT Abdomen",
+    "bericht": true,
+    "datei": true,
+    "download": true,
+    "weiterleitung": true
+  },
+  {
+    "ID": 3,
+    "Time": "09:00",
+    "vorName": "Jonas",
+    "Name": "Müller",
+    "Status": "okay",
+    "Untersuchung": "Röntgen Fuß",
+    "bericht": true,
+    "datei": true,
+    "download": true,
+    "weiterleitung": true
+  },
+  {
+    "ID": 4,
+    "Time": "09:30",
+    "vorName": "Sofia",
+    "Name": "Becker",
+    "Status": "gut",
+    "Untersuchung": "MRT HWS",
+    "bericht": true,
+    "datei": true,
+    "download": true,
+    "weiterleitung": true
+  },
+  {
+    "ID": 5,
+    "Time": "10:00",
+    "vorName": "Tobias",
+    "Name": "Richter",
+    "Status": "schlecht",
+    "Untersuchung": "CT Thorax",
+    "bericht": true,
+    "datei": true,
+    "download": true,
+    "weiterleitung": true
+  },
+  {
+    "ID": 6,
+    "Time": "10:30",
+    "vorName": "Mia",
+    "Name": "Schneider",
+    "Status": "okay",
+    "Untersuchung": "Röntgen HWS",
+    "bericht": true,
+    "datei": true,
+    "download": true,
+    "weiterleitung": true
+  },
+  {
+    "ID": 7,
+    "Time": "11:00",
+    "vorName": "Felix",
+    "Name": "Wagner",
+    "Status": "gut",
+    "Untersuchung": "MRT Abdomen",
+    "bericht": true,
+    "datei": true,
+    "download": true,
+    "weiterleitung": true
+  },
+  {
+    "ID": 8,
+    "Time": "11:30",
+    "vorName": "Laura",
+    "Name": "Hofmann",
+    "Status": "schlecht",
+    "Untersuchung": "CT Fuß",
+    "bericht": true,
+    "datei": true,
+    "download": true,
+    "weiterleitung": true
+  },
+  {
+    "ID": 9,
+    "Time": "12:00",
+    "vorName": "Ben",
+    "Name": "Krause",
+    "Status": "okay",
+    "Untersuchung": "Röntgen Thorax",
+    "bericht": true,
+    "datei": true,
+    "download": true,
+    "weiterleitung": true
+  },
+  {
+    "ID": 10,
+    "Time": "12:30",
+    "vorName": "Nina",
+    "Name": "Vogel",
+    "Status": "gut",
+    "Untersuchung": "CT HWS",
+    "bericht": true,
+    "datei": true,
+    "download": true,
+    "weiterleitung": true
+  },
+  {
+    "ID": 11,
+    "Time": "13:00",
+    "vorName": "Emma",
+    "Name": "Fischer",
+    "Status": "schlecht",
+    "Untersuchung": "MRT Kopf",
+    "bericht": true,
+    "datei": true,
+    "download": true,
+    "weiterleitung": true
+  },
+  {
+    "ID": 12,
+    "Time": "13:30",
+    "vorName": "Noah",
+    "Name": "Hartmann",
+    "Status": "gut",
+    "Untersuchung": "CT Abdomen",
+    "bericht": true,
+    "datei": true,
+    "download": true,
+    "weiterleitung": true
+  }
+]
+
+
+}

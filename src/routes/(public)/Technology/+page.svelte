@@ -132,6 +132,8 @@
 	const handleStructureToggle = () => {
 		navAssistantToggle_Structured =  true 
 		navAssistantToggle_History = false;
+		navAssistantToggle_Patient = false
+
 	};
 	const handleHistoryToggle = () => {
 		navAssistantToggle_History = true;
