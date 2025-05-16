@@ -1,0 +1,16 @@
+PatientenInformation: 
+- Akte 
+- büroklammer 
+- ausrufezeichen 
+
+
+
+Arzt: 
+Dr.Weber 
+
+
+
+Funktionen: 
+- Structure
+- frei - bleisift
+- ai

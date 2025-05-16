@@ -10,16 +10,8 @@
 <div class="medicalConversationArea"> 
 <div class="imgScanSection">
 	<div class="medicalAIImageContent">
-			<!-- {#if kneejsonData.sections.length > 0} -->
+		
 
-			<div class="topHeader">
-				<div class="topHeaderItem">
-				</div>
-				<div class="topHeaderItem">
-				</div>
-				
-
-			</div>
 			<div class="patientHeaderSection">
 					{#if patientJson}
 
@@ -89,23 +81,38 @@
 					
 
 					<div class="patientInformationen">
-						info
+						<div>
+							<img src="akte.png" alt="widget" class="widgetlogoStructuredReport" />
+  
+						</div>
+						<div>
+						    <img src="klamm.png" alt="widget" class="widgetlogoKlammer" />
+						</div>
+						<div class="widgetlogoZeichen">
+						    <img src="zeich.png" alt="widget" class="widgetlogoZeichenIcon" />
+						</div>
 					</div>
 
 					<div class="patientBefundungsArt">
-						<div>
-						  <img src="tree.png" alt="widget" class="widgetlogoStructuredReport" />
-
-						</div>
-						<div>
-						    <img src="text.png" alt="widget" class="widgetlogoEditor" />
-						</div>
+					
+							<div>
+								Dr. Weber
+							</div>
+							
 					</div>
 
 					<div class="patientFunktionen">
-						function
+						<div class="widgetlogoRobotSection">
+							<img src="robo2.png" alt="widget" class="widgetlogoRobot" />
+							 <!-- hello -->
+  
+						</div>
+						<div class="widgetlogoAnalyseSection">
+						    <img src="analy.png" alt="widget" class="widgetlogoAnalyse" />
+						</div>
+						
 					</div>
-					<!-- Patienteninformationen -->
+					
 
 
 
@@ -130,14 +137,7 @@
 			</div>
 		
 		
-	 <!-- "Datum": "4.4.2025",
-      "Name": "Vicky Baum",
-      "Status": "gut",
-      "Untersuchung": "MRT Thorax",
-      "bericht": true,
-      "datei": true,
-      "download": true,
-      "weiterleitung": true -->
+
 	</div>
 </div>
 </div>
@@ -160,6 +160,8 @@
 
 	.imgScanSection {
 		/* background-color: rgba(245, 222, 179, 0.181); */
+		background-color: #0d1117;
+
 		height: 100%;
 		width: 100%;
 		position: relative;
@@ -179,6 +181,7 @@
         color: white;
 		flex-direction: column;
 		/* gap: 2%; */
+		padding-top: 1%;
 	} 
 
 	.topHeader{
@@ -200,6 +203,7 @@
 		width: 100%;
 		/* border-bottom: 1px solid white; */
 		display: flex;
+		
 
 
 
@@ -226,6 +230,10 @@
 		/* flex-direction: column; */
 	}
 
+	.patientContent:hover{
+		background-color: rgba(2, 101, 159, 0.619);
+	}
+	
 	.patientHeaderId{
 		width: 5%;
 		height: 100%;
@@ -312,42 +320,40 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		/* border-right: 1px solid rgba(255, 255, 255, 0.553); */
 		font-family: system-ui;
 
 	}
 	.patientId{
-		/* background: rgb(179, 6, 35); */
 		width: 5%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		border-right: 1px solid rgba(255, 255, 255, 0.175);
 		font-family: system-ui;
-
+		font-size: 0.8rem;
 
 
 	}
 
 	.patientDate{
-		/* background-color: #ffffff1e; */
 		width: 5%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		border-right: 1px solid rgba(255, 255, 255, 0.175);
 		font-family: system-ui;
+		font-size: 0.8rem;
 
 	}
 
 	.patientName{
-		/* background-color: #ffffff1e; */
 		width: 10%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		border-right: 1px solid rgba(255, 255, 255, 0.175);
 		font-family: system-ui;
+		font-size: 0.8rem;
 
 	}
 
@@ -368,6 +374,7 @@
 		align-items: center;
 		border-right: 1px solid rgba(255, 255, 255, 0.175);
 		font-family: system-ui;
+		font-size: 0.8rem;
 	}
 
 	.patientBefundungsArt{
@@ -377,10 +384,9 @@
 		align-items: center;
 		border-right: 1px solid rgba(255, 255, 255, 0.175);
 		font-family: system-ui;
-		/* background-color: rgba(0, 128, 0, 0.351); */
 		display: flex;
 		justify-content: center;
-		gap: 20%;
+		font-size: 0.8rem;
 	}
 
 	.patientInformationen{
@@ -390,23 +396,39 @@
 		align-items: center;
 		border-right: 1px solid rgba(255, 255, 255, 0.175);
 		font-family: system-ui;
+		
 	}
+	
 
 	.patientFunktionen{
 		width: 16%;
 		display: flex;
-		justify-content: center;
+		justify-content: flex-end;
 		align-items: center;
-		/* border-right: 1px solid rgba(255, 255, 255, 0.553); */
 		font-family: system-ui;
+		gap: 10%;
+		padding-right: 1%;
+		
+
 	}
 
-	.widgetlogoEditor{
-		height: 30%;
-		width: 40%;
-		opacity: 0.8;
-		cursor: pointer;
+	.widgetlogoRobotSection{
+		height: 100%;
+		width: 10%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
+
+	.widgetlogoAnalyseSection{
+		height: 100%;
+		width: 10%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+
 
 	.widgetlogoStructuredReport{
 		height: 30%;
@@ -416,38 +438,46 @@
 
 	}
 
+	.widgetlogoKlammer{
+		height: 30%;
+		width:  30%;
+		opacity: 0.8;
+		cursor: pointer;
+	}
+	.widgetlogoZeichen{
+		height: 100%;
+		width:  100%;
+		opacity: 0.8;
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.widgetlogoZeichen{
+		width:  6.5%;
+		cursor: pointer;
+		
+	}
+
+	.widgetlogoRobot{
+		height: 80%;
+		width:  80%;
+		opacity: 0.8;
+		cursor: pointer;
+	}
+
+	.widgetlogoAnalyse{
+		height: 70%;
+		width:  70%;
+		opacity: 0.8;
+		cursor: pointer;
+	}
+
 	.emotionLogo{
 		height: 50%;
 		width: 20%;
 	}
-	/* .medicalAIImageArea { */
-		/* height: 100%;
-		border-right: 1px solid rgba(255, 255, 255, 0.175);
-	}
 
-	.medicalImageSection {
-		height: 94%;
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-	.amnesebogen {
-		width: 60%;
-		height: 90%;
-	}
-	.medicalImagebtnAreaSection {
-		height: 6%;
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-top: 1px solid rgba(255, 255, 255, 0.175);
-	}
-
-	.medicalResultArea {
-		height: 100%;
-		width: 50%;
-	} */
      
 </style>

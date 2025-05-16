@@ -136,7 +136,8 @@
 
 	};
 	const handleHistoryToggle = () => {
-		navAssistantToggle_History = true;
+		// navAssistantToggle_History = true;
+		navAssistantToggle_Patient = true
 		navAssistantToggle_Structured =  false 
 
 	};
@@ -805,7 +806,7 @@ if (audioTrackArrState.length !== 0) {
 
 				<!-- Medical History Form Component -->
 				{#if navAssistantToggle_History}
-						<!-- <MedicalForm/> -->
+						<MedicalForm/>
 				{/if}
 				{#if navAssistantToggle_Patient}
 						 <Patients/>

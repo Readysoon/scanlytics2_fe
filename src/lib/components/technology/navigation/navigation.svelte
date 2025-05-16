@@ -14,24 +14,26 @@
 
 
     const dispath = createEventDispatcher();
-    let navAssistantToggle_Structured = $state(true);
+    let navAssistantToggle_Structured = $state(false);
 	let navAssistantToggle_History = $state(false);
+	let navAssistantToggle_Patients = $state(true);
 	let patientToggle = $state(true);
 	let structuredToggle = $state(false);
 
 
     const handleStructureNavCall = () => {
-        // navAssistantToggle_Structured = true
+        navAssistantToggle_Structured = true
 		structuredToggle = true
 		patientToggle = false
-        // navAssistantToggle_History = false
+		navAssistantToggle_Patients = false
+        navAssistantToggle_History = false
         dispath('structured')
 
     } 
 
     const handleHistoryCall = () => {
-        // navAssistantToggle_History = true
-        // navAssistantToggle_Structured = false
+        navAssistantToggle_History = true
+        navAssistantToggle_Structured = false
 		
         dispath('history')
 
@@ -41,6 +43,8 @@
 	const handlePatientCall = () => { 
 	 patientToggle = true
 	 structuredToggle = false
+	 navAssistantToggle_Structured = false
+	 navAssistantToggle_Patients = true
 	   dispath('patient')
 
 
@@ -51,7 +55,7 @@
 
 <div class="conversationNav">
     <div class="conversationNavContent">
-		        <div class="userNav"
+		        <!-- <div class="userNav"
 				style="background-color: {patientToggle ? '#0a39c669' : '#0d1117'}"
 				on:click={handlePatientCall}
 
@@ -65,23 +69,31 @@
 				>
 					
 				 <img src="tree.png" alt="Microphone" class="userIcon" />
-				</div>
-
-
-        <!-- <div
+				</div> -->
+		
+		<div
+				class="MedicalReport"
+				style="background-color: {navAssistantToggle_Patients ? 'rgba(254, 127, 0, 0.767)' : '#0d1117'}"
+				on:click={handlePatientCall}
+		>
+				Patients
+			</div>
+		
+        <div
             class="StucturedReport"
             style="background-color: {navAssistantToggle_Structured ? 'rgba(254, 127, 0, 0.767)' : '#0d1117'}"
             on:click={handleStructureNavCall}
         >
             Structured Report
         </div>
-        <div
-            class="MedicalReport"
-            style="background-color: {navAssistantToggle_History ? '#ea7900b1' : '#0d1117'}"
-            on:click={handleHistoryCall}
-        >
-            Medical History Report
-        </div> -->
+       
+		<!-- <div
+		class="MedicalReport"
+		style="background-color: {navAssistantToggle_History ? 'rgba(254, 127, 0, 0.767)' : '#0d1117'}"
+		on:click={handleHistoryCall}
+	>
+		Medical History Report
+	</div> -->
     </div>
 
     <div class="conversationBotLayer">
@@ -114,14 +126,14 @@
 	}
 
 	.conversationNavContent {
-		/* background: pink; */
+	
 		width: 30%;
 		height: 100%;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: flex-start;
-		/* gap: 3%; */
+		gap: 3%;
 	}
 
 	.conversationBotLayer {
