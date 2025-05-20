@@ -135,9 +135,9 @@
 		navAssistantToggle_Patient = false
 
 	};
-	const handleHistoryToggle = () => {
-		// navAssistantToggle_History = true;
-		navAssistantToggle_Patient = true
+	const handleSelectionToggle = () => {
+		navAssistantToggle_History = true;
+		navAssistantToggle_Patient = false
 		navAssistantToggle_Structured =  false 
 
 	};
@@ -146,6 +146,7 @@
 
 		navAssistantToggle_Patient = true
 		navAssistantToggle_Structured =  false 
+		navAssistantToggle_History = false;
 
 	}
 
@@ -380,7 +381,7 @@ if (audioTrackArrState.length !== 0) {
 			<!-- Navigation Area -->
 			<Navigation
 			on:structured={handleStructureToggle}
-			on:history={handleHistoryToggle}
+			on:selection={handleSelectionToggle}
 			on:patient={hanldePatientToggle}
 			/>
 

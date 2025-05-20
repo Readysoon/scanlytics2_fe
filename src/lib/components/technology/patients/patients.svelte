@@ -225,6 +225,7 @@
 		background-color:  rgba(163, 163, 163, 0.268);
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+		cursor: pointer;
 
 
 		/* flex-direction: column; */
@@ -232,6 +233,7 @@
 
 	.patientContent:hover{
 		background-color: rgba(2, 101, 159, 0.619);
+		cursor: pointer;
 	}
 	
 	.patientHeaderId{

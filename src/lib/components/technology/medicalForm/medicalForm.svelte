@@ -12,7 +12,7 @@
 		<div class="medicalAIImageArea" style="width: {resultAreaToggle ? '50%' : '100%'};">
 			<div class="medicalImageSection">
 				<img
-					src="amnese.jpg"
+					src="form.png"
 					alt="widget"
 					class="amnesebogen"
 					style="width: {resultAreaToggle ? '60%' : '30%'};"

@@ -19,23 +19,30 @@
 	let navAssistantToggle_Patients = $state(true);
 	let patientToggle = $state(true);
 	let structuredToggle = $state(false);
+	let historyToggle = $state(false);
 
 
     const handleStructureNavCall = () => {
-        navAssistantToggle_Structured = true
 		structuredToggle = true
+		historyToggle = false
 		patientToggle = false
+        navAssistantToggle_Structured = true
 		navAssistantToggle_Patients = false
         navAssistantToggle_History = false
         dispath('structured')
 
     } 
 
-    const handleHistoryCall = () => {
+    const handleSelectionCall = () => {
+		historyToggle = true
+		structuredToggle = false
+		patientToggle = false
         navAssistantToggle_History = true
         navAssistantToggle_Structured = false
+		navAssistantToggle_Patients = false
 		
-        dispath('history')
+		
+        dispath('selection')
 
 
     } 
@@ -43,9 +50,12 @@
 	const handlePatientCall = () => { 
 	 patientToggle = true
 	 structuredToggle = false
-	 navAssistantToggle_Structured = false
+	 historyToggle = false
 	 navAssistantToggle_Patients = true
-	   dispath('patient')
+	 navAssistantToggle_History = false
+	 navAssistantToggle_Structured = false
+	 
+	dispath('patient')
 
 
 	}
@@ -79,6 +89,14 @@
 				Patients
 			</div>
 		
+			<div
+		class="MedicalReport"
+		style="background-color: {navAssistantToggle_History ? 'rgba(254, 127, 0, 0.767)' : '#0d1117'}"
+		on:click={handleSelectionCall}
+	>
+		 Form Selection
+	</div>
+		
         <div
             class="StucturedReport"
             style="background-color: {navAssistantToggle_Structured ? 'rgba(254, 127, 0, 0.767)' : '#0d1117'}"
@@ -87,13 +105,7 @@
             Structured Report
         </div>
        
-		<!-- <div
-		class="MedicalReport"
-		style="background-color: {navAssistantToggle_History ? 'rgba(254, 127, 0, 0.767)' : '#0d1117'}"
-		on:click={handleHistoryCall}
-	>
-		Medical History Report
-	</div> -->
+	
     </div>
 
     <div class="conversationBotLayer">
