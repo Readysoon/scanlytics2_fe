@@ -110,8 +110,8 @@
 			<!-- <img src="/xr4.png" class="xrLogo" alt="Logo" height="100" width="108"  /> -->
 
 			<!-- <div class="placeholderObjecttext">Scanlytics AI Assistant</div> -->
-			<img src={'/prostateMRI14.jpg'} class="imgPreview" alt="Uploaded image" />
-			<!-- <ImageScroller /> -->
+			<!-- <img src={'/prostateMRI14.jpg'} class="imgPreview" alt="Uploaded image" /> -->
+			<ImageScroller />
 		{/if}
 	</div>
 

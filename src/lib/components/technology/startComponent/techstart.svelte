@@ -16,7 +16,7 @@
 		</div>
 		<div class="subTextEmailRequestArea">
 			<div class="subtTextContent">
-				<p>Bruno v.0.1</p>
+				<p>Bruno v.0.3</p>
 			</div>
 		</div>
 
@@ -30,13 +30,13 @@
 
 <style>
     .emailSectionArea {
-		height: 96%;
+		height: 100%;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-bottom: 6%;
+		/* padding-bottom: 6%; */
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
 		border-left: 1px solid rgba(255, 255, 255, 0.175);
 		border-right: 1px solid rgba(255, 255, 255, 0.175);

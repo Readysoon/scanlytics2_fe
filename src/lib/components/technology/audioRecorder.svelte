@@ -272,9 +272,13 @@
 <div>
 	<button on:click={() => toggleRecording(arrValue)} class="btnstring" class:is-recording={isRecording}>
 		{#if btnState}
-			<img src="/pause.png" alt="Microphone" class="mic-icon" />
+		<div class="micIconPauseSection">
+			<img src="/pause.png" alt="Microphone" class="micIconPause" />
+		</div>
 		{:else}
-			<img src="/play.png" alt="Microphone" class="mic-icon" />
+		<div class="micIconPauseSection">
+			<img src="micro.png" alt="Microphone" class="micIconPause" />
+		</div>
 		{/if}
 	</button>
 	
@@ -293,8 +297,22 @@ on:ended={handleAudioEnd}
 
 <style>
 	.mic-icon {
-		width: 24px;
-		height: 24px;
+		width: 85%;
+		height: 70%;
+	}
+
+	.micIconPauseSection{
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.micIconPause{
+		
+		/* background-color: #fff; */
+		width: 85%;
+		height: 70%;
 	}
 
 	button.is-recording {

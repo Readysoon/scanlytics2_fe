@@ -15,10 +15,12 @@
 	import Scene from '$lib/components/technology/threlte/scene.svelte';	
 	import Patients from '$lib/components/technology/patients/patients.svelte';
 	import { Canvas } from '@threlte/core';
+	import { ScaleOut } from 'svelte-loading-spinners';
+	import SelectedQuestions from '$lib/components/technology/selectedQuestions/selectedQuestions.svelte';
 
 	// Declarations
 	let firstLoad = $state(true);  //back to true - default 
-	let menuToggle: boolean = $state(true);
+	let menuToggle: boolean = $state(false);
 	let ItemToggle: any = $state(null);
 	let isChecked: any = $state({});
 	let isCheckInputData: any = $state({});
@@ -26,9 +28,9 @@
 	let imageUploadToggle = $state(true);
 	let textEditToggle =  $state(false);
 	let scansToggle = $state(false);
-	let navAssistantToggle_Structured = $state(false);
-	let navAssistantToggle_History = $state(false);
-	let navAssistantToggle_Patient = $state(true);
+	let navAssistantToggle_Structured = $state(true);
+	let navAssistantToggle_History = $state(false); //back to false - default 
+	let navAssistantToggle_Patient = $state(false); //back to true - default 
 	let enterPageToggle = $state(false); //back to false - default 
 	let inputValue = $state('');
 	let isMobile = false;
@@ -38,7 +40,7 @@
 	let selectedToggle: any = $state([])
 	let selectedRowToggle  = $state(false)
 	let selectedArrVal = $state([])
-
+	let showNav = $state(true) //back to false - default 
 
 	
 	// ------------------------------------------------------------------------------
@@ -139,6 +141,7 @@
 		navAssistantToggle_History = true;
 		navAssistantToggle_Patient = false
 		navAssistantToggle_Structured =  false 
+		showNav = true
 
 	};
 
@@ -374,16 +377,19 @@ if (audioTrackArrState.length !== 0) {
 </head>
 
 <main>
-	<Header />
+	<!-- <Header /> -->
 
 	<div class="mainSection">
 		<div class="StartOverlay">
+
+			{#if showNav}
 			<!-- Navigation Area -->
 			<Navigation
 			on:structured={handleStructureToggle}
 			on:selection={handleSelectionToggle}
 			on:patient={hanldePatientToggle}
 			/>
+			{/if}
 
 
 			<!-- Main Component -->
@@ -394,16 +400,30 @@ if (audioTrackArrState.length !== 0) {
 						{#if scansToggle}
 							<Selectpage />
 						{/if}
+						<!-- selected Questions -->
+						
 						<!-- Image Area  -->
 						<div class="imgScanSection">
 							{#if firstLoad}
 								<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
 							{:else}
+							<div class="selectedQuestionsArea">
+								<SelectedQuestions />
+							 </div>
 								<div class="aiContentArea">
 								
 									{#if imageUploadToggle}
-									<div class="imgConectSection" style="width: {menuToggle ? '70%' : '100%'};">
-										<ImageUploader />
+									<div class="imgConectSectionUpload" style="width: {menuToggle ? '70%' : '100%'};">
+										<div class="imgConectSectionUpload-ImageUploader">
+											<ImageUploader />
+										</div>
+										
+										<div class="imgConectSectionUpload-AIRecordSection">
+											<div class="imgConectSectionUpload-AIRecordContent">
+												<ScaleOut size="30" color="white" unit="px" duration="1s" />
+
+											</div>
+										</div>
 									</div>
 									{/if}
 									{#if textEditToggle}
@@ -703,9 +723,7 @@ if (audioTrackArrState.length !== 0) {
 										</div>
 									{/if}
 								</div>
-							{/if}
-						</div>
-						<!-- Navbar Area -->
+								<!-- Navbar Area -->
 						<div class="aiNavBar">
 							<div class="upperBar">
 								<div class="optionBox" on:click={handleMenuAIClick}>
@@ -793,24 +811,30 @@ if (audioTrackArrState.length !== 0) {
 
 									</div>
 									<div class="assistantPlayArea">
+										<!-- Audio Recorder function -->
 										<AudioRecorder selectedArr={selectedArrVal} />
+
+										<!-- <img src="micro.png" alt="widget" class="microIcon"  /> -->
 										<!-- <img src="robo2.png" alt="widget" class="robologo" on:click={handleMenuClick} /> -->
 										<!-- <img src="play.png" alt="widget" class="widgetlogo" />
 								  -->
-										<p>Assistant</p>
+										<!-- <p>Assistant</p> -->
 									</div>
 								</div>
 							</div>
 						</div>
+							{/if}
+						</div>
+						
 					</div>
 				{/if}
 
 				<!-- Medical History Form Component -->
 				{#if navAssistantToggle_History}
-						<MedicalForm/>
+						<MedicalForm on:startReporting={handleStructureToggle}/>
 				{/if}
 				{#if navAssistantToggle_Patient}
-						 <Patients/>
+						 <Patients on:robot={handleSelectionToggle}/>
 				{/if}
 			{:else}
 			<!-- Default enter component  -->
@@ -830,15 +854,16 @@ if (audioTrackArrState.length !== 0) {
 	}
 
 	.mainSection {
-		height: 88%;
+		height: 95%;
 		margin-top: 30px;
+		/* background: palevioletred; */
 	}
 
 	.StartOverlay {
 		height: 100%;
 		width: 100%;
 
-		background-color: #0d1117;
+		/* background-color: #185fc9; */
 		z-index: 6;
 	}
 
@@ -850,6 +875,7 @@ if (audioTrackArrState.length !== 0) {
 		flex-direction: row;
 		border-left: 1px solid rgba(255, 255, 255, 0.175);
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
+		border-right: 1px solid rgba(255, 255, 255, 0.175);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
@@ -882,7 +908,8 @@ if (audioTrackArrState.length !== 0) {
 
 	
 	.aiContentArea {
-		height: 93%;
+		/* height: 93%; */
+		height: 100%;
 		width: 100%;
 		display: flex;
 		flex-direction: row;
@@ -894,6 +921,7 @@ if (audioTrackArrState.length !== 0) {
 		width: 30%;
 		border-left: 1px solid rgba(255, 255, 255, 0.175);
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
+	
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
@@ -1260,7 +1288,8 @@ if (audioTrackArrState.length !== 0) {
 		height: 100%;
 		width: 3%;
 		background-color: #0d1117;
-		border: 1px solid rgba(255, 255, 255, 0.175);
+		/* border: 1px solid rgba(255, 255, 255, 0.175); */
+		border-left: 1px solid rgba(255, 255, 255, 0.175);
 		flex-direction: column;
 	}
 
@@ -1310,6 +1339,7 @@ if (audioTrackArrState.length !== 0) {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		
 	}
 
 	.freq1 {
@@ -1337,12 +1367,13 @@ if (audioTrackArrState.length !== 0) {
 		width: 55%;
 	}
 	.uvMeter {
-		height: 65%;
+		height: 70%;
 		width: 100%;
 		border: 1px solid rgba(255, 255, 255, 0.175);
 		display: flex;
 		flex-direction: column-reverse;
 		justify-content: flex-start;
+		/* background-color: #fff; */
 
 	}
 
@@ -1359,18 +1390,24 @@ if (audioTrackArrState.length !== 0) {
 	}
 
 	.assistantPlayArea {
-		height: 20%;
+		height: 15%;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		border: 1px solid rgba(255, 255, 255, 0.175);
+		/* border: 1px solid rgba(255, 255, 255, 0.175); */
 		align-items: center;
 		color: white;
 		font-family: sans-serif;
 
 		gap: 8%;
 		font-size: 10px;
+	}
+
+
+	.microIcon{
+		width: 60%;
+		height: 40%;	
 	}
 
 	.assitantTitle {
@@ -1391,6 +1428,49 @@ if (audioTrackArrState.length !== 0) {
 		height: 22px;
 		cursor: pointer;
 	}
+
+	.imgConectSectionUpload{
+		width: 100%;
+		height: 100%;
+		/* background-color: green; */
+		/* min-height: 100svh; */
+	}
+
+	.imgConectSectionUpload-ImageUploader{
+		width: 100%;
+		height: 95%;
+		/* background-color: red; */
+	}
+
+	.imgConectSectionUpload-AIRecordSection{
+		width: 100%;
+		height: 5%;
+		/* background-color: blue; */
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
+	}
+
+	.imgConectSectionUpload-AIRecordContent{
+		width: 50%;
+		height: 80%;	
+		background-color: rgb(5, 5, 5);
+		border-radius: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: rgba(255, 255, 255, 0.879);
+		font-size: 19px;
+		font-family: sans-serif;
+		font-weight: 600;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+		
+	}
+	
+	
 
 	@media (max-width: 420px) {
 		/* Force content to be scrollable */
@@ -1418,6 +1498,10 @@ if (audioTrackArrState.length !== 0) {
 		.imgConectSection {
 			width: 100%;
 			min-height: 100svh;
+		}
+		.imgConectSectionUpload{
+			width: 100%;
+			/* min-height: 100svh; */
 		}
 
 		.ImageReportSection {
@@ -1450,5 +1534,14 @@ if (audioTrackArrState.length !== 0) {
 			flex-direction: row !important;
 			justify-content: space-between !important;
 		}
+	}
+
+	.selectedQuestionsArea{
+		height: 100%;
+		width: 3%;
+		display: flex;
+		flex-direction: row;
+		
+		border-right: 1px solid rgba(255, 255, 255, 0.175);
 	}
 </style>

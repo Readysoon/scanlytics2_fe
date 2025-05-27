@@ -1,8 +1,16 @@
-
-<script>
+<script >
 	import * as patientJson from '../../../../../static/patientContent.json';
 
+    import { createEventDispatcher } from 'svelte';
+	
 
+	const dispath = createEventDispatcher();
+
+	const handleRobotClick = () => {
+		dispath('robot')
+		
+
+	}
 
 </script>
 
@@ -102,7 +110,7 @@
 					</div>
 
 					<div class="patientFunktionen">
-						<div class="widgetlogoRobotSection">
+						<div class="widgetlogoRobotSection" on:click={handleRobotClick}>
 							<img src="robo2.png" alt="widget" class="widgetlogoRobot" />
 							 <!-- hello -->
   
@@ -146,10 +154,11 @@
 <style>
 
 .medicalConversationArea {
-		height: 96%;
+		height: 100%;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
+		
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
 		border-left: 1px solid rgba(255, 255, 255, 0.175);
 		border-right: 1px solid rgba(255, 255, 255, 0.175);
@@ -181,7 +190,7 @@
         color: white;
 		flex-direction: column;
 		/* gap: 2%; */
-		padding-top: 1%;
+		/* padding-top: 1%; */
 	} 
 
 	.topHeader{
