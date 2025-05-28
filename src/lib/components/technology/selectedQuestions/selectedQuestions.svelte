@@ -1,26 +1,32 @@
 <script lang="ts" module>
 	import { Parts } from "openai/resources/uploads/parts";
+    
+ 
 
 
     let selectedQuestions = $state([])
     let questionArray: number[] = $state([])
+    let questionBackgroundState = $state([])
     export function handleSelectedQuestions(itemArray: any){
         
         selectedQuestions = itemArray
-        console.log('selectedQuestions', selectedQuestions[0]);
+      
+        
+      
 
-        console.log('selectedQuestions', selectedQuestions);
-
-        // if(selectedQuestions.length > 0){
-        //     for(const item in selectedQuestions){
-                
-        //         questionArray.push(parseInt(item))
-        //     }
-        // }
+      
     }
+
+    export function handleSelectUpdateBackground(item: any){
+        console.log('item', item);
+        questionBackgroundState = item
+    }
+
+ 
     // selectedQuestions = [0,1,2,3,4]   
 
 </script>
+
 
 
 <div class="selectedQuestions">
@@ -31,7 +37,7 @@
         <!-- <p>{item}</p> -->
         
         <div class="questionNumber"
-        style="background-color: {selectedQuestions[0] == item? 'rgba(18, 120, 230, 0.751)' : 'rgba(211, 211, 235, 0.105)'} "
+        style="background-color: {questionBackgroundState.includes(item) ? 'rgba(18, 120, 230, 0.751)' : 'rgba(211, 211, 235, 0.105)'} "
         >
             <p>{index}</p>
         </div>

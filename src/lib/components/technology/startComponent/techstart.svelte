@@ -1,11 +1,13 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
-
+	import { searchNav } from '../navigation/navigation.svelte';
 	const dispath = createEventDispatcher();
 
 	const handleEnterPage = () => {
 		dispath('enterPage');
+		searchNav(true);
 	};
+
 </script>
 
 <div class="emailSectionArea">

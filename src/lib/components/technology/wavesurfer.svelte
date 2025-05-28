@@ -2,6 +2,7 @@
 	import WaveSurfer from 'wavesurfer.js';
 	import AudioRecorder, { handleAudioStart } from './audioRecorder.svelte';
 	let audioUrl = $state('');
+	import { loadAiTextToggle } from '../../../routes/(public)/Technology/+page.svelte';
 
 	// Receives the updated audio data
 	export function getWaveaudi(audionode) {
@@ -33,11 +34,16 @@
 					instance.load(audioUrl);
 					instance.on('ready', () => {
 						instance.play();
+						console.log('is playing audio');
+						loadAiTextToggle(true)
 					});
 
 					instance.on('finish', () => {
 						handleAudioStart();
+						console.log('is not playing audio');
+						loadAiTextToggle(false)
 						instance.destroy();
+						
 					});
 				} catch (error) {
 					console.error('error in Wavesurfer call:', error);

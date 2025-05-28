@@ -7,6 +7,9 @@
 	import {handleAITextData} from '../../../routes/(public)/Technology/+page.svelte'
 	import {handleUpdateQuestionState} from '../../../routes/(public)/Technology/+page.svelte'
 	import {AudioTracker} from '../../../routes/(public)/Technology/+page.svelte'
+	import {loadAiTextToggle} from '../../../routes/(public)/Technology/+page.svelte'
+
+
 
 	let isRecording = false;
 	let recognition;
@@ -54,6 +57,7 @@
 			if (result.success) {
 				audioUrl = await result.audioUrl;
 				if (audioUrl) {
+					// loadAiTextToggle(true)
 					loadtoggleCall();
 					handleAITextData(gptText)
 					getWaveaudi(audioUrl);
@@ -95,8 +99,9 @@
 				// recognition.stop();
 			}
 
-			// Handels the updating states on question
+			// Handels the updating states on question Area
 			if(userprevQAnswer !== "" && userprevQState !== null){
+
 				handleUpdateQuestionState(userprevQAnswer, userprevQState)
 			}
 			// HandlesTTS logic
@@ -168,12 +173,14 @@
 		recognition.interimResults = true; // Get interim results while speaking
 
 		recognition.onstart = () => {
-			// console.log('Speech recognition started...');
+			console.log('Speech recognition started...');
 			loadtoggleCall();
+			// loadAiTextToggle(false)
 		};
 
 		recognition.onend = () => {
-			// console.log('Speech recognition stopped.');
+			console.log('Speech recognition stopped.');
+			
 		};
 
 		// Event that runs when results are available (i.e., transcribed speech)
@@ -243,8 +250,10 @@
 			}
 		} else {
 			
+			
 			recognition.stop();
 			isRecording = false;
+			
 		}
 	};
 
@@ -258,7 +267,9 @@
 
 	$effect(() => {
 		arrValue = selectedArr
-		// console.log('selectedArr', selectedArr);
+		if(arrValue.length > 0){
+			console.log('selectedArr', arrValue);
+		}
 	})	
 
 

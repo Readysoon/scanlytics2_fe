@@ -17,7 +17,10 @@
 	import { Canvas } from '@threlte/core';
 	import { ScaleOut } from 'svelte-loading-spinners';
 	import SelectedQuestions from '$lib/components/technology/selectedQuestions/selectedQuestions.svelte';
+	import { searchNav } from '$lib/components/technology/navigation/navigation.svelte';
+	import { closeNav } from '$lib/components/technology/navigation/navigation.svelte';
 
+	import { handleSelectUpdateBackground } from '$lib/components/technology/selectedQuestions/selectedQuestions.svelte';
 	// Declarations
 	let firstLoad = $state(true);  //back to true - default 
 	let menuToggle: boolean = $state(false);
@@ -28,9 +31,9 @@
 	let imageUploadToggle = $state(true);
 	let textEditToggle =  $state(false);
 	let scansToggle = $state(false);
-	let navAssistantToggle_Structured = $state(true);
+	let navAssistantToggle_Structured = $state(false);
 	let navAssistantToggle_History = $state(false); //back to false - default 
-	let navAssistantToggle_Patient = $state(false); //back to true - default 
+	let navAssistantToggle_Patient = $state(true); //back to true - default 
 	let enterPageToggle = $state(false); //back to false - default 
 	let inputValue = $state('');
 	let isMobile = false;
@@ -40,7 +43,7 @@
 	let selectedToggle: any = $state([])
 	let selectedRowToggle  = $state(false)
 	let selectedArrVal = $state([])
-	let showNav = $state(true) //back to false - default 
+	let showNav = $state(false) //back to false - default 
 
 	
 	// ------------------------------------------------------------------------------
@@ -108,10 +111,10 @@
 		});
 
 
-		if(stateobj.length > 0){
-			selectedArrVal = stateobj
+		// if(stateobj.length > 0){
+		// 	selectedArrVal = stateobj
 			
-		}
+		// }
 
 
 		// setTimeout(() => {
@@ -123,7 +126,7 @@
 	// Handle AI Asisstant page toggle and loading componenet
 	const handleEnterPage = () => {
 		enterPageToggle = true;
-
+		showNav = true
 		setTimeout(() => {
 			firstLoad = false;
 		}, 3000);
@@ -142,6 +145,8 @@
 		navAssistantToggle_Patient = false
 		navAssistantToggle_Structured =  false 
 		showNav = true
+		searchNav(false)
+		closeNav(true)
 
 	};
 
@@ -150,6 +155,7 @@
 		navAssistantToggle_Patient = true
 		navAssistantToggle_Structured =  false 
 		navAssistantToggle_History = false;
+		searchNav(true)
 
 	}
 
@@ -264,9 +270,10 @@
 	}
 	
 
-	const handleStartAI = (selectedReportObj:any) => {
+	const handleStartAI = (selectedQuestionNum: any) => {
 
-		stateobj = selectedReportObj
+		console.log('selectedQuestionNum', selectedQuestionNum);
+		stateobj = selectedQuestionNum
 
 		const updateArr = ItemToggle.questions
 		const arr = []
@@ -304,8 +311,21 @@
 	let answerdInputData: any = $state({});
 	let audioTrackArrState: any= $state([]);
 	let audioData = $state([]);
+	let selectedQuestionNum = $state([])
+	let aiToggleState = $state(false)
 
 
+export function loadAiTextToggle (aiToggle: any){
+	aiToggleState = aiToggle
+	console.log('aiToggleState', aiToggleState);
+}
+
+
+
+export function SelectedQuestionAI(selectedQuestionNumValue: any){
+	console.log('selectedQuestionNum', selectedQuestionNumValue);
+	selectedQuestionNum = selectedQuestionNumValue
+}
 
  export function handleRecordBtnUpdate(){
 	recordState = !recordState
@@ -327,17 +347,25 @@ if (audioTrackArrState.length !== 0) {
 }
  }
 
- console.log('audioTrackArrState', audioTrackArrState);
 
 
 //  Binding the input and updating the question background state 
  export function handleUpdateQuestionState(AnswerArr: any, StateArr: any){
 	
+		// Handles the updating the question background state
 		stateAnswer = StateArr
+	
+		// Handles the binding on the input field
 		textState = AnswerArr
+
+		console.log('stateAnswer', stateAnswer);
+		console.log('textState', textState);
+
 		let trackArr:any = []
 		let trackArrString: any = []
 		if(stateAnswer.length > 0){
+			handleSelectUpdateBackground(stateAnswer)
+
 			for(const i in textState){
 				stateAnswer.map((item: any) => { 
 				
@@ -353,12 +381,17 @@ if (audioTrackArrState.length !== 0) {
 		}
 }
 
+// Handle the AI text data
  export function handleAITextData(aiText: any){
 	if (typeof aiText === 'string') {
 		aiBotText = aiText.replace(/^"(.*)"$/, '$1');
   }
+
 	// aiBotText = aiText
  }
+
+
+
 
    function getColorByIndex(index: any) {
 	console.log('index', index);
@@ -420,7 +453,12 @@ if (audioTrackArrState.length !== 0) {
 										
 										<div class="imgConectSectionUpload-AIRecordSection">
 											<div class="imgConectSectionUpload-AIRecordContent">
+
+												{#if aiToggleState}
+												{aiBotText}
+												{:else}
 												<ScaleOut size="30" color="white" unit="px" duration="1s" />
+												{/if}
 
 											</div>
 										</div>
@@ -506,6 +544,7 @@ if (audioTrackArrState.length !== 0) {
 																	
 																				<div class="stateObjItem-contentItem"
 																				style="background-color: {stateAnswer.includes(stateObjItem)
+																				
 																				? 'rgba(52, 255, 1, 0.837)'
 																				: 'black'};"
 																				></div>
@@ -517,6 +556,7 @@ if (audioTrackArrState.length !== 0) {
 																				{/if}
 																			   {/each}
 																			    </div>
+
 
 																				<div class="select-Text-Lable"
 																				
@@ -677,25 +717,7 @@ if (audioTrackArrState.length !== 0) {
 															: 'flex'};" 
 															
 															>
-																{#if aiBotText}
-																<!-- <div class="canvasSection">
-																	<Canvas>
-																		<Scene/>
-																	</Canvas>
-																</div> -->
-																
-																			{aiBotText}
-																{:else}
-																<!-- <div class="canvasSection">
-																	<Canvas>
-																		<Scene/>
-																	</Canvas>
-																</div> -->
-																<div class="selectedTextSection">
-																	<p class="defaultStartTextAI">Press on the Assistant to start Reporting and say "Hallo Bruno"</p>
-																</div>
-
-																{/if}
+										
 															</div>
 													{:else}
 													<button class="startBtn"
@@ -705,8 +727,8 @@ if (audioTrackArrState.length !== 0) {
 
 													"
 													
-													 on:click={ () => handleStartAI(findingsCheckBoxState)}
-													 disabled={disableAiStartBtn}
+													
+													
 													>
 													{#if disableAiStartBtn}
 													Please select your questions
@@ -810,14 +832,13 @@ if (audioTrackArrState.length !== 0) {
 
 
 									</div>
-									<div class="assistantPlayArea">
+									<div class="assistantPlayArea" on:click={() => handleStartAI(selectedQuestionNum)}>
 										<!-- Audio Recorder function -->
-										<AudioRecorder selectedArr={selectedArrVal} />
+										<AudioRecorder selectedArr={selectedQuestionNum} />
 
-										<!-- <img src="micro.png" alt="widget" class="microIcon"  /> -->
-										<!-- <img src="robo2.png" alt="widget" class="robologo" on:click={handleMenuClick} /> -->
-										<!-- <img src="play.png" alt="widget" class="widgetlogo" />
-								  -->
+										
+									
+								
 										<!-- <p>Assistant</p> -->
 									</div>
 								</div>

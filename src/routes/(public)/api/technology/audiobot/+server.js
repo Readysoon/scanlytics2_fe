@@ -225,6 +225,7 @@ const handleApiAgentCall = async (userDataQuery, selectedArrState) => {
 		  }
 	  
 		  const currentState = brunoPromptMap[stateNum];
+		  console.log('currentState', currentState);
 	  
 		  if (!currentState) {
 				return "Sie haben leider noch keine Fragen zur Befundung ausgewählt. Bitte wählen Sie im Bereich 'Finding' mehrere Fragen aus und beginnen Sie anschließend mit der Befunderstellung. Vielen Dank!"

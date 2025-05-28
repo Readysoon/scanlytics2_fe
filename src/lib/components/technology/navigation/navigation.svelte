@@ -1,6 +1,8 @@
 <script module>
 	let loadBotToggle = $state(false);
 	let closeNavToggle = $state(true); //back to true - default 
+	let searchToggle = $state(false);
+	
 
 	// Handles the AI bot loading action when button is pressed
 	export function loadtoggleCall() {
@@ -10,6 +12,11 @@
 	export function closeNav(navState){
 		console.log('closeNav', navState);
 		closeNavToggle = navState;
+	}
+
+	export function searchNav(searchState){
+		console.log('searchNav', searchState);
+		searchToggle = searchState;
 	}
 </script>
 
@@ -46,6 +53,7 @@
         navAssistantToggle_History = true
         navAssistantToggle_Structured = false
 		navAssistantToggle_Patients = false
+
 		
 		
         dispath('selection')
@@ -60,7 +68,7 @@
 	 navAssistantToggle_Patients = true
 	 navAssistantToggle_History = false
 	 navAssistantToggle_Structured = false
-	 
+	
 	dispath('patient')
 
 
@@ -70,6 +78,25 @@
 
 
 <div class="conversationNav">
+	{#if searchToggle}
+	
+		<div class="searchNavSection">
+			<div class="interGlobeBtnArea">
+				
+				 <div class="GlobeBtnIcon">
+					<img src="user2.png" alt="Microphone" class="userIcon" />
+				 </div>
+				 <div class="searchInputArea">
+					<input type="text" bind:value={searchValue} placeholder="Search "  class="searchInput"/>
+					
+
+				 </div>
+
+				</div>
+		</div>
+	
+
+	{:else}
     <div class="conversationNavContent">
 		        <!-- <div class="userNav"
 				style="background-color: {patientToggle ? '#0a39c669' : '#0d1117'}"
@@ -172,6 +199,7 @@
             </div>
         </div>
     </div>
+	{/if}
 </div>
 
 
@@ -196,6 +224,14 @@
 		justify-content:  flex-start;
 		gap: 3%;
 		/* background: green; */
+	}
+	.searchNavSection{
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		/* background-color: pink; */
 	}
 	.scanAddbtn{
 		height: 100%;
@@ -293,14 +329,14 @@
 		/* opacity: 0.5; */
 	}
 	.userIcon{
-		height: 65%;
+		height: 80%;
 		width: 50%;
 		opacity: 0.9;
 	}
 	.interGlobeBtnArea{
 		
-		height: 80%;
-		width: 95%;
+		height: 70%;
+		width: 23%;
 		background-color: rgba(240, 242, 244, 0.091);
 		/* border-left: 1px solid rgba(255, 255, 255, 0.175); */
 		border-right: 1px solid rgba(255, 255, 255, 0.175);
@@ -309,7 +345,7 @@
 		align-items: center;
 		/* justify-content: center; */
 		/* cursor: pointer; */
-		border-radius: 50px;
+		border-radius: 7px;
 		border: 1px solid rgba(255, 255, 255, 0.175);	
 	}
 

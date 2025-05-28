@@ -154,17 +154,14 @@
 <style>
 
 .medicalConversationArea {
-		height: 100%;
+		height: 96%;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		
-		border-top: 1px solid rgba(255, 255, 255, 0.175);
-		border-left: 1px solid rgba(255, 255, 255, 0.175);
-		border-right: 1px solid rgba(255, 255, 255, 0.175);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+		border: 1px solid rgba(255, 255, 255, 0.175);
 		/* padding: 0.5%; */
-		/* padding-top: 0.1%; */
+		/* padding-top: 0.51%;# */
 	}
 
 	.imgScanSection {
@@ -177,6 +174,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		padding-top: 0.5%;
 		/* border-top: 1px solid rgba(255, 255, 255, 0.175); */
 
 		

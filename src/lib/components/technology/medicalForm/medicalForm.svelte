@@ -9,6 +9,8 @@
 	import { createEventDispatcher } from 'svelte';
 	import { closeNav } from '../navigation/navigation.svelte';
 	import { handleSelectedQuestions } from '../selectedQuestions/selectedQuestions.svelte';
+	import {SelectedQuestionAI} from  '../../../../routes/(public)/Technology/+page.svelte'
+	
 
 	let resultAreaToggle = $state(false);
 	let loadingToggle = $state(false);
@@ -64,7 +66,8 @@
 		StartreportToggle = true;
 		resultAreaToggle = false;
 		handleSelectedQuestions(selectedArr)
-		
+		SelectedQuestionAI(selectedArr)
+
 		dispath('startReporting')
 
 	}
@@ -137,11 +140,7 @@
 
 </script>
 
-<script lang="ts" module>
 
-
-
-</script>
 
 <div class="medicalConversationArea"> 
 <div class="imgScanSection">
