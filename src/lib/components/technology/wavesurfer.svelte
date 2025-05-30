@@ -20,6 +20,8 @@
 
 	// Plays the WaveSurfer audio when the audioUrl state is updated
 	$effect(() => {
+		console.log('audioUrl state: ',audioUrl);
+		
 		if (audioUrl) {
 			onMount(() => {
 				try {
@@ -41,6 +43,7 @@
 					instance.on('finish', () => {
 						handleAudioStart();
 						console.log('is not playing audio');
+						audioUrl = ''
 						loadAiTextToggle(false)
 						instance.destroy();
 						

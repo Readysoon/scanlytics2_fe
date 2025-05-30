@@ -7,6 +7,7 @@
 	import Selectpage from '../../../lib/components/technology/selectpage.svelte';
 	import { Circle2 } from 'svelte-loading-spinners';
 	import * as kneejsonData from '../../../../static/knee.json';
+	import * as scanQuestion from '../../../../static/scanQuestion.json';
 	import AudioRecorder from '../../../lib/components/technology/audioRecorder.svelte';
 	import MedicalForm from '$lib/components/technology/medicalForm/medicalForm.svelte';
 	import Techstart from '$lib/components/technology/startComponent/techstart.svelte';
@@ -19,10 +20,11 @@
 	import SelectedQuestions from '$lib/components/technology/selectedQuestions/selectedQuestions.svelte';
 	import { searchNav } from '$lib/components/technology/navigation/navigation.svelte';
 	import { closeNav } from '$lib/components/technology/navigation/navigation.svelte';
+	import AiSidebar from '$lib/components/technology/mainBoard/aiSidebar.svelte';	
 
 	import { handleSelectUpdateBackground } from '$lib/components/technology/selectedQuestions/selectedQuestions.svelte';
 	// Declarations
-	let firstLoad = $state(true);  //back to true - default 
+	let firstLoad = $state(false);  //back to true - default 
 	let menuToggle: boolean = $state(false);
 	let ItemToggle: any = $state(null);
 	let isChecked: any = $state({});
@@ -31,22 +33,56 @@
 	let imageUploadToggle = $state(true);
 	let textEditToggle =  $state(false);
 	let scansToggle = $state(false);
-	let navAssistantToggle_Structured = $state(false);
+	let navAssistantToggle_Structured = $state(true);
 	let navAssistantToggle_History = $state(false); //back to false - default 
-	let navAssistantToggle_Patient = $state(true); //back to true - default 
-	let enterPageToggle = $state(false); //back to false - default 
+	let navAssistantToggle_Patient = $state(false); //back to true - default 
+	let enterPageToggle = $state(true); //back to false - default 
 	let inputValue = $state('');
 	let isMobile = false;
 	let disableAiStartBtn = $state(true)
-	let stateobj = $state([])
+	let stateobj: number[] = $state([])
 	let selectedQuestionToggle = $state(false)
 	let selectedToggle: any = $state([])
 	let selectedRowToggle  = $state(false)
 	let selectedArrVal = $state([])
-	let showNav = $state(false) //back to false - default 
+	let showNav = $state(true) //back to false - default 
+	let resetState = $state(false)
 
 	
 	// ------------------------------------------------------------------------------
+
+	
+	const handleUpdateselectedObj = (selectedQuestionNum: any) => {
+		
+		// selectedToggle = selectedQuestionNum
+		
+		
+		stateobj = selectedQuestionNum
+		console.log('stateobj handleUpdateselectedObj' , stateobj);
+		// stateobj = [0, 1, 2]
+
+		// const updateArr = ItemToggle.questions
+		// console.log('updateArr',updateArr);
+		const updateArr = scanQuestion.sections[0]
+
+		console.log('updateArr in scanquestion', updateArr);
+		const arr = []
+
+		for(const x of stateobj){
+			arr.push(updateArr?.questions[x])
+		}
+		selectedToggle = arr
+
+		console.log('selectedToggle on handleUpdateselectedObj');
+		ItemToggle = scanQuestion.sections[0]
+		
+
+	}
+
+	const handleResetMultipleStates = () => {
+		ItemToggle = null
+		selectedToggle = []
+	}
 
 	// Binds the json text to the input value
 	$effect(() => {
@@ -116,10 +152,26 @@
 			
 		// }
 
+		if( selectedQuestionNum && selectedQuestionNum.length > 0){
+			console.log('selectedQuestionNum length is greater than 0', selectedQuestionNum);
+			console.log('selectedQuestionNum ineffect statae ', selectedQuestionNum);
+			handleUpdateselectedObj(selectedQuestionNum)
+		}
 
+		if(resetState != false){
+			console.log('inside reset State');
+			handleResetMultipleStates()
+
+		}
+
+			
+
+		
 		// setTimeout(() => {
 		// 	firstLoad = false;
 		// }, 3000);
+
+		
 	});
 	// ------------------------------------------------------------------------------
 
@@ -147,6 +199,7 @@
 		showNav = true
 		searchNav(false)
 		closeNav(true)
+		selectedToggle = []
 
 	};
 
@@ -156,6 +209,9 @@
 		navAssistantToggle_Structured =  false 
 		navAssistantToggle_History = false;
 		searchNav(true)
+		selectedToggle = []
+		selectedQuestionNum = []
+
 
 	}
 
@@ -217,8 +273,11 @@
 
 	// Handle AI content toggle
 	const handleSelectedEvent = (event: any) => {
+		
 		ItemToggle = ItemToggle == ItemToggle ? event : null;
 
+		
+		
 		if( selectedToggle.length > 0){
 			selectedRowToggle  = true
 
@@ -252,6 +311,8 @@
 	// ------------------------------------------------------------------------------
 
 
+	// Need to connect with child component 
+
 	const addCheckbtnToArr= (id: any) => {
 		if(!findingsCheckBoxState.includes(id)){
 			findingsCheckBoxState.push(id)
@@ -270,31 +331,24 @@
 	}
 	
 
-	const handleStartAI = (selectedQuestionNum: any) => {
 
-		console.log('selectedQuestionNum', selectedQuestionNum);
-		stateobj = selectedQuestionNum
+	
 
-		const updateArr = ItemToggle.questions
-		const arr = []
-
-		for(const x of stateobj){
-			arr.push(updateArr[x])
-		}
-		selectedToggle = arr
-		ItemToggle = null;
-		selectedQuestionToggle = true 
-
-	}
-
-
+// Need to update th function 
 	const handleResetQuestion = () => {
-		stateobj = []
-		findingsCheckBoxState = []
-		selectedToggle = []
-		selectedRowToggle  = false
-		selectedQuestionToggle = false
-		disableAiStartBtn = true
+		resetState = true
+		handleSelectionToggle()
+		// console.log('inside reset state true');
+		// 	stateobj = []
+		// 	findingsCheckBoxState = []
+		// 	selectedToggle = []
+		// 	selectedRowToggle  = false
+		// 	// selectedQuestionToggle = false
+		// 	disableAiStartBtn = true
+		// 	ItemToggle = null
+		// 	console.log('on handleResetQuestion Toggle', ItemToggle);
+		
+
 	}
 
 	
@@ -311,7 +365,7 @@
 	let answerdInputData: any = $state({});
 	let audioTrackArrState: any= $state([]);
 	let audioData = $state([]);
-	let selectedQuestionNum = $state([])
+	let selectedQuestionNum: any = $state([])
 	let aiToggleState = $state(false)
 
 
@@ -323,7 +377,7 @@ export function loadAiTextToggle (aiToggle: any){
 
 
 export function SelectedQuestionAI(selectedQuestionNumValue: any){
-	console.log('selectedQuestionNum', selectedQuestionNumValue);
+	console.log('selectedQuestionNum in SelectedQuestionAI', selectedQuestionNumValue);
 	selectedQuestionNum = selectedQuestionNumValue
 }
 
@@ -387,22 +441,13 @@ if (audioTrackArrState.length !== 0) {
 		aiBotText = aiText.replace(/^"(.*)"$/, '$1');
   }
 
-	// aiBotText = aiText
+	
  }
 
 
 
 
-   function getColorByIndex(index: any) {
-	console.log('index', index);
-    if (index >= 0 && index <= 2) {
-      return 'rgba(52, 255, 1, 0.837)'; // Green
-    } else if (index >= 3 && index <= 5) {
-      return 'orange';
-    } else if (index >= 6 && index <= 7) {
-      return 'red';
-    }
-  }
+
 
 </script>
 <head>
@@ -484,6 +529,7 @@ if (audioTrackArrState.length !== 0) {
 									{/if}
 
 									{#if menuToggle}
+									<!-- AI Report Section -->
 										<div class="ImageReportSection">
 											<div class="imageReportSectionHeader">
 												<p class="assitantTitle">AI Reporting Assistant</p>
@@ -536,27 +582,8 @@ if (audioTrackArrState.length !== 0) {
 																				</div>
 
 
-																				{#if selectedToggle.length > 0}
-																				 <div class="stateObjItem-contentLayer">
-																			   {#each stateobj as stateObjItem (stateObjItem)}
-
-																			   {#if stateObjItem}
-																	
-																				<div class="stateObjItem-contentItem"
-																				style="background-color: {stateAnswer.includes(stateObjItem)
-																				
-																				? 'rgba(52, 255, 1, 0.837)'
-																				: 'black'};"
-																				></div>
-																						   
-																		
-																						
-																					
-
-																				{/if}
-																			   {/each}
-																			    </div>
-
+																			{#if selectedToggle.length > 0}
+																				 
 
 																				<div class="select-Text-Lable"
 																				
@@ -573,16 +600,16 @@ if (audioTrackArrState.length !== 0) {
 
 																				</div>
 
-																				{:else}
+																			  {:else}
 																																								
 																				{#if items.name== 'Findings'}
 																					<div class="select-Text-Lable">
 																							<!-- selectedToggle = arr -->
-
+																					
 																					 <p > {findingsCheckBoxState.length} | 10 </p>
-																						</div>
+																					</div>
 																				{/if}
-																				 {/if}
+																			{/if}
 																	
 
 																				
@@ -667,19 +694,7 @@ if (audioTrackArrState.length !== 0) {
 																			<div class="stateObjItem-contentLayer">
 																			   {#each stateobj as stateObjItem (stateObjItem)}
 
-																			   {#if stateObjItem}
-																	
-																				<div class="stateObjItem-contentItem"
-																				style="background-color: {stateAnswer.includes(stateObjItem)
-																				? 'rgba(52, 255, 1, 0.837)'
-																				: 'black'};"
-																				></div>
-																						   
-																		
-																						
-																					
-
-																				{/if}
+																			   
 																			   {/each}
 																			</div>
 		   
@@ -709,141 +724,29 @@ if (audioTrackArrState.length !== 0) {
 												<div class="aiContentStartSection" 
 												
 												>
-													{#if selectedQuestionToggle}
-
-															<div class="selectedQueston"
-															style="display: { selectedRowToggle 
-															? 'none'
-															: 'flex'};" 
-															
-															>
-										
-															</div>
-													{:else}
-													<button class="startBtn"
-													style="background-color: { disableAiStartBtn
-													? 'rgba(38, 38, 38, 0.262)'
-													: 'rgba(17, 100, 243, 0.912)'}; 
-
-													"
-													
-													
-													
-													>
-													{#if disableAiStartBtn}
-													Please select your questions
-													{:else}
-													Start Reporting
-													{/if}
-													</button>
-															
-
-													{/if}
 													
 												</div>
 											</div>
 										</div>
 									{/if}
 								</div>
-								<!-- Navbar Area -->
-						<div class="aiNavBar">
-							<div class="upperBar">
-								<div class="optionBox" on:click={handleMenuAIClick}>
-
-									{#if menuToggle}
-									<img
-										src="widget2.png"
-										alt="widget"
-										class="widgetlogo"
-									/>
-									<p class="selectedMenuText">Menu</p>
-
-									{:else}
-									<img
-										src="widget.png"
-										alt="widget"
-										class="widgetlogo"
-									/>
-									<p class="defaultMenuText">Menu</p>
-
-									{/if}
-									
-								</div>
-
-								<div class="optionBox" on:click={handleMenuScansClick}>
-									{#if scansToggle}
-
-										<img src="/xr6.png" alt="widget" class="widgetlogo" />
-										<p class="selectedMenuText">Scans</p>
-
-									{:else}
-									<img src="/xr5.png" alt="widget" class="widgetlogo" />
-									<p class="defaultMenuText">Scans</p>
-
-									{/if}
-
-									
-								</div>
-
-								<div class="optionBox" on:click={handleMenuDownloadClick} >
-									<img
-										src="her1.png"
-										alt="widget"
-										class="widgetlogo"
-									/>
-									<p  class="defaultMenuText">Download</p>
-								</div>
-
-								<div class="optionBox" on:click={handleTextEditorToggle}>
-
-									{#if textEditToggle}
-									<img src="text1.png" alt="widget" class="widgetlogo" />
-									<p class="selectedMenuText">Editor</p>
-									{:else}
-									 <img src="text.png" alt="widget" class="widgetlogo" />
-									<p class="defaultMenuText">Editor</p>
-
-									{/if}
-									
-								</div>
-							</div>
-							<div class="middleBar">
-								<div class="freq1">
-									<div class="audioPort">
-										{#if recordState}
-										 <img src="live.png" alt="widget" class="audioLogoON" /> 
-										{:else}
-										<img src="liveOff.png" alt="widget" class="audioLogoON" /> 
-										{/if}												
-									</div>
-									<div class="uvMeter">
-										
-										{#if audioData}
-										{#each audioTrackArrState as item, index}
-											<div
-												class="audioStateObjStyle"
-												style="background-color: {getColorByIndex(index)};
-												border-top: 1px solid rgba(255, 255, 255, 0.175)
-												"
-											></div>
-										{/each}
-
-										{/if}
-
-
-									</div>
-									<div class="assistantPlayArea" on:click={() => handleStartAI(selectedQuestionNum)}>
-										<!-- Audio Recorder function -->
-										<AudioRecorder selectedArr={selectedQuestionNum} />
-
-										
-									
+								<!-- AI sidebar Area -->
+								<AiSidebar
+									menuToggle={menuToggle}
+									selectedQuestionNum={selectedQuestionNum}
+									scansToggle={scansToggle}
+									textEditToggle={textEditToggle}
+									recordState={recordState}
+									audioData={audioData}
+									audioTrackArrState={audioTrackArrState}
+									on:menuAIClick={handleMenuAIClick}
+									on:menuScansClick={handleMenuScansClick}
+									on:menuDownloadClick={handleMenuDownloadClick}
+									on:textEditorToggle={handleTextEditorToggle}
 								
-										<!-- <p>Assistant</p> -->
-									</div>
-								</div>
-							</div>
-						</div>
+
+								/>
+
 							{/if}
 						</div>
 						

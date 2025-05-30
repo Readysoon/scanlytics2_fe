@@ -49,10 +49,13 @@
 		
 		
 		if(questionid >= 0){
-			console.log('questionid',questionid);
+			// console.log('questionid',questionid);
 
 			if( !selectedArr.includes(questionid)){
 				selectedArr.push(questionid)
+				if(selectedArr.length > 3){
+					selectedArr.pop()
+				}
 			}else{
 				selectedArr = selectedArr.filter((item:number) => item !== questionid)
 			}
@@ -96,7 +99,7 @@
 			if(progress >= 100){
 				
 				clearInterval(progressInterval);
-				console.log('questionNum', questionNum);
+				// console.log('questionNum', questionNum);
 				loadArrtracker.push(questionNum);
 				questionNum++;
 				resultAreaToggle = true;
@@ -125,6 +128,7 @@
  
 	$effect(() => {
 		if(selectedArr.length >= 3){
+			console.log('selectedArr',selectedArr);
 			selectedQuestionState = false;
 
 		}
@@ -331,7 +335,7 @@
 				disabled={selectedQuestionState}
 				>
 				{#if selectedQuestionState}
-				Please select at least 3 questions
+				Please select 3 questions
 				{:else}
 				Start Reporting
 				{/if}
