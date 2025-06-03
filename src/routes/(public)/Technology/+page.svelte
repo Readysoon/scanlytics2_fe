@@ -149,36 +149,134 @@
 		scansToggle = !scansToggle;
 	};
 
-	const handleMenuDownloadClick = () => {
+ const handleMenuDownloadClick = async () => {
+    // JSON data to be sent
+    const reportData = {
+        title: "Knee Radiograph Report",
+        description: "Comprehensive template for standardized knee X-ray reporting",
+        metadata: {
+            identifier: "knee-xray-report-template",
+            language: "de",
+            publisher: "Scanlytics",
+            rights: "May be used freely, subject to license agreement",
+            license: "http://www.scanlytics.de/license.pdf",
+            date: "2025-03-16",
+            creator: "Philipp Gallaschik"
+        },
+        patient_data: {
+            name: "Hans Peter",
+            birth_date: "*9.11.1989"
+        },
+        sections: [
+            {
+                name: "Findings",
+                questions: [
+                    {
+                        id: 0,
+                        label: "Wie ist die Qualität der Untersuchung?",
+                        answer: "Gut",
+                        sentence: "Die Qualität der Untersuchung war {}."
+                    },
+                    {
+                        id: 1,
+                        label: "Wie ist der Zustand der Darmreinigung?",
+                        answer: "exzellent",
+                        sentence: "Der Zustand der Darmreinigung war {}."
+                    },
+                    {
+                        id: 2,
+                        label: "Welche Feldstärke wurde verwendet?",
+                        answer: "",
+                        sentence: "Die Feldstärke war {}."
+                    },
+                    {
+                        id: 3,
+                        label: "Welches Kontrastmittel wurde verwendet?",
+                        answer: "",
+                        sentence: "Das verwendete Kontrastmittel war {}."
+                    },
+                    {
+                        id: 4,
+                        label: "Wie viel Kontrastmittel (in ml) wurde verwendet?",
+                        answer: "",
+                        sentence: "Die Menge des verwendeten Kontrastmittels war {} ml."
+                    },
+                    {
+                        id: 5,
+                        label: "Was ist der aktuelle PSA-Wert?",
+                        answer: "",
+                        sentence: "Der aktuelle PSA-Wert ist {}."
+                    },
+                    {
+                        id: 6,
+                        label: "Gibt es eine PSA-Vorgeschichte?",
+                        answer: "sfd",
+                        sentence: "Es gibt eine PSA-Vorgeschichte: {}."
+                    },
+                    {
+                        id: 7,
+                        label: "Was wurde bei vorherigen Biopsien festgestellt?",
+                        answer: "die waren nicht gut",
+                        sentence: "Vorherige Biopsien ergaben: {}."
+                    },
+                    {
+                        id: 8,
+                        label: "Was war das Ergebnis der digitalen rektalen Untersuchung?",
+                        answer: "",
+                        sentence: "Das Ergebnis der digitalen rektalen Untersuchung war: {}."
+                    },
+                    {
+                        id: 9,
+                        label: "Wie groß ist die Prostata (in mm)?",
+                        answer: "",
+                        sentence: "Die Größe der Prostata ist {} mm."
+                    }
+                ]
+            }
+        ],
+        return_as: "Fliesstext"
+    };
 
-		firstLoad = true;
+    try {
+        // Send the JSON data as a POST request
+        const response = await fetch('https://scanlytics2-be.fly.dev/pdf/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(reportData)
+        });
 
-		const intervalId = setTimeout(() => {
-			firstLoad = false;
-			clearInterval(intervalId)
-		}, 1500);
-		// Create a link element
-		const link = document.createElement('a');
+        // Check if the response is successful
+        if (response.ok) {
+            // Get the PDF blob from the response
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
 
-		// Set the download attribute and file path
-		link.download = 'scanlytics-report.pdf';
+            // Create a link element
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'scanlytics-report.pdf';
 
-		// Set the href to the PDF file path
-		// If your PDF is in the static or public folder:
-		link.href = 'scanlytics-report.pdf';
+            // Append to the document
+            document.body.appendChild(link);
 
-		// Append to the document
-		document.body.appendChild(link);
+            // Trigger the click event
+            link.click();
 
-		// Trigger the click event
-		link.click();
+            // Clean up - remove the link from the document
+            document.body.removeChild(link);
 
-		// Clean up - remove the link from the document
-		document.body.removeChild(link);
+            // Optional: Add analytics or tracking
+            console.log('Report downloaded');
+        } else {
+            console.error('Failed to generate the PDF:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error while downloading the report:', error);
+    }
+};
 
-		// Optional: Add analytics or tracking
-		console.log('Report downloaded');
-	};
 
 	const handleTextEditorToggle = () => { 
 		textEditToggle = true
