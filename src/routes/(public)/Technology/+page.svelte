@@ -33,10 +33,10 @@
 	let imageUploadToggle = $state(true);
 	let textEditToggle =  $state(false);
 	let scansToggle = $state(false);
-	let navAssistantToggle_Structured = $state(false);
+	let navAssistantToggle_Structured = $state(true);
 	let navAssistantToggle_History = $state(false); //back to false - default 
-	let navAssistantToggle_Patient = $state(true); //back to true - default 
-	let enterPageToggle = $state(false); //back to false - default 
+	let navAssistantToggle_Patient = $state(false); //back to true - default 
+	let enterPageToggle = $state(true); //back to false - default 
 	let inputValue = $state('');
 	let isMobile = false;
 	let disableAiStartBtn = $state(true)
@@ -47,6 +47,11 @@
 	let selectedArrVal = $state([])
 	let showNav = $state(false) //back to false - default 
 	let resetState = $state(false)
+	let MenuOptionToggle = $state(false)
+	let OptionStateDes =  $state(false)
+	let OptPatientState =  $state("false")
+	let studyPatientState =  $state("false")
+	let ExamState =  $state("false")
 
 
 
@@ -86,6 +91,11 @@
 		selectedToggle = []
 	}
 
+	const handleUpdateOption = (eventoption: string) => { 
+
+		console.log('eventoption');
+
+	}
 	// Binds the json text to the input value
 	$effect(() => {
 
@@ -222,6 +232,10 @@
 		navAssistantToggle_Patient = true 
 		navAssistantToggle_Structured =  false 
 
+	}
+
+	const handleMenuOptionToggle = () => { 
+		MenuOptionToggle = !MenuOptionToggle
 	}
 	// ------------------------------------------------------------------------------
 
@@ -522,7 +536,10 @@ if (audioTrackArrState.length !== 0) {
 									align-items: {menuToggle ? 'center' : 'center'};
 									justify-content:  {menuToggle ? 'center' : 'center'};
 									">
+									
 										{#if menuToggle}
+
+										
 										<div class="TexteditorObj"
 										style="width: {menuToggle ? '50%' : '50%'};"
 										>
@@ -536,6 +553,78 @@ if (audioTrackArrState.length !== 0) {
 
 									{#if menuToggle}
 									<!-- AI Report Section -->
+									 {#if MenuOptionToggle}
+ 									<div class="MenuSelectOption">
+										<div class="MenuSelectOptionHeader">
+											
+											<p class="OptionEditorText">Menu Editor</p>
+										</div>
+										<div class="MenuSelectOptionContent">
+											<div class="MenuSelectionOptionItem">
+												<div class="optionTitle">
+													Header 
+												</div>
+												<div class="OptionToggleContent">
+
+													
+													<img
+																src="mminus.png"
+																alt="widget"
+																class="minusBtnIcon"
+																on:click={() => handleUpdateOption("DescriptionHeader")}
+																
+
+													/>
+												</div>
+											</div>
+											 <!--Patient  -->
+											 <div class="MenuSelectionOptionItem">
+												<div class="optionTitle">
+													Patient 
+												</div>
+												<div class="OptionToggleContent">
+													<img
+																src="mminus.png"
+																alt="widget"
+																class="minusBtnIcon"
+																on:click={() => handleUpdateOption("DescriptionHeader")}
+													/>
+												</div>
+											</div> 
+
+											<!-- Study Information -->
+											<div class="MenuSelectionOptionItem">
+												<div class="optionTitle">
+													Study Information 
+												</div>
+												<div class="OptionToggleContent">
+													<img
+																src="mminus.png"
+																alt="widget"
+																class="minusBtnIcon"
+																on:click={() => handleUpdateOption("DescriptionHeader")}
+													/>
+												</div>
+											</div> 
+
+											<!-- Examination -->
+											<div class="MenuSelectionOptionItem">
+												<div class="optionTitle">
+													Examination 
+												</div>
+												<div class="OptionToggleContent">
+													<img
+																src="mminus.png"
+																alt="widget"
+																class="minusBtnIcon"
+																on:click={() => handleUpdateOption("DescriptionHeader")}
+													/>
+												</div>
+											</div> 
+
+										</div>
+									</div>
+									{/if}
 										<div class="ImageReportSection">
 											<div class="imageReportSectionHeader">
 												<p class="assitantTitle">AI Reporting Assistant</p>
@@ -560,14 +649,22 @@ if (audioTrackArrState.length !== 0) {
 												<div class="aicontentSection">
 													<div class="aicontentSectionHeader">
 														<div class="aicontentSectionHeader-State" >
-															<!-- <div class="aicontentSectionHeader-Lable">
-																State: 
-
-															</div> -->
-															<div class="aicontentSectionHeader-Tracker">
-																<!-- stateobj -->
-													
-															</div>
+														{#if MenuOptionToggle}
+																<img
+																src="cross.png"
+																alt="widget"
+																class="menuOptionBtn"
+																on:click={handleMenuOptionToggle}
+															/>
+															{:else}
+																<img
+																src="menub.png"
+																alt="widget"
+																class="menuOptionBtn"
+																on:click={handleMenuOptionToggle}
+															/>
+														{/if}
+														
 														</div>
 														
 														<div>
@@ -867,6 +964,7 @@ if (audioTrackArrState.length !== 0) {
 		text-align: center;
 	}
 
+
 	.assistantContentSection {
 		height: 94%;
 		width: 100%;
@@ -995,7 +1093,7 @@ if (audioTrackArrState.length !== 0) {
 		height: 6%;
 		width: 100%;
 		display: flex;
-		flex-direction: row;
+		flex-direction: row-reverse;
 		justify-content: space-between;
 		align-items: center;
 		padding-right: 2%;
@@ -1008,6 +1106,15 @@ if (audioTrackArrState.length !== 0) {
 		width: 30%;
 		display: flex;
 		align-items: center;
+		justify-content: flex-end;
+		cursor: pointer;
+		padding-right: 2%;
+	}
+
+
+	.menuOptionBtn{
+		height: 50%;
+		width: 12%;
 	}
 	.aicontentSectionHeader-Lable{
 		color: rgba(255, 255, 255, 0.727);
@@ -1054,25 +1161,86 @@ if (audioTrackArrState.length !== 0) {
 
 	}
 
-	.stateObjItem-contentIn{
-		background-color: rgba(129, 218, 106, 0.533);
-		border-radius: 50%;
-
-		width: 100%;
+	.MenuSelectOption{
+		
+		background-color: #0d1117;
 		height: 100%;
+		width: 10%;
+		border-left: 1px solid rgba(255, 255, 255, 0.175);
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+	
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 	}
-
-	.answeredStateoBJ{
-		background-color: rgba(52, 255, 1, 0.837);
-		width: 7%;
-		height: 12px;
-		/* font-size: 1px; */
-		color: rgb(4, 4, 4);
-		border: 2px solid rgba(248, 244, 238, 0.241);
-
-		border-radius: 50%;
+	
+	.MenuSelectOptionHeader{
+		height: 5.9%;
+		width: 100%;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
 		
 	}
+
+	.MenuSelectOptionContent{
+		height: 94%;
+		width: 100%;
+		font-family: sans-serif;
+		color: white;
+		display: flex;
+		flex-direction: column;
+		gap: 2%;
+		padding-top: 3%;
+		
+
+	}
+
+	
+	.MenuSelectionOptionItem{
+		width: 100%;
+		height: 3%;
+		/* background-color: grey; */
+		display: flex;
+		align-items: center;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+	}
+
+	.optionTitle{
+		width: 80%;
+		height: 100%;
+		/* background-color: #4CAF50; */
+		font-family: system-ui;
+		font-size: 16px;
+		padding-left: 2% ;
+		border-right:  1px solid rgba(255, 255, 255, 0.175);
+		font-weight: 500;
+		
+		
+		
+	}
+
+	.OptionToggleContent{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
+
+	.OptionEditorText{
+		font-size: 20px;
+		font-weight: bold;
+		font-family: sans-serif;
+		color: #ffffff;
+		text-align: center;
+	}
+
+	.minusBtnIcon{
+		height: 100%;
+		width: 35%;
+	}
+
+
 	.questiontTitle {
 		color: rgba(255, 255, 255, 0.727);
 		font-size: 17px;
@@ -1348,6 +1516,8 @@ if (audioTrackArrState.length !== 0) {
 		color: #ffffff;
 		text-align: center;
 	}
+
+	
 
 	.robologo {
 		width: 27px;

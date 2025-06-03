@@ -6,11 +6,12 @@
 	import { Pulse } from 'svelte-loading-spinners';
 
 	let canvas: any;
-	let loading: boolean = true;
+	let loading : boolean = $state(true);
 	let openeningText: string = "Welcome to the Scanlytics Conversational AI Assistant. My name is Bruno, and I’m your AI guide. Please press “Start” to begin the reporting process."
 	let index =  $state(0) 
 	let avatarScriptText: string = $state("")
 	let textState = $state(false)
+	let brunoTextLoadingState = $state(false)
 	
 
 	const handleUpdateText = () => {
@@ -22,10 +23,11 @@
 			avatarScriptText += openeningText.charAt(index);
 			
 			index++;
-			textState = true 
+			
 		
 			}else{
 				clearInterval(IntervalId)
+			
 			}
 		}, 100)
 	
@@ -37,18 +39,22 @@
 		let app = new Application(canvas);
 
 		console.log('');
-		loading = true;
-		const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
+		loading  = true;
+		
+		const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').finally(() => {
 			const obj = app.findObjectByName("brunov1")
 			console.log('obj', obj);
 			
-			loading = false;
+			loading  = false;
+			textState = true 
+			brunoTextLoadingState = true 
+			handleUpdateText()
+			
+			
 		});
 
 	
-		if(textState == false){
-			handleUpdateText()
-		}
+	
 		
 
 
@@ -84,10 +90,14 @@
 		
 			<div class="aibotAvatar">
 				
+				{#if brunoTextLoadingState }
 				<div class="avatarText"> 
 					{avatarScriptText}
 					
 				</div>
+				{/if}
+
+				
 				<canvas bind:this={canvas} class="avater"/>
 				
 				

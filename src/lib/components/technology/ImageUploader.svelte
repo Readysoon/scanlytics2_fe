@@ -9,6 +9,10 @@
 	let imgfileData: File | null = null;
 	let currentStep: number = 1;
 	let imgPreview = $state('');
+	let openeningText: string = `Tap the microphone button on the right to begin the conversation and say "Hallo Bruno".`
+	let index = 0 
+	let avatarScriptText: string = $state("")
+	let brunoTextLoadingState = $state(false)
 
 	
 	const uploadToML = async () => {
@@ -106,9 +110,32 @@
 	import { Application } from '@splinetool/runtime';
 	let canvas: any;
 	let loading: boolean = true;
+
+	
+	const handleAutoTextFillOut = () => {
+
+		const IntervalId = setInterval(() => { 
+			
+			if(index < openeningText.length){
+			avatarScriptText += openeningText.charAt(index);
+			
+			index++;
+			
+
+			}else{
+				clearInterval(IntervalId)
+			
+
+			}
+		}, 100)
+}
+
+
 	
 
 	$effect(() => {
+
+		
 		let app = new Application(canvas);
 
 	
@@ -117,22 +144,11 @@
 		const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
 			const obj = app.findObjectByName("brunov1")
 			console.log('obj', obj);
-			// if (obj?.position) {
-				// Adjust position
-			// 	console.log('iits in postion',obj?.position);
-			// 	obj.position.x += 10;
-			// 	obj.position.y = 50;
-			// 	obj.position.z -= -15;
-			// 	}
+		
 			loading = false;
+			brunoTextLoadingState = true 
+			handleAutoTextFillOut()
 		});
-
-		console.log('spline', splineobj);
-		// app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
-		// 	const obj = app.
-		// 	loading = false;
-		// });
-		console.log('app', app);
 	
 	})
 	
@@ -151,9 +167,11 @@
 
 			<div class="avatarcanvas">
 		
+				{#if brunoTextLoadingState}
 				<div class="avatarText"> 
-					Tap the microphone button on the right to begin the conversation and say "Hallo Bruno".
+					{avatarScriptText}
 				</div>
+				{/if}
 				<div class="aibotAvatar">
 					<canvas bind:this={canvas} class="avater"/>
 				</div>
@@ -220,6 +238,16 @@
 
 	}
 
+	@keyframes upDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+
 	.avatarText{
 		width: 100%;
 		height: 35%;
@@ -238,6 +266,7 @@
 		left: -25%;
 		z-index: 5;
 		padding: 1%;
+		animation: upDown 2s ease-in-out infinite;
 		
 	}
 

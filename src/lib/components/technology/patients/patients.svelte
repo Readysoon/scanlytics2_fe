@@ -8,8 +8,10 @@
 	let openeningText: string = "Please click on the selected robot icon to start the reporting process:"
 	let index = 0 
 	let avatarScriptText: string = $state("")
-	let textAutoFillState = $state(false)
+	let brunoTextLoadingState = $state(false)
 	let addIcon = $state(false)
+	let textState = $state(false)
+
 	
 
 	
@@ -31,10 +33,11 @@
 		avatarScriptText += openeningText.charAt(index);
 		
 		index++;
-		textAutoFillState = true 
+	
 
 		}else{
 			clearInterval(IntervalId)
+			
 			addIcon = true
 
 		}
@@ -60,13 +63,14 @@
 			// 	obj.position.y = 50;
 			// 	obj.position.z -= -15;
 			// 	}
+			brunoTextLoadingState = true 
+			textState = true
 			loading = false;
+			handleUpdateText()
 		});
 
 
-		if(textAutoFillState == false){
-			handleUpdateText()
-		}
+		
 		
 	});
 </script>
@@ -177,6 +181,7 @@
 							 <!-- hello -->
   
 						</div>
+						
 						<div class="widgetlogoAnalyseSection">
 						    <img src="analy.png" alt="widget" class="widgetlogoAnalyse" />
 						</div>
@@ -208,6 +213,7 @@
 
 			<div class="avatarcanvas">
 		
+				{#if brunoTextLoadingState}
 				<div class="avatarText"> 
 					{avatarScriptText}
 					{#if addIcon}
@@ -222,6 +228,7 @@
 
 					
 				</div>
+				{/if}
 				<div class="aibotAvatar">
 					<canvas bind:this={canvas} class="avater"/>
 				</div>
@@ -289,6 +296,15 @@
 
 	}
 
+	@keyframes upDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+}
+
 	.avatarText{
 		width: 100%;
 		height: 35%;
@@ -306,6 +322,7 @@
 		top: -3%;
 		left: -25%;
 		z-index: 5;
+		animation: upDown 2s ease-in-out infinite;
 	}
 
 	.aibotAvatar{

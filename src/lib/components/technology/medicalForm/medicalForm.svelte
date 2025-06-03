@@ -33,7 +33,8 @@
 	let openeningText: string = "Click the Scan button to begin scanning the report and select your required questions."
 	let index = 0 
 	let avatarScriptText: string = $state("")
-	let textAutoFillState = $state(false)
+	let brunoTextLoadingState = $state(false)
+	let ShowBrunoState =  $state(true)
 
 
 
@@ -84,6 +85,7 @@
 	}
 
 	const handleScanning = () => {
+		ShowBrunoState = false
 		console.log('loadNextQuestion');
 		loadArrtracker = [];
 		questionNum = 0;
@@ -91,6 +93,7 @@
 		selectedArr = [];
 		loadNextQuestion();
 		closeNav(false);
+		
 	}
 
 	 const  loadNextQuestion = () => {
@@ -125,7 +128,7 @@
 
 			}
 			
-			}, 30);
+			}, 20);
 		
 				
 
@@ -134,7 +137,7 @@
 		// scanToggle = false;
 		}
 
-	const handleUpdateText = () => {
+	const handleAutoTextFillOut = () => {
 
 			const IntervalId = setInterval(() => { 
 				
@@ -142,14 +145,14 @@
 				avatarScriptText += openeningText.charAt(index);
 				
 				index++;
-				textAutoFillState = true 
+				
 
 				}else{
 					clearInterval(IntervalId)
 				
 
 				}
-			}, 100)
+			}, 50)
 	}
 
  
@@ -160,31 +163,24 @@
 
 		}
 
-		handleUpdateText()
 		
-		let app = new Application(canvas);
+		if(ShowBrunoState == true){
+			let app = new Application(canvas);
 
-console.log('');
-loading = true;
-const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
-	const obj = app.findObjectByName("brunov1")
-	console.log('obj', obj);
-	// if (obj?.position) {
-		// Adjust position
-	// 	console.log('iits in postion',obj?.position);
-	// 	obj.position.x += 10;
-	// 	obj.position.y = 50;
-	// 	obj.position.z -= -15;
-	// 	}
-	loading = false;
-});
+			console.log('');
+			loading = true;
+			const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
+				const obj = app.findObjectByName("brunov1")
+				
 
-console.log('spline', splineobj);
-// app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
-// 	const obj = app.
-// 	loading = false;
-// });
-console.log('app', app);
+				loading = false;
+				brunoTextLoadingState = true 
+				handleAutoTextFillOut()
+			});
+
+		}
+		
+
 })
 
 
@@ -256,12 +252,19 @@ console.log('app', app);
 				{#if !resultAreaToggle}
 				<div class="avatarcanvas">
 					
+					{#if ShowBrunoState}
+					{#if brunoTextLoadingState}
 					<div class="avatarText"> 
-						{avatarScriptText}
+						<!-- {avatarScriptText} -->
+						
+						Click the Scan button to begin scanning the report and select your required questions.
 					</div>
+					{/if}
+					
 					<div class="aibotAvatar">
 						<canvas bind:this={canvas} class="avater"/>
 					</div>
+					{/if}
 				</div>
 				{/if}
 			
@@ -804,6 +807,14 @@ console.log('app', app);
 		left: 80%;
 
 	}
+	@keyframes upDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
 
 	.avatarText{
 		width: 100%;
@@ -822,6 +833,7 @@ console.log('app', app);
 		left: -25%;
 		z-index: 5;
 		color: white;
+		animation: upDown 2s ease-in-out infinite;
 	}
 
 	.aibotAvatar{
