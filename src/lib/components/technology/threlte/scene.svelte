@@ -2,10 +2,11 @@
 	import { T, useTask } from '@threlte/core';
 	import { interactivity, OrbitControls } from '@threlte/extras';
 	import { Spring } from 'svelte/motion';
-	import { Color } from 'three';
+	// import THREE from 'three';
+	// import { Color } from 'three';
 
 
-	let color = new Color('red')
+	// let color = new Color('red')
 
 	interactivity();
 	const scale = new Spring(3);
@@ -43,9 +44,9 @@ for (let x = 0; x < pointsPerAxis; x++) {
 
 <T.PerspectiveCamera
 	makeDefault
-	position={[1, 1, 4]}
+	position={[1, 1, 2]}
 	oncreate={(ref) => {
-		ref.lookAt(0, 2, 0);
+		ref.lookAt(0, 6, 1);
 	}}
 >
 <OrbitControls autoRotate />
@@ -57,7 +58,7 @@ for (let x = 0; x < pointsPerAxis; x++) {
 <T.Points>
 	<T.BufferGeometry>
 		<T.BufferAttribute
-			args={[position, 3]}
+			args={[position, 1]}
 			attach={({ parent, ref }) => {
 				parent.setAttribute('position', ref);
 				return () => {
@@ -68,12 +69,11 @@ for (let x = 0; x < pointsPerAxis; x++) {
 		/>
 	</T.BufferGeometry>
 	<T.PointsMaterial
-		size={0.65}
-		color={0xe77900b1}
+		size={0.15}
+		color={0xea7900}
 		sizeAttenuation={true}
 		transparent={true}
-		alphaTest={0.5}
-		map={new THREE.TextureLoader().load('/textures/circle.png')}
+		alphaTest={0.15}
 	/>
 </T.Points>
 

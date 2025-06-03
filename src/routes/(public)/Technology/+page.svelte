@@ -12,21 +12,33 @@
 	import Techstart from '$lib/components/technology/startComponent/techstart.svelte';
 	import Navigation from '$lib/components/technology/navigation/navigation.svelte';
 	import TextEditor from '$lib/components/technology/TextEditor.svelte';
-	
+	import Scene from '$lib/components/technology/threlte/scene.svelte';	
+	import { Canvas } from '@threlte/core';
+
 	// Declarations
-	let firstLoad = $state(true);
+	let firstLoad = $state(true);  //back to true - default 
 	let menuToggle: boolean = $state(true);
 	let ItemToggle: any = $state(null);
 	let isChecked: any = $state({});
 	let isCheckInputData: any = $state({});
+	let findingsCheckBoxState: any = $state([])
 	let imageUploadToggle = $state(true);
 	let textEditToggle =  $state(false);
 	let scansToggle = $state(false);
 	let navAssistantToggle_Structured = $state(true);
 	let navAssistantToggle_History = $state(false);
-	let enterPageToggle = $state(false);
+	let enterPageToggle = $state(false); //back to false - default 
 	let inputValue = $state('');
 	let isMobile = false;
+	let disableAiStartBtn = $state(true)
+	let stateobj = $state([])
+	let selectedQuestionToggle = $state(false)
+	let selectedToggle: any = $state([])
+	let selectedRowToggle  = $state(false)
+	let selectedArrVal = $state([])
+
+
+	
 	// ------------------------------------------------------------------------------
 
 	// Binds the json text to the input value
@@ -90,6 +102,14 @@
 				});
 			}
 		});
+
+
+		if(stateobj.length > 0){
+			selectedArrVal = stateobj
+			
+		}
+
+
 		// setTimeout(() => {
 		// 	firstLoad = false;
 		// }, 3000);
@@ -128,7 +148,6 @@
 	const handleMenuScansClick = () => {
 		scansToggle = !scansToggle;
 	};
-
 
  const handleMenuDownloadClick = async () => {
     // JSON data to be sent
@@ -269,10 +288,27 @@
 	// Handle AI content toggle
 	const handleSelectedEvent = (event: any) => {
 		ItemToggle = ItemToggle == ItemToggle ? event : null;
-	};
 
+		if( selectedToggle.length > 0){
+			selectedRowToggle  = true
+
+
+		}
+
+	};
+	// ------------------------------------------------------------------------------
+
+	// Handle Close toggle
 	const handleClosetogglebtn = () => {
 		ItemToggle = null;
+		disableAiStartBtn = true
+
+		if( selectedToggle.length > 0){
+			selectedRowToggle = !selectedRowToggle
+
+
+		}
+
 	};
 	// ------------------------------------------------------------------------------
 
@@ -285,17 +321,131 @@
 	}
 	// ------------------------------------------------------------------------------
 
+
+	const addCheckbtnToArr= (id: any) => {
+		if(!findingsCheckBoxState.includes(id)){
+			findingsCheckBoxState.push(id)
+		}else{
+			const newArr = findingsCheckBoxState.filter((prevId: any) => prevId != id)
+			findingsCheckBoxState = newArr
+		}
+
+		if(findingsCheckBoxState.length >= 3){
+			disableAiStartBtn = false
+		}else {
+			disableAiStartBtn = true
+
+		}
+
+	}
+	
+
+	const handleStartAI = (selectedReportObj:any) => {
+
+		stateobj = selectedReportObj
+
+		const updateArr = ItemToggle.questions
+		const arr = []
+
+		for(const x of stateobj){
+			arr.push(updateArr[x])
+		}
+		selectedToggle = arr
+		ItemToggle = null;
+		selectedQuestionToggle = true 
+
+	}
+
+
+	const handleResetQuestion = () => {
+		stateobj = []
+		findingsCheckBoxState = []
+		selectedToggle = []
+		selectedRowToggle  = false
+		selectedQuestionToggle = false
+		disableAiStartBtn = true
+	}
+
+	
+
 	
 </script>
 
 
 <script lang="ts" module>
 	let recordState = $state(false)
+	let aiBotText = $state("")
+	let stateAnswer = $state([])
+	let textState = $state([])
+	let answerdInputData: any = $state({});
+	let audioTrackArrState: any= $state([]);
+	let audioData = $state([]);
+
 
 
  export function handleRecordBtnUpdate(){
 	recordState = !recordState
  }
+
+
+ export function AudioTracker(audioRecordData: any){ 
+	console.log('audioRecordData', audioRecordData);
+	audioData = audioRecordData
+	if(audioRecordData){
+		audioTrackArrState.push(audioData)
+	}
+
+if (audioTrackArrState.length !== 0) {
+	let timeout = setTimeout(() => {
+		audioTrackArrState.pop();
+		clearTimeout(timeout); // Correct method for setTimeout
+	}, 1000);
+}
+ }
+
+ console.log('audioTrackArrState', audioTrackArrState);
+
+
+//  Binding the input and updating the question background state 
+ export function handleUpdateQuestionState(AnswerArr: any, StateArr: any){
+	
+		stateAnswer = StateArr
+		textState = AnswerArr
+		let trackArr:any = []
+		let trackArrString: any = []
+		if(stateAnswer.length > 0){
+			for(const i in textState){
+				stateAnswer.map((item: any) => { 
+				
+
+						if(!trackArr.includes(item) && !trackArrString.includes(textState[i])){
+							answerdInputData[item] = textState[i]
+							trackArr.push(item)
+							trackArrString.push(textState[i])
+						}
+					
+			})
+		}
+		}
+}
+
+ export function handleAITextData(aiText: any){
+	if (typeof aiText === 'string') {
+		aiBotText = aiText.replace(/^"(.*)"$/, '$1');
+  }
+	// aiBotText = aiText
+ }
+
+   function getColorByIndex(index: any) {
+	console.log('index', index);
+    if (index >= 0 && index <= 2) {
+      return 'rgba(52, 255, 1, 0.837)'; // Green
+    } else if (index >= 3 && index <= 5) {
+      return 'orange';
+    } else if (index >= 6 && index <= 7) {
+      return 'red';
+    }
+  }
 
 </script>
 <head>
@@ -377,6 +527,17 @@
 												</div>
 												<div class="aicontentSection">
 													<div class="aicontentSectionHeader">
+														<div class="aicontentSectionHeader-State" >
+															<!-- <div class="aicontentSectionHeader-Lable">
+																State: 
+
+															</div> -->
+															<div class="aicontentSectionHeader-Tracker">
+																<!-- stateobj -->
+													
+															</div>
+														</div>
+														
 														<div>
 															<p class="questiontTitle">Questionnaire</p>
 														</div>
@@ -387,7 +548,65 @@
 																{#if ItemToggle != null && ItemToggle.name == items.name}
 																	<div class="selected-item-area">
 																		<div class="selected-Item-header">
-																			<div class="selected-Item-title">{ItemToggle.name}</div>
+																			<div class="selected-Item-title">
+																				<div>
+																					<p>
+																						{ItemToggle.name}
+																					</p>
+																				</div>
+
+
+																				{#if selectedToggle.length > 0}
+																				 <div class="stateObjItem-contentLayer">
+																			   {#each stateobj as stateObjItem (stateObjItem)}
+
+																			   {#if stateObjItem}
+																	
+																				<div class="stateObjItem-contentItem"
+																				style="background-color: {stateAnswer.includes(stateObjItem)
+																				? 'rgba(52, 255, 1, 0.837)'
+																				: 'black'};"
+																				></div>
+																						   
+																		
+																						
+																					
+
+																				{/if}
+																			   {/each}
+																			    </div>
+
+																				<div class="select-Text-Lable"
+																				
+																				>
+																							<!-- selectedToggle = arr -->
+
+																						<img
+																						src="undo.png"
+																						alt="widget"
+																						class="resetbtn"
+																					 	on:click={handleResetQuestion}
+																					/>
+
+
+																				</div>
+
+																				{:else}
+																																								
+																				{#if items.name== 'Findings'}
+																					<div class="select-Text-Lable">
+																							<!-- selectedToggle = arr -->
+
+																					 <p > {findingsCheckBoxState.length} | 10 </p>
+																						</div>
+																				{/if}
+																				 {/if}
+																	
+
+																				
+																				
+
+																			</div>
 																			<div
 																				class="selected-Item-closeBtn"
 																				on:click={handleClosetogglebtn}
@@ -396,17 +615,55 @@
 																			</div>
 																		</div>
 																		<div class="select-Item-Content">
-																			{#each ItemToggle.questions as itemObj (itemObj)}
+																			<!-- Selected Questions -->
+																		{#if items.name == 'Findings' && selectedToggle.length > 0 }
+																				{#each selectedToggle as selectObj (selectObj)}
 																				<div class="selected-item-obj">
-																					{itemObj.label}
+																					
+																					{selectObj.label}
 
+																					<input
+																						type="text"
+																						class="textoption"
+																						value={answerdInputData[selectObj.id]}
+																					/>
+																				</div>
+
+																				{/each}
+																			{:else}
+																		
+																			<!-- default Questions -->
+																			{#each ItemToggle.questions as itemObj (itemObj)}
+																					
+																					
+
+								
+																				<div class="selected-item-obj">
+																					{#if items.name == 'Findings' }
+																					<input
+																					type="checkbox"
+																					class="findingsCheckBox"
+																					on:change={() => addCheckbtnToArr(itemObj.id)}
+
+
+																				/>
+
+
+																					{/if}
+																					{itemObj.label}
 																					<input
 																						type="text"
 																						class="textoption"
 																						value={isCheckInputData[itemObj.label]}
 																					/>
 																				</div>
+																			
 																			{/each}
+
+																			{/if}
+
+
+																			
 																		</div>
 																	</div>
 																{:else}
@@ -423,12 +680,33 @@
 																			{items.name}
 
 																			{#if items.name == 'Findings'}
+
+																			{#if stateobj}
+																			<div class="stateObjItem-contentLayer">
+																			   {#each stateobj as stateObjItem (stateObjItem)}
+
+																			   {#if stateObjItem}
+																	
+																				<div class="stateObjItem-contentItem"
+																				style="background-color: {stateAnswer.includes(stateObjItem)
+																				? 'rgba(52, 255, 1, 0.837)'
+																				: 'black'};"
+																				></div>
+																						   
+																		
+																						
+																					
+
+																				{/if}
+																			   {/each}
+																			</div>
+		   
+																			{/if}
 																				<div>
 																					<img
 																						src="robo2.png"
 																						alt="widget"
 																						class="robologo"
-																						on:click={handleMenuAIClick}
 																					/>
 																				</div>
 																			{/if}
@@ -446,8 +724,60 @@
 														{/if}
 													</div>
 												</div>
+												<div class="aiContentStartSection" 
+												
+												>
+													{#if selectedQuestionToggle}
+
+															<div class="selectedQueston"
+															style="display: { selectedRowToggle 
+															? 'none'
+															: 'flex'};" 
+															
+															>
+																{#if aiBotText}
+																<!-- <div class="canvasSection">
+																	<Canvas>
+																		<Scene/>
+																	</Canvas>
+																</div> -->
+																
+																			{aiBotText}
+																{:else}
+																<!-- <div class="canvasSection">
+																	<Canvas>
+																		<Scene/>
+																	</Canvas>
+																</div> -->
+																<div class="selectedTextSection">
+																	<p class="defaultStartTextAI">Press on the Assistant to start Reporting and say "Hallo Bruno"</p>
+																</div>
+
+																{/if}
+															</div>
+													{:else}
+													<button class="startBtn"
+													style="background-color: { disableAiStartBtn
+													? 'rgba(38, 38, 38, 0.262)'
+													: 'rgba(17, 100, 243, 0.912)'}; 
+
+													"
+													
+													 on:click={ () => handleStartAI(findingsCheckBoxState)}
+													 disabled={disableAiStartBtn}
+													>
+													{#if disableAiStartBtn}
+													Please select your questions
+													{:else}
+													Start Reporting
+													{/if}
+													</button>
+															
+
+													{/if}
+													
+												</div>
 											</div>
-											<div></div>
 										</div>
 									{/if}
 								</div>
@@ -456,35 +786,63 @@
 						<!-- Navbar Area -->
 						<div class="aiNavBar">
 							<div class="upperBar">
-								<div class="optionBox">
+								<div class="optionBox" on:click={handleMenuAIClick}>
+
+									{#if menuToggle}
+									<img
+										src="widget2.png"
+										alt="widget"
+										class="widgetlogo"
+									/>
+									<p class="selectedMenuText">Menu</p>
+
+									{:else}
 									<img
 										src="widget.png"
 										alt="widget"
 										class="widgetlogo"
-										on:click={isMobile ? () => {} : handleMenuAIClick}
 									/>
-									<p>Menu</p>
+									<p class="defaultMenuText">Menu</p>
+
+									{/if}
+									
 								</div>
+
 								<div class="optionBox" on:click={handleMenuScansClick}>
-									<!-- <AudioRecorder onTranscription={appendTranscription} /> -->
+									{#if scansToggle}
 
+										<img src="/xr6.png" alt="widget" class="widgetlogo" />
+										<p class="selectedMenuText">Scans</p>
+
+									{:else}
 									<img src="/xr5.png" alt="widget" class="widgetlogo" />
-									<p>Scans</p>
+									<p class="defaultMenuText">Scans</p>
+
+									{/if}
+
+									
 								</div>
 
-								<div class="optionBox">
+								<div class="optionBox" on:click={handleMenuDownloadClick} >
 									<img
 										src="her1.png"
 										alt="widget"
 										class="widgetlogo"
-										on:click={handleMenuDownloadClick}
 									/>
-									<p>Download</p>
+									<p  class="defaultMenuText">Download</p>
 								</div>
 
 								<div class="optionBox" on:click={handleTextEditorToggle}>
-									<img src="text.png" alt="widget" class="widgetlogo" />
-									<p>Editor</p>
+
+									{#if textEditToggle}
+									<img src="text1.png" alt="widget" class="widgetlogo" />
+									<p class="selectedMenuText">Editor</p>
+									{:else}
+									 <img src="text.png" alt="widget" class="widgetlogo" />
+									<p class="defaultMenuText">Editor</p>
+
+									{/if}
+									
 								</div>
 							</div>
 							<div class="middleBar">
@@ -496,9 +854,24 @@
 										<img src="liveOff.png" alt="widget" class="audioLogoON" /> 
 										{/if}												
 									</div>
-									<div class="uvMeter">1</div>
+									<div class="uvMeter">
+										
+										{#if audioData}
+										{#each audioTrackArrState as item, index}
+											<div
+												class="audioStateObjStyle"
+												style="background-color: {getColorByIndex(index)};
+												border-top: 1px solid rgba(255, 255, 255, 0.175)
+												"
+											></div>
+										{/each}
+
+										{/if}
+
+
+									</div>
 									<div class="assistantPlayArea">
-										<AudioRecorder />
+										<AudioRecorder selectedArr={selectedArrVal} />
 										<!-- <img src="robo2.png" alt="widget" class="robologo" on:click={handleMenuClick} /> -->
 										<!-- <img src="play.png" alt="widget" class="widgetlogo" />
 								  -->
@@ -564,7 +937,9 @@
 	
 	}
 
-	
+
+
+
 	
 
 
@@ -647,11 +1022,90 @@
 	}
 
 	.aicontentSection {
-		height: 80%;
+		height: 70%;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
+		/* background-color: #36070766; */
+	}
+
+	.aiContentStartSection{
+		/* background: rgba(0, 128, 0, 0.075); */
+		width: 100%;
+		height: 10%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	
+	}
+
+	.selectedQueston{
+		background: rgb(43, 121, 194);
+		/* background: hsl(218, 15%, 14%); */
+
+		width: 90%;
+		height: 100%;
+		border-radius: 7px;
+		border: 1px solid rgb(43, 121, 194);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 21px;
+		text-align: center;
+		position: relative;
+		flex-direction: column;
+		margin-bottom: 5%;
+
+
+
+
+		/* border: 1px solid grey; */
+
+
+
+	}
+
+	.canvasSection{
+		width: 100%;
+		height: 100%;
+		/* display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #166ae8;
+		border-radius: 7px;
+		border: 1px solid rgba(255, 255, 255, 0.175); */
+		position: absolute;
+		top: -150%;
+	}
+
+	.selectedTextSection{
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #0d1117;
+		border-radius: 7px;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+	}
+	.defaultStartTextAI{
+		font-size: 19px;
+
+	}
+
+	.startBtn{
+		height: 40%;
+		width: 50%;
+		/* border: 1px solid rgb(43, 121, 194); */
+		border: 1px solid grey;
+		border-radius: 7px;
+		/* background-color: rgba(58, 139, 210, 0.262); */
+		background-color: rgba(17, 100, 243, 0.912);
+	
+		color: white;
+		cursor: pointer;
+
 	}
 
 	.aicontentSectionHeader {
@@ -659,15 +1113,86 @@
 		width: 100%;
 		display: flex;
 		flex-direction: row;
-		justify-content: flex-end;
+		justify-content: space-between;
 		align-items: center;
-		padding-right: 3%;
+		padding-right: 2%;
+		padding-left: 2%;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+		/* background-color: green; */
+	}
+	.aicontentSectionHeader-State{
+		/* background-color: green; */
+		width: 30%;
+		display: flex;
+		align-items: center;
+	}
+	.aicontentSectionHeader-Lable{
+		color: rgba(255, 255, 255, 0.727);
+		font-size: 17px;
+		font-weight: 600;
+		font-family: sans-serif;
 	}
 
+	.aicontentSectionHeader-Tracker{
+		padding-left: 2%;
+		width: 90%;
+		height: 100%;
+		align-items: center;
+
+
+	}
+
+	.stateObjItem-contentLayer{
+		/* background-color: orange; */
+		display: flex;
+		width: 30%;
+		height: 100%;
+		justify-content: space-between;
+		/* margin-bottom: 1%; */
+		/* padding-left: 10%; */
+		align-items: center;
+
+
+	}
+	.stateObjItem-contentItem{
+		background-color: rgba(21, 4, 4, 0.204);
+		width: 7%;
+		height: 12px;
+		/* font-size: 1px; */
+		color: rgb(4, 4, 4);
+		border: 2px solid rgba(248, 244, 238, 0.241);
+
+		border-radius: 50%;
+		/* display: none; */
+		/* display: flex; */
+		/* justify-content: space-between; */
+
+		/* width: 100%; */
+
+	}
+
+	.stateObjItem-contentIn{
+		background-color: rgba(129, 218, 106, 0.533);
+		border-radius: 50%;
+
+		width: 100%;
+		height: 100%;
+	}
+
+	.answeredStateoBJ{
+		background-color: rgba(52, 255, 1, 0.837);
+		width: 7%;
+		height: 12px;
+		/* font-size: 1px; */
+		color: rgb(4, 4, 4);
+		border: 2px solid rgba(248, 244, 238, 0.241);
+
+		border-radius: 50%;
+		
+	}
 	.questiontTitle {
 		color: rgba(255, 255, 255, 0.727);
-		font-size: 20px;
+		font-size: 17px;
 		font-weight: 600;
 		font-family: sans-serif;
 	}
@@ -711,6 +1236,7 @@
 	}
 
 	.selected-Item-header {
+		/* background-color: rgba(0, 128, 0, 0.405); */
 		height: 15%;
 		width: 100%;
 		padding-left: 2%;
@@ -723,6 +1249,7 @@
 	}
 
 	.selected-Item-title {
+		/* background-color: rgba(255, 166, 0, 0.367); */
 		height: 100%;
 		width: 90%;
 		display: flex;
@@ -730,6 +1257,16 @@
 		align-items: center;
 		font-size: 19px;
 		font-family: sans-serif;
+		justify-content: space-between;
+		padding-right: 2%;
+		border-right: 1px solid white;
+	}
+
+	.select-Text-Lable{
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.715);
+		margin-top: 0.5%;
+
 	}
 
 	.selected-Item-closeBtn {
@@ -749,9 +1286,12 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-around;
 		overflow: auto;
-		gap: 20px;
+		overflow-y: auto;
+		gap: 14%;
+		/* background-color: green; */
+		padding-top: 1%;
 	}
 
 	.selected-item-obj {
@@ -775,6 +1315,14 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+	}
+
+	.findingsCheckBox{
+		background-color: #4CAF50; /* green background */
+		background-size: cover;
+		background-position: center;
+		border-color: #4CAF50;
+
 	}
 
 	.aicheckBox {
@@ -819,6 +1367,17 @@
 	.widgetlogo {
 		height: 25px;
 	}
+
+
+
+	.defaultMenuText{
+			color: white;
+	}
+
+	.selectedMenuText{
+		color: rgba(254, 127, 0, 0.767);
+
+	}
 	.middleBar {
 		height: 50%;
 		width: 100%;
@@ -856,6 +1415,22 @@
 		height: 65%;
 		width: 100%;
 		border: 1px solid rgba(255, 255, 255, 0.175);
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: flex-start;
+
+	}
+
+	
+	.audioStateObjStyle{
+		/* background-color: pink; */
+		width: 100%;
+		height: 10%;
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: flex-end;
+		/* justify-content: flex-end; */
+
 	}
 
 	.assistantPlayArea {
@@ -884,6 +1459,12 @@
 	.robologo {
 		width: 27px;
 		height: 27px;
+	}
+
+	.resetbtn{
+		width: 22px;
+		height: 22px;
+		cursor: pointer;
 	}
 
 	@media (max-width: 420px) {

@@ -11,7 +11,17 @@ const client = new OpenAI({
 // console.log('SECRET_OPENAIKEY', SECRET_OPENAIKEY);
 
 let stateNum = 0;
-
+let controlsState = 0
+let  newArr = []
+let  convoArr = []
+let updateState = 0
+let prevlastQuestion = ""
+let updateQuestion = ""
+let recordValue = 0
+let userReply = []
+let stateQuestion = []
+let addUpState = 0
+let lastQuestionNum = 0
 
 const brunoPromptMap = {
 	0: {
@@ -137,31 +147,67 @@ const brunoPromptMap = {
 	}
   };
   
+
+
+const handleUpdateState =  async(answer, state) => {
+
+	
+
+	if(!userReply.includes(answer) && !stateQuestion.includes(state) ){
+		userReply.push(answer)
+	stateQuestion.push(state)
+	}
+	
+
+	
+
+
+}
+
+// const handleSecUpdateState =  (answer, state) => {
+
+// 	console.log('inside handlestate on sec Update ');
+// 	if(answer && state){
+// 		console.log('updating state userReply', answer);
+// 		console.log('stateQuestion', state);
+// 	userReply = answer
+// 	stateQuestion = state
+
+// 	}
+
+
+// }
+
+// const handleSecUpdateState =  (answer, state) => {
+
+// 	console.log('inside handlestate on sec Update ');
+// 	if(answer && state){
+// 		console.log('updating state userReply', answer);
+// 		console.log('stateQuestion', state);
+// 	userReply = answer
+// 	stateQuestion = state
+
+// 	}
+
+
+// }
   
-const handleApiAgentCall = async (userDataQuery) => {
+const handleApiAgentCall = async (userDataQuery, selectedArrState) => {
 	try {
 		if (!userDataQuery) {
 			return json('Empty userDataQuery');
 		}
 
+		if(stateNum === -1){
+			
+			handleUpdateState(userDataQuery, selectedArrState.at(-1))
+			stateNum = 0
+			recordValue = 1
 
-		// console.log('userDataQuery before gpt trigger', userDataQuery);
-		// const response = await client.responses.create({
-		// 	model: 'gpt-4o',
-		// 	input:  `${brunoPrompt}\n\n${userDataQuery}`,
-		// });
-		
-		// if(response){
+			return 'Super, ich habe alle Fragen notiert. Bitte navigieren Sie zur Textseite, um Ihren Befund zu bearbeiten.'
+		}
 
-		// }
-		// console.log('state', stateNum);
-	
-	
-		// console.log('response', response);
-		// const gptRes =  response.output_text
-		// return gptRes
-	
-	  
+
 		  // Sonderfall: Wiederholen
 		 // Sonderfall: Wiederhole letzte Frage
 		 if (userDataQuery.toLowerCase().includes("wiederhole")) {
@@ -170,43 +216,65 @@ const handleApiAgentCall = async (userDataQuery) => {
 			return `Natürlich, hier ist die letzte Frage erneut:\n${repeatQuestion}`;
 		  }
 	  
+		// const restartWords = ["restart", "starte von vorne"];
 
 		  if ( userDataQuery.toLowerCase().includes("restart")) {
 			stateNum = 0
-			return 'Ich starte die Abfrage nochmal von vorn.'
+			convoArr = []
+			return 'Ich starte die Abfrage nochmal von vorn. Bitte sagen sie "Hallo Bruno"'
 		  }
 	  
-		  console.log('stateNum',stateNum);
 		  const currentState = brunoPromptMap[stateNum];
-		  console.log('currentState', currentState);
 	  
 		  if (!currentState) {
-			return "Wir haben alle Fragen durchlaufen. Vielen Dank!";
+				return "Sie haben leider noch keine Fragen zur Befundung ausgewählt. Bitte wählen Sie im Bereich 'Finding' mehrere Fragen aus und beginnen Sie anschließend mit der Befunderstellung. Vielen Dank!"
+
 		  }
 	  
 		  // Begrüßungsfall
 		  if (stateNum === 0 && userDataQuery.toLowerCase().includes("hallo bruno")) {
-			stateNum = currentState.next;
+			updateState = selectedArrState[0]
+			stateNum = updateState+=1
+			newArr = selectedArrState.filter((item) => item !== selectedArrState[0] );
 			return `${currentState.response} ${currentState.followUp}`;
 		  }
+
+		// First default question
 		  const positiveWords = ["ja", "sehr gerne", "natürlich", "klar"];
 
-		  if (stateNum === 1 && positiveWords.some(word => userDataQuery.toLowerCase().includes(word)))  {
-			stateNum = currentState.next;
+		  if (stateNum == updateState && positiveWords.some(word => userDataQuery.toLowerCase().includes(word)))  {
+			let updateSecState = newArr[0]
+			stateNum = updateSecState
+			prevlastQuestion = currentState.question
 			return `${currentState.question}`;
 		  }
 
-		 
-		  // Hole nächste Frage
-		  const nextState = currentState.next;
-		  const nextQuestion = brunoPromptMap[nextState]?.question || "Es sind keine weiteren Fragen vorhanden.";
-	  
+		
+
+
+		  
+		if(convoArr.length == 0){
+	      
+		
+		  convoArr = newArr[0]
+		//   console.log('convoArr', newArr);
+
+		  let updateConvoState = convoArr+=1
+
+		  const nextQuestion = brunoPromptMap[updateConvoState]?.question || "Es sind keine weiteren Fragen vorhanden.";
 		  const response = await client.responses.create({
 			model: 'gpt-4o',
-			input: `Der Nutzer hat auf folgende Frage geantwortet:\n"${currentState.question}"\n\nAntwort:\n"${userDataQuery}"\n\nAntworte kurz und knapp, höflich ohhne zu bedanken. Stelle dann folgende Frage:\n"${nextQuestion}"`,
+			input: `Antwort des users(bitte nicht drauf eingehen):\n"${userDataQuery}"\n\nAntworte kurz und knapp, höflich ohne zu bedanken. Stelle dann folgende Frage:\n"${nextQuestion}"`,
 		  });
-	  
-		  stateNum = nextState;
+
+
+		
+		   handleUpdateState(userDataQuery, selectedArrState[0])
+		  stateNum = updateConvoState;
+		  updateQuestion = nextQuestion
+
+
+		  convoArr = newArr.filter((item) => item !== newArr[0]);
 
 
 
@@ -214,6 +282,76 @@ const handleApiAgentCall = async (userDataQuery) => {
 		  return response.output_text;
 
 
+
+
+
+
+
+		}
+		else if(convoArr.length == 1){
+
+		
+
+		//   console.log('convoArr',convoArr);
+		  let addUpState = convoArr[0] 
+		
+		  const nextState = addUpState+=1;
+		  const nextQuestion = brunoPromptMap[nextState]?.question || "Es sind keine weiteren Fragen vorhanden.";
+		//  const nextQuestion =  currentState.question|| "Es sind keine weiteren Fragen vorhanden.";
+
+
+		  const response = await client.responses.create({
+			model: 'gpt-4o',
+			input: `sei höflich antworte kurz als ob du eine gute antowrt erhalten hast, aber bedanke dich nicht und stelle dann folgende Frage:\n"${nextQuestion}"`,
+		  });
+		  
+
+
+		  stateNum = -1;
+		//   console.log('newArr', newArr);
+		//   console.log('firstNum', newArr[0]);
+		  await handleUpdateState(userDataQuery,  newArr[0])
+
+		  return response.output_text;
+
+	
+
+
+		}else{
+		 
+
+		  	addUpState = convoArr[0]
+
+		//   const nextState = currentState.next;
+		  const nextState = addUpState+=1;
+		  const nextQuestion = brunoPromptMap[nextState]?.question || "Es sind keine weiteren Fragen vorhanden.";
+		//  const nextQuestion =  currentState.question|| "Es sind keine weiteren Fragen vorhanden.";
+
+
+	  
+		  const response = await client.responses.create({
+			model: 'gpt-4o',
+			input: `bedanke dich für die antowrt kurz und knapp, selle dann folgende Frage:\n"${nextQuestion}"`,
+		  });
+		  
+
+	
+
+		  
+		  await handleSecUpdateState(userDataQuery, addUpState)
+		  convoArr = convoArr.filter((item) => item !== convoArr[0]);
+
+
+	
+		
+		  return response.output_text;
+
+
+
+
+		}
+		
+		 
 		
 	} catch (error) {
 		console.log('error on handleApiAgentCall', error);
@@ -222,12 +360,13 @@ const handleApiAgentCall = async (userDataQuery) => {
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }) {
-	const { data } = await request.json();
+	const { data, selecteState } = await request.json();
 	// console.log('data', data);
+	// console.log('selecteState', selecteState);
 	if (data) {
-		const botRes = await handleApiAgentCall(data);
+		const botRes = await handleApiAgentCall(data, selecteState);
 		// console.log('botRes', botRes);
-		return json(botRes);
+		return json({botmessage: botRes, recordState: recordValue, userAnswer: userReply, userPrevQeustion: stateQuestion});
 	}
 	// return json('succesful');
 }
