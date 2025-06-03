@@ -10,7 +10,11 @@
 	import { closeNav } from '../navigation/navigation.svelte';
 	import { handleSelectedQuestions } from '../selectedQuestions/selectedQuestions.svelte';
 	import {SelectedQuestionAI} from  '../../../../routes/(public)/Technology/+page.svelte'
+	import { Application } from '@splinetool/runtime';
+	let canvas: any;
+	let loading: boolean = true;
 	
+
 
 	let resultAreaToggle = $state(false);
 	let loadingToggle = $state(false);
@@ -133,6 +137,30 @@
 
 		}
 
+		let app = new Application(canvas);
+
+console.log('');
+loading = true;
+const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
+	const obj = app.findObjectByName("brunov1")
+	console.log('obj', obj);
+	// if (obj?.position) {
+		// Adjust position
+	// 	console.log('iits in postion',obj?.position);
+	// 	obj.position.x += 10;
+	// 	obj.position.y = 50;
+	// 	obj.position.z -= -15;
+	// 	}
+	loading = false;
+});
+
+console.log('spline', splineobj);
+// app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
+// 	const obj = app.
+// 	loading = false;
+// });
+console.log('app', app);
+
 		
 
 		
@@ -190,6 +218,8 @@
 				
 			 </div>
 		</div>
+
+	
 		
 
 		{:else}	
@@ -204,6 +234,19 @@
 				{#if scanToggle}
 				<div class="scan-line"></div>
 				{/if}
+
+				{#if !resultAreaToggle}
+				<div class="avatarcanvas">
+					
+					<div class="avatarText"> 
+						Click the Scan button to begin scanning the report and select your required questions.
+					</div>
+					<div class="aibotAvatar">
+						<canvas bind:this={canvas} class="avater"/>
+					</div>
+				</div>
+				{/if}
+			
 			
 			</div>
 			<div class="medicalImagebtnAreaSection" on:click={handleStartConversation}>
@@ -730,6 +773,51 @@
 		cursor: pointer;
 
 	}
+
+	.avatarcanvas{
+		/* background-color: pink; */
+		position: absolute;
+		height: 30%;
+		width: 15%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		top: 71%;
+		left: 80%;
+
+	}
+
+	.avatarText{
+		width: 100%;
+		height: 35%;
+		background-color: rgb(3, 32, 68);
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+		border-radius: 7px;
+		font-family: system-ui;
+		/* font-size: 20px; */
+		position: absolute;
+		top: -3%;
+		left: -25%;
+		z-index: 5;
+		color: white;
+	}
+
+	.aibotAvatar{
+		/* background-color: rgba(226, 17, 52, 0.619); */
+		width:  100%;
+		height: 90%;
+		margin-top: 5%;
+		/* position: absolute; */
+		top: 0%;
+		/* left: 70%; */
+		z-index: -0;
+		
+	}
+
 
 
 </style>

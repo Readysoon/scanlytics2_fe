@@ -102,6 +102,42 @@
 	}
 </script>
 
+<script>
+	import { Application } from '@splinetool/runtime';
+	let canvas: any;
+	let loading: boolean = true;
+	
+
+	$effect(() => {
+		let app = new Application(canvas);
+
+	
+		loading = true;
+		
+		const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
+			const obj = app.findObjectByName("brunov1")
+			console.log('obj', obj);
+			// if (obj?.position) {
+				// Adjust position
+			// 	console.log('iits in postion',obj?.position);
+			// 	obj.position.x += 10;
+			// 	obj.position.y = 50;
+			// 	obj.position.z -= -15;
+			// 	}
+			loading = false;
+		});
+
+		console.log('spline', splineobj);
+		// app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
+		// 	const obj = app.
+		// 	loading = false;
+		// });
+		console.log('app', app);
+	
+	})
+	
+</script>
+
 <div class="image-uploader">
 	<div class="imgSection">
 		{#if imgPreview}
@@ -112,7 +148,20 @@
 			<!-- <div class="placeholderObjecttext">Scanlytics AI Assistant</div> -->
 			<!-- <img src={'/prostateMRI14.jpg'} class="imgPreview" alt="Uploaded image" /> -->
 			<ImageScroller />
+
+			<div class="avatarcanvas">
+		
+				<div class="avatarText"> 
+					Tap the microphone button on the right to begin the conversation and say "Hallo Bruno".
+				</div>
+				<div class="aibotAvatar">
+					<canvas bind:this={canvas} class="avater"/>
+				</div>
+			</div>
+
 		{/if}
+
+		
 	</div>
 
 	{#if mlMessage}
@@ -139,6 +188,7 @@
 		padding: 20px;
 		flex-wrap: wrap;
 		gap: 10px;
+		position: relative;
 	}
 	.imgPreview {
 		width: 80%;
@@ -156,4 +206,51 @@
 		margin-top: 10px;
 		color: red;
 	}
+
+	.avatarcanvas{
+		/* background-color: pink; */
+		position: absolute;
+		height: 30%;
+		width: 15%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		top: 75%;
+		left: 85%;
+
+	}
+
+	.avatarText{
+		width: 100%;
+		height: 35%;
+		background-color: rgb(3, 32, 68);
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+		border-radius: 7px;
+		font-family: system-ui;
+		color: white;
+		font-size: 15px;
+		position: absolute;
+		top: -3%;
+		left: -25%;
+		z-index: 5;
+		padding: 1%;
+		
+	}
+
+	.aibotAvatar{
+		/* background-color: rgba(226, 17, 52, 0.619); */
+		width:  100%;
+		height: 90%;
+		margin-top: 5%;
+		/* position: absolute; */
+		top: 0%;
+		/* left: 70%; */
+		z-index: 5;
+		
+	}
+
 </style>

@@ -25,7 +25,7 @@
 	import { handleSelectUpdateBackground } from '$lib/components/technology/selectedQuestions/selectedQuestions.svelte';
 	// Declarations
 	let firstLoad = $state(false);  //back to true - default 
-	let menuToggle: boolean = $state(false);
+	let menuToggle: boolean = $state(true);
 	let ItemToggle: any = $state(null);
 	let isChecked: any = $state({});
 	let isCheckInputData: any = $state({});
@@ -33,10 +33,10 @@
 	let imageUploadToggle = $state(true);
 	let textEditToggle =  $state(false);
 	let scansToggle = $state(false);
-	let navAssistantToggle_Structured = $state(true);
+	let navAssistantToggle_Structured = $state(false);
 	let navAssistantToggle_History = $state(false); //back to false - default 
-	let navAssistantToggle_Patient = $state(false); //back to true - default 
-	let enterPageToggle = $state(true); //back to false - default 
+	let navAssistantToggle_Patient = $state(true); //back to true - default 
+	let enterPageToggle = $state(false); //back to false - default 
 	let inputValue = $state('');
 	let isMobile = false;
 	let disableAiStartBtn = $state(true)
@@ -45,8 +45,10 @@
 	let selectedToggle: any = $state([])
 	let selectedRowToggle  = $state(false)
 	let selectedArrVal = $state([])
-	let showNav = $state(true) //back to false - default 
+	let showNav = $state(false) //back to false - default 
 	let resetState = $state(false)
+
+
 
 	
 	// ------------------------------------------------------------------------------
@@ -86,6 +88,8 @@
 
 	// Binds the json text to the input value
 	$effect(() => {
+
+
 		kneejsonData.sections.map((i) => {
 			if (
 				i.name == 'Patient Information' ||
@@ -144,13 +148,12 @@
 					handleExaminationInformation(labelInfo);
 				});
 			}
+
+			
 		});
 
 
-		// if(stateobj.length > 0){
-		// 	selectedArrVal = stateobj
-			
-		// }
+		
 
 		if( selectedQuestionNum && selectedQuestionNum.length > 0){
 			console.log('selectedQuestionNum length is greater than 0', selectedQuestionNum);
@@ -163,8 +166,8 @@
 			handleResetMultipleStates()
 
 		}
-
-			
+		
+	
 
 		
 		// setTimeout(() => {
@@ -491,10 +494,13 @@ if (audioTrackArrState.length !== 0) {
 								<div class="aiContentArea">
 								
 									{#if imageUploadToggle}
+									
 									<div class="imgConectSectionUpload" style="width: {menuToggle ? '70%' : '100%'};">
 										<div class="imgConectSectionUpload-ImageUploader">
 											<ImageUploader />
+											
 										</div>
+										
 										
 										<div class="imgConectSectionUpload-AIRecordSection">
 											<div class="imgConectSectionUpload-AIRecordContent">
@@ -1334,6 +1340,7 @@ if (audioTrackArrState.length !== 0) {
 		height: 40%;	
 	}
 
+	
 	.assitantTitle {
 		font-size: 20px;
 		font-weight: bold;

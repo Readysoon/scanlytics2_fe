@@ -170,7 +170,7 @@
     <div class="conversationBotLayer">
 	
 		
-		<div class="patientNav"
+		<!-- <div class="patientNav"
 		on:click={handlePatientCall}
 		>
 			<img src="user.png" alt="Microphone" class="userIcon" />
@@ -179,7 +179,7 @@
 		on:click={handleSelectionCall}
 		>
 			<img src="scan.png" alt="Microphone" class="scanIcon" />
-		</div>
+		</div> -->
 		<!-- <div class="GlobeBtnArea">
 			<img src="globe.png" alt="Microphone" class="globeIcon" />
 		</div> -->
@@ -265,7 +265,8 @@
 	}
 
 	.conversationBotLayer {
-		width: 27%;
+		width: 19%; 
+		/* width: 27% with the other navigation props */
 		height: 100%;
 		display: flex;
 		flex-direction: row;

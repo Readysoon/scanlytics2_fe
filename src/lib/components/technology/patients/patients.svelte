@@ -1,7 +1,12 @@
-<script >
+<script lang="ts">
 	import * as patientJson from '../../../../../static/patientContent.json';
 
     import { createEventDispatcher } from 'svelte';
+	import { Application } from '@splinetool/runtime';
+	let canvas: any;
+	let loading: boolean = true;
+	
+
 	
 
 	const dispath = createEventDispatcher();
@@ -12,6 +17,35 @@
 
 	}
 
+	
+
+	$effect(() => {
+		console.log('trigget in effect');
+		let app = new Application(canvas);
+
+		console.log('');
+		loading = true;
+		const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
+			const obj = app.findObjectByName("brunov1")
+			console.log('obj', obj);
+			// if (obj?.position) {
+				// Adjust position
+			// 	console.log('iits in postion',obj?.position);
+			// 	obj.position.x += 10;
+			// 	obj.position.y = 50;
+			// 	obj.position.z -= -15;
+			// 	}
+			loading = false;
+		});
+
+		console.log('spline', splineobj);
+		// app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
+		// 	const obj = app.
+		// 	loading = false;
+		// });
+		console.log('app', app);
+
+	});
 </script>
 
 
@@ -141,11 +175,21 @@
 
 
 		{/each}
+		
+			</div>
 
+			<div class="avatarcanvas">
+		
+				<div class="avatarText"> 
+					Please click on the selected robot icon to start the reporting process.
+				</div>
+				<div class="aibotAvatar">
+					<canvas bind:this={canvas} class="avater"/>
+				</div>
 			</div>
 		
 		
-
+				
 	</div>
 </div>
 </div>
@@ -187,9 +231,55 @@
 		display: flex;
         color: white;
 		flex-direction: column;
+		position: relative;
 		/* gap: 2%; */
 		/* padding-top: 1%; */
 	} 
+
+	
+	.avatarcanvas{
+		/* background-color: pink; */
+		position: absolute;
+		height: 30%;
+		width: 15%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		top: 71%;
+		left: 80%;
+
+	}
+
+	.avatarText{
+		width: 100%;
+		height: 35%;
+		background-color: rgb(3, 32, 68);
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+		border-radius: 7px;
+		font-family: system-ui;
+		color: white;
+		/* font-size: 20px; */
+		position: absolute;
+		top: -3%;
+		left: -25%;
+		z-index: 5;
+	}
+
+	.aibotAvatar{
+		/* background-color: rgba(226, 17, 52, 0.619); */
+		width:  100%;
+		height: 90%;
+		margin-top: 5%;
+		/* position: absolute; */
+		top: 0%;
+		/* left: 70%; */
+		z-index: -0;
+		
+	}
 
 	.topHeader{
 
