@@ -8,7 +8,7 @@
 	let canvas: any;
 	let loading: boolean = true;
 	let openeningText: string = "Welcome to the Scanlytics Conversational AI Assistant. My name is Bruno, and I’m your AI guide. Please press “Start” to begin the reporting process."
-	let index = 0 
+	let index =  $state(0) 
 	let avatarScriptText: string = $state("")
 	let textState = $state(false)
 	

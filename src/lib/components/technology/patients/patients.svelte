@@ -5,6 +5,11 @@
 	import { Application } from '@splinetool/runtime';
 	let canvas: any;
 	let loading: boolean = true;
+	let openeningText: string = "Please click on the selected robot icon to start the reporting process:"
+	let index = 0 
+	let avatarScriptText: string = $state("")
+	let textAutoFillState = $state(false)
+	let addIcon = $state(false)
 	
 
 	
@@ -14,6 +19,26 @@
 	const handleRobotClick = () => {
 		dispath('robot')
 		
+
+	}
+
+	const handleUpdateText = () => {
+
+
+	const IntervalId = setInterval(() => { 
+		
+		if(index < openeningText.length){
+		avatarScriptText += openeningText.charAt(index);
+		
+		index++;
+		textAutoFillState = true 
+
+		}else{
+			clearInterval(IntervalId)
+			addIcon = true
+
+		}
+	}, 100)
 
 	}
 
@@ -38,13 +63,11 @@
 			loading = false;
 		});
 
-		console.log('spline', splineobj);
-		// app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
-		// 	const obj = app.
-		// 	loading = false;
-		// });
-		console.log('app', app);
 
+		if(textAutoFillState == false){
+			handleUpdateText()
+		}
+		
 	});
 </script>
 
@@ -83,7 +106,12 @@
 				<div class="patientContent"
 				style="border-color: {patientData.ID >= 9 && patientData.ID <= 9 
 				? 'rgba(4, 163, 249, 0.911)'
-				: 'black'};"
+				: 'black'};
+				background-color: {patientData.ID >= 9 && patientData.ID <= 9
+				? 'rgba(4, 163, 249, 0.19)'
+				: 'none'};
+				}
+				"
 				>
 					
 					<div class="patientId">
@@ -181,7 +209,18 @@
 			<div class="avatarcanvas">
 		
 				<div class="avatarText"> 
-					Please click on the selected robot icon to start the reporting process.
+					{avatarScriptText}
+					{#if addIcon}
+
+					<div class="fingerLogoArea">
+						<img src="finger.png" alt="widget" class="fingerIcon" />
+						<img src="robo2.png" alt="widget" class="TextLogoRobot" />
+					</div>
+					
+
+					{/if}
+
+					
 				</div>
 				<div class="aibotAvatar">
 					<canvas bind:this={canvas} class="avater"/>
@@ -518,6 +557,30 @@
 		justify-content: center;
 		align-items: center;
 	}
+	.fingerLogoArea{
+		/* background-color: #fff; */
+		width: 37%;
+		position: absolute;
+		top: 65%;
+		left: 69%;
+		display: flex;
+		gap: 10%;
+		align-items: center;
+	}
+
+	.fingerIcon{
+		height: 10%;
+		width: 30%;
+	}
+
+
+	.TextLogoRobot{
+		/* background-color: aqua; */
+		height: 10%;
+		width: 30%;
+		
+	}
+
 
 	.widgetlogoAnalyseSection{
 		height: 100%;

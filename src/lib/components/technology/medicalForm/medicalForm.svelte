@@ -30,6 +30,10 @@
 	let selectedQuestionState = $state(true)
 	let showStartBtn = $state(false)
 	const dispath = createEventDispatcher()
+	let openeningText: string = "Click the Scan button to begin scanning the report and select your required questions."
+	let index = 0 
+	let avatarScriptText: string = $state("")
+	let textAutoFillState = $state(false)
 
 
 
@@ -129,6 +133,25 @@
 		}
 		// scanToggle = false;
 		}
+
+	const handleUpdateText = () => {
+
+			const IntervalId = setInterval(() => { 
+				
+				if(index < openeningText.length){
+				avatarScriptText += openeningText.charAt(index);
+				
+				index++;
+				textAutoFillState = true 
+
+				}else{
+					clearInterval(IntervalId)
+				
+
+				}
+			}, 100)
+	}
+
  
 	$effect(() => {
 		if(selectedArr.length >= 3){
@@ -137,6 +160,8 @@
 
 		}
 
+		handleUpdateText()
+		
 		let app = new Application(canvas);
 
 console.log('');
@@ -160,14 +185,7 @@ console.log('spline', splineobj);
 // 	loading = false;
 // });
 console.log('app', app);
-
-		
-
-		
-		
-
-		
-	})
+})
 
 
 </script>
@@ -239,7 +257,7 @@ console.log('app', app);
 				<div class="avatarcanvas">
 					
 					<div class="avatarText"> 
-						Click the Scan button to begin scanning the report and select your required questions.
+						{avatarScriptText}
 					</div>
 					<div class="aibotAvatar">
 						<canvas bind:this={canvas} class="avater"/>
