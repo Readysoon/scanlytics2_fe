@@ -4,6 +4,9 @@
 	const dispath = createEventDispatcher();
 	import { Application } from '@splinetool/runtime';
 	import { Pulse } from 'svelte-loading-spinners';
+	
+	// import { getWaveaudiAuto } from '../guideWavesurfer.svelte';
+	// import GuideWavesurfer from '../guideWavesurfer.svelte';
 
 	let canvas: any;
 	let loading : boolean = $state(true);
@@ -12,6 +15,7 @@
 	let avatarScriptText: string = $state("")
 	let textState = $state(false)
 	let brunoTextLoadingState = $state(false)
+	let audioUrl = $state('');
 	
 
 	const handleUpdateText = () => {
@@ -27,11 +31,41 @@
 		
 			}else{
 				clearInterval(IntervalId)
+				// console.log('avatarScriptText', avatarScriptText);
 			
 			}
 		}, 100)
 	
 }
+
+	// const handleTTSReq = async (speechText: string) => {
+	// 	try {
+	// 		const response = await fetch('/api/technology/speechbot', {
+	// 			method: 'POST',
+	// 			body: JSON.stringify({ data: speechText }),
+	// 			headers: {
+	// 				'content-type': 'application/json'
+	// 			}
+	// 		});
+
+		
+
+	// 		const result = await response.json();
+	// 		console.log('result', result);
+
+	// 		if (result.success) {
+	// 			audioUrl = await result.audioUrl;
+	// 			if (audioUrl) {
+	// 				console.log('result', result);
+	// 				getWaveaudiAuto(audioUrl);
+	// 			}
+	// 		}
+	// 	} catch (error) {
+	// 		console.error('Error in handleTTSReq:', error);
+	// 	}
+
+	// }
+		
 
 
 	$effect(() => {
@@ -49,6 +83,7 @@
 			textState = true 
 			brunoTextLoadingState = true 
 			handleUpdateText()
+			// handleTTSReq(openeningText)
 			
 			
 		});
@@ -99,12 +134,14 @@
 
 				
 				<canvas bind:this={canvas} class="avater"/>
+
 				
 				
 			</div>
 		</div>
 		<div class="loadingArea">
 			<!-- <Pulse size="90"  unit="px" /> -->
+			<!-- <GuideWavesurfer/> -->
 		</div>
 		
 		

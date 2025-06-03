@@ -33,10 +33,10 @@
 	let imageUploadToggle = $state(true);
 	let textEditToggle =  $state(false);
 	let scansToggle = $state(false);
-	let navAssistantToggle_Structured = $state(true);
+	let navAssistantToggle_Structured = $state(false);
 	let navAssistantToggle_History = $state(false); //back to false - default 
-	let navAssistantToggle_Patient = $state(false); //back to true - default 
-	let enterPageToggle = $state(true); //back to false - default 
+	let navAssistantToggle_Patient = $state(true); //back to true - default 
+	let enterPageToggle = $state(false); //back to false - default 
 	let inputValue = $state('');
 	let isMobile = false;
 	let disableAiStartBtn = $state(true)
@@ -48,10 +48,14 @@
 	let showNav = $state(false) //back to false - default 
 	let resetState = $state(false)
 	let MenuOptionToggle = $state(false)
-	let OptionStateDes =  $state(false)
-	let OptPatientState =  $state("false")
-	let studyPatientState =  $state("false")
-	let ExamState =  $state("false")
+	let OptionStateDes =  $state(true)
+	let OptionStateVal = $state("Patient Information")
+	let studyPatientStateVal =  $state("Study Information")
+	let ExamStateVal =  $state("Examination")
+
+	let optionExamToggle =  $state(false) 
+	let optionStudyInfoToggle =  $state(false) 
+	let OptPatientStateToggle =  $state(false)
 
 
 
@@ -93,7 +97,24 @@
 
 	const handleUpdateOption = (eventoption: string) => { 
 
-		console.log('eventoption');
+		console.log('eventoption', eventoption);
+		 
+		if(eventoption == "DescriptionHeader"){
+			OptionStateDes = !OptionStateDes
+		}else if(eventoption == "Examination"){
+			console.log('e');
+			ExamStateVal == "Examination" ? "" : "Examination"
+			optionExamToggle = !optionExamToggle
+
+
+		}else if(eventoption == "StudyInformation"){
+			studyPatientStateVal == "Study Information" ? "" : "Study Information"
+			optionStudyInfoToggle = !optionStudyInfoToggle
+		}else if(eventoption == "patient"){
+
+			OptionStateVal == "Patient Information" ? "" : "Patient Information"
+			OptPatientStateToggle = !OptPatientStateToggle
+		}
 
 	}
 	// Binds the json text to the input value
@@ -562,11 +583,12 @@ if (audioTrackArrState.length !== 0) {
 										<div class="MenuSelectOptionContent">
 											<div class="MenuSelectionOptionItem">
 												<div class="optionTitle">
-													Header 
+													<p>Header</p> 
 												</div>
 												<div class="OptionToggleContent">
 
 													
+													{#if OptionStateDes}
 													<img
 																src="mminus.png"
 																alt="widget"
@@ -575,6 +597,17 @@ if (audioTrackArrState.length !== 0) {
 																
 
 													/>
+													{:else}
+													<img
+																src="pplus.png"
+																alt="widget"
+																class="minusBtnIcon"
+																on:click={() => handleUpdateOption("DescriptionHeader")}
+																
+
+													/>
+
+													{/if}
 												</div>
 											</div>
 											 <!--Patient  -->
@@ -583,12 +616,21 @@ if (audioTrackArrState.length !== 0) {
 													Patient 
 												</div>
 												<div class="OptionToggleContent">
+													{#if OptPatientStateToggle}
+													<img
+													src="pplus.png"
+													alt="widget"
+													class="minusBtnIcon"
+													on:click={() => handleUpdateOption("patient")}
+														/>
+													{:else}
 													<img
 																src="mminus.png"
 																alt="widget"
 																class="minusBtnIcon"
-																on:click={() => handleUpdateOption("DescriptionHeader")}
+																on:click={() => handleUpdateOption("patient")}
 													/>
+													{/if}
 												</div>
 											</div> 
 
@@ -598,12 +640,26 @@ if (audioTrackArrState.length !== 0) {
 													Study Information 
 												</div>
 												<div class="OptionToggleContent">
+
+													{#if optionStudyInfoToggle}
+
+													<img
+													src="pplus.png"
+													alt="widget"
+													class="minusBtnIcon"
+													on:click={() => handleUpdateOption("StudyInformation")}
+														/>
+													{:else}
 													<img
 																src="mminus.png"
 																alt="widget"
 																class="minusBtnIcon"
-																on:click={() => handleUpdateOption("DescriptionHeader")}
+																on:click={() => handleUpdateOption("StudyInformation")}
 													/>
+
+													
+
+													{/if}
 												</div>
 											</div> 
 
@@ -613,12 +669,24 @@ if (audioTrackArrState.length !== 0) {
 													Examination 
 												</div>
 												<div class="OptionToggleContent">
+
+													{#if optionExamToggle}
+													<img
+																src="pplus.png"
+																alt="widget"
+																class="minusBtnIcon"
+																on:click={() => handleUpdateOption("Examination")}
+													/>
+													{:else}
 													<img
 																src="mminus.png"
 																alt="widget"
 																class="minusBtnIcon"
-																on:click={() => handleUpdateOption("DescriptionHeader")}
+																on:click={() => handleUpdateOption("Examination")}
+																
+
 													/>
+													{/if}
 												</div>
 											</div> 
 
@@ -629,7 +697,9 @@ if (audioTrackArrState.length !== 0) {
 											<div class="imageReportSectionHeader">
 												<p class="assitantTitle">AI Reporting Assistant</p>
 											</div>
+											<!-- Ai Section menu field -->
 											<div class="assistantContentSection">
+												{#if OptionStateDes}
 												<div class="metadataSection">
 													<div class="metadataContent">
 														<div class="metadataBox">
@@ -646,7 +716,12 @@ if (audioTrackArrState.length !== 0) {
 														</div>
 													</div>
 												</div>
-												<div class="aicontentSection">
+												{/if}
+												<div class="aicontentSection"
+												style="height: {OptionStateDes == true
+												? '70%'
+												: '100%'};"
+												>
 													<div class="aicontentSectionHeader">
 														<div class="aicontentSectionHeader-State" >
 														{#if MenuOptionToggle}
@@ -675,7 +750,11 @@ if (audioTrackArrState.length !== 0) {
 														{#if kneejsonData.sections.length > 0}
 															{#each kneejsonData.sections as items (items)}
 																{#if ItemToggle != null && ItemToggle.name == items.name}
-																	<div class="selected-item-area">
+																	<div class="selected-item-area"
+																	style="height: {OptionStateDes == true ||  optionExamToggle == false || optionStudyInfoToggle == false || OptPatientStateToggle == false
+																	? '56%'
+																	: '42%'};"
+																	>
 																		<div class="selected-Item-header">
 																			<div class="selected-Item-title">
 																				<div>
@@ -687,21 +766,22 @@ if (audioTrackArrState.length !== 0) {
 
 																			{#if selectedToggle.length > 0}
 																				 
-
-																				<div class="select-Text-Lable"
+																						<!-- Jump Back feature -->
+																				<!-- <div class="select-Text-Lable"
+																			
+																				> -->
 																				
-																				>
 																							<!-- selectedToggle = arr -->
 
-																						<img
+																						<!-- <img
 																						src="undo.png"
 																						alt="widget"
 																						class="resetbtn"
 																					 	on:click={handleResetQuestion}
-																					/>
+																					/> -->
 
 
-																				</div>
+																				<!-- </div> -->
 
 																			  {:else}
 																																								
@@ -783,7 +863,17 @@ if (audioTrackArrState.length !== 0) {
 																		class="text-item-name-area"
 																		style="border-color: {items.name == 'Findings'
 																			? 'rgb(43, 121, 194)'
-																			: 'white'};"
+																			: 'white'};
+																			height: {OptionStateDes == true
+																			? '6%'
+																			: '4%'};
+																			display: {items.name == ExamStateVal && optionExamToggle || items.name == studyPatientStateVal && optionStudyInfoToggle || items.name == OptionStateVal && OptPatientStateToggle
+																			? 'none'
+																			: 'flex'};
+																			
+
+																			
+																			"
 																	>
 																		<div
 																			class="text-item-name"
@@ -974,6 +1064,7 @@ if (audioTrackArrState.length !== 0) {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+	
 	}
 
 	.metadataSection {
@@ -983,6 +1074,7 @@ if (audioTrackArrState.length !== 0) {
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
+		
 	}
 
 	.metadataContent {
@@ -1211,10 +1303,12 @@ if (audioTrackArrState.length !== 0) {
 		height: 100%;
 		/* background-color: #4CAF50; */
 		font-family: system-ui;
-		font-size: 16px;
+		font-size: 14px;
 		padding-left: 2% ;
 		border-right:  1px solid rgba(255, 255, 255, 0.175);
 		font-weight: 500;
+		display: flex;
+		align-items: center;
 		
 		
 		
@@ -1564,7 +1658,7 @@ if (audioTrackArrState.length !== 0) {
 		align-items: center;
 		justify-content: center;
 		color: rgba(255, 255, 255, 0.879);
-		font-size: 19px;
+		font-size: 16px;
 		font-family: sans-serif;
 		font-weight: 600;
 		border: 1px solid rgba(255, 255, 255, 0.175);

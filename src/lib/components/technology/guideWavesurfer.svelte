@@ -4,8 +4,9 @@
 	let audioUrl = $state('');
 	import { loadAiTextToggle } from '../../../routes/(public)/Technology/+page.svelte';
 
+
 	// Receives the updated audio data
-	export function getWaveaudi(audionode) {
+	export function getWaveaudiAuto(audionode) {
 		try {
 			audioUrl = audionode;
 		} catch (error) {
@@ -62,6 +63,7 @@
 	{#if audioUrl}
 		<div bind:this={container} />
 	{/if}
+    
 </div>
 
 <style>

@@ -83,20 +83,7 @@
 		dispath('startReporting')
 
 	}
-
-	const handleScanning = () => {
-		ShowBrunoState = false
-		console.log('loadNextQuestion');
-		loadArrtracker = [];
-		questionNum = 0;
-		showStartBtn = false;
-		selectedArr = [];
-		loadNextQuestion();
-		closeNav(false);
-		
-	}
-
-	 const  loadNextQuestion = () => {
+	const  loadNextQuestion = () => {
 			
 			if(questionNum < countquestionLength){
 			
@@ -137,6 +124,20 @@
 		// scanToggle = false;
 		}
 
+
+	const handleScanning = () => {
+		ShowBrunoState = false
+		
+		loadArrtracker = [];
+		questionNum = 0;
+		showStartBtn = false;
+		selectedArr = [];
+		loadNextQuestion();
+		closeNav(false);
+		
+	}
+
+	
 	const handleAutoTextFillOut = () => {
 
 			const IntervalId = setInterval(() => { 
@@ -164,10 +165,10 @@
 		}
 
 		
-		if(ShowBrunoState == true){
+		
 			let app = new Application(canvas);
 
-			console.log('');
+			
 			loading = true;
 			const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
 				const obj = app.findObjectByName("brunov1")
@@ -178,7 +179,7 @@
 				handleAutoTextFillOut()
 			});
 
-		}
+		
 		
 
 })
