@@ -7,8 +7,29 @@
 
 	let canvas: any;
 	let loading: boolean = true;
+	let openeningText: string = "Welcome to the Scanlytics Conversational AI Assistant. My name is Bruno, and I’m your AI guide. Please press “Start” to begin the reporting process."
+	let index = 0 
+	let avatarScriptText: string = $state("")
+	let textState = $state(false)
 	
 
+	const handleUpdateText = () => {
+
+
+		const IntervalId = setInterval(() => { 
+			
+			if(index < openeningText.length){
+			avatarScriptText += openeningText.charAt(index);
+			
+			index++;
+			textState = true 
+		
+			}else{
+				clearInterval(IntervalId)
+			}
+		}, 100)
+	
+}
 
 
 	$effect(() => {
@@ -20,22 +41,17 @@
 		const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
 			const obj = app.findObjectByName("brunov1")
 			console.log('obj', obj);
-			// if (obj?.position) {
-				// Adjust position
-			// 	console.log('iits in postion',obj?.position);
-			// 	obj.position.x += 10;
-			// 	obj.position.y = 50;
-			// 	obj.position.z -= -15;
-			// 	}
+			
 			loading = false;
 		});
 
-		console.log('spline', splineobj);
-		// app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
-		// 	const obj = app.
-		// 	loading = false;
-		// });
-		console.log('app', app);
+	
+		if(textState == false){
+			handleUpdateText()
+		}
+		
+
+
 
 	});
 
@@ -67,15 +83,18 @@
 		<div class="avatarcanvas">
 		
 			<div class="aibotAvatar">
-				<canvas bind:this={canvas} class="avater"/>
-				<div>
-					helo
+				
+				<div class="avatarText"> 
+					{avatarScriptText}
+					
 				</div>
+				<canvas bind:this={canvas} class="avater"/>
+				
 				
 			</div>
 		</div>
 		<div class="loadingArea">
-			<Pulse size="90"  unit="px" />
+			<!-- <Pulse size="90"  unit="px" /> -->
 		</div>
 		
 		
@@ -132,6 +151,7 @@
 		height: 10%;
 		/* background-color: #fff; */
 		top: 90%;
+		/* left: 45%; */
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -141,14 +161,46 @@
 
 	.aibotAvatar{
 		/* background-color: rgba(226, 17, 52, 0.619); */
-		width:  60%;
+		width:  10%;
 		height: 30%;
-		margin-top: 39%;
-		/* position: absolute; */
-		top: 0%;
-		/* left: 70%; */
+		/* margin-top: 39%; */
+		position: absolute;
+		top: 70%;
+		left: 80%;
 		z-index: -0;
 	}
+
+	@keyframes upDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+	.avatarText{
+		width: 120%;
+		height: 40%;
+		background-color: rgb(3, 32, 68);
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+		border-radius: 7px;
+		font-family: system-ui;
+		color: white;
+		padding: 2%;
+		/* font-size: 20px; */
+		position: relative;
+		top: 30%;
+		left: -25%;
+		z-index: 5;
+		animation: upDown 2s ease-in-out infinite;
+
+	}
+
+
 
 	.avater{
 		width: 20%;
