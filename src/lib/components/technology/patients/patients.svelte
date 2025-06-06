@@ -108,7 +108,7 @@
 	// }
 
 	const handleInput = () => {
-		console.log('userName', userName);
+		// console.log('userName', userName);
 		if(userName){
 			nameToggleCheck = true
 		}
@@ -466,7 +466,7 @@
 .formUsermName{
 	color: rgb(165, 158, 158) ;
 	font-family: system-ui;
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: 700;
 	
 }
@@ -482,8 +482,8 @@
 }
 
 .formInput{
-	width: 50%;
-	height: 30%;
+	width: 70%;
+	height: 33%;
 	border-radius: 7px;
 	font-size: 20px;
 	padding-left: 2%; 
@@ -506,10 +506,14 @@
 
 .sumbitBtn{
 	width: 50%;
-	height: 50%;
+	height: 60%;
 	background: rgb(174, 174, 176);
 	cursor: pointer;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-size: 19px;
+	font-weight: 700;
+	color: #0d1117;
+	
 }
 
 	.imgScanSection {

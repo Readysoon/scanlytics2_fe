@@ -113,7 +113,7 @@
 
 		loading  = true;
 		
-		const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').finally(() => {
+		const splineobj = app.load('https://prod.spline.design/3uYTYJgFlEMs1RGK/scene.splinecode').finally(() => {
 			const obj = app.findObjectByName("brunov1")
 			console.log('obj', obj);
 			
