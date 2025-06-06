@@ -35,6 +35,9 @@
 	let avatarScriptText: string = $state("")
 	let brunoTextLoadingState = $state(false)
 	let ShowBrunoState =  $state(true)
+	let val =  $state(0)
+
+	let scanPercentState = $state(0)
 
 
 
@@ -83,6 +86,34 @@
 		dispath('startReporting')
 
 	}
+
+
+	const updateProgressUI = (progressVal: any) => {
+
+
+		// console.log('progressVal', progressVal);
+		
+		
+		if(progressVal == 100){
+
+			val +=  countquestionLength
+
+			if(val <= 100){
+				for (let i = 0; i <= val; i++) {
+					scanPercentState = i 
+					
+				}
+			}
+		} 
+
+		
+
+
+
+
+
+
+	}
 	const  loadNextQuestion = () => {
 			
 			if(questionNum < countquestionLength){
@@ -94,8 +125,12 @@
 			
 				progress++;
 
+				
+
+
 			if(progress >= 100){
 				
+				updateProgressUI(progress)
 				clearInterval(progressInterval);
 				// console.log('questionNum', questionNum);
 				loadArrtracker.push(questionNum);
@@ -103,19 +138,26 @@
 				resultAreaToggle = true;
 				
 				
+				
 				if(questionNum == countquestionLength){
 					scanToggle = false;
 					loadingToggle = false;
 					scanIconToggle = false;
 					showStartBtn = true;
+					
 				}
 				
 				loadNextQuestion();
 
 
 			}
+
+		
+
 			
 			}, 20);
+
+			
 		
 				
 
@@ -127,7 +169,8 @@
 
 	const handleScanning = () => {
 		ShowBrunoState = false
-		
+		scanPercentState = 0
+		val = 0
 		loadArrtracker = [];
 		questionNum = 0;
 		showStartBtn = false;
@@ -179,6 +222,8 @@
 				handleAutoTextFillOut()
 			});
 
+
+			
 		
 		
 
@@ -276,7 +321,7 @@
 			
 				<div class="scanningFormArea">
 					<div class="scanningFormText">
-						<p> 20%</p>
+						<p> {scanPercentState}%</p>
 					
 					</div>
 					<div>
@@ -290,7 +335,7 @@
 				{:else}
 				
 				<div class="startScanningArea" on:click={handleScanning}>
-					<button >Start Scanning</button>
+					<button class="startScanBtn" >Start Scanning</button>
 				</div>
 				
 				{/if}
@@ -849,6 +894,31 @@
 		
 	}
 
+	.startScanningArea{
+		/* background-color: pink; */
+		height: 100%;
+		width: 40%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+
+	.startScanBtn{
+		height: 70%;
+		width: 30%;
+		/* border: 1px solid rgb(43, 121, 194); */
+		border: 1px solid rgb(0, 0, 0);
+		border-radius: 7px;
+		/* background-color: rgba(58, 139, 210, 0.262); */
+		/* background-color: rgba(17, 100, 243, 0.912); */
+		background-color: rgba(254, 127, 0, 0.767);
+		font-family: system-ui;
+		color: rgb(11, 11, 11);
+		cursor: pointer;
+		font-weight: 600;
+
+	}
 
 
 </style>
