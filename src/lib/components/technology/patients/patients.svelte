@@ -3,14 +3,33 @@
 
     import { createEventDispatcher } from 'svelte';
 	import { Application } from '@splinetool/runtime';
+	import { getWaveaudiAuto } from '../guideWavesurfer.svelte';
+	
+	import GuideWavesurfer from '../guideWavesurfer.svelte'
+
+	
+
+
 	let canvas: any;
 	let loading: boolean = true;
-	let openeningText: string = "Please click on the selected robot icon to start the reporting process:"
+	let userName: string = $state("")
+	let openeningText: string = $state("")
 	let index = 0 
 	let avatarScriptText: string = $state("")
 	let brunoTextLoadingState = $state(false)
 	let addIcon = $state(false)
 	let textState = $state(false)
+	let toggleAudioDefaultBtn = $state(false)
+	let audioUrl = $state('');
+	let defaultPlayState =  $state(false)
+	let enableViewTone = $state(true)
+	let defaultPatientTextState = $state(true)
+	let ToneBtnState = $state(true)
+	let nameToggleCheck  = $state(false) //default false 
+	let btnState = $state(true)
+	
+	
+
 
 	
 
@@ -24,13 +43,13 @@
 
 	}
 
-	const handleUpdateText = () => {
+	const handleUpdateText = (textData: string) => {
 
 
 	const IntervalId = setInterval(() => { 
 		
-		if(index < openeningText.length){
-		avatarScriptText += openeningText.charAt(index);
+		if(index < textData.length){
+		avatarScriptText += textData.charAt(index);
 		
 		index++;
 	
@@ -41,17 +60,81 @@
 			addIcon = true
 
 		}
-	}, 100)
+	}, 20)
 
 	}
+	const handleTTSReq = async (speechText: string) => {
+		try {
+			const response = await fetch('/api/technology/speechbot', {
+				method: 'POST',
+				body: JSON.stringify({ data: speechText }),
+				headers: {
+					'content-type': 'application/json'
+				}
+			});
+
+		
+
+			const result = await response.json();
+			console.log('result', result);
+			
+
+			if (result.success) {
+				audioUrl = await result.audioUrl;
+				if (audioUrl) {
+					console.log('result', result);
+					getWaveaudiAuto(audioUrl);
+				}
+			}
+		} catch (error) {
+			console.error('Error in handleTTSReq:', error);
+		}
+
+	}
+
+	const handleToneOn = () => { 
+		
+		ToneBtnState = !ToneBtnState
+		defaultPatientTextState = false
+		
+		
+		// handleTonOnUpdateText(updatedText)
+		
+	}
+
+	// const handleUserInput = (userNamVal: string) => { 
+	// 	console.log('handleUserInput', userNamVal);
+
+	// }
+
+	const handleInput = () => {
+		console.log('userName', userName);
+		if(userName){
+			nameToggleCheck = true
+		}
+	
+	}
+
+
+
+	const handleSubmit = () => {
+		
+			
+			nameToggleCheck = true
+	
+		
+
+	}
+
 
 	
 
 	$effect(() => {
-		console.log('trigget in effect');
-		let app = new Application(canvas);
 
-		console.log('');
+		if(nameToggleCheck){
+			
+		
+		let app = new Application(canvas);
 		loading = true;
 		const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
 			const obj = app.findObjectByName("brunov1")
@@ -66,17 +149,62 @@
 			brunoTextLoadingState = true 
 			textState = true
 			loading = false;
-			handleUpdateText()
+			openeningText = `Freut mich, Sie kennenzulernen, ${userName}. Bitte klicken Sie auf den Roboter-Button im blau markierten Patientenbereich unter dem Namen Ben Krause.`
+			handleUpdateText(openeningText)
+			// if(!nameToggleCheck){
+				
+			// }
+						
 		});
+
+		if(!defaultPatientTextState){
+			
+			console.log('triggered in defaultTextState on patient ');
+			
+			handleTTSReq(openeningText)
+			defaultPlayState = true
+		}
+		}
+
+	   if(userName != ""){
+		
+		btnState = false
+	   }
+	
 
 
 		
 		
 	});
+
+	
+
+
+
 </script>
 
 
+
 <div class="medicalConversationArea"> 
+
+{#if !nameToggleCheck}
+		 <div class="namecheckoverLay">
+			
+			<div class="nameAskContainer">
+				<div class="askforNameHeader">
+					<p class="formUsermName">Enter your Name</p>
+				</div>
+				<div class="userNameInputSection">
+				  <input type="text" name="" id="" class="formInput" bind:value={userName} on:change={handleInput}  placeholder="Please Enter your Name" >
+				</div>
+				<div class="formBtnArea">
+				<button class="sumbitBtn" on:click={handleSubmit} disabled={btnState}>Submit</button>
+				</div>
+			</div>
+
+		 </div>
+{/if}
+
 <div class="imgScanSection">
 	<div class="medicalAIImageContent">
 		
@@ -214,9 +342,15 @@
 			<div class="avatarcanvas">
 		
 				{#if brunoTextLoadingState}
-				<div class="avatarText"> 
-					{avatarScriptText}
+				<div class="avatarContentArea"> 
+					<div class="avatarText">
+						{avatarScriptText}
+					</div>
+					
+					<div class="avatarNavIcon">
 					{#if addIcon}
+
+					
 
 					<div class="fingerLogoArea">
 						<img src="finger.png" alt="widget" class="fingerIcon" />
@@ -226,17 +360,53 @@
 
 					{/if}
 
+						
+					</div>
+					<!-- {#if enableViewTone}
+					<div class="audioSet"
+					
+					>
+
+						<button class="tonOffBtn" on:click={handleToneOn}>
+
+							{#if ToneBtnState}
+								
+							<img src="tonoff.png" alt="Scanlytics" class="tonOffIcon">
+
+							{:else}
+							<img src="tonon.png" alt="Scanlytics" class="tonOffIcon">
+
+							{/if}
+						</button>
+						
+					</div>
+					{/if} -->
+					
 					
 				</div>
 				{/if}
 				<div class="aibotAvatar">
 					<canvas bind:this={canvas} class="avater"/>
 				</div>
-			</div>
-		
-		
+
 				
+			</div>
+
+
+			
+		
+		
+			<dir class="loadingPlayAudioArea">
+			 
+				
+				<!-- <GuideWavesurfer/> -->
+			 
+				
+			</dir>
+			
 	</div>
+
+
 </div>
 </div>
 
@@ -253,6 +423,94 @@
 		/* padding: 0.5%; */
 		/* padding-top: 0.51%;# */
 	}
+
+.namecheckoverLay{
+	background-color: rgba(24, 24, 24, 0.897);
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	z-index: 20;
+	top: 0;
+	left: 0;
+	/* color: white; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+
+}
+
+.nameAskContainer{
+	width: 20%;
+	height: 20%;
+	background-color: #0d1117;
+
+	border: 1px solid rgba(255, 255, 255, 0.175);
+	border-radius: 7px;
+}
+
+
+.askforNameHeader{
+	height: 20%;
+	width: 100%;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+	display: flex;
+	align-items: center;
+	background-color: rgba(71, 68, 68, 0.175) ;
+	padding-left: 2%;
+
+}
+
+
+
+.formUsermName{
+	color: rgb(165, 158, 158) ;
+	font-family: system-ui;
+	font-size: 30px;
+	font-weight: 700;
+	
+}
+
+
+.userNameInputSection{
+	height: 50%;
+	width: 100%;
+	/* background-color: #ffffff2b; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.formInput{
+	width: 50%;
+	height: 30%;
+	border-radius: 7px;
+	font-size: 20px;
+	padding-left: 2%; 
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+
+
+}
+
+
+.formBtnArea{
+	height: 25%;
+	width: 100%;
+	/* background: rgba(255, 166, 0, 0.151); */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.sumbitBtn{
+	width: 50%;
+	height: 50%;
+	background: rgb(174, 174, 176);
+	cursor: pointer;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 
 	.imgScanSection {
 		/* background-color: rgba(245, 222, 179, 0.181); */
@@ -282,6 +540,19 @@
 		/* padding-top: 1%; */
 	} 
 
+
+	.loadingPlayAudioArea{
+		position: absolute;
+
+		width: 30%;
+		height: 5%;
+		background-color: #ffffff1e;
+		top: 90%;
+		/* left: 45%; */
+		display: none;
+		justify-content: center;
+		align-items: center;
+	}
 	
 	.avatarcanvas{
 		/* background-color: pink; */
@@ -305,13 +576,14 @@
     }
 }
 
-	.avatarText{
+	.avatarContentArea{
 		width: 100%;
-		height: 35%;
+		height: 50%;
 		background-color: rgb(3, 32, 68);
 		text-align: center;
 		display: flex;
 		justify-content: center;
+		flex-direction: column;
 		align-items: center;
 		border: 1px solid rgba(255, 255, 255, 0.175);
 		border-radius: 7px;
@@ -323,16 +595,86 @@
 		left: -25%;
 		z-index: 5;
 		animation: upDown 2s ease-in-out infinite;
+		padding: 3%;
+	}
+
+	.audioSet{
+	 /* background-color: #ffffff08; */
+	 /* position: absolute; */
+	 width: 100%;
+	 height: 20%;
+	 display: flex;
+	 justify-content: flex-end;
+	 align-items: center;
+	 padding-right: 2%;
+	 padding-bottom: 1%;
+	 /* top: 86%; */
+	 /* left: 85%; */
+	}
+	.tonOffBtn{
+		width: 15%;
+		height: 100%;
+	
+		background-color: rgba(250, 235, 215, 0);
+		
+		cursor: pointer;
+		background: none;
+		/* border: none; */
+		/* padding: 1; */
+		margin: 0;
+		font: inherit;
+		color: inherit;
+		
+	}
+
+	.tonOffIcon{
+		width: 100%;
+		height: 100%;
+	}
+	.avatarText{
+		/* background-color: pink; */
+		height: 70%;
+		width: 100%;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 1%;
+	}
+
+	.avatarNavIcon{
+		/* background-color: rgb(197, 192, 255); */
+		height: 20%;
+		width: 100%;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		
+	}
+
+	.fingerLogoArea{
+		/* background-color: #fff; */
+		width: 37%;
+		/* position: absolute; */
+		/* top: 65%; */
+		/* left: 69%; */
+		display: flex;
+		gap: 10%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		
 	}
 
 	.aibotAvatar{
 		/* background-color: rgba(226, 17, 52, 0.619); */
 		width:  100%;
 		height: 90%;
-		margin-top: 5%;
-		/* position: absolute; */
-		top: 0%;
-		/* left: 70%; */
+		/* margin-top: 10%; */
+		position: absolute;
+		top: 20%;
+		left: -5%;
 		z-index: -0;
 		
 	}
@@ -574,16 +916,7 @@
 		justify-content: center;
 		align-items: center;
 	}
-	.fingerLogoArea{
-		/* background-color: #fff; */
-		width: 37%;
-		position: absolute;
-		top: 65%;
-		left: 69%;
-		display: flex;
-		gap: 10%;
-		align-items: center;
-	}
+	
 
 	.fingerIcon{
 		height: 10%;

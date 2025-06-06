@@ -5,74 +5,112 @@
 	import { Application } from '@splinetool/runtime';
 	import { Pulse } from 'svelte-loading-spinners';
 	
-	// import { getWaveaudiAuto } from '../guideWavesurfer.svelte';
-	// import GuideWavesurfer from '../guideWavesurfer.svelte';
+	import { getWaveaudiAuto } from '../guideWavesurfer.svelte';
+	import GuideWavesurfer from '../guideWavesurfer.svelte';
 
 	let canvas: any;
 	let loading : boolean = $state(true);
-	let openeningText: string = "Welcome to the Scanlytics Conversational AI Assistant. My name is Bruno, and I’m your AI guide. Please press “Start” to begin the reporting process."
+	let openeningText: string = "Willkommen beim Scanlytics Conversational AI Assistant. Mein Name ist Bruno und ich bin Ihr KI-Assistent. Bitte drücken Sie auf „Start“, um mit dem Befundungsprozess zu beginnen."
 	let index =  $state(0) 
+	let indexTonOn =  $state(0) 
 	let avatarScriptText: string = $state("")
 	let textState = $state(false)
 	let brunoTextLoadingState = $state(false)
 	let audioUrl = $state('');
+	let enableViewTone = $state(true)
+	let ToneBtnState = $state(true)
+	let defaultTextState = $state(true)
+	let avatarScriptTonText =  $state("")
+	let showTonOnTextState = $state(true)
 	
+	// Handles the updated text after user clicks on the btn btn
+	const handleTonOnUpdateText = (tonOnTextData: string) => { 
 
-	const handleUpdateText = () => {
+	
+		const IntervalId = setInterval(() => { 
+			
+			if(indexTonOn < tonOnTextData.length){
+				avatarScriptTonText += tonOnTextData.charAt(indexTonOn);
+				console.log('avatarScriptTonText', avatarScriptTonText);
+			
+				indexTonOn++;
+			
+		
+			}else{
+				clearInterval(IntervalId)
+				enableViewTone = true
+
+				// console.log('avatarScriptText', avatarScriptText);
+			
+			}
+		}, 100)
+	
+	}
+
+	// Handles the default text show
+	const handleUpdateText = (openeningTextData: string) => {
 
 
 		const IntervalId = setInterval(() => { 
 			
 			if(index < openeningText.length){
-			avatarScriptText += openeningText.charAt(index);
+			avatarScriptText += openeningTextData.charAt(index);
 			
 			index++;
 			
 		
 			}else{
 				clearInterval(IntervalId)
+				enableViewTone = true
+
 				// console.log('avatarScriptText', avatarScriptText);
 			
 			}
-		}, 100)
+		}, 20)
 	
+
+
 }
 
-	// const handleTTSReq = async (speechText: string) => {
-	// 	try {
-	// 		const response = await fetch('/api/technology/speechbot', {
-	// 			method: 'POST',
-	// 			body: JSON.stringify({ data: speechText }),
-	// 			headers: {
-	// 				'content-type': 'application/json'
-	// 			}
-	// 		});
+	const handleTTSReq = async (speechText: string) => {
+		try {
+			const response = await fetch('/api/technology/speechbot', {
+				method: 'POST',
+				body: JSON.stringify({ data: speechText }),
+				headers: {
+					'content-type': 'application/json'
+				}
+			});
 
 		
 
-	// 		const result = await response.json();
-	// 		console.log('result', result);
+			const result = await response.json();
+			console.log('result', result);
 
-	// 		if (result.success) {
-	// 			audioUrl = await result.audioUrl;
-	// 			if (audioUrl) {
-	// 				console.log('result', result);
-	// 				getWaveaudiAuto(audioUrl);
-	// 			}
-	// 		}
-	// 	} catch (error) {
-	// 		console.error('Error in handleTTSReq:', error);
-	// 	}
+			if (result.success) {
+				audioUrl = await result.audioUrl;
+				if (audioUrl) {
+					console.log('result', result);
+					getWaveaudiAuto(audioUrl);
+				}
+			}
+		} catch (error) {
+			console.error('Error in handleTTSReq:', error);
+		}
 
-	// }
+	}
+
+
+
+	
 		
 
 
 	$effect(() => {
-		console.log('trigget in effect');
-		let app = new Application(canvas);
+	
+		const handleLoadAiAssistant = () => {
+			let app = new Application(canvas);
 
-		console.log('');
 		loading  = true;
 		
 		const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').finally(() => {
@@ -82,11 +120,35 @@
 			loading  = false;
 			textState = true 
 			brunoTextLoadingState = true 
-			handleUpdateText()
-			// handleTTSReq(openeningText)
+			handleUpdateText(openeningText)
+
+			
+		
+	
 			
 			
 		});
+			
+		}
+
+		handleLoadAiAssistant()
+
+		if(!defaultTextState){
+			
+		const updatedText = `Super, danke! dass Sie den Ton eingeschaltet haben! Willkommen bei der Scanlytics Conversational AI Assistant Demo-Applikation. Mein Name ist Bruno und Ich bin Ihr AI-Assistent und begleite Sie durch die Anwendung.
+						Bitte klicken Sie als Erstes auf den Start-Button, um zu beginnen.`
+
+		console.log('triggert in showTonOnTextState if condition');	
+		handleTonOnUpdateText(updatedText)
+		handleTTSReq(updatedText)
+	}
+
+			
+		
+
+
+		
+	
 
 	
 	
@@ -96,10 +158,30 @@
 
 	});
 
+	const handleToneOn = () => { 
+		console.log('tone is on ');
+
+		ToneBtnState = !ToneBtnState
+		const updatedText = `Ah, super – danke, dass Sie den Ton eingeschaltet haben!
+							Willkommen bei der Canlytics Conversational AI Assistant Demo-Applikation.
+							Mein Name ist Bruno, und ich freue mich sehr, Sie kennenzulernen.
+
+							Ich bin Ihr KI-Assistent und begleite Sie durch die Anwendung.
+							Bitte klicken Sie als Erstes auf den Start-Button, um zu beginnen.`
+ 
+
+		defaultTextState = false
+		showTonOnTextState = false
+		// handleTonOnUpdateText(updatedText)
+		
+	}
+
 
 	const handleEnterPage = () => {
 		dispath('enterPage');
+		defaultTextState = true
 		searchNav(true);
+		openeningText = ""
 	};
 
 </script>
@@ -126,22 +208,78 @@
 			<div class="aibotAvatar">
 				
 				{#if brunoTextLoadingState }
-				<div class="avatarText"> 
-					{avatarScriptText}
+				<div class="avatarTextArea"
+				style="width: {!defaultTextState
+				? '140%'
+				: '120%'};
+				height: {!defaultTextState
+				? '80%'
+				: '30%'};
+				top: {!defaultTextState
+				? '1%'
+				: '30%'};"
+				
+				> 
+					{#if defaultTextState}
+					<div class="avatarTextContent">
+						{avatarScriptText}
+					</div>
+					{:else}
+					<div class="avatarTextContent"
+					style="height: {!defaultTextState
+						? '86%'
+						: '80%'};"
+					>
+						
+						{avatarScriptTonText}
+					</div>
+					{/if}
+				
+
+					{#if enableViewTone}
+					<!-- <div class="audioSet"
+					style="height: {!defaultTextState
+					? '14%'
+					: '20%'};"
+					>
+
+						<button class="tonOffBtn" on:click={handleToneOn}>
+
+							{#if ToneBtnState}
+								
+							<img src="tonoff.png" alt="Scanlytics" class="tonOffIcon">
+
+							{:else}
+							<img src="tonon.png" alt="Scanlytics" class="tonOffIcon">
+
+							{/if}
+						</button>
+						
+					</div> -->
+					{/if}
 					
 				</div>
 				{/if}
 
+
+				<div class="avatarArea "
 				
-				<canvas bind:this={canvas} class="avater"/>
+				style="top: {!defaultTextState
+				? '-30%'
+				: '0%'}"
+				>
+					<canvas bind:this={canvas} class="avater"/>
+				</div>
+				
 
 				
 				
 			</div>
 		</div>
-		<div class="loadingArea">
+		<div class="loadingArea" hidden>
 			<!-- <Pulse size="90"  unit="px" /> -->
-			<!-- <GuideWavesurfer/> -->
+			 
+			<GuideWavesurfer/>
 		</div>
 		
 		
@@ -151,8 +289,12 @@
 		<div>
 			<button class="StartBtn" on:click={handleEnterPage}>S T A R T</button>
 		</div>
+
+		
 	</div>
+	
 </div>
+
 </div>
 
 <style>
@@ -192,6 +334,14 @@
 
 	}
 
+	.avatarArea{
+		width: 100%;
+		height: 100%;
+		position: relative;
+		top: 0%;
+		left: -10%;
+	}
+
 	.loadingArea{
 		position: absolute;
 		width: 10%;
@@ -199,21 +349,55 @@
 		/* background-color: #fff; */
 		top: 90%;
 		/* left: 45%; */
-		display: flex;
+		display: none;
 		justify-content: center;
 		align-items: center;
 		
 
 	}
+	.audioSet{
+	 /* background-color: #ffffff08; */
+	 /* position: absolute; */
+	 width: 100%;
+	 height: 20%;
+	 display: flex;
+	 justify-content: flex-end;
+	 align-items: center;
+	 padding-right: 2%;
+	 padding-bottom: 1%;
+	 /* top: 86%; */
+	 /* left: 85%; */
+	}
+
+	.tonOffBtn{
+		width: 15%;
+		height: 100%;
+	
+		background-color: rgba(250, 235, 215, 0);
+		
+		cursor: pointer;
+		background: none;
+		/* border: none; */
+		/* padding: 1; */
+		margin: 0;
+		font: inherit;
+		color: inherit;
+		
+	}
+
+	.tonOffIcon{
+		width: 100%;
+		height: 100%;
+	}
 
 	.aibotAvatar{
 		/* background-color: rgba(226, 17, 52, 0.619); */
-		width:  10%;
-		height: 30%;
+		width: 15%;
+		height: 60%;
 		/* margin-top: 39%; */
 		position: absolute;
-		top: 70%;
-		left: 80%;
+		top: 40%;
+		left: 20%;
 		z-index: -0;
 	}
 
@@ -225,9 +409,9 @@
       transform: translateY(-10px);
     }
   }
-	.avatarText{
-		width: 120%;
-		height: 40%;
+	.avatarTextArea{
+		width: 100%;
+		height: 28%;
 		background-color: rgb(3, 32, 68);
 		text-align: center;
 		display: flex;
@@ -244,13 +428,24 @@
 		left: -25%;
 		z-index: 5;
 		animation: upDown 2s ease-in-out infinite;
+		flex-direction: column;
 
+	}
+
+	.avatarTextContent{
+		/* background-color: green; */
+		width: 100%;
+		height: 80%;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 
 
 	.avater{
-		width: 20%;
+		width: 50%;
 		height: 10%;
 	}
 	.emailRequestSection {
