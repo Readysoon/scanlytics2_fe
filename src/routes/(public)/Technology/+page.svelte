@@ -1865,7 +1865,7 @@ if (audioTrackArrState.length !== 0) {
 		.mainSection {
 		height: 95%;
 		margin-top: 1%;
-		background: palevioletred;
+		/* background: palevioletred; */
 	}
 
 	.StartOverlay {
