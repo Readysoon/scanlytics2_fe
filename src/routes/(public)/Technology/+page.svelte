@@ -1074,9 +1074,11 @@ if (audioTrackArrState.length !== 0) {
 	main {
 		background-color: rgb(0, 0, 0);
 		height: 100vh;
-		overflow-y: auto;
+		/* overflow-y: auto; */
 		scrollbar-width: none;
 		-ms-overflow-style: none;
+		overflow: none;
+		/* background-color: #fff; */
 	}
 
 	.mainSection {
@@ -1773,7 +1775,14 @@ if (audioTrackArrState.length !== 0) {
 		border: 1px solid rgba(255, 255, 255, 0.175);
 		
 	}
-	
+	.selectedQuestionsArea{
+		height: 100%;
+		width: 3%;
+		display: flex;
+		flex-direction: row;
+		
+		border-right: 1px solid rgba(255, 255, 255, 0.175);
+	}
 	
 
 	@media (max-width: 420px) {
@@ -1840,12 +1849,58 @@ if (audioTrackArrState.length !== 0) {
 		}
 	}
 
-	.selectedQuestionsArea{
-		height: 100%;
-		width: 3%;
-		display: flex;
-		flex-direction: row;
+	@media (min-width: 768px) {
 		
-		border-right: 1px solid rgba(255, 255, 255, 0.175);
+		main {
+		background-color: rgb(0, 0, 0);
+		height: 100vh;
+		/* overflow-y: auto; */
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+		overflow: none;
+		/* background-color: #fff; */
+		
 	}
+
+		.mainSection {
+		height: 95%;
+		margin-top: 1%;
+		background: palevioletred;
+	}
+
+	.StartOverlay {
+		height: 100%;
+		width: 100%;
+
+		/* background-color: #185fc9; */
+		z-index: 6;
+	}
+	}
+
+	/* Small laptops (e.g. 1366px - 1440px wide) */
+	@media (min-width: 1280px) {
+
+		main {
+		background-color: rgb(0, 0, 0);
+		height: 100vh;
+		/* overflow-y: auto; */
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+		overflow: none;
+		/* background-color: #fff; */
+	}
+
+	.mainSection {
+		height: 95%;
+		margin-top: 1%;
+		/* background: palevioletred; */
+	}
+	
+
+
+		
+	}
+
+
+
 </style>
