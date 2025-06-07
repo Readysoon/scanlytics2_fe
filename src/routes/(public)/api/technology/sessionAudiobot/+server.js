@@ -231,6 +231,8 @@ const handleUserAgreement = (userAnswerData) => {
 				// prevlastQuestion = currentState.question
 				console.log(' currentState.question ja gerne answer',  currentState.question);
 				return `${currentState.question}`;
+		}else{
+			return 'Leider konnte ich Sie nicht so gut verstehen. Bitte überprüfen Sie Ihre Audioqualität und versuchen sie es später nochmal'
 		}
 	
 	}catch(error){
