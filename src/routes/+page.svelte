@@ -17,6 +17,7 @@
 		checkIfMobile();
 	});
 
+	
 	// Server initialization
 	onMount(async () => {
 		try {
