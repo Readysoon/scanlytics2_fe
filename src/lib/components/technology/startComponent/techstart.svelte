@@ -456,6 +456,7 @@
 		text-align: center;
 	} */
 
+	/* Mobile screens */
 	@media (min-width: 320px) and (max-width: 460px) {
 		.imgScanSection {
 			background-color: #0d1117;
@@ -985,7 +986,7 @@
 			/* font-size: 20px; */
 			position: relative;
 			top: 30%;
-			left: -95%;
+			left: -85%;
 			z-index: 5;
 			animation: upDown 2s ease-in-out infinite;
 			flex-direction: column;
