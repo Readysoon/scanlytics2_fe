@@ -171,29 +171,38 @@ const handleUpdateState =  async(answer, state) => {
 
 const handleGreeting = (userGreetAnswerData, userGreetSelectedArr) => {
 
-	stateNum = 0;
-	updateState = 0
-	recordValue = 0
-	newArr = []
-	userReply  = []
-	stateQuestion = []
-	const currentState = brunoPromptMap[stateNum];
-	console.log('userGreetSelectedArr',userGreetSelectedArr);
-		if (!userGreetAnswerData || userGreetAnswerData =="") {
-			return "Unfortunately, I couldn't hear you. There seems to be an issue with the audio recording. Please try again later or contact our service team."
-		}
-
-	if (stateNum === 0 && userGreetAnswerData.toLowerCase().includes("hallo bruno")) {
-		console.log('triggerd in hallo bruuno');
-		console.log('selectedArrState',userGreetSelectedArr);
+	try{
+		stateNum = 0;
+		updateState = 0
+		recordValue = 0
+		newArr = []
+		userReply  = []
+		stateQuestion = []
+		const currentState = brunoPromptMap[stateNum];
+		console.log('userGreetSelectedArr',userGreetSelectedArr);
+			if (!userGreetAnswerData || userGreetAnswerData =="") {
+				return "Unfortunately, I couldn't hear you. There seems to be an issue with the audio recording. Please try again later or contact our service team."
+			}
+		if(userGreetAnswerData && userGreetSelectedArr){
+			console.log('userGreetAnswerData &userGreetSelectedArr exist');
+			if (stateNum === 0 && userGreetAnswerData.toLowerCase().includes("hallo bruno")) {
+				console.log('triggerd in hallo bruuno');
+				console.log('selectedArrState',userGreetSelectedArr);
+				
+				updateState = userGreetSelectedArr[0]
+				stateNum = updateState+=1
 		
-		updateState = userGreetSelectedArr[0]
-		stateNum = updateState+=1
+				console.log('stateNum', stateNum);
+				newArr = userGreetSelectedArr.filter((item) => item !== userGreetSelectedArr[0] );
+				return `${currentState.response} ${currentState.followUp}`;
+			}
+		} 
+	
 
-		console.log('stateNum', stateNum);
-		newArr = userGreetSelectedArr.filter((item) => item !== userGreetSelectedArr[0] );
-		return `${currentState.response} ${currentState.followUp}`;
+	}catch(error){
+		console.error('Error on handleGreeting', error);
 	}
+
 
 
 }
@@ -322,7 +331,8 @@ const handleApiAgentCall = async (userDataQuery, selectedArrState, tracker) => {
 		if(tracker <= 4){
 			let stateNum = 0;
 		
-			
+			console.log('userDataQuery on first request', userDataQuery);
+			console.log('selectedArrState on first request' , selectedArrState);
 			const currentState = brunoPromptMap[stateNum];
 					  // Begrüßungsfall
 			if(tracker == 0){
