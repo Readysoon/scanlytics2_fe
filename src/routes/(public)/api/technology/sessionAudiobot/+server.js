@@ -185,7 +185,10 @@ const handleGreeting = (userGreetAnswerData, userGreetSelectedArr) => {
 			}
 		if(userGreetAnswerData && userGreetSelectedArr){
 			console.log('userGreetAnswerData &userGreetSelectedArr exist');
-			if (stateNum === 0 && userGreetAnswerData.toLowerCase().includes("hallo bruno")) {
+			console.log('stateNum on first call',stateNum);
+
+			const greatBruno = ["hallo bruno", "bruno", "Bruno", "hallo Bruno"];
+			if (stateNum === 0 &&  greatBruno.some(word => userGreetAnswerData.toLowerCase().includes(word))) {
 				console.log('triggerd in hallo bruuno');
 				console.log('selectedArrState',userGreetSelectedArr);
 				
@@ -195,7 +198,9 @@ const handleGreeting = (userGreetAnswerData, userGreetSelectedArr) => {
 				console.log('stateNum', stateNum);
 				newArr = userGreetSelectedArr.filter((item) => item !== userGreetSelectedArr[0] );
 				return `${currentState.response} ${currentState.followUp}`;
-			}
+			}else{
+				return `Could you please try later again or refresh your website`;
+			}	
 		} 
 	
 
@@ -245,7 +250,7 @@ const handleFirstQuestionProcessNSecQuestionReq = async(userAnswerData, userSele
 		  input: `Antwort des users(bitte nicht drauf eingehen):\n"${userAnswerData}"\n\nAntworte kurz und knapp, höflich ohne zu bedanken. Stelle dann folgende Frage:\n"${nextQuestion}"`,
 		});
 
-		console.log('response from gpt', response);
+		// console.log('response from gpt', response);
 
 
 		// Updates the client side code - stands for the list tracker
