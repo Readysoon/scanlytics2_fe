@@ -1788,11 +1788,15 @@ if (audioTrackArrState.length !== 0) {
 	@media (min-width: 320px) and (max-width: 460px) {
 		/* Force content to be scrollable */
 		:global(body) {
-			overflow-y: auto !important;
+			/* overflow-y: auto !important; */
 		}
 
 		main {
 			overflow: hidden;
+			/* background-color: #fff; */
+			overflow-y: none;
+			/* min-height: 90%; */
+			/* height: 90%; */
 		}
 
 		/* .mainSection {
@@ -1803,7 +1807,7 @@ if (audioTrackArrState.length !== 0) {
 		} */
 		.mainSection {
 		height: 95%;
-		margin-top: 1%;
+		margin-top: 2%;
 		/* background: palevioletred; */
 	}
 
