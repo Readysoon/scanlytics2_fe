@@ -155,7 +155,7 @@
 		
 
 			
-			}, 20);
+			}, 5);
 
 			
 		
@@ -208,19 +208,22 @@
 		}
 
 		
-		
+		if(ShowBrunoState){
 			let app = new Application(canvas);
 
 			
-			loading = true;
-			const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
-				const obj = app.findObjectByName("brunov1")
-				
+				loading = true;
+				const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
+					const obj = app.findObjectByName("brunov1")
+					
 
-				loading = false;
-				brunoTextLoadingState = true 
-				handleAutoTextFillOut()
-			});
+					loading = false;
+					brunoTextLoadingState = true 
+					handleAutoTextFillOut()
+				});
+		}
+		
+		
 
 
 			

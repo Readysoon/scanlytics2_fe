@@ -19,6 +19,9 @@
 	let btnState = $state(false);
 	let audioState =  $state(0);
 	let stateTracker = $state(false);
+	let pageTracker = $state(0);
+	let userprevQAnswer = $state('');
+	let userprevQState = $state([]);
 	
 	export function handleAudioStart() {
 		if(audioState == 1){
@@ -37,6 +40,10 @@
 		}
 	}
 
+	if(pageTracker == 0){
+		
+		console.log('triggert in pageTracker', pageTracker);
+	}
 
 	
 
@@ -70,11 +77,26 @@
 
 	const handleAIReq = async (phrase, selVal) => {
 		try {
-			const response = await fetch('/api/technology/audiobot', {
+			// const response = await fetch('/api/technology/audiobot', {
+			// 	method: 'POST',
+			// 	body: JSON.stringify({ 
+			// 		data: phrase, 
+			// 		selecteState: selVal
+
+			// 	 }),
+			// 	headers: {
+			// 		'content-type': 'application/json'
+			// 	}
+			// });
+			
+		
+			console.log('pageTracker', pageTracker);
+			const response = await fetch('/api/technology/sessionAudiobot', {
 				method: 'POST',
 				body: JSON.stringify({ 
 					data: phrase, 
-					selecteState: selVal
+					selecteState: selVal,
+					reqtracker: pageTracker
 
 				 }),
 				headers: {
@@ -88,22 +110,38 @@
 
 			const totalRes = result.botmessage;
 			const recordState =  result.recordState
-			const userprevQAnswer = result.userAnswer
-			const userprevQState = result.userPrevQeustion
+			 userprevQAnswer = result.userAnswer
+			 userprevQState = result.userPrevQeustion
+
+			console.log('totalRes', totalRes);
+			console.log('recordState', recordState);
+	
+			
 
 		
 
-			if(recordState == 1){
-				audioState = recordState
-				handleAudioStart()
-				// recognition.stop();
-			}
-
+			
 			// Handels the updating states on question Area
 			if(userprevQAnswer !== "" && userprevQState !== null){
 
+				console.log('userprevQAnswer in updating handleHandleUpdateState', userprevQAnswer);
+				console.log('userprevQState  in updating handleHandleUpdateState', userprevQState);
+			
+				pageTracker+=1
 				handleUpdateQuestionState(userprevQAnswer, userprevQState)
 			}
+
+			if(recordState == 1){
+				console.log('triggered on last state');
+				audioState = recordState
+				pageTracker = 0
+				userprevQAnswer = ""
+				userprevQState = []
+				handleAudioStart()
+				
+				// recognition.stop();
+			}
+
 			// HandlesTTS logic
 			if (totalRes) {
 
@@ -120,7 +158,8 @@
 		try {
 			const phraseLen = phraseArr.length;
 			const phraseLastWord = phraseArr.at(-1);
-			console.log('phaseARR', phraseArr);
+			// console.log('phaseARR', phraseArr);
+			// console.log('selectVal', selectVal);
 
 			if (phraseArr.includes('Stopp' || 'stop')) {
 				try {
@@ -142,6 +181,8 @@
 						const updatedPhrase = filteredStop.join(' ');
 						recognition.stop();
 						if (updatedPhrase) {
+							console.log('updatedPhrase inside if condition', updatedPhrase);
+							console.log('selectVal inside if condition', selectVal);
 							handleAIReq(updatedPhrase, selectVal);
 						}
 						clearInterval(interval);

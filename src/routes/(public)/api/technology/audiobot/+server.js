@@ -178,22 +178,11 @@ const handleUpdateState =  async(answer, state) => {
 
 // }
 
-// const handleSecUpdateState =  (answer, state) => {
-
-// 	console.log('inside handlestate on sec Update ');
-// 	if(answer && state){
-// 		console.log('updating state userReply', answer);
-// 		console.log('stateQuestion', state);
-// 	userReply = answer
-// 	stateQuestion = state
-
-// 	}
-
-
-// }
   
 const handleApiAgentCall = async (userDataQuery, selectedArrState) => {
 	try {
+		console.log('userDataQuery',userDataQuery);
+		console.log('selectedArrState',selectedArrState);
 		if (!userDataQuery) {
 			return json('Empty userDataQuery');
 		}
@@ -223,6 +212,8 @@ const handleApiAgentCall = async (userDataQuery, selectedArrState) => {
 			convoArr = []
 			return 'Ich starte die Abfrage nochmal von vorn. Bitte sagen sie "Hallo Bruno"'
 		  }
+
+		  console.log('stateNum on currentState', stateNum)
 	  
 		  const currentState = brunoPromptMap[stateNum];
 		  console.log('currentState', currentState);

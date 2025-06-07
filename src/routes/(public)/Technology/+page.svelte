@@ -503,6 +503,7 @@
 	let audioData = $state([]);
 	let selectedQuestionNum: any = $state([])
 	let aiToggleState = $state(false)
+	let questionTracker = $state(0)
 
 
 export function loadAiTextToggle (aiToggle: any){
@@ -542,19 +543,28 @@ if (audioTrackArrState.length !== 0) {
 //  Binding the input and updating the question background state 
  export function handleUpdateQuestionState(AnswerArr: any, StateArr: any){
 	
+
+
 		// Handles the updating the question background state
 		stateAnswer = StateArr
 	
 		// Handles the binding on the input field
 		textState = AnswerArr
 
-		console.log('stateAnswer', stateAnswer);
-		console.log('textState', textState);
+		// console.log('stateAnswer', stateAnswer);
+		// console.log('textState', textState);
+		// console.log('questionTracker', questionTracker);
+
+
 
 		let trackArr:any = []
 		let trackArrString: any = []
+
+		console.log('trackArr', trackArr);
+		console.log('trackArrStringtrackArrString', trackArrString);
 		if(stateAnswer.length > 0){
 			handleSelectUpdateBackground(stateAnswer)
+			questionTracker = questionTracker+=1
 
 			for(const i in textState){
 				stateAnswer.map((item: any) => { 
@@ -569,6 +579,7 @@ if (audioTrackArrState.length !== 0) {
 			})
 		}
 		}
+		
 }
 
 // Handle the AI text data
