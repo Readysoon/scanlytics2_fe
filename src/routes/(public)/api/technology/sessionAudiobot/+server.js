@@ -213,23 +213,32 @@ const handleGreeting = (userGreetAnswerData, userGreetSelectedArr) => {
 }
 const handleUserAgreement = (userAnswerData) => {
 
-	const positiveWords = ["ja", "sehr gerne", "natürlich", "klar"];
 
-	console.log('stateNum before sec question', stateNum);
-	console.log('updateState before sec question', updateState);
-	const currentState = brunoPromptMap[stateNum];
-	if (stateNum == updateState && positiveWords.some(word => userAnswerData.toLowerCase().includes(word)))  {
+	try{
 
-			console.log('triggert in ja gerne');
-			console.log('currentstate',currentState.question);
-			console.log('newArr', newArr);
-			//receives the updated array where the first element is already removed and sets the new num for the next question
-			let updateSecState = newArr[0]  
-			stateNum = updateSecState
-			// prevlastQuestion = currentState.question
-			console.log(' currentState.question ja gerne answer',  currentState.question);
-			return `${currentState.question}`;
+		console.log('stateNum before sec question', stateNum);
+		console.log('updateState before sec question', updateState);
+		const positiveWords = ["ja", "sehr gerne", "natürlich", "klar", "yeah", 'möchte ich'];
+		const currentState = brunoPromptMap[stateNum];
+		if (stateNum == updateState && positiveWords.some(word => userAnswerData.toLowerCase().includes(word)))  {
+	
+				console.log('triggert in ja gerne');
+				console.log('currentstate',currentState.question);
+				console.log('newArr', newArr);
+				//receives the updated array where the first element is already removed and sets the new num for the next question
+				let updateSecState = newArr[0]  
+				stateNum = updateSecState
+				// prevlastQuestion = currentState.question
+				console.log(' currentState.question ja gerne answer',  currentState.question);
+				return `${currentState.question}`;
+		}
+	
+	}catch(error){
+		console.error('Error on handleUserAgreement', error);
 	}
+
+	
+
 
 }
 
