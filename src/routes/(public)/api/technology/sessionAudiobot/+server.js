@@ -220,7 +220,9 @@ const handleUserAgreement = (userAnswerData) => {
 }
 
 const handleFirstQuestionProcessNSecQuestionReq = async(userAnswerData, userSelectedData) => {
-	userReply  = []
+
+	try{
+		userReply  = []
 	stateQuestion = []
 	if(newArr.length == 2){
 	      
@@ -233,6 +235,8 @@ const handleFirstQuestionProcessNSecQuestionReq = async(userAnswerData, userSele
 		  model: 'gpt-4o',
 		  input: `Antwort des users(bitte nicht drauf eingehen):\n"${userAnswerData}"\n\nAntworte kurz und knapp, höflich ohne zu bedanken. Stelle dann folgende Frage:\n"${nextQuestion}"`,
 		});
+
+		console.log('response from gpt', response);
 
 
 		// Updates the client side code - stands for the list tracker
@@ -250,6 +254,11 @@ const handleFirstQuestionProcessNSecQuestionReq = async(userAnswerData, userSele
 		return response.output_text;
 
 	  }
+
+	}catch(error){
+		console.error('Error on handleFirstQuestionProcessNSecQuestionReq:', error);
+	}
+	
 
 }
 
@@ -270,6 +279,8 @@ const handleSecQuestProcessNThirdQuestReq = async(userAnswerData, userSelectedDa
 			input: `sei höflich antworte kurz als ob du eine gute antowrt erhalten hast, aber bedanke dich nicht und stelle dann folgende Frage:\n"${nextQuestion}"`,
 		  });
 		  
+
+		
 
 
 		 
