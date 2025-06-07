@@ -457,43 +457,169 @@
 	} */
 
 	@media (min-width: 320px) and (max-width: 460px) {
-		.emailRequestSection {
-			min-height: 99svh;
+		.imgScanSection {
+			background-color: #0d1117;
+			/* background-color: #7c0a0a5e; */
+			/* background-color: #63646238; */
+			height: 100%;
+			width: 100%;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.emailSectionArea {
+			height: 100%;
+			width: 100%;
 			display: flex;
 			flex-direction: column;
-			justify-content: flex-start;
-			align-items: center;
-			background-color: green;
-			/* position: relative; */
-		}
-		.conversationAiSectionTextArea {
-			min-height: 50svh;
-			font-size: 65px;
-			font-weight: bold;
-			font-family: sans-serif;
-			display: flex;
-			align-items: center;
 			justify-content: center;
-			text-align: center;
-
-			color: rgba(247, 244, 244, 0.522);
-		}
-
-		.subTextEmailRequestArea {
-			min-height: 32svh;
-			width: 80%;
-			font-size: 31px;
-			font-weight: bold;
-			font-family: sans-serif;
-			display: flex;
 			align-items: center;
-			justify-content: center;
-			text-align: center;
-			position: relative;
-			z-index: 4;
+			/* padding-bottom: 6%; */
+			border-top: 1px solid rgba(255, 255, 255, 0.175);
+			border-left: 1px solid rgba(255, 255, 255, 0.175);
+			border-right: 1px solid rgba(255, 255, 255, 0.175);
+			border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 			/* background-color: #fff; */
-			color: rgba(220, 215, 215, 0.403);
 		}
+
+		.emailRequestSection {
+			min-height: 100%;
+			height: 100%;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 4%;
+			position: relative;
+			/* background-color: rgba(0, 128, 0, 0.328); */
+
+			/* padding-bottom: 5%; */
+		}
+	
+
+		.ScanlyticsText {
+			width: 100%;
+			height: 15%;
+			font-size: 45px;
+			font-weight: bold;
+			font-family: sans-serif;
+			text-align: center;
+			color: rgba(220, 215, 215, 0.403);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			z-index: 5;
+			display: flex;
+			/* background-color: #fff; */
+		}
+		.subTextEmailRequestArea {
+		font-size: 19px;
+		font-weight: bold;
+		font-family: sans-serif;
+		color: rgba(220, 215, 215, 0.403);
+		height: 10%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-content: end;
+		}
+
+		.scanlyticsLogo {
+			width: 30%;
+			height: 60%;
+			/* background-color: #fff; */
+		}
+
+		.conversationAiSectionTextArea {
+			width: 100%;
+			height: 28%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 38px;
+			font-weight: bold;
+			font-family: sans-serif;
+			text-align: center;
+			/* background-color: blue; */
+
+			color: rgba(220, 215, 215, 0.403);
+			position: relative;
+			z-index: 5;
+		}
+
+		/* Bruno Style Area */
+		.avatarTextArea {
+			width: 100%;
+			height: 20%;
+			background-color: rgb(3, 32, 68);
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid rgba(255, 255, 255, 0.175);
+			border-radius: 7px;
+			font-family: system-ui;
+			color: white;
+			padding: 2%;
+			/* font-size: 20px; */
+			position: relative;
+			top: 30%;
+			left: -11%;
+			z-index: 5;
+			animation: upDown 2s ease-in-out infinite;
+			flex-direction: column;
+		}
+
+		.aibotAvatar {
+			/* background-color: rgba(226, 17, 52, 0.619); */
+			width: 30%;
+			height: 60%;
+			/* margin-top: 39%; */
+			position: absolute;
+			top: 40%;
+			left: 5%;
+			z-index: -0;
+			display: none;
+		}
+
+		.avatarTextContent {
+			background-color: green;
+			width: 100%;
+			height: 80%;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 12px;
+		}
+
+		.startBtnArea {
+		height: 10%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		/* background-color: orange; */
+	}
+	.StartBtn {
+		height: 90%;
+		width: 90%;
+		background-color: rgba(202, 202, 202, 0.045);
+		border: 1px solid rgb(49, 48, 48);
+		border-radius: 7px;
+		color: rgb(210, 206, 206);
+		font-family: sans-serif;
+		font-weight: bold;
+		font-size: 19px;
+		cursor: pointer;
+		position: relative;
+		z-index: 5;
+	}
+
 	}
 
 	/* Tablet or small screens */

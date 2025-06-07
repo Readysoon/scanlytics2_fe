@@ -1785,7 +1785,7 @@ if (audioTrackArrState.length !== 0) {
 	}
 	
 
-	@media (max-width: 420px) {
+	@media (min-width: 320px) and (max-width: 460px) {
 		/* Force content to be scrollable */
 		:global(body) {
 			overflow-y: auto !important;
@@ -1795,19 +1795,27 @@ if (audioTrackArrState.length !== 0) {
 			overflow: hidden;
 		}
 
-		.mainSection {
+		/* .mainSection {
 			height: auto !important;
 			overflow: visible !important;
 			margin-top: 15px;
-		}
+
+		} */
+		.mainSection {
+		height: 95%;
+		margin-top: 1%;
+		/* background: palevioletred; */
+	}
 
 		.StartOverlay {
 			flex-direction: column;
-			min-height: 100svh;
+			min-height: 100%;
 			overflow: hidden;
+			/* background-color: #fff; */
+
 		}
 	
-
+/* 
 		.imgConectSection {
 			width: 100%;
 			min-height: 100svh;
@@ -1815,7 +1823,7 @@ if (audioTrackArrState.length !== 0) {
 		.imgConectSectionUpload{
 			width: 100%;
 			/* min-height: 100svh; */
-		}
+		/* }
 
 		.ImageReportSection {
 			display: none;
@@ -1829,24 +1837,10 @@ if (audioTrackArrState.length !== 0) {
 
 		.conversationArea {
 			flex-direction: column !important;
-			width: 100% !important;
-		}
+			width: 100% !important; */
+		/* } */ 
 
-		.aiNavBar {
-			width: 100% !important;
-			height: auto !important;
-			flex-direction: row !important;
-			justify-content: space-between !important;
-			border: none !important;
-		}
-
-
-		.upperBar {
-			height: 70px !important;
-			width: auto !important;
-			flex-direction: row !important;
-			justify-content: space-between !important;
-		}
+	
 	}
 
 	@media (min-width: 768px) {
