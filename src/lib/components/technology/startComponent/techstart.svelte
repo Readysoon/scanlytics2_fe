@@ -158,9 +158,7 @@
 					{#if brunoTextLoadingState}
 						<div
 							class="avatarTextArea"
-							style="width: {!defaultTextState ? '140%' : '120%'};
-				height: {!defaultTextState ? '80%' : '30%'};
-				top: {!defaultTextState ? '1%' : '30%'};"
+							
 						>
 							{#if defaultTextState}
 								<div class="avatarTextContent">
@@ -500,14 +498,132 @@
 
 	/* Tablet or small screens */
 	@media (min-width: 768px) {
-		.emailRequestSection {
-			min-height: 99svh;
+		.imgScanSection {
+			background-color: #0d1117;
+			/* background-color: #7c0a0a5e; */
+			/* background-color: #63646238; */
+			height: 100%;
+			width: 100%;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.emailSectionArea {
+			height: 100%;
+			width: 100%;
 			display: flex;
 			flex-direction: column;
-			justify-content: flex-start;
+			justify-content: center;
 			align-items: center;
-			/* background-color: orange; */
-			/* position: relative; */
+			/* padding-bottom: 6%; */
+			border-top: 1px solid rgba(255, 255, 255, 0.175);
+			border-left: 1px solid rgba(255, 255, 255, 0.175);
+			border-right: 1px solid rgba(255, 255, 255, 0.175);
+			border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+			/* background-color: #fff; */
+		}
+
+		.emailRequestSection {
+			min-height: 100%;
+			height: 100%;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 5%;
+			position: relative;
+			/* background-color: rgba(0, 128, 0, 0.328); */
+
+			/* padding-bottom: 5%; */
+		}
+	
+
+		.ScanlyticsText {
+			width: 100%;
+			height: 15%;
+			font-size: 95px;
+			font-weight: bold;
+			font-family: sans-serif;
+			text-align: center;
+			color: rgba(220, 215, 215, 0.403);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			z-index: 5;
+			display: flex;
+			/* background-color: #fff; */
+		}
+
+		.scanlyticsLogo {
+			width: 20%;
+			height: 70%;
+			/* background-color: #fff; */
+		}
+
+		.conversationAiSectionTextArea {
+			width: 100%;
+			height: 20%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 75px;
+			font-weight: bold;
+			font-family: sans-serif;
+			text-align: center;
+			/* background-color: blue; */
+
+			color: rgba(220, 215, 215, 0.403);
+			position: relative;
+			z-index: 5;
+		}
+
+		/* Bruno Style Area */
+		.avatarTextArea {
+			width: 100%;
+			height: 20%;
+			background-color: rgb(3, 32, 68);
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid rgba(255, 255, 255, 0.175);
+			border-radius: 7px;
+			font-family: system-ui;
+			color: white;
+			padding: 2%;
+			/* font-size: 20px; */
+			position: relative;
+			top: 30%;
+			left: -11%;
+			z-index: 5;
+			animation: upDown 2s ease-in-out infinite;
+			flex-direction: column;
+		}
+
+		.aibotAvatar {
+			/* background-color: rgba(226, 17, 52, 0.619); */
+			width: 30%;
+			height: 60%;
+			/* margin-top: 39%; */
+			position: absolute;
+			top: 40%;
+			left: 5%;
+			z-index: -0;
+		}
+
+		.avatarTextContent {
+			/* background-color: green; */
+			width: 100%;
+			height: 80%;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 12px;
 		}
 	}
 
@@ -642,27 +758,265 @@
 
 	/* Mid laptops (your 1807px screen) */
 	@media (min-width: 1700px) {
-		.emailRequestSection {
-			min-height: 99svh;
+	
+		.imgScanSection {
+			background-color: #0d1117;
+			/* background-color: #fff; */
+			/* background-color: #63646238; */
+			height: 100%;
+			width: 100%;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.emailSectionArea {
+			height: 100%;
+			width: 100%;
 			display: flex;
 			flex-direction: column;
-			justify-content: flex-start;
+			justify-content: center;
 			align-items: center;
-			background-color: grey;
-			/* position: relative; */
+			/* padding-bottom: 6%; */
+			border-top: 1px solid rgba(255, 255, 255, 0.175);
+			border-left: 1px solid rgba(255, 255, 255, 0.175);
+			border-right: 1px solid rgba(255, 255, 255, 0.175);
+			border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+			/* background-color: #fff; */
+		}
+
+		.emailRequestSection {
+			min-height: 100%;
+			height: 100%;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 5%;
+			position: relative;
+			/* background-color: rgba(0, 128, 0, 0.328); */
+
+			/* padding-bottom: 5%; */
+		}
+	
+
+		.ScanlyticsText {
+			width: 100%;
+			height: 25%;
+			font-size: 105px;
+			font-weight: bold;
+			font-family: sans-serif;
+			text-align: center;
+			color: rgba(220, 215, 215, 0.403);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			z-index: 5;
+			display: flex;
+			/* background-color: #fff; */
+		}
+
+		.scanlyticsLogo {
+			width: 12%;
+			height: 70%;
+			/* background-color: #fff; */
+		}
+
+		.conversationAiSectionTextArea {
+			width: 100%;
+			height: 20%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 75px;
+			font-weight: bold;
+			font-family: sans-serif;
+			text-align: center;
+			/* background-color: blue; */
+
+			color: rgba(220, 215, 215, 0.403);
+			position: relative;
+			z-index: 5;
+		}
+
+		/* Bruno Style Area */
+		.avatarTextArea {
+			width: 100%;
+			height: 28%;
+			background-color: rgb(3, 32, 68);
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid rgba(255, 255, 255, 0.175);
+			border-radius: 7px;
+			font-family: system-ui;
+			color: white;
+			padding: 2%;
+			/* font-size: 20px; */
+			position: relative;
+			top: 30%;
+			left: -95%;
+			z-index: 5;
+			animation: upDown 2s ease-in-out infinite;
+			flex-direction: column;
+		}
+
+		.aibotAvatar {
+			/* background-color: rgba(226, 17, 52, 0.619); */
+			width: 20%;
+			height: 60%;
+			/* margin-top: 39%; */
+			position: absolute;
+			top: 40%;
+			left: 20%;
+			z-index: -0;
+		}
+
+		.avatarTextContent {
+			/* background-color: green; */
+			width: 100%;
+			height: 80%;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 12px;
 		}
 	}
 
 	/* Ultra-wide screens (e.g. 2560px) */
 	@media (min-width: 2560px) {
-		.emailRequestSection {
-			min-height: 99svh;
+		
+		.imgScanSection {
+			background-color: #0d1117;
+			/* background-color: #fff; */
+			/* background-color: #63646238; */
+			height: 100%;
+			width: 100%;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.emailSectionArea {
+			height: 100%;
+			width: 100%;
 			display: flex;
 			flex-direction: column;
-			justify-content: flex-start;
+			justify-content: center;
 			align-items: center;
-			background-color: skyblue;
-			/* position: relative; */
+			/* padding-bottom: 6%; */
+			border-top: 1px solid rgba(255, 255, 255, 0.175);
+			border-left: 1px solid rgba(255, 255, 255, 0.175);
+			border-right: 1px solid rgba(255, 255, 255, 0.175);
+			border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+			/* background-color: #fff; */
 		}
-	}
+
+		.emailRequestSection {
+			min-height: 100%;
+			height: 100%;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 5%;
+			position: relative;
+			/* background-color: rgba(0, 128, 0, 0.328); */
+
+			/* padding-bottom: 5%; */
+		}
+	
+
+		.ScanlyticsText {
+			width: 100%;
+			height: 25%;
+			font-size: 155px;
+			font-weight: bold;
+			font-family: sans-serif;
+			text-align: center;
+			color: rgba(220, 215, 215, 0.403);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			z-index: 5;
+			display: flex;
+			/* background-color: #fff; */
+		}
+
+		.scanlyticsLogo {
+			width: 12%;
+			height: 70%;
+			/* background-color: #fff; */
+		}
+
+		.conversationAiSectionTextArea {
+			width: 100%;
+			height: 20%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 135px;
+			font-weight: bold;
+			font-family: sans-serif;
+			text-align: center;
+			/* background-color: blue; */
+
+			color: rgba(220, 215, 215, 0.403);
+			position: relative;
+			z-index: 5;
+		}
+
+		/* Bruno Style Area */
+		.avatarTextArea {
+			width: 100%;
+			height: 28%;
+			background-color: rgb(3, 32, 68);
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid rgba(255, 255, 255, 0.175);
+			border-radius: 7px;
+			font-family: system-ui;
+			color: white;
+			padding: 2%;
+			/* font-size: 20px; */
+			position: relative;
+			top: 30%;
+			left: -75%;
+			z-index: 5;
+			animation: upDown 2s ease-in-out infinite;
+			flex-direction: column;
+		}
+
+		.aibotAvatar {
+			/* background-color: rgba(226, 17, 52, 0.619); */
+			width: 20%;
+			height: 60%;
+			/* margin-top: 39%; */
+			position: absolute;
+			top: 40%;
+			left: 20%;
+			z-index: -0;
+		}
+
+		.avatarTextContent {
+			/* background-color: green; */
+			width: 100%;
+			height: 80%;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 15px;
+		}
+	 } 
 </style>
