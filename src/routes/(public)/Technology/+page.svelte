@@ -34,9 +34,9 @@
 	let textEditToggle =  $state(false);
 	let scansToggle = $state(false);
 	let navAssistantToggle_Structured = $state(false);
-	let navAssistantToggle_History = $state(true); //back to false - default 
-	let navAssistantToggle_Patient = $state(false); //back to true - default 
-	let enterPageToggle = $state(true); //back to false - default 
+	let navAssistantToggle_History = $state(false); //back to false - default 
+	let navAssistantToggle_Patient = $state(true); //back to true - default 
+	let enterPageToggle = $state(false); //back to false - default 
 	let inputValue = $state('');
 	let isMobile = false;
 	let disableAiStartBtn = $state(true)

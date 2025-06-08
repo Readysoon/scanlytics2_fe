@@ -28,7 +28,7 @@
 	let showStartBtn = $state(false);
 	const dispath = createEventDispatcher();
 	let openeningText: string =
-		'Click the Scan button to begin scanning the report and select your required questions.';
+		'Klicken Sie auf die Schaltfläche „Scannen“, um den Bericht zu scannen und die gewünschten Fragen auszuwählen.';
 	let index = 0;
 	let avatarScriptText: string = $state('');
 	let brunoTextLoadingState = $state(false);
@@ -215,9 +215,7 @@
 									{#if brunoTextLoadingState}
 										<div class="avatarText">
 											<!-- {avatarScriptText} -->
-
-											Click the Scan button to begin scanning the report and select your required
-											questions.
+											{openeningText}
 										</div>
 									{/if}
 
@@ -903,6 +901,8 @@
 			/* left: 70%; */
 			z-index: -0;
 		}
+
+		
 		.medicalResultBarselectedList {
 			/* background: #FF3E00; */
 			height: 90%;
@@ -916,6 +916,7 @@
 			align-items: center;
 		}
 
+		/* Question  - item - area */
 		.medicalResultQuestionList{
 			/* background: #FF3E00; */
 			height: 90%;
@@ -928,6 +929,255 @@
 			flex-direction: column;
 			align-items: center;
 		}
+
+		/* MiddleBar  - item  */
+		.QuestionItem {
+			background: rgba(211, 211, 235, 0.105);
+			/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
+			height: 3.5%;
+			width: 70%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: white;
+			font-size: 11.2px;
+			font-weight: 400;
+			margin-bottom: 10px;
+			font-family: system-ui;
+			border-radius: 50%;
+			border: 1px solid rgba(255, 255, 255, 0.175);
+			cursor: pointer;
+		}
+
+		/* .selectedQuestionItemId{
+			
+			font-size: 10px;
+		} */
+
+		.medicalResultBarListRecordVisualizer {
+			height: 5%;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-top: 1px solid rgba(255, 255, 255, 0.175);
+		}
+
+		.listeIcon {
+			height: 50%;
+			width: 50%;
+			opacity: 0.5;
+		}
+		
+	.scanIcon {
+		height: 50%;
+		width: 50%;
+		opacity: 0.5;
+	}
+		.medicalQuestionArea {
+			/* background: #FF3E00; */
+			height: 100%;
+			width: 95%;
+		}
+
+
+		.medicalQuestionTitle {
+		height: 5%;
+		width: 100%;
+		/* background-color: red; */
+		color: white;
+		font-size: 13px;
+		font-weight: 600;
+
+		font-family: system-ui;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+		}
+		/*  Question - item - area  */
+		.medicalQuestionList {
+		height: 90%;
+		width: 100%;
+		/* background-color: blue; */
+		gap: 5%;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
+	}
+		.medicalResultArea {
+		height: 100%;
+		width: 50%;
+		display: flex;
+		/* background: pink; */
+	}
+
+	/* Question - item  */
+	.medicalQuestionItem {
+		background: rgba(211, 211, 235, 0.105);
+		/* background-color: #1d4b1d; */
+		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
+		height: 3.5%;
+		width: 80%;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		color: white;
+		font-size: 11.2px;
+		font-weight: 400;
+		margin-bottom: 10px;
+		font-family: system-ui;
+		border-radius: 7px;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+		cursor: pointer;
+	}
+	.startBtn {
+		height: 80%;
+		width: 30%;
+		/* border: 1px solid rgb(43, 121, 194); */
+		border: 1px solid grey;
+		border-radius: 7px;
+		/* background-color: rgba(58, 139, 210, 0.262); */
+		background-color: rgba(17, 100, 243, 0.912);
+		font-family: system-ui;
+		color: white;
+		cursor: pointer;
+		font-weight: 600;
+		font-size: 11px;
+	}
+	.checkedIconArea {
+		height: 100%;
+		width: 4.9%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	}
+	/* Mid laptops (your 1807px screen) */
+	@media (min-width: 1700px) {
+			/* Default Scan Form  */
+			.startScanBtn {
+			height: 70%;
+			width: 30%;
+			/* border: 1px solid rgb(43, 121, 194); */
+			border: 1px solid rgb(0, 0, 0);
+			border-radius: 7px;
+			
+			background-color: rgba(254, 127, 0, 0.767);
+			font-family: system-ui;
+			color: rgb(11, 11, 11);
+			cursor: pointer;
+			font-weight: 600;
+			font-size: 12px;
+		}
+		/* Scanning btn */
+		.scanningFormArea {
+			/* background-color: #2f7bed; */
+			height: 100%;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+
+			/* Loading Text */
+		.scanningFormText {
+			height: 70%;
+			width: 100%;
+			/* background: green; */
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: white;
+			font-size: 12px;
+			font-weight: 600;
+			/* margin-bottom: 10px; */
+			font-family: system-ui;
+		}
+		.scannFormLoadSection {
+			height: 30%;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.startScanningArea {
+			/* background-color: pink; */
+			height: 100%;
+			width: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		/* Avatar Style */
+		.avatarText {
+			width: 100%;
+			height: 65%;
+			background-color: rgb(3, 32, 68);
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid rgba(255, 255, 255, 0.175);
+			border-radius: 7px;
+			font-family: system-ui;
+			font-size: 14px;
+			position: absolute;
+			top: -33%;
+			left: -25%;
+			z-index: 5;
+			color: white;
+			animation: upDown 2s ease-in-out infinite;
+			padding: 1%;
+		}
+
+		.aibotAvatar {
+			/* background-color: rgba(226, 17, 52, 0.619); */
+			width: 100%;
+			height: 90%;
+			margin-top: 5%;
+			/* position: absolute; */
+			top: 0%;
+			/* left: 70%; */
+			z-index: -0;
+		}
+
+		
+		.medicalResultBarselectedList {
+			/* background: #FF3E00; */
+			height: 90%;
+			width: 100%;
+
+			/* background-color: blue; */
+			gap: 5%;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		/* Question  - item - area */
+		.medicalResultQuestionList{
+			/* background: #FF3E00; */
+			height: 90%;
+			width: 100%;
+
+			/* background-color: blue; */
+			gap: 5%;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		/* MiddleBar  - item  */
 		.QuestionItem {
 			background: rgba(211, 211, 235, 0.105);
 			/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
@@ -961,21 +1211,29 @@
 		}
 
 		.listeIcon {
-			height: 60%;
+			height: 55%;
 			width: 50%;
 			opacity: 0.5;
 		}
+			
+	.scanIcon {
+		height: 50%;
+		width: 50%;
+		opacity: 0.5;
+	}
 		.medicalQuestionArea {
 			/* background: #FF3E00; */
 			height: 100%;
 			width: 95%;
 		}
+
+		
 		.medicalQuestionTitle {
 		height: 5%;
 		width: 100%;
 		/* background-color: red; */
 		color: white;
-		font-size: 20px;
+		font-size: 15px;
 		font-weight: 600;
 
 		font-family: system-ui;
@@ -984,7 +1242,7 @@
 		align-items: center;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 		}
-
+		/*  Question - item - area  */
 		.medicalQuestionList {
 		height: 90%;
 		width: 100%;
@@ -1003,6 +1261,7 @@
 		/* background: pink; */
 	}
 
+	/* Question - item  */
 	.medicalQuestionItem {
 		background: rgba(211, 211, 235, 0.105);
 		/* background-color: #1d4b1d; */
@@ -1013,7 +1272,245 @@
 		justify-content: flex-start;
 		align-items: center;
 		color: white;
-		font-size: 11.5px;
+		font-size: 12px;
+		font-weight: 400;
+		margin-bottom: 10px;
+		font-family: system-ui;
+		border-radius: 7px;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+		cursor: pointer;
+	}
+	.startBtn {
+		height: 70%;
+		width: 30%;
+		/* border: 1px solid rgb(43, 121, 194); */
+		border: 1px solid grey;
+		border-radius: 7px;
+		/* background-color: rgba(58, 139, 210, 0.262); */
+		background-color: rgba(17, 100, 243, 0.912);
+		font-family: system-ui;
+		color: white;
+		cursor: pointer;
+		font-weight: 600;
+		font-size: 12px;
+	}
+	}
+
+	@media (min-width: 2560px) {
+
+		/* Default Scan Form  */
+		.startScanBtn {
+			height: 80%;
+			width: 30%;
+			/* border: 1px solid rgb(43, 121, 194); */
+			border: 1px solid rgb(0, 0, 0);
+			border-radius: 7px;
+			
+			background-color: rgba(254, 127, 0, 0.767);
+			font-family: system-ui;
+			color: rgb(11, 11, 11);
+			cursor: pointer;
+			font-weight: 600;
+			font-size: 15px;
+		}
+		/* Scanning btn */
+		.scanningFormArea {
+			/* background-color: #2f7bed; */
+			height: 100%;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		.scanningFormText {
+			height: 70%;
+			width: 100%;
+			/* background: green; */
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: white;
+			font-size: 15px;
+			font-weight: 600;
+			/* margin-bottom: 10px; */
+			font-family: system-ui;
+		}
+		.scannFormLoadSection {
+			height: 30%;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.startScanningArea {
+			/* background-color: pink; */
+			height: 100%;
+			width: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		/* Avatar Style */
+		.avatarText {
+			width: 100%;
+			height: 65%;
+			background-color: rgb(3, 32, 68);
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid rgba(255, 255, 255, 0.175);
+			border-radius: 7px;
+			font-family: system-ui;
+			font-size: 14px;
+			position: absolute;
+			top: -33%;
+			left: -25%;
+			z-index: 5;
+			color: white;
+			animation: upDown 2s ease-in-out infinite;
+			padding: 1%;
+		}
+
+		.aibotAvatar {
+			/* background-color: rgba(226, 17, 52, 0.619); */
+			width: 100%;
+			height: 90%;
+			margin-top: 5%;
+			/* position: absolute; */
+			top: 0%;
+			/* left: 70%; */
+			z-index: -0;
+		}
+
+		
+		.medicalResultBarselectedList {
+			/* background: #FF3E00; */
+			height: 90%;
+			width: 100%;
+
+			/* background-color: blue; */
+			gap: 5%;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		/* Question  - item - area */
+		.medicalResultQuestionList{
+			/* background: #FF3E00; */
+			height: 90%;
+			width: 100%;
+
+			/* background-color: blue; */
+			gap: 5%;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		/* MiddleBar  - item  */
+		.QuestionItem {
+			background: rgba(211, 211, 235, 0.105);
+			/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
+			height: 4%;
+			width: 70%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: white;
+			font-size: 15px;
+			font-weight: 400;
+			margin-bottom: 10px;
+			font-family: system-ui;
+			border-radius: 50%;
+			border: 1px solid rgba(255, 255, 255, 0.175);
+			cursor: pointer;
+		}
+
+		/* .selectedQuestionItemId{
+			
+			font-size: 10px;
+		} */
+
+		.medicalResultBarListRecordVisualizer {
+			height: 5%;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-top: 1px solid rgba(255, 255, 255, 0.175);
+		}
+
+		.listeIcon {
+			height: 56%;
+			width: 50%;
+			opacity: 0.5;
+		}
+		.scanIcon {
+		height: 55%;
+		width: 50%;
+		opacity: 0.5;
+	}
+		.medicalQuestionArea {
+			/* background: #FF3E00; */
+			height: 100%;
+			width: 95%;
+		}
+
+		
+		.medicalQuestionTitle {
+		height: 5%;
+		width: 100%;
+		/* background-color: red; */
+		color: white;
+		font-size: 20px;
+		font-weight: 600;
+
+		font-family: system-ui;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+		}
+		/*  Question - item - area  */
+		.medicalQuestionList {
+		height: 90%;
+		width: 100%;
+		/* background-color: blue; */
+		gap: 5%;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
+	}
+		.medicalResultArea {
+		height: 100%;
+		width: 50%;
+		display: flex;
+		/* background: pink; */
+	}
+
+	/* Question - item  */
+	.medicalQuestionItem {
+		background: rgba(211, 211, 235, 0.105);
+		/* background-color: #1d4b1d; */
+		/* border-bottom: 1px solid rgba(255, 255, 255, 0.175); */
+		height: 4%;
+		width: 80%;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		color: white;
+		font-size: 15px;
 		font-weight: 400;
 		margin-bottom: 10px;
 		font-family: system-ui;
@@ -1033,13 +1530,7 @@
 		color: white;
 		cursor: pointer;
 		font-weight: 600;
-		font-size: 12px;
+		font-size: 15px;
 	}
-
-	}
-	/* Mid laptops (your 1807px screen) */
-	@media (min-width: 1700px) {
-	}
-	@media (min-width: 2560px) {
 	}
 </style>
