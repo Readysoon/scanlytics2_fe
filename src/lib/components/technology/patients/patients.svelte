@@ -147,7 +147,7 @@
 						class="formInput"
 						bind:value={userName}
 						on:change={handleInput}
-						placeholder="Max Mustermann"
+						placeholder="Nachname"
 					/>
 				</div>
 				<div class="formBtnArea">
