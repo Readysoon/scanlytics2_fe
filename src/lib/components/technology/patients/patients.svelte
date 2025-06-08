@@ -881,6 +881,10 @@
 			border: 1px solid rgba(255, 255, 255, 0.175);
 			border-radius: 7px;
 		}
+			.minusBtnIcon {
+		height: 100%;
+		width: 25%;
+	}
 	}
 	/* Tablet or small screens */
 	@media (min-width: 768px) {
@@ -973,6 +977,7 @@
 			color: #ffffffe1;
 			border-radius: 7px;
 		}
+
 
 	
 
@@ -1312,6 +1317,13 @@
 			font-size: 15px;
 			font-family: system-ui;
 		}
+		.widgetlogoRobot {
+		height: 80%;
+		width: 100%;
+		opacity: 0.8;
+		cursor: pointer;
+		/* background-color: orange; */
+		}
 	}
 
 	/* Mid laptops (your 1807px screen) */
@@ -1359,6 +1371,14 @@
 			padding: 1%;
 			font-size: 15px;
 			font-family: system-ui;
+		}
+		
+		.widgetlogoRobot {
+		height: 80%;
+		width: 100%;
+		opacity: 0.8;
+		cursor: pointer;
+		/* background-color: orange; */
 		}
 	}
 
