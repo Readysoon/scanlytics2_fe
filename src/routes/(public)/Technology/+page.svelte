@@ -565,9 +565,13 @@
 											<div class="imgConectSectionUpload-AIRecordSection">
 												<div class="imgConectSectionUpload-AIRecordContent">
 													{#if aiToggleState}
+													<div class="aiResponseText">
 														{aiBotText}
+														
+													</div>
 													{:else}
 														<ScaleOut size="30" color="white" unit="px" duration="1s" />
+														
 													{/if}
 												</div>
 											</div>
@@ -2152,6 +2156,26 @@
 		height: 100%;
 		width: 25%;
 	}
+	.imgConectSectionUpload-AIRecordContent {
+		width: 60%;
+		height: 80%;
+		background-color: rgb(5, 5, 5);
+		border-radius: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: rgba(255, 255, 255, 0.879);
+		font-size: 9px;
+		font-family: sans-serif;
+		font-weight: 600;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+		text-align: center;
+	}
+	.aiResponseText{
+		font-size: 10px;
+		/* color: white; */
+		color: rgba(255, 255, 255, 0.879);
+	}
 	}
 
 	/* Mid laptops (your 1807px screen) */
@@ -2477,6 +2501,26 @@
 		.minusBtnIcon {
 		height: 100%;
 		width: 25%;
+	}
+	.imgConectSectionUpload-AIRecordContent {
+		width: 65%;
+		height: 70%;
+		background-color: rgb(5, 5, 5);
+		border-radius: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: rgba(255, 255, 255, 0.879);
+		font-size: 9px;
+		font-family: sans-serif;
+		font-weight: 600;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+		text-align: center;
+	}
+	.aiResponseText{
+		font-size: 11px;
+		/* color: white; */
+		color: rgba(255, 255, 255, 0.879);
 	}
 
 		
@@ -2806,5 +2850,26 @@
 		height: 100%;
 		width: 25%;
 	}
+	.imgConectSectionUpload-AIRecordContent {
+		width: 60%;
+		height: 70%;
+		background-color: rgb(5, 5, 5);
+		border-radius: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: rgba(255, 255, 255, 0.879);
+		font-size: 9px;
+		font-family: sans-serif;
+		font-weight: 600;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+		text-align: center;
+	}
+	.aiResponseText{
+		font-size: 14px;
+		/* color: white; */
+		color: rgba(255, 255, 255, 0.879);
+	}
+
 	}
 </style>
