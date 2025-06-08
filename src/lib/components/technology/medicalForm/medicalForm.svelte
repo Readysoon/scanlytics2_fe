@@ -238,7 +238,7 @@
 							</div>
 						{:else}
 							<div class="startScanningArea" on:click={handleScanning}>
-								<button class="startScanBtn">Start Scanning</button>
+								<button class="startScanBtn">Scannen</button>
 							</div>
 						{/if}
 					</div>
@@ -334,9 +334,9 @@
 									disabled={selectedQuestionState}
 								>
 									{#if selectedQuestionState}
-										Please select 3 questions
+									Bitte wählen Sie 3 Fragen aus.
 									{:else}
-										Start Reporting
+									Befundung starten
 									{/if}
 								</button>
 							{:else}
@@ -1296,6 +1296,7 @@
 	}
 	}
 
+	/* Large Screen */
 	@media (min-width: 2560px) {
 
 		/* Default Scan Form  */
