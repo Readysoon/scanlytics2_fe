@@ -1821,6 +1821,7 @@
 			flex-direction: row;
 			align-items: center;
 			justify-content: center;
+			cursor: pointer;
 		}
 
 		.select-Item-Content {
@@ -2041,6 +2042,7 @@
 			flex-direction: row;
 			align-items: center;
 			justify-content: center;
+			cursor: pointer;
 		}
 
 		.select-Item-Content {
