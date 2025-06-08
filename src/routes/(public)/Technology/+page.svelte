@@ -696,8 +696,10 @@
 											<div class="imageReportSectionHeader">
 												<p class="assitantTitle">AI Reporting Assistant</p>
 											</div>
+											
 											<!-- Ai Section menu field -->
 											<div class="assistantContentSection">
+												
 												{#if OptionStateDes}
 													<div class="metadataSection">
 														<div class="metadataContent">
@@ -718,7 +720,7 @@
 												{/if}
 												<div
 													class="aicontentSection"
-													style="height: {OptionStateDes == true ? '70%' : '100%'};"
+													style="height: {OptionStateDes == true ? '90%' : '100%'};"
 												>
 													<div class="aicontentSectionHeader">
 														<div class="aicontentSectionHeader-State">
@@ -842,7 +844,7 @@
 																		style="border-color: {items.name == 'Findings'
 																			? 'rgb(43, 121, 194)'
 																			: 'white'};
-																			height: {OptionStateDes == true ? '6.5%' : '5%'};
+																			height: {OptionStateDes == true ? '5.7%' : '5%'};
 																			display: {(items.name == ExamStateVal && optionExamToggle) ||
 																		(items.name == studyPatientStateVal && optionStudyInfoToggle) ||
 																		(items.name == OptionStateVal && OptPatientStateToggle)
@@ -883,7 +885,7 @@
 														{/if}
 													</div>
 												</div>
-												<div class="aiContentStartSection"></div>
+												
 											</div>
 										</div>
 									{/if}
@@ -1005,7 +1007,8 @@
 	}
 
 	.assistantContentSection {
-		height: 94%;
+		/* min-height: 100%; */
+		height: 80%;
 		width: 100%;
 		font-family: sans-serif;
 		color: white;
@@ -1015,14 +1018,14 @@
 		align-items: center;
 	}
 
-	.metadataSection {
+	/* .metadataSection {
 		height: 20%;
 		width: 100%;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-	}
+	} */
 
 	.metadataContent {
 		height: 95%;
@@ -1050,14 +1053,7 @@
 		/* background-color: #36070766; */
 	}
 
-	.aiContentStartSection {
-		/* background: rgba(0, 128, 0, 0.075); */
-		width: 100%;
-		height: 10%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
+
 
 	.selectedQueston {
 		background: rgb(43, 121, 194);
@@ -2135,7 +2131,7 @@
 
 		/* Menu Bar Header */
 		.imageReportSectionHeader {
-			height: 5.5%;
+			height: 5%;
 			width: 100%;
 			border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 			display: flex;
@@ -2153,7 +2149,7 @@
 		}
 
 		.assistantContentSection {
-			height: 95.5%;
+			height: 95%;
 			width: 100%;
 			font-family: sans-serif;
 			color: white;
@@ -2161,10 +2157,11 @@
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
+			/* background-color: #fff; */
 		}
 		/* Menu Bar Description Area */
 		.metadataSection {
-			height: 25%;
+			height: 30%;
 			width: 100%;
 			display: flex;
 			flex-direction: row;
@@ -2195,7 +2192,7 @@
 			display: flex;
 			flex-direction: column;
 			border-top: 1px solid rgba(255, 255, 255, 0.175);
-			/* background-color: #36070766; */
+			/* background-color: #d5191966; */
 		}
 		.aicontentSectionHeader {
 			height: 7%;
@@ -2242,7 +2239,7 @@
 
 		.text-item-name-area {
 			border: 1px solid white;
-			height: 5%;
+			height: 4%;
 			width: 100%;
 			border-radius: 50px;
 			display: flex;
@@ -2543,8 +2540,8 @@
 			/* background-color: #fff; */
 		}
 		.robologo {
-			width: 40px;
-			height: 40px;
+			width: 35px;
+			height: 35px;
 		}
 
 		.selected-item-area {
