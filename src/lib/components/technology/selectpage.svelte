@@ -11,7 +11,7 @@
 	// Default Images
 	const images = [`knie.jpg`, `knee2.jpg`, `knee3.jpeg`];
 
-	// clicks on the input tag 
+	// clicks on the input tag
 	export function triggerclickEvent() {
 		fileInput.click();
 	}
@@ -72,8 +72,6 @@
 			console.error('Error in handleImageConversion:', error);
 		}
 	};
-
-
 </script>
 
 <div class="scansToggleArea">
@@ -102,6 +100,7 @@
 							<img
 								src={image}
 								alt="images"
+								class="defaultImg"
 								height="250"
 								width="100%"
 								on:click={() => handleImageSelection(image)}
@@ -122,7 +121,7 @@
 					hidden
 				/>
 
-				<img src={'/add1.png'} alt="images" height="40px" width="40" on:click={triggerclickEvent} />
+				<img src={'/add1.png'} class="addImageIcon" height="40px" width="40" on:click={triggerclickEvent} />
 				<p>Upload Scan</p>
 			</div>
 		</div>
@@ -211,5 +210,144 @@
 	.defaultImageSelectionArea {
 		height: 33%;
 		width: 100%;
+	}
+
+
+	/*  ipads (e.g. 1366px - 1440px wide) */
+	@media (min-width: 768px) {
+	}
+
+	/* Small laptops (e.g. 1366px - 1440px wide) */
+	@media (min-width: 1280px) {
+
+	.imgPreviewAddArea {
+		height: 10%;
+		width: 100%;
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+		opacity: 0.6;
+	}
+
+	.imgPreviewAddAreaContent {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		gap: 10%;
+		color: white;
+		text-align: center;
+		font-family: system-ui;
+		font-size: 10px;
+	}
+	.addImageIcon{
+		width: 20%;
+		height: 40%;
+	}
+	.defaultImg {
+		width: 100%;
+		height: 100%;
+	}
+	
+	.imgPrevieTitleArea {
+		height: 7%;
+		width: 100%;
+		color: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 19px;
+		font-family: system-ui;
+		opacity: 0.6;
+	}
+
+	}
+	/* Mid laptops (your 1807px screen) */
+	@media (min-width: 1700px) {
+		.imgPreviewAddArea {
+		height: 10%;
+		width: 100%;
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+		opacity: 0.6;
+	}
+
+	.imgPreviewAddAreaContent {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		gap: 10%;
+		color: white;
+		text-align: center;
+		font-family: system-ui;
+		font-size: 13px;
+	}
+	.addImageIcon{
+		width: 20%;
+		height: 40%;
+	}
+	.defaultImg {
+		width: 100%;
+		height: 100%;
+	}
+	
+	.imgPrevieTitleArea {
+		height: 7%;
+		width: 100%;
+		color: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 20px;
+		font-family: system-ui;
+		opacity: 0.6;
+	}
+
+	}
+	/* Large Screen */
+	@media (min-width: 2560px) {
+		.imgPreviewAddArea {
+		height: 10%;
+		width: 100%;
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+		opacity: 0.6;
+	}
+
+	.imgPreviewAddAreaContent {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		gap: 10%;
+		color: white;
+		text-align: center;
+		font-family: system-ui;
+		font-size: 15px;
+	}
+	.addImageIcon{
+		width: 20%;
+		height: 50%;
+	}
+	.defaultImg {
+		width: 100%;
+		height: 100%;
+	}
+	
+	.imgPrevieTitleArea {
+		height: 7%;
+		width: 100%;
+		color: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 29px;
+		font-family: system-ui;
+		opacity: 0.6;
+	}
+
 	}
 </style>

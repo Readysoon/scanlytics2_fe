@@ -260,7 +260,7 @@
 			align-items: center;
 		}
 		.widgetlogo {
-			height: 19px;
+			height: 18px;
 		}
 		.defaultMenuText {
 			color: white;
