@@ -802,7 +802,7 @@
 																			{#if items.name == 'Findings' && selectedToggle.length > 0}
 																				{#each selectedToggle as selectObj (selectObj)}
 																					<div class="selected-item-obj">
-																						<div class="selected-item-obj-text">
+																						<div class="selected-item-obj-text-before">
 																							{selectObj.label}
 																						</div>
 
@@ -2084,6 +2084,17 @@
 			/* text-align: center; */
 			padding-left: 3%;
 		}
+		.selected-item-obj-text-before{
+				/* background-color: #ffffff30; */
+				width: 100%;
+			height: 100%;
+			font-size: 11px;
+			display: flex;
+			/* justify-content: center; */
+			align-items: center;
+			/* text-align: center; */
+			padding-left: 0%;
+		}
 
 		.textoption {
 			width: 50%;
@@ -2360,6 +2371,17 @@
 			align-items: center;
 			/* text-align: center; */
 			padding-left: 3%;
+		}
+		.selected-item-obj-text-before{
+				/* background-color: #ffffff30; */
+				width: 100%;
+			height: 100%;
+			font-size: 11px;
+			display: flex;
+			/* justify-content: center; */
+			align-items: center;
+			/* text-align: center; */
+			padding-left: 0%;
 		}
 
 		.textoption {
@@ -2640,6 +2662,18 @@
 			/* text-align: center; */
 			padding-left: 3%;
 		}
+		.selected-item-obj-text-before{
+				/* background-color: #ffffff30; */
+				width: 100%;
+			height: 100%;
+			font-size: 15px;
+			display: flex;
+			/* justify-content: center; */
+			align-items: center;
+			/* text-align: center; */
+			padding-left: 0%;
+		}
+
 
 		.textoption {
 			width: 50%;
