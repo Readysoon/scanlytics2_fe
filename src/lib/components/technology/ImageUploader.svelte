@@ -9,12 +9,11 @@
 	let imgfileData: File | null = null;
 	let currentStep: number = 1;
 	let imgPreview = $state('');
-	let openeningText: string = `Tap the microphone button on the right to begin the conversation and say "Hallo Bruno".`
-	let index = 0 
-	let avatarScriptText: string = $state("")
-	let brunoTextLoadingState = $state(false)
+	let openeningText: string = `Tippen Sie auf die Mikrofontaste rechts, um das Gespräch zu beginnen, und sagen Sie „Hallo Bruno“.`;
+	let index = 0;
+	let avatarScriptText: string = $state('');
+	let brunoTextLoadingState = $state(false);
 
-	
 	const uploadToML = async () => {
 		try {
 			if (imgfileData == null) {
@@ -111,47 +110,34 @@
 	let canvas: any;
 	let loading: boolean = true;
 
-	
 	const handleAutoTextFillOut = () => {
+		const IntervalId = setInterval(() => {
+			if (index < openeningText.length) {
+				avatarScriptText += openeningText.charAt(index);
 
-		const IntervalId = setInterval(() => { 
-			
-			if(index < openeningText.length){
-			avatarScriptText += openeningText.charAt(index);
-			
-			index++;
-			
-
-			}else{
-				clearInterval(IntervalId)
-			
-
+				index++;
+			} else {
+				clearInterval(IntervalId);
 			}
-		}, 100)
-}
-
-
-	
+		}, 100);
+	};
 
 	$effect(() => {
-
-		
 		let app = new Application(canvas);
 
-	
 		loading = true;
-		
-		const splineobj = app.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode').then(() => {
-			const obj = app.findObjectByName("brunov1")
-			console.log('obj', obj);
-		
-			loading = false;
-			brunoTextLoadingState = true 
-			handleAutoTextFillOut()
-		});
-	
-	})
-	
+
+		const splineobj = app
+			.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode')
+			.then(() => {
+				const obj = app.findObjectByName('brunov1');
+				console.log('obj', obj);
+
+				loading = false;
+				brunoTextLoadingState = true;
+				handleAutoTextFillOut();
+			});
+	});
 </script>
 
 <div class="image-uploader">
@@ -166,20 +152,16 @@
 			<ImageScroller />
 
 			<div class="avatarcanvas">
-		
 				{#if brunoTextLoadingState}
-				<div class="avatarText"> 
-					{avatarScriptText}
-				</div>
+					<div class="avatarText">
+						{avatarScriptText}
+					</div>
 				{/if}
 				<div class="aibotAvatar">
-					<canvas bind:this={canvas} class="avater"/>
+					<canvas bind:this={canvas} class="avater" />
 				</div>
 			</div>
-
 		{/if}
-
-		
 	</div>
 
 	{#if mlMessage}
@@ -225,7 +207,7 @@
 		color: red;
 	}
 
-	.avatarcanvas{
+	.avatarcanvas {
 		/* background-color: pink; */
 		position: absolute;
 		height: 30%;
@@ -235,20 +217,19 @@
 		align-items: center;
 		top: 75%;
 		left: 85%;
-
 	}
 
 	@keyframes upDown {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-10px);
+		}
+	}
 
-
-	.avatarText{
+	.avatarText {
 		width: 100%;
 		height: 35%;
 		background-color: rgb(3, 32, 68);
@@ -267,19 +248,128 @@
 		z-index: 5;
 		padding: 1%;
 		animation: upDown 2s ease-in-out infinite;
-		
 	}
 
-	.aibotAvatar{
+	.aibotAvatar {
 		/* background-color: rgba(226, 17, 52, 0.619); */
-		width:  100%;
+		width: 100%;
 		height: 90%;
 		margin-top: 5%;
 		/* position: absolute; */
 		top: 0%;
 		/* left: 70%; */
 		z-index: 5;
-		
 	}
 
+	/*  ipads (e.g. 1366px - 1440px wide) */
+	@media (min-width: 768px) {
+	}
+
+	/* Small laptops (e.g. 1366px - 1440px wide) */
+	@media (min-width: 1280px) {
+		.avatarcanvas {
+			/* background-color: pink; */
+			position: absolute;
+			height: 33%;
+			width: 20%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			top: 77%;
+			left: 83%;
+		}
+
+		.avatarText {
+			width: 78%;
+			height: 60%;
+			background-color: rgb(3, 32, 68);
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid rgba(255, 255, 255, 0.175);
+			border-radius: 7px;
+			font-family: system-ui;
+			color: white;
+			font-size: 13px;
+			position: absolute;
+			top: -25%;
+			left: 5%;
+			z-index: 5;
+			padding: 2%;
+			animation: upDown 2s ease-in-out infinite;
+		}
+	}
+
+	/* Mid laptops (your 1807px screen) */
+	@media (min-width: 1700px) {
+		.avatarcanvas {
+			/* background-color: pink; */
+			position: absolute;
+			height: 33%;
+			width: 20%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			top: 77%;
+			left: 83%;
+		}
+
+		.avatarText {
+			width: 75%;
+			height: 70%;
+			background-color: rgb(3, 32, 68);
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid rgba(255, 255, 255, 0.175);
+			border-radius: 7px;
+			font-family: system-ui;
+			color: white;
+			font-size: 13px;
+			position: absolute;
+			top: -35%;
+			left: 7%;
+			z-index: 5;
+			padding: 2%;
+			animation: upDown 2s ease-in-out infinite;
+		}
+	}
+
+	/* Large Screen */
+	@media (min-width: 2560px) {
+		.avatarcanvas {
+			/* background-color: pink; */
+			position: absolute;
+			height: 33%;
+			width: 20%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			top: 77%;
+			left: 83%;
+		}
+
+		.avatarText {
+			width: 68%;
+			height: 50%;
+			background-color: rgb(3, 32, 68);
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid rgba(255, 255, 255, 0.175);
+			border-radius: 7px;
+			font-family: system-ui;
+			color: white;
+			font-size: 13px;
+			position: absolute;
+			top: -15%;
+			left: 10%;
+			z-index: 5;
+			padding: 2%;
+			animation: upDown 2s ease-in-out infinite;
+		}
+	}
 </style>
