@@ -112,10 +112,10 @@
 	let imageUploadToggle = $state(true);
 	let textEditToggle = $state(false);
 	let scansToggle = $state(false);
-	let navAssistantToggle_Structured = $state(true);
+	let navAssistantToggle_Structured = $state(false);
 	let navAssistantToggle_History = $state(false); //back to false - default
-	let navAssistantToggle_Patient = $state(false); //back to true - default
-	let enterPageToggle = $state(true); //back to false - default
+	let navAssistantToggle_Patient = $state(true); //back to true - default
+	let enterPageToggle = $state(false); //back to false - default
 	let inputValue = $state('');
 	let isMobile = false;
 	let disableAiStartBtn = $state(true);
@@ -124,7 +124,7 @@
 	let selectedToggle: any = $state([]);
 	let selectedRowToggle = $state(false);
 	let selectedArrVal = $state([]);
-	let showNav = $state(true); //back to false - default
+	let showNav = $state(false); //back to false - default
 	let resetState = $state(false);
 	let MenuOptionToggle = $state(false);
 	let OptionStateDes = $state(true);
