@@ -696,10 +696,9 @@
 											<div class="imageReportSectionHeader">
 												<p class="assitantTitle">AI Reporting Assistant</p>
 											</div>
-											
+
 											<!-- Ai Section menu field -->
 											<div class="assistantContentSection">
-												
 												{#if OptionStateDes}
 													<div class="metadataSection">
 														<div class="metadataContent">
@@ -885,7 +884,6 @@
 														{/if}
 													</div>
 												</div>
-												
 											</div>
 										</div>
 									{/if}
@@ -1052,8 +1050,6 @@
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
 		/* background-color: #36070766; */
 	}
-
-
 
 	.selectedQueston {
 		background: rgb(43, 121, 194);
@@ -2084,9 +2080,9 @@
 			/* text-align: center; */
 			padding-left: 3%;
 		}
-		.selected-item-obj-text-before{
-				/* background-color: #ffffff30; */
-				width: 100%;
+		.selected-item-obj-text-before {
+			/* background-color: #ffffff30; */
+			width: 100%;
 			height: 100%;
 			font-size: 11px;
 			display: flex;
@@ -2122,6 +2118,40 @@
 			width: 70%;
 			border-radius: 50%;
 		}
+		.MenuSelectOptionHeader {
+			height: 5.9%;
+			width: 100%;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+		}
+
+		.OptionEditorText {
+			font-size: 12px;
+			font-weight: bold;
+			font-family: sans-serif;
+			color: #ffffff;
+			text-align: center;
+		}
+
+		.optionTitle {
+			width: 80%;
+			height: 100%;
+			/* background-color: #4CAF50; */
+			font-family: system-ui;
+			font-size: 8px;
+			padding-left: 2%;
+			border-right: 1px solid rgba(255, 255, 255, 0.175);
+			font-weight: 500;
+			display: flex;
+			align-items: center;
+		}
+		.minusBtnIcon {
+		height: 100%;
+		width: 25%;
+	}
 	}
 
 	/* Mid laptops (your 1807px screen) */
@@ -2372,9 +2402,9 @@
 			/* text-align: center; */
 			padding-left: 3%;
 		}
-		.selected-item-obj-text-before{
-				/* background-color: #ffffff30; */
-				width: 100%;
+		.selected-item-obj-text-before {
+			/* background-color: #ffffff30; */
+			width: 100%;
 			height: 100%;
 			font-size: 11px;
 			display: flex;
@@ -2414,6 +2444,43 @@
 			height: 35%;
 			width: 15%;
 		}
+		.MenuSelectOptionHeader {
+			height: 5.9%;
+			width: 100%;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+		}
+
+		.OptionEditorText {
+			font-size: 12px;
+			font-weight: bold;
+			font-family: sans-serif;
+			color: #ffffff;
+			text-align: center;
+		}
+
+		.optionTitle {
+			width: 80%;
+			height: 100%;
+			/* background-color: #4CAF50; */
+			font-family: system-ui;
+			font-size: 9px;
+			padding-left: 2%;
+			border-right: 1px solid rgba(255, 255, 255, 0.175);
+			font-weight: 500;
+			display: flex;
+			align-items: center;
+		}
+		.minusBtnIcon {
+		height: 100%;
+		width: 25%;
+	}
+
+		
+		
 	}
 	/* Large Screen */
 	@media (min-width: 2560px) {
@@ -2662,9 +2729,9 @@
 			/* text-align: center; */
 			padding-left: 3%;
 		}
-		.selected-item-obj-text-before{
-				/* background-color: #ffffff30; */
-				width: 100%;
+		.selected-item-obj-text-before {
+			/* background-color: #ffffff30; */
+			width: 100%;
 			height: 100%;
 			font-size: 15px;
 			display: flex;
@@ -2673,7 +2740,6 @@
 			/* text-align: center; */
 			padding-left: 0%;
 		}
-
 
 		.textoption {
 			width: 50%;
@@ -2705,5 +2771,40 @@
 			height: 40%;
 			width: 12%;
 		}
+
+		.MenuSelectOptionHeader {
+			height: 5.9%;
+			width: 100%;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.175);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+		}
+
+		.OptionEditorText {
+			font-size: 20px;
+			font-weight: bold;
+			font-family: sans-serif;
+			color: #ffffff;
+			text-align: center;
+		}
+
+		.optionTitle {
+			width: 80%;
+			height: 100%;
+			/* background-color: #4CAF50; */
+			font-family: system-ui;
+			font-size: 14px;
+			padding-left: 2%;
+			border-right: 1px solid rgba(255, 255, 255, 0.175);
+			font-weight: 500;
+			display: flex;
+			align-items: center;
+		}
+		.minusBtnIcon {
+		height: 100%;
+		width: 25%;
+	}
 	}
 </style>
