@@ -111,7 +111,7 @@
 					brunoTextLoadingState = true;
 					textState = true;
 					loading = false;
-					openeningText = `Freut mich, Sie kennenzulernen, ${userName}. Bitte klicken Sie auf den Roboter-Button im blau markierten Patientenbereich unter dem Namen Ben Krause.`;
+					openeningText = `Freut mich, Sie kennenzulernen, Dr.${userName}. Bitte klicken Sie auf den Roboter-Button im blau markierten Patientenbereich unter dem Namen Ben Krause.`;
 					handleUpdateText(openeningText);
 					// if(!nameToggleCheck){
 
@@ -237,7 +237,7 @@
 						</div>
 
 						<div class="fachArzt">
-							<div>Dr. Weber</div>
+							<div>Dr. {userName}</div>
 						</div>
 
 						<div class="patientFunktionen">
