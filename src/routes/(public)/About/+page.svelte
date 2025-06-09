@@ -11,9 +11,7 @@
 	<Header />
 
 	<div class="page_container">
-		<div class="Above">
-			<!-- <h2>Team</h2> -->
-		</div>
+		
 
 		<div class="Vision">
 			<div class="Text-container">
@@ -261,6 +259,7 @@
             /* height: 100%; */
 			height: 80vh;
 			width: 100%;
+            margin-top: 6%;
 			/* flex-grow: 1; */
 		}
 
@@ -269,7 +268,7 @@
 			height: 8vh;
 			padding-left: 2%;
 			flex-direction: column;
-			display: flex;
+			display:  none;
 			justify-content: center;
 			align-items: center;
             font-size: 18px;
@@ -363,9 +362,9 @@
 	}
 
 
-		.Vision {
+		/* .Vision {
 			flex-direction: column !important;
-		}
+		} */
 
 		.vision-image-container {
 			margin-top: 50px;
