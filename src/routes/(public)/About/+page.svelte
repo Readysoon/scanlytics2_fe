@@ -41,10 +41,10 @@
 		</div>
 
 		<div class="PartnerHeader">
-			<h2>Partner</h2>
+			<h2>Partners In  Coming ;)</h2>
 		</div>
 
-		<div class="PartnerContent">Partners</div>
+		<div class="PartnerContent">Partners In  Coming</div>
 	</div>
 	<Footer />
 </main>
@@ -388,6 +388,7 @@
 			/* text-align: center; */
 			height: 70vh;
 			width: 100%;
+            margin-top: 6%;
 			/* flex-grow: 1; */
 		}
         
@@ -410,6 +411,7 @@
 			/* text-align: center; */
 			height: 40vh;
 			width: 100%;
+            margin-top: 6%;
 			/* flex-grow: 1; */
 		}
 
@@ -423,7 +425,7 @@
 			align-items: center;
 			font-size: 29px;
 			/* background-color: orange; */
-			margin-top: 2%;
+			margin-top: 11%;
 			/* border-top: 1px solid rgba(255, 255, 255, 0.359); */
 			/* border-top: 1px solid white ; */
 		}

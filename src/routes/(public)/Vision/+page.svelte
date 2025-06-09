@@ -937,6 +937,37 @@
 		margin-top: 10px;
 	}
 
+	 /* Mobile screens */
+	 @media (min-width: 320px) and (max-width: 460px){
+		
+	.UnderConstructionArea{
+		/* background-color: #fff; */
+		display: flex;
+		min-height: 100%;
+		height: 80vh;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		gap: 2%;
+
+		
+	}
+	.UnderConstructionContent{
+		color: white;
+		font-family: system-ui;
+		font-size: 19px;
+		height: 10%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+
+	}
+	 }
+
 	/* Media query for mobile view */
 	@media (max-width: 768px) {
 		main {
