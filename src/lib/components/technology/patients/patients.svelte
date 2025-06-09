@@ -855,7 +855,7 @@
 	}
 
 	/* Mobile Devices */
-	@media (min-width: 320px) and (max-width: 460px) {
+	@media (min-width: 320px) and (max-width: 900px) {
 		.namecheckoverLay {
 			background-color: rgba(24, 24, 24, 0.897);
 			/* background-color: orange; */
@@ -890,6 +890,7 @@
 	@media (min-width: 768px) {
 		.namecheckoverLay {
 			background-color: rgba(24, 24, 24, 0.897);
+			background-color: rgba(0, 0, 0, 0.982);
 			/* background-color: rgba(0, 0, 0, 0.982); */
 			/* background-color: rgba(255, 192, 203, 0.992); */
 			position: absolute;
