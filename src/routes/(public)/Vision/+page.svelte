@@ -16,6 +16,8 @@
 	let pinAfrica: boolean = false
 	let pinChina: boolean = false; 
 	let pinaustralia: boolean = false;
+	let innerWidth: any;
+	let closePage = false;
 
 		// Check if device is mobile
 		onMount(() => {
@@ -29,6 +31,7 @@
 
 		function checkIfMobile() {
 			isMobile = window.innerWidth <= 768;
+
 		}
 		
 		// Toggle mobile alternative view
@@ -99,8 +102,15 @@
 				pinaustralia = !pinaustralia
 			}
 		}
+
+		$effect(() => {
+			if(innerWidth >= 1400){
+				closePage = true
+			}
+		})
 	</script>
 	
+<svelte:window  bind:innerWidth={innerWidth} />
 	<main>
 
 		<Header />
@@ -314,6 +324,8 @@
 		<div class="mainSection">
 			<!-- Desktop view for map and pins -->
 			{#if !isMobile}
+
+			{#if closePage}
 			<div class="mainLeftContentSection">
 				<div class="mapSection">
 						<img src="/blue2.png" class="map" alt="Logo" height="100%" width="100%"  />
@@ -364,6 +376,23 @@
 					<div class="placeholderObjecttext">Click on a Vision Pin</div>
 				</div>
 			</div>
+
+			{:else}
+				<div class="UnderConstructionArea">
+				
+					<div class="UnderConstructionContent">
+						Our website is currently being updated!
+						<br>
+						We’ll be back for you soon
+						<br>
+						:)
+
+
+					</div>
+	
+				</div> 
+
+			{/if}
 			{:else}
 			 <!-- Mobile view -->
 			<div class="mobile-view">
@@ -533,6 +562,47 @@
 		justify-content: center;
 	}
 
+
+	.UnderConstructionArea{
+		/* background-color: #fff; */
+		display: flex;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		gap: 2%;
+
+		
+	}
+	.UnderConstructionContent{
+		color: white;
+		font-family: system-ui;
+		font-size: 30px;
+		height: 10%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+
+	}
+	.contructionIconArea{
+		height: 30%;
+		width: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center; 
+
+		/* background-color: #fff; */
+
+	}
+	/* .constructionWorker{
+		height: 100%;
+		width: 30%;
+	} */
 	.MapDefaultTEXT{
 		/* background-color: red; */
 		width: 100%;

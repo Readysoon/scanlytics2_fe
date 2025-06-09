@@ -43,7 +43,7 @@
     <!-- Navigation links -->
     <div class="navbar" class:mobile-menu={isMobile} class:open={mobileMenuOpen}>
         <a href="/" class={$page.url.pathname === '/' ? 'active' : ''}>Home</a>
-        <a href="/Vision/" class={$page.url.pathname.startsWith('/Vision') ? 'active' : ''}>Vision</a>
+        <a href="/Vision/" class={$page.url.pathname.startsWith('/Vision') ? 'active' : ''}>Service</a>
         <a href="/Technology/" class={$page.url.pathname.startsWith('/Technology') ? 'active' : ''}>Technology</a>
         <a href="/About/" class={$page.url.pathname.startsWith('/About') ? 'active' : ''}>About</a>
         <!-- <a href="/Tests/" class={$page.url.pathname.startsWith('/Tests') ? 'active' : ''}>Tests</a> -->

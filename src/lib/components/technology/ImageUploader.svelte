@@ -119,7 +119,7 @@
 			} else {
 				clearInterval(IntervalId);
 			}
-		}, 100);
+		}, 20);
 	};
 
 	$effect(() => {

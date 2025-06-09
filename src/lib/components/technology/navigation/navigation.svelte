@@ -94,7 +94,7 @@
 				</div>
 			{:else}
 				<div class="BrunoTitleArea">
-					<p>Bruno v.0.3 Conversational AI Assistant</p>
+					<p>Scanlytics - Bruno v.0.3 Conversational AI Assistant</p>
 				</div>
 			{/if}
 			<!-- <div class="interGlobeBtnArea"

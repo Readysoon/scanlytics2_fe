@@ -11,7 +11,9 @@
 	let canvas: any;
 	let loading: boolean = $state(true);
 	let openeningText: string =
-		'Willkommen beim Scanlytics Conversational AI Assistant. Mein Name ist Bruno und ich bin Ihr KI-Assistent. Bitte drücken Sie auf „Start“, um mit dem Befundungsprozess zu beginnen.';
+		`Welcome to the Scanlytics Conversational AI Assistant.
+		My name is Bruno, and I am your AI assistant. Please click "Start" to begin the reporting process.
+		Please note that the current version of this application demo is only available in German.`;
 	let index = $state(0);
 	let indexTonOn = $state(0);
 	let avatarScriptText: string = $state('');
