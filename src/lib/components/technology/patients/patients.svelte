@@ -855,7 +855,7 @@
 	}
 
 	/* Mobile Devices */
-	@media (min-width: 320px) and (max-width: 900px) {
+	@media (min-width: 320px) and (max-width: 1040px) {
 		.namecheckoverLay {
 			background-color: rgba(24, 24, 24, 0.897);
 			/* background-color: orange; */
@@ -872,6 +872,23 @@
 			justify-content: center;
 			align-items: center;
 		}
+		
+	.imgScanSection {
+		/* background-color: rgba(245, 222, 179, 0.181); */
+		background-color: #0d1117;
+
+		height: 100%;
+		width: 100%;
+		position: relative;
+		display: none;
+		justify-content: center;
+		align-items: center;
+		padding-top: 0.5%;
+		/* border-top: 1px solid rgba(255, 255, 255, 0.175); */
+
+		/* border: 1px solid rgba(255, 255, 255, 0.379); */
+	}
+
 		.nameAskContainer {
 			width: 30%;
 			height: 30%;
