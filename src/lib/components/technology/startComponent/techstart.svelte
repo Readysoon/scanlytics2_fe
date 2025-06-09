@@ -626,7 +626,7 @@
 	}
 
 	/* Tablet or small screens */
-	@media (min-width: 768px) {
+	@media (min-width: 568px) {
 		.imgScanSection {
 			background-color: #0d1117;
 			/* background-color: #7c0a0a5e; */
@@ -642,7 +642,8 @@
 		.emailSectionArea {
 			height: 100%;
 			width: 100%;
-			display: flex;
+			/* made it none to now show on tablets and phone - horizontal view */
+			display: none;  
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;

@@ -872,6 +872,17 @@
 			justify-content: center;
 			align-items: center;
 		}
+
+		.medicalConversationArea {
+		height: 96%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		display: none;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+		/* padding: 0.5%; */
+		/* padding-top: 0.51%;# */
+	}
 		
 	.imgScanSection {
 		/* background-color: rgba(245, 222, 179, 0.181); */
@@ -880,7 +891,7 @@
 		height: 100%;
 		width: 100%;
 		position: relative;
-		display: none;
+		display: flex;
 		justify-content: center;
 		align-items: center;
 		padding-top: 0.5%;

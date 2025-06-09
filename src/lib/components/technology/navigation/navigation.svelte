@@ -444,17 +444,19 @@
 
 	/* Mobile Devices */
 	@media (min-width: 320px) and (max-width: 460px) {
-		.conversationNav {
-			display: none;
-		}
+		
 
 
 	}
 
-	
-		/* Tablet or small screens */
-		@media (min-width: 768px) {
+	@media (min-width: 320px) and (max-width: 1040px){
+		.conversationNav {
+			display: none;
 		}
+	}
+
+	
+		
 		/* Small laptops (e.g. 1366px - 1440px wide) */
 		@media (min-width: 1280px) {
 			.BrunoTitleArea {
