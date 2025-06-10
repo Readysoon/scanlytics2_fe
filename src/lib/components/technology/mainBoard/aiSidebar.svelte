@@ -1,3 +1,14 @@
+<script lang="ts" module>
+	let showMessagePopUp = $state(false)
+	let newMessageNum = $state(0)
+
+	export function handlepdfMessagePopuP(){
+		showMessagePopUp = true 
+		newMessageNum+=1
+	}
+
+</script>
+
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import AudioRecorder from '../audioRecorder.svelte';
@@ -29,6 +40,8 @@
 
 	const handleTextEditorToggle = () => {
 		dispath('textEditorToggle');
+		showMessagePopUp = false
+		newMessageNum = 0
 	};
 
 	const handleStartAI = () => {
@@ -76,6 +89,11 @@
 		</div>
 
 		<div class="optionBox" on:click={handleTextEditorToggle}>
+			{#if showMessagePopUp}
+			<div class="messagePopUp">{newMessageNum}</div>
+			{/if}
+
+			
 			{#if textEditToggle}
 				<img src="text1.png" alt="widget" class="widgetlogo" />
 				<p class="selectedMenuText">Editor</p>
@@ -136,6 +154,20 @@
 		border-bottom: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
+	.messagePopUp{
+		width: 40%;
+		height: 20%;
+		border-radius: 50px;
+		background-color: red;
+		position: absolute;
+		font-size: 9px;
+		top: 19%;
+		left: -1%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
 	.optionBox {
 		width: 80%;
 		height: 14%;
@@ -148,6 +180,8 @@
 		gap: 8%;
 		font-size: 11px;
 		cursor: pointer;
+		position: relative;
+		/* background-color: pink; */
 	}
 
 	.widgetlogo {

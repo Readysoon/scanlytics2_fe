@@ -8,7 +8,8 @@
 	import {handleUpdateQuestionState} from '../../../routes/(public)/Technology/+page.svelte'
 	import {AudioTracker} from '../../../routes/(public)/Technology/+page.svelte'
 	import {loadAiTextToggle} from '../../../routes/(public)/Technology/+page.svelte'
-
+	import { handleFillDataInReport } from './TextEditor.svelte';
+	import { handlepdfMessagePopuP } from './mainBoard/aiSidebar.svelte';
 
 
 	let isRecording = false;
@@ -129,15 +130,18 @@
 			
 				pageTracker+=1
 				handleUpdateQuestionState(userprevQAnswer, userprevQState)
+				handleFillDataInReport(userprevQAnswer,userprevQState)
 			}
 
 			if(recordState == 1){
 				console.log('triggered on last state');
+				handlepdfMessagePopuP()
 				audioState = recordState
 				pageTracker = 0
 				userprevQAnswer = ""
 				userprevQState = []
 				handleAudioStart()
+				
 				
 				// recognition.stop();
 			}

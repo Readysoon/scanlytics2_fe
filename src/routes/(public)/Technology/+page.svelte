@@ -10,6 +10,8 @@
 	let aiToggleState = $state(false);
 	let questionTracker = $state(0);
 
+	
+
 	export function loadAiTextToggle(aiToggle: any) {
 		aiToggleState = aiToggle;
 		console.log('aiToggleState', aiToggleState);
@@ -42,6 +44,8 @@
 	//  Binding the input and updating the question background state
 	export function handleUpdateQuestionState(AnswerArr: any, StateArr: any) {
 		// Handles the updating the question background state
+
+	
 		stateAnswer = StateArr;
 
 		// Handles the binding on the input field
@@ -100,6 +104,7 @@
 	import { searchNav } from '$lib/components/technology/navigation/navigation.svelte';
 	import { closeNav } from '$lib/components/technology/navigation/navigation.svelte';
 	import AiSidebar from '$lib/components/technology/mainBoard/aiSidebar.svelte';
+	import PreviewPdf from '$lib/components/technology/textEditor/previewPdf.svelte';
 
 	import { handleSelectUpdateBackground } from '$lib/components/technology/selectedQuestions/selectedQuestions.svelte';
 	// Declarations
@@ -109,8 +114,8 @@
 	let isChecked: any = $state({});
 	let isCheckInputData: any = $state({});
 	let findingsCheckBoxState: any = $state([]);
-	let imageUploadToggle = $state(true);
-	let textEditToggle = $state(false);
+	let imageUploadToggle = $state(true); //default - true
+	let textEditToggle = $state(false); // defaaul - false 
 	let scansToggle = $state(false);
 	let navAssistantToggle_Structured = $state(false);
 	let navAssistantToggle_History = $state(false); //back to false - default
@@ -553,6 +558,7 @@
 									<SelectedQuestions />
 								</div>
 								<div class="aiContentArea">
+									<!-- ImageUpload Toggle -->
 									{#if imageUploadToggle}
 										<div
 											class="imgConectSectionUpload"
@@ -577,6 +583,8 @@
 											</div>
 										</div>
 									{/if}
+
+									<!-- Text Editor Toggle -->
 									{#if textEditToggle}
 										<div
 											class="imgConectSection"
@@ -588,11 +596,19 @@
 									"
 										>
 											{#if menuToggle}
-												<div class="TexteditorObj" style="width: {menuToggle ? '50%' : '50%'};">
+											<!-- <div class="textEditorPreviewSection">
+												<PreviewPdf/>
+											</div> -->
+												<div class="TexteditorObj" style="width: {menuToggle ? '100%' : '50%'};">
 													<TextEditor />
 												</div>
+
+											<!-- <div class="textEditorPreviewSection">
+
+											</div>
+											 -->
 											{:else}
-												<TextEditor />
+												<!-- <TextEditor /> -->
 											{/if}
 										</div>
 									{/if}
@@ -967,7 +983,14 @@
 		height: 100%;
 		/* display: flex; */
 		/* justify-content: center; */
+		/* align-items: center; */
 		/* background-color: pink; */
+	}
+
+	.textEditorPreviewSection{
+		width: 20%;
+		height: 100%;
+		/* background-color: green; */
 	}
 
 	.imgScanSection {

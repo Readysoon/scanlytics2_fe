@@ -39,6 +39,7 @@
 	},
 	"dependencies": {
 		"@aws-sdk/client-s3": "^3.787.0",
+		"@gembox/pdfviewer": "^2025.6.101",
 		"@google-cloud/text-to-speech": "^6.0.1",
 		"@splinetool/loader": "^1.9.98",
 		"@splinetool/react-spline": "^4.0.0",

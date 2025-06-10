@@ -1,74 +1,85 @@
 {
-    "title": "Knee Radiograph Report",
-    "description": "Comprehensive template for standardized knee X-ray reporting",
-    "metadata": {
-      "identifier": "knee-xray-report-template",
-      "language": "de",
-      "publisher": "Scanlytics",
-      "rights": "May be used freely, subject to license agreement",
-      "license": "http://www.scanlytics.de/license.pdf",
-      "date": "2025-03-16",
-      "creator": "Philipp Gallaschik"
-    },
-    "sections": [
-  
-      {
-        "name": "Findings",
-        "questions":[
-          {
-            "id": 0,
-            "label": "Wie ist die Qualität der Untersuchung?"
-           
-          },
-           {
-            "id": 1,
-            "label": "Wie ist der Zustand der Darmreinigung?"
-          },
-          {
-            "id": 2,
-            "label": "Welche Feldstärke wurde verwendet?"
-           
-          },
-          {
-            "id": 3,
-            "label": "Welches Kontrastmittel wurde verwendet?"
-            
-          },
-          {
-            "id": 4,
-            "label": "Wie viel Kontrastmittel (in ml) wurde verwendet?"
-           
-          },
-           {
-            "id": 5,
-            "label": "Was ist der aktuelle PSA-Wert?"
-            
-          },
-          {
-            "id": 6,
-            "label": "Gibt es eine PSA-Vorgeschichte?"
-            
-          },
-            {
-            "id": 7,
-            "label":"Was wurde bei vorherigen Biopsien festgestellt?"
-            
-          },
-              {
-            "id": 8,
-            "label": "Was war das Ergebnis der digitalen rektalen Untersuchung?"
-            
-          },
-            {
-            "id": 9,
-            "label": "Wie groß ist die Prostata (in mm)?"
-            
-          }
-        ]
-       
-    }
-    
-    ]
-
-  }
-  
+	"title": "Knee Radiograph Report",
+	"description": "Comprehensive template for standardized knee X-ray reporting",
+	"metadata": {
+		"identifier": "knee-xray-report-template",
+		"language": "de",
+		"publisher": "Scanlytics",
+		"rights": "May be used freely, subject to license agreement",
+		"license": "http://www.scanlytics.de/license.pdf",
+		"date": "2025-03-16",
+		"creator": "Philipp Gallaschik"
+	},
+  "patient_data": {
+    "name": "Ben Krause",
+    "birth_date": "*9.11.1989"
+  },
+	"sections": [
+		{
+			"name": "Findings",
+			"questions": [
+				{
+					"id": 0,
+					"label": "Wie ist die Qualität der Untersuchung?",
+					"answer": "",
+					"sentence": "Die Qualität der Untersuchung war {}."
+				},
+				{
+					"id": 1,
+					"label": "Wie ist der Zustand der Darmreinigung?",
+					"answer": "",
+					"sentence": "Der Zustand der Darmreinigung war {}."
+				},
+				{
+					"id": 2,
+					"label": "Welche Feldstärke wurde verwendet?",
+					"answer": "",
+					"sentence": "Die Feldstärke war {}."
+				},
+				{
+					"id": 3,
+					"label": "Welches Kontrastmittel wurde verwendet?",
+					"answer": "",
+					"sentence": "Das verwendete Kontrastmittel war {}."
+				},
+				{
+					"id": 4,
+					"label": "Wie viel Kontrastmittel (in ml) wurde verwendet?",
+					"answer": "",
+					"sentence": "Die Menge des verwendeten Kontrastmittels war {} ml."
+				},
+				{
+					"id": 5,
+					"label": "Was ist der aktuelle PSA-Wert?",
+					"answer": "",
+					"sentence": "Der aktuelle PSA-Wert ist {}."
+				},
+				{
+					"id": 6,
+					"label": "Gibt es eine PSA-Vorgeschichte?",
+					"answer": "",
+					"sentence": "Es gibt eine PSA-Vorgeschichte: {}."
+				},
+				{
+					"id": 7,
+					"label": "Was wurde bei vorherigen Biopsien festgestellt?",
+					"answer": "",
+					"sentence": "Vorherige Biopsien ergaben: {}."
+				},
+				{
+					"id": 8,
+					"label": "Was war das Ergebnis der digitalen rektalen Untersuchung?",
+					"answer": "",
+					"sentence": "Das Ergebnis der digitalen rektalen Untersuchung war: {}."
+				},
+				{
+					"id": 9,
+					"label": "Wie groß ist die Prostata (in mm)?",
+					"answer": "",
+					"sentence": "Die Größe der Prostata ist {} mm."
+				}
+			]
+		}
+	],
+  "return_as": "Fliesstext"
+}

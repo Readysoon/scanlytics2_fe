@@ -22,7 +22,8 @@
 	let container;
 	let innerHeight;
 	let innerWidth;
-	let isMobile = false;
+	let isMobile = $state(false)
+	let isMiddleScreen = $state(false)
 	
 	import { onMount } from 'svelte';
 
@@ -38,6 +39,9 @@
 		if(innerWidth <= 1500){
 			console.log('inner with is smaller');
 			isMobile = true
+		}else if(innerWidth <= 1720){
+			isMiddleScreen = true
+
 		}
 
 
@@ -48,7 +52,9 @@
 					const instance = WaveSurfer.create({
 						container: container,
 						responsive: true,
-						height: isMobile ? 20 : 30,
+						height: isMobile 
+						? 19 
+						: isMiddleScreen ? 20 : 30,
 						waveColor: 'violet',
 						progressColor: '#ea7900b1'
 					});
