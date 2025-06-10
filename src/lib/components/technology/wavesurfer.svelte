@@ -24,6 +24,7 @@
 	let innerWidth;
 	let isMobile = $state(false)
 	let isMiddleScreen = $state(false)
+	let isMiddleLittleScreen = $state(false)
 	
 	import { onMount } from 'svelte';
 
@@ -42,6 +43,8 @@
 		}else if(innerWidth <= 1720){
 			isMiddleScreen = true
 
+		}else if(innerWidth <= 1950){
+			isMiddleLittleScreen  = true
 		}
 
 
@@ -54,7 +57,11 @@
 						responsive: true,
 						height: isMobile 
 						? 19 
-						: isMiddleScreen ? 20 : 30,
+						: isMiddleScreen 
+						? 20 
+						: isMiddleLittleScreen
+						? 22
+						: 30,
 						waveColor: 'violet',
 						progressColor: '#ea7900b1'
 					});
