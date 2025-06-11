@@ -9,12 +9,12 @@
 	}
 
 	export function closeNav(navState) {
-		console.log('closeNav', navState);
+		// console.log('closeNav', navState);
 		closeNavToggle = navState;
 	}
 
 	export function searchNav(searchState) {
-		console.log('searchNav', searchState);
+		// console.log('searchNav', searchState);
 		searchToggle = searchState;
 	}
 </script>

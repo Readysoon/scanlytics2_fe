@@ -41,10 +41,10 @@
 		}
 	}
 
-	if(pageTracker == 0){
+	// if(pageTracker == 0){
 		
-		console.log('triggert in pageTracker', pageTracker);
-	}
+	// 	// console.log('triggert in pageTracker', pageTracker);
+	// }
 
 	
 
@@ -91,7 +91,7 @@
 			// });
 			
 		
-			console.log('pageTracker', pageTracker);
+			// console.log('pageTracker', pageTracker);
 			const response = await fetch('/api/technology/sessionAudiobot', {
 				method: 'POST',
 				body: JSON.stringify({ 
@@ -114,8 +114,8 @@
 			 userprevQAnswer = result.userAnswer
 			 userprevQState = result.userPrevQeustion
 
-			console.log('totalRes', totalRes);
-			console.log('recordState', recordState);
+			// console.log('totalRes', totalRes);
+			// console.log('recordState', recordState);
 	
 			
 
@@ -125,8 +125,8 @@
 			// Handels the updating states on question Area
 			if(userprevQAnswer !== "" && userprevQState !== null){
 
-				console.log('userprevQAnswer in updating handleHandleUpdateState', userprevQAnswer);
-				console.log('userprevQState  in updating handleHandleUpdateState', userprevQState);
+				// console.log('userprevQAnswer in updating handleHandleUpdateState', userprevQAnswer);
+				// console.log('userprevQState  in updating handleHandleUpdateState', userprevQState);
 			
 				pageTracker+=1
 				handleUpdateQuestionState(userprevQAnswer, userprevQState)
@@ -134,7 +134,7 @@
 			}
 
 			if(recordState == 1){
-				console.log('triggered on last state');
+				// console.log('triggered on last state');
 				handlepdfMessagePopuP()
 				audioState = recordState
 				pageTracker = 0
@@ -185,8 +185,8 @@
 						const updatedPhrase = filteredStop.join(' ');
 						recognition.stop();
 						if (updatedPhrase) {
-							console.log('updatedPhrase inside if condition', updatedPhrase);
-							console.log('selectVal inside if condition', selectVal);
+							// console.log('updatedPhrase inside if condition', updatedPhrase);
+							// console.log('selectVal inside if condition', selectVal);
 							handleAIReq(updatedPhrase, selectVal);
 						}
 						clearInterval(interval);
@@ -218,13 +218,13 @@
 		recognition.interimResults = true; // Get interim results while speaking
 
 		recognition.onstart = () => {
-			console.log('Speech recognition started...');
+			// console.log('Speech recognition started...');
 			loadtoggleCall();
 			// loadAiTextToggle(false)
 		};
 
 		recognition.onend = () => {
-			console.log('Speech recognition stopped.');
+			// console.log('Speech recognition stopped.');
 			
 		};
 
@@ -313,7 +313,7 @@
 	$effect(() => {
 		arrValue = selectedArr
 		if(arrValue.length > 0){
-			console.log('selectedArr', arrValue);
+			// console.log('selectedArr', arrValue);
 		}
 	})	
 

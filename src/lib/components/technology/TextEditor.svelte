@@ -3,13 +3,8 @@
 	let answerArrData = $state([]);
 	let stateArrData = $state([]);
 	let answeredObjectData = $state({});
-	let callFetch =  $state(false);
+	let callFetch = $state(false);
 	import * as scanQuestionObj from '../../../../static/scanQuestion.json';
-	
-
-
-
-	
 
 	export function bindingText(textevent: string) {
 		try {
@@ -19,34 +14,31 @@
 		}
 	}
 
-		// Handles The fill out processs
-		export async function handleFillDataInReport(AnswerArr: any, StateArr: any) {
-			// pdfobjUrlVal = pdfobj;
-			console.log('AnswerArr in handleFillDataInReport', AnswerArr);
-			console.log('StateArr in handleFillDataInReport', StateArr);
-			// AnswerArr = ["hallo", "wie gehts", "warum"]
-			answerArrData = AnswerArr 
-			stateArrData = StateArr 
-			const questions= scanQuestionObj.sections[0].questions
-			if(StateArr.length > 0){
-							questions.forEach((question) => {
-			// Find index of question.id in stateArr
-			const index = StateArr.indexOf(question.id);
-			if (index !== -1) {
-				question.answer = AnswerArr[index];
-			}
+	// Handles The fill out processs
+	export async function handleFillDataInReport(AnswerArr: any, StateArr: any) {
+		// pdfobjUrlVal = pdfobj;
+		// console.log('AnswerArr in handleFillDataInReport', AnswerArr);
+		// console.log('StateArr in handleFillDataInReport', StateArr);
+		// AnswerArr = ["hallo", "wie gehts", "warum"]
+		answerArrData = AnswerArr;
+		stateArrData = StateArr;
+		const questions = scanQuestionObj.sections[0].questions;
+		if (StateArr.length > 0) {
+			questions.forEach((question) => {
+				// Find index of question.id in stateArr
+				const index = StateArr.indexOf(question.id);
+				if (index !== -1) {
+					question.answer = AnswerArr[index];
+				}
 			});
 
-			scanQuestionObj.sections[0].questions = questions
+			scanQuestionObj.sections[0].questions = questions;
 			// console.log("question", questions);
 			// console.log('scanQuestionObj', scanQuestionObj);
-			answeredObjectData = scanQuestionObj
-			callFetch = true
-					
-			}
-
-
+			answeredObjectData = scanQuestionObj;
+			callFetch = true;
 		}
+	}
 </script>
 
 <script>
@@ -64,89 +56,78 @@
 	let ReportData = $state(scanQuestion);
 	let pdfUrl = $state('');
 	let ReportToggle = $state(false);
-	let StructuredReportCall  = $state(false);
-	let index =  $state(0);
+	let StructuredReportCall = $state(false);
+	let index = $state(0);
 	let canvas: any;
 	let loading: boolean = true;
-	let showdefaultTextBruno =  $state(false);
-
-
-
+	let showdefaultTextBruno = $state(false);
 
 	// const handleDataFillOut = () => {
 
 	// }
 
 	// const updateReportDataStructured = () => {
-		
-		
+
 	// 	const updatedScanQuestionObj = { ...scanQuestionObj, return_as: "Tabelle" };
 	// 	console.log('scanQuestionObj', updatedScanQuestionObj.return_as);
-		
+
 	// 	answeredObjectData = updatedScanQuestionObj
 	// 	if(answeredObjectData){
-			
+
 	// 		console.log('answeredObjectData', updatedScanQuestionObj.return_as);
 	// 	}
 
 	// }
-	
-	const handleUpdateToFließText = ( ) => {
-		StructuredReportCall = false 
-		callFetch = true
-		
-	}
 
-	const handleUpdateToStructuredReport = () => {
-		StructuredReportCall = true 
-		callFetch = false
-		
-		
-		
-		// updateReportDataStructured()
-
-	}
-	
-	const gedPdfFile = async (filledreportObject: any) => {
-		try{
-			if (filledreportObject) {
-			// console.log('Rpeort Data exist', scanQuestion);
-		
-			try {
-				// Send the JSON data as a POST request
-				const response = await fetch('https://scanlytics2-be.fly.dev/pdf/', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify(filledreportObject)
-				});
-
-				// const data =  await response.json()
-				console.log(response.headers.get('Content-Type'));
-				console.log('reponse Data', response);
-				// Check if the response is successful
-				if (response.ok) {
-					// Get the PDF blob from the response
-					const blob = await response.blob();
-					pdfUrl = window.URL.createObjectURL(blob);
-					
-					return pdfUrl;
-					// handlePdfRequest(pdfUrl)
-				}
-			} catch (error) {
-				console.error('Error on Call funciton: getReportDataCall', error);
-			}
-		}
-		}catch(error){
-			console.error('Error on getReportDatacall function ', error);
-		}
-	
+	const handleUpdateToFließText = () => {
+		StructuredReportCall = false;
+		callFetch = true;
 	};
 
+	const handleUpdateToStructuredReport = () => {
+		StructuredReportCall = true;
+		callFetch = false;
+
+		// updateReportDataStructured()
+	};
+
+	const gedPdfFile = async (filledreportObject: any) => {
+		try {
+			if (filledreportObject) {
+				// console.log('Rpeort Data exist', scanQuestion);
+
+				try {
+					// Send the JSON data as a POST request
+					const response = await fetch('https://scanlytics2-be.fly.dev/pdf/', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(filledreportObject)
+					});
+
+					// const data =  await response.json()
+					// console.log(response.headers.get('Content-Type'));
+					// console.log('reponse Data', response);
+					// Check if the response is successful
+					if (response.ok) {
+						// Get the PDF blob from the response
+						const blob = await response.blob();
+						pdfUrl = window.URL.createObjectURL(blob);
+
+						return pdfUrl;
+						// handlePdfRequest(pdfUrl)
+					}
+				} catch (error) {
+					console.error('Error on Call funciton: getReportDataCall', error);
+				}
+			}
+		} catch (error) {
+			console.error('Error on getReportDatacall function ', error);
+		}
+	};
 
 	const handlePDFContainerUpdate = async (pdfobjUrl: any) => {
-		
 		try {
 			// console.log('handlePDFContainerUpdate on ', pdfobjUrl);
 			if (pdfobjUrl) {
@@ -155,16 +136,12 @@
 					container: viewerElement,
 					initialDocument: pdfobjUrl
 				});
-				
-				
 			}
-			
 		} catch (error) {
 			console.error('Error on handlePDFContainerUpdate', error);
 		}
 	};
 
-	
 	const handleAutoTextFillOut = () => {
 		const IntervalId = setInterval(() => {
 			if (index < openeningText.length) {
@@ -179,184 +156,151 @@
 
 	$effect(() => {
 		const callPdfDok = async () => {
-
-
 			if (callFetch) {
-				
-
 				// handleDataFillOut()
-				const updatedScanQuestionObj = { ...answeredObjectData, return_as: "Fliesstext" };
-				console.log('callFetch on FließText', updatedScanQuestionObj.return_as);
+				const updatedScanQuestionObj = { ...answeredObjectData, return_as: 'Fliesstext' };
+				// console.log('callFetch on FließText', updatedScanQuestionObj.return_as);
 				const pfdUrlValue = await gedPdfFile(updatedScanQuestionObj);
 
 				if (pfdUrlValue) {
 					handlePDFContainerUpdate(pfdUrlValue);
-					ReportToggle = true
-					
+					ReportToggle = true;
 				}
-
-			}else if(StructuredReportCall){
-					
-					const updatedScanQuestionObjTablle = { ...answeredObjectData, return_as: "Tabelle" };
-					console.log('StructuredReportCall Object on  Table', updatedScanQuestionObjTablle.return_as);
-					const pfdUrlValue = await gedPdfFile(updatedScanQuestionObjTablle);
+			} else if (StructuredReportCall) {
+				const updatedScanQuestionObjTablle = { ...answeredObjectData, return_as: 'Tabelle' };
+				// console.log('StructuredReportCall Object on  Table', updatedScanQuestionObjTablle.return_as);
+				const pfdUrlValue = await gedPdfFile(updatedScanQuestionObjTablle);
 
 				if (pfdUrlValue) {
 					handlePDFContainerUpdate(pfdUrlValue);
-					ReportToggle = true
-					
+					ReportToggle = true;
 				}
 			}
-			
 		};
-		
+
 		// Calls the FLießText PDF
 		const handleUploadData = () => {
-		
-		 const IntervalId = setInterval(() => {
-			console.log('inside Upload Data');
-			callFetch = true
-			callPdfDok();
-			clearInterval(IntervalId)
-		 }, 50)
-		}
-	
-		
+			const IntervalId = setInterval(() => {
+				// console.log('inside Upload Data');
+				callFetch = true;
+				callPdfDok();
+				clearInterval(IntervalId);
+			}, 50);
+		};
+
 		// Calls the Tabelle PDF
 		const handleUpdateUploadToStrucutred = () => {
 			const IntervalId = setInterval(() => {
-			console.log('inside Upload Data');
-			callFetch = false
-			callPdfDok();
-			clearInterval(IntervalId)
-		 }, 50)
-		}
+				// console.log('inside Upload Data');
+				callFetch = false;
+				callPdfDok();
+				clearInterval(IntervalId);
+			}, 50);
+		};
 
+		// Calls Bruno Function
 		const handleSHowBruno = () => {
+			try {
+				let app = new Application(canvas);
 
-			let app = new Application(canvas);
+				loading = true;
 
-			loading = true;
+				const splineobj = app
+					.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode')
+					.then(() => {
+						const obj = app.findObjectByName('brunov1');
 
-			const splineobj = app
-			.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode')
-			.then(() => {
-				const obj = app.findObjectByName('brunov1');
-				
+						loading = false;
+						showdefaultTextBruno = true;
+						handleAutoTextFillOut();
+					});
+			} catch (error) {
+				console.error('Error on handleSHowBruno, Bruno Fetch Issue', error);
+			}
+		};
 
-				loading = false
-				showdefaultTextBruno = true
-				handleAutoTextFillOut();
-			});
+		if (StructuredReportCall) {
+			handleUpdateUploadToStrucutred();
+			handleSHowBruno();
+		} else {
+			handleUploadData();
+			handleSHowBruno();
 		}
-	
-		if(StructuredReportCall){
-			
-			handleUpdateUploadToStrucutred()
-			handleSHowBruno()
-		}else{
-			
-			handleUploadData()
-			handleSHowBruno()
-		}
-		
 	});
 </script>
 
 <div class="text-editor">
 	{#if callFetch || StructuredReportCall}
 		<!-- triggerd -->
-		 <div class="fileTexttablleArea">
-			<div class="ReportSectionTabelle" 
-			style="display: {ReportToggle ? "flex" : "none"};"
-			
-			on:click={handleUpdateToStructuredReport}>
-			   <img src="diam.png" alt="tabellepdf" class="tabelleIcon">
+		<div class="fileTexttablleArea">
+			<div
+				class="ReportSectionTabelle"
+				style="display: {ReportToggle ? 'flex' : 'none'};"
+				on:click={handleUpdateToStructuredReport}
+			>
+				<img src="diam.png" alt="tabellepdf" class="tabelleIcon" />
 			</div>
-   
-			<div class="ReportSectionFließ" 
-			style="display: {ReportToggle ? "flex" : "none"};"
-			
-			on:click={handleUpdateToFließText}>
-			   <img src="flText.png" alt="fließTextpdf" class="fließTextIcon">
+
+			<div
+				class="ReportSectionFließ"
+				style="display: {ReportToggle ? 'flex' : 'none'};"
+				on:click={handleUpdateToFließText}
+			>
+				<img src="flText.png" alt="fließTextpdf" class="fließTextIcon" />
 			</div>
-		 </div>
-		
-		 
+		</div>
+
 		<div bind:this={viewerElement} style="width: 100%; height: 100%;"></div>
 
 		<!-- {#if !ReportToggle}
 			<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
 			
 		{/if} -->
-		
+
 		<div class="avatarcanvas">
-			{#if  callFetch && ReportToggle}
-			<div class="avatarTextSection">
-				<div class="textContent" >
-					{avatarScriptText}
-					 
-				</div>
-
-					
-				<div class="showExample">
-					<!-- Structured Report Example -->
-					<div class="showExampleTabelle">
-						<div class="showExampleTabelleIcon">
-							<img src="diam.png" alt="tabellepdf" class="tabelleIconInShow">
-						</div>
-						<div class="showExampleTabelleDescription">
-							Strukturierter Befund
-						</div>
+			{#if callFetch && ReportToggle}
+				<div class="avatarTextSection">
+					<div class="textContent">
+						{avatarScriptText}
 					</div>
 
-					<!-- FließTextExample -->
-					<div class="showExampleFließ"> 
-						<div class="showExampleFließIcon">	
-							<img src="flText.png" alt="fließTextpdf" class="fließTextIconInShow">
+					<div class="showExample">
+						<!-- Structured Report Example -->
+						<div class="showExampleTabelle">
+							<div class="showExampleTabelleIcon">
+								<img src="diam.png" alt="tabellepdf" class="tabelleIconInShow" />
+							</div>
+							<div class="showExampleTabelleDescription">Strukturierter Befund</div>
 						</div>
-						
-						<div class="showExampleTabelleDescription">
-							Freitextbefund
+
+						<!-- FließTextExample -->
+						<div class="showExampleFließ">
+							<div class="showExampleFließIcon">
+								<img src="flText.png" alt="fließTextpdf" class="fließTextIconInShow" />
+							</div>
+
+							<div class="showExampleTabelleDescription">Freitextbefund</div>
 						</div>
 					</div>
-					
 				</div>
-			</div>
-			
 			{/if}
 
-	
-		<div class="aibotAvatar">
-
-			<canvas bind:this={canvas} class="avater" />
+			<div class="aibotAvatar">
+				<canvas bind:this={canvas} class="avater" />
+			</div>
 		</div>
-		
-
-		
-
-
-	    </div>
-	
 
 		{#if !ReportToggle}
-		<div class="defaultInformationPopUp">
-			
-		<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
+			<div class="defaultInformationPopUp">
+				<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
 
-		<p>Bitte füllen Sie den Befund zusammen mit Bruno aus, um einen Einblick in Ihr Dokument zu erhalten.</p>
+				<p>
+					Bitte geben Sie mir eine Minute Zeit, um das Dokument zu erstellen und einen Einblick darin zu erhalten.
+				</p>
+			</div>
 		
-
-	
-		</div>
-
-	
-
 		{/if}
-
 	{:else}
-
-		
 		<!-- {:else}
 			<textarea bind:value={text}></textarea>
 		{/if}
@@ -377,16 +321,13 @@
 		position: relative;
 	}
 
-
-
 	textarea {
 		width: 100%;
 		height: 92.2%;
 		min-height: 400px;
 	}
 
-
-	.fileTexttablleArea{
+	.fileTexttablleArea {
 		position: absolute;
 		top: 5%;
 		left: 5%;
@@ -398,11 +339,11 @@
 		align-items: center;
 	}
 
-	.defaultInformationPopUp{
+	.defaultInformationPopUp {
 		/* background-color: pink; */
 		width: 70%;
-		height: 40%;  
-		
+		height: 40%;
+
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -414,6 +355,7 @@
 		gap: 15%;
 		color: white;
 		font-family: system-ui;
+		text-align: center;
 	}
 
 	/* Avatar Section */
@@ -430,7 +372,7 @@
 		left: 85%;
 		z-index: 5;
 	}
-	
+
 	@keyframes upDown {
 		0%,
 		100% {
@@ -463,7 +405,7 @@
 		animation: upDown 2s ease-in-out infinite;
 	}
 
-	.textContent{
+	.textContent {
 		/* background-color: #fff; */
 		width: 100%;
 		height: 70%;
@@ -471,10 +413,8 @@
 		justify-content: center;
 		align-items: center;
 		padding: 5%;
-
 	}
-	.showExample{
-
+	.showExample {
 		/* background-color: #fcb1b1; */
 		width: 100%;
 		height: 30%;
@@ -485,8 +425,7 @@
 		border-top: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
-
-	.showExampleTabelle{
+	.showExampleTabelle {
 		width: 50%;
 		height: 100%;
 		/* background-color: green; */
@@ -495,11 +434,9 @@
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-
-
 	}
 
-	.showExampleTabelleIcon{
+	.showExampleTabelleIcon {
 		/* background-color: blue; */
 		display: flex;
 		width: 100%;
@@ -507,10 +444,9 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-
 	}
 
-	.showExampleFließIcon{
+	.showExampleFließIcon {
 		display: flex;
 		width: 100%;
 		height: 60%;
@@ -519,8 +455,7 @@
 		align-items: center;
 	}
 
-	
-	.showExampleTabelleDescription{
+	.showExampleTabelleDescription {
 		/* background-color: rgb(245, 245, 245); */
 		display: flex;
 		width: 100%;
@@ -530,10 +465,9 @@
 		align-items: center;
 		font-size: 10.5px;
 		padding: 1%;
-
 	}
 
-	.showExampleTabelleDescription{
+	.showExampleTabelleDescription {
 		display: flex;
 		width: 100%;
 		height: 40%;
@@ -543,17 +477,17 @@
 		font-size: 10.5px;
 		padding: 1%;
 	}
-	.tabelleIconInShow{
+	.tabelleIconInShow {
 		width: 30%;
 		height: 60%;
 	}
 
-	.fließTextIconInShow{
+	.fließTextIconInShow {
 		width: 30%;
 		height: 60%;
-	}	
+	}
 
-	.showExampleFließ{
+	.showExampleFließ {
 		width: 50%;
 		height: 100%;
 		/* background-color: orange; */
@@ -564,7 +498,7 @@
 		border-left: 1px solid rgba(255, 255, 255, 0.175);
 	}
 
-	.avatarTextMinute{
+	.avatarTextMinute {
 		width: 100%;
 		height: 65%;
 		background-color: rgb(3, 32, 68);
@@ -594,325 +528,290 @@
 		top: 0%;
 		/* left: 70%; */
 		z-index: 5;
-		
 	}
 
-/* Small */
-	@media (min-width: 1280px){
-		.fileTexttablleArea{
-		position: absolute;
-		top: 2.7%;
-		left: 19.5%;
-		/* background-color: rgba(238, 57, 87, 0.338); */
-		width:8%;
-		height: 3%;
-		z-index: 5;
-		display: flex;
-		flex-direction: row;
-		gap: 5%;
-		justify-content: center;
+	/* Small */
+	@media (min-width: 1280px) {
+		.fileTexttablleArea {
+			position: absolute;
+			top: 2.7%;
+			left: 19.5%;
+			/* background-color: rgba(238, 57, 87, 0.338); */
+			width: 8%;
+			height: 3%;
+			z-index: 5;
+			display: flex;
+			flex-direction: row;
+			gap: 5%;
+			justify-content: center;
 
-		/* align-items: center; */
+			/* align-items: center; */
+		}
+		.ReportSectionTabelle {
+			/* position: absolute; */
+			/* background-color: rgba(65, 255, 12, 0.34); */
+			width: 40%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
 
-
-	}
-		.ReportSectionTabelle{
-		/* position: absolute; */
-		/* background-color: rgba(65, 255, 12, 0.34); */
-		width: 40%;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		cursor: pointer;
-
-		/* top: 2.1%;
+			/* top: 2.1%;
 		left: 14.5%;
 		z-index: 5;
 		display: flex;
 		justify-content: center;
 		align-items: center; */
+		}
 
-	}
+		.ReportSectionFließ {
+			/* position: absolute; */
+			/* background-color: rgba(211, 192, 255, 0.34); */
+			width: 50%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
 
-
-	.ReportSectionFließ{
-		/* position: absolute; */
-		/* background-color: rgba(211, 192, 255, 0.34); */
-		width: 50%;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		cursor: pointer;
-
-		/* top: 2.1%;
+			/* top: 2.1%;
 		left: 18%;
 		z-index: 5; */
+		}
+		.tabelleIcon {
+			width: 60%;
+			height: 70%;
+		}
 
-	}
-	.tabelleIcon{
-		width: 60%;
-		height: 70%;
-	}
+		.fließTextIcon {
+			width: 55%;
+			height: 85%;
+		}
 
-	.fließTextIcon{
-		width: 55%;
-		height: 85%;
-	}
-	
-	.textContent{
-		/* background-color: #fff; */
-		width: 100%;
-		height: 70%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 5%;
-		font-size: 11px;
+		.textContent {
+			/* background-color: #fff; */
+			width: 100%;
+			height: 70%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 5%;
+			font-size: 11px;
+		}
 
-	}
-	
-	
-	.showExampleTabelleDescription{
-		/* background-color: rgb(245, 245, 245); */
-		display: flex;
-		width: 100%;
-		height: 40%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 8px;
-		padding: 1%;
+		.showExampleTabelleDescription {
+			/* background-color: rgb(245, 245, 245); */
+			display: flex;
+			width: 100%;
+			height: 40%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 8px;
+			padding: 1%;
+		}
 
-	}
-
-	.showExampleTabelleDescription{
-		display: flex;
-		width: 100%;
-		height: 40%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 8px;
-		padding: 1%;
-	}
-
-	
+		.showExampleTabelleDescription {
+			display: flex;
+			width: 100%;
+			height: 40%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 8px;
+			padding: 1%;
+		}
 	}
 
 	/* Mid laptops (your 1807px screen) */
-	@media (min-width: 1700px)  and (max-width: 1890px){
+	@media (min-width: 1700px) and (max-width: 1890px) {
+		.fileTexttablleArea {
+			position: absolute;
+			top: 2.2%;
+			left: 15%;
+			/* background-color: rgba(63, 57, 238, 0.338); */
+			width: 8%;
+			height: 3%;
+			z-index: 5;
+			display: flex;
+			flex-direction: row;
+			gap: 2%;
+			justify-content: center;
 
-		.fileTexttablleArea{
-		position: absolute;
-		top: 2.2%;
-		left: 15%;
-		/* background-color: rgba(63, 57, 238, 0.338); */
-		width:8%;
-		height: 3%;
-		z-index: 5;
-		display: flex;
-		flex-direction: row;
-		gap: 2%;
-		justify-content: center;
+			/* align-items: center; */
+		}
+		.ReportSectionTabelle {
+			/* position: absolute; */
+			/* background-color: rgba(65, 255, 12, 0.34); */
+			width: 40%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
 
-		/* align-items: center; */
-
-
-	}
-		.ReportSectionTabelle{
-		/* position: absolute; */
-		/* background-color: rgba(65, 255, 12, 0.34); */
-		width: 40%;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		cursor: pointer;
-
-		/* top: 2.1%;
+			/* top: 2.1%;
 		left: 14.5%;
 		z-index: 5;
 		display: flex;
 		justify-content: center;
 		align-items: center; */
+		}
 
-	}
+		.ReportSectionFließ {
+			/* position: absolute; */
+			/* background-color: rgba(211, 192, 255, 0.34); */
+			width: 40%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
 
-
-	.ReportSectionFließ{
-		/* position: absolute; */
-		/* background-color: rgba(211, 192, 255, 0.34); */
-		width: 40%;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		cursor: pointer;
-
-		/* top: 2.1%;
+			/* top: 2.1%;
 		left: 18%;
 		z-index: 5; */
+		}
+		.tabelleIcon {
+			width: 50%;
+			height: 60%;
+		}
 
-	}
-	.tabelleIcon{
-		width: 50%;
-		height: 60%;
-	}
+		.fließTextIcon {
+			width: 50%;
+			height: 70%;
+		}
+		.textContent {
+			/* background-color: #fff; */
+			width: 100%;
+			height: 70%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 5%;
+			font-size: 11px;
+		}
 
-	.fließTextIcon{
-		width: 50%;
-		height: 70%;
-	}
-	.textContent{
-		/* background-color: #fff; */
-		width: 100%;
-		height: 70%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 5%;
-		font-size: 11px;
+		.showExampleTabelleDescription {
+			/* background-color: rgb(245, 245, 245); */
+			display: flex;
+			width: 100%;
+			height: 40%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 10px;
+			padding: 1%;
+		}
 
+		.showExampleTabelleDescription {
+			display: flex;
+			width: 100%;
+			height: 40%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 10px;
+			padding: 1%;
+		}
 	}
-	
-	
-	.showExampleTabelleDescription{
-		/* background-color: rgb(245, 245, 245); */
-		display: flex;
-		width: 100%;
-		height: 40%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 10px;
-		padding: 1%;
-
-	}
-
-	.showExampleTabelleDescription{
-		display: flex;
-		width: 100%;
-		height: 40%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 10px;
-		padding: 1%;
-	}
-
-	}
-
 
 	/* Mid laptops (your 1807px screen) */
-	@media (min-width: 1900px){
-		.fileTexttablleArea{
-		position: absolute;
-		top: 1.75%;
-		left: 13%;
-		/* background-color: rgba(255, 20, 59, 0.338); */
-		width:8%;
-		height: 3%;
-		z-index: 5;
-		display: flex;
-		flex-direction: row;
-		gap: 1%;
-		justify-content: center;
+	@media (min-width: 1900px) {
+		.fileTexttablleArea {
+			position: absolute;
+			top: 1.75%;
+			left: 13%;
+			/* background-color: rgba(255, 20, 59, 0.338); */
+			width: 8%;
+			height: 3%;
+			z-index: 5;
+			display: flex;
+			flex-direction: row;
+			gap: 1%;
+			justify-content: center;
 
-		/* align-items: center; */
+			/* align-items: center; */
+		}
+		.ReportSectionTabelle {
+			/* position: absolute; */
+			/* background-color: rgba(65, 255, 12, 0.34); */
+			width: 40%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
 
-
-	}
-		.ReportSectionTabelle{
-		/* position: absolute; */
-		/* background-color: rgba(65, 255, 12, 0.34); */
-		width: 40%;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		cursor: pointer;
-
-		/* top: 2.1%;
+			/* top: 2.1%;
 		left: 14.5%;
 		z-index: 5;
 		display: flex;
 		justify-content: center;
 		align-items: center; */
+		}
 
-	}
+		.ReportSectionFließ {
+			/* position: absolute; */
+			/* background-color: rgba(211, 192, 255, 0.34); */
+			width: 40%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
 
-
-	.ReportSectionFließ{
-		/* position: absolute; */
-		/* background-color: rgba(211, 192, 255, 0.34); */
-		width: 40%;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		cursor: pointer;
-
-		/* top: 2.1%;
+			/* top: 2.1%;
 		left: 18%;
 		z-index: 5; */
+		}
+		.tabelleIcon {
+			width: 45%;
+			height: 50%;
+		}
 
-	}
-	.tabelleIcon{
-		width: 45%;
-		height: 50%;
-	}
+		.fließTextIcon {
+			width: 50%;
+			height: 63%;
+		}
 
-	.fließTextIcon{
-		width: 50%;
-		height: 63%;
-	}
+		.textContent {
+			/* background-color: #fff; */
+			width: 100%;
+			height: 70%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 5%;
+			font-size: 13px;
+		}
 
-	.textContent{
-		/* background-color: #fff; */
-		width: 100%;
-		height: 70%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 5%;
-		font-size: 13px;
+		.showExampleTabelleDescription {
+			/* background-color: rgb(245, 245, 245); */
+			display: flex;
+			width: 100%;
+			height: 40%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 11px;
+			padding: 1%;
+		}
 
-	}
-	
-	
-	.showExampleTabelleDescription{
-		/* background-color: rgb(245, 245, 245); */
-		display: flex;
-		width: 100%;
-		height: 40%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 11px;
-		padding: 1%;
-
-	}
-
-	.showExampleTabelleDescription{
-		display: flex;
-		width: 100%;
-		height: 40%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 11px;
-		padding: 1%;
+		.showExampleTabelleDescription {
+			display: flex;
+			width: 100%;
+			height: 40%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 11px;
+			padding: 1%;
+		}
 	}
 
+	/* Ultra-wide screens (e.g. 2560px) - still need to be adjusted*/
+	@media (min-width: 2560px) {
 	}
-
-
-	/* Ultra-wide screens (e.g. 2560px) - still need to be adjusted*/ 
-	@media (min-width: 2560px){
-				
-	
-	}
-
 </style>

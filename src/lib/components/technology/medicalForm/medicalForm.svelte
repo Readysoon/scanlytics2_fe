@@ -141,7 +141,7 @@
 
 	$effect(() => {
 		if (selectedArr.length >= 3) {
-			console.log('selectedArr', selectedArr);
+			// console.log('selectedArr', selectedArr);
 			selectedQuestionState = false;
 		}
 

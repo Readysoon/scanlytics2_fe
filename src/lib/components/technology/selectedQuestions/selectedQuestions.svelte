@@ -9,7 +9,7 @@
 	}
 
 	export function handleSelectUpdateBackground(item: any) {
-		console.log('item', item);
+		// console.log('item', item);
 		questionBackgroundState = item;
 	}
 

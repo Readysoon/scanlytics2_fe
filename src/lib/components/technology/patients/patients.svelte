@@ -55,12 +55,12 @@
 			});
 
 			const result = await response.json();
-			console.log('result', result);
+			// console.log('result', result);
 
 			if (result.success) {
 				audioUrl = await result.audioUrl;
 				if (audioUrl) {
-					console.log('result', result);
+					// console.log('result', result);
 					getWaveaudiAuto(audioUrl);
 				}
 			}
@@ -82,7 +82,7 @@
 	// }
 
 	const handleInput = () => {
-		console.log('userName', userName);
+		// console.log('userName', userName);
 		if (userName) {
 			nameToggleCheck = true;
 		}
@@ -100,7 +100,7 @@
 				.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode')
 				.then(() => {
 					const obj = app.findObjectByName('brunov1');
-					console.log('obj', obj);
+					// console.log('obj', obj);
 					// if (obj?.position) {
 					// Adjust position
 					// 	console.log('iits in postion',obj?.position);
@@ -119,7 +119,7 @@
 				});
 
 			if (!defaultPatientTextState) {
-				console.log('triggered in defaultTextState on patient ');
+				// console.log('triggered in defaultTextState on patient ');
 
 				handleTTSReq(openeningText);
 				defaultPlayState = true;

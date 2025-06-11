@@ -30,15 +30,15 @@
 
 	// Plays the WaveSurfer audio when the audioUrl state is updated
 	$effect(() => {
-		console.log('audioUrl state: ',audioUrl);
+		// console.log('audioUrl state: ',audioUrl);
 		
 
-		console.log('innerwith', innerWidth);
+		// console.log('innerwith', innerWidth);
 
-		console.log('audioTracker', audioTracker);
+		// console.log('audioTracker', audioTracker);
 
 		if(innerWidth <= 1500){
-			console.log('inner with is smaller');
+			// console.log('inner with is smaller');
 			isMobile = true
 		}else if(innerWidth <= 1720){
 			isMiddleScreen = true
@@ -69,13 +69,13 @@
 					instance.load(audioUrl);
 					instance.on('ready', () => {
 						instance.play();
-						console.log('is playing audio');
+						// console.log('is playing audio');
 						loadAiTextToggle(true)
 					});
 
 					instance.on('finish', () => {
 						handleAudioStart();
-						console.log('is not playing audio');
+						// console.log('is not playing audio');
 						audioUrl = ''
 						loadAiTextToggle(false)
 						instance.destroy();

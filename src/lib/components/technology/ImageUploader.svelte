@@ -134,7 +134,7 @@
 			.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode')
 			.then(() => {
 				const obj = app.findObjectByName('brunov1');
-				console.log('obj', obj);
+				// console.log('obj', obj);
 
 				loading = false;
 				brunoTextLoadingState = true;
@@ -294,7 +294,7 @@
 			border-radius: 7px;
 			font-family: system-ui;
 			color: white;
-			font-size: 13px;
+			font-size: 9px;
 			position: absolute;
 			top: -25%;
 			left: 5%;

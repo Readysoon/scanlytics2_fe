@@ -49,7 +49,7 @@
 	};
 
 	function getColorByIndex(index: any) {
-		console.log('index', index);
+		// console.log('index', index);
 		if (index >= 0 && index <= 2) {
 			return 'rgba(52, 255, 1, 0.837)'; // Green
 		} else if (index >= 3 && index <= 5) {
@@ -90,7 +90,7 @@
 
 		<div class="optionBox" on:click={handleTextEditorToggle}>
 			{#if showMessagePopUp}
-			<div class="messagePopUp">{newMessageNum}</div>
+			<div class="messagePopUp"></div>
 			{/if}
 
 			

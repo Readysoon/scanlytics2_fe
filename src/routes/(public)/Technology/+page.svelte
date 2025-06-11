@@ -14,11 +14,11 @@
 
 	export function loadAiTextToggle(aiToggle: any) {
 		aiToggleState = aiToggle;
-		console.log('aiToggleState', aiToggleState);
+		// console.log('aiToggleState', aiToggleState);
 	}
 
 	export function SelectedQuestionAI(selectedQuestionNumValue: any) {
-		console.log('selectedQuestionNum in SelectedQuestionAI', selectedQuestionNumValue);
+		// console.log('selectedQuestionNum in SelectedQuestionAI', selectedQuestionNumValue);
 		selectedQuestionNum = selectedQuestionNumValue;
 	}
 
@@ -27,7 +27,7 @@
 	}
 
 	export function AudioTracker(audioRecordData: any) {
-		console.log('audioRecordData', audioRecordData);
+		// console.log('audioRecordData', audioRecordData);
 		audioData = audioRecordData;
 		if (audioRecordData) {
 			audioTrackArrState.push(audioData);
@@ -58,8 +58,8 @@
 		let trackArr: any = [];
 		let trackArrString: any = [];
 
-		console.log('trackArr', trackArr);
-		console.log('trackArrStringtrackArrString', trackArrString);
+		// console.log('trackArr', trackArr);
+		// console.log('trackArrStringtrackArrString', trackArrString);
 		if (stateAnswer.length > 0) {
 			handleSelectUpdateBackground(stateAnswer);
 			questionTracker = questionTracker += 1;
@@ -147,14 +147,14 @@
 		// selectedToggle = selectedQuestionNum
 
 		stateobj = selectedQuestionNum;
-		console.log('stateobj handleUpdateselectedObj', stateobj);
+		// console.log('stateobj handleUpdateselectedObj', stateobj);
 		// stateobj = [0, 1, 2]
 
 		// const updateArr = ItemToggle.questions
 		// console.log('updateArr',updateArr);
 		const updateArr = scanQuestion.sections[0];
 
-		console.log('updateArr in scanquestion', updateArr);
+		// console.log('updateArr in scanquestion', updateArr);
 		const arr = [];
 
 		for (const x of stateobj) {
@@ -162,7 +162,7 @@
 		}
 		selectedToggle = arr;
 
-		console.log('selectedToggle on handleUpdateselectedObj');
+		// console.log('selectedToggle on handleUpdateselectedObj');
 		ItemToggle = scanQuestion.sections[0];
 	};
 
@@ -172,12 +172,12 @@
 	};
 
 	const handleUpdateOption = (eventoption: string) => {
-		console.log('eventoption', eventoption);
+		// console.log('eventoption', eventoption);
 
 		if (eventoption == 'DescriptionHeader') {
 			OptionStateDes = !OptionStateDes;
 		} else if (eventoption == 'Examination') {
-			console.log('e');
+			// console.log('e');
 			ExamStateVal == 'Examination' ? '' : 'Examination';
 			optionExamToggle = !optionExamToggle;
 		} else if (eventoption == 'StudyInformation') {
@@ -251,13 +251,13 @@
 		});
 
 		if (selectedQuestionNum && selectedQuestionNum.length > 0) {
-			console.log('selectedQuestionNum length is greater than 0', selectedQuestionNum);
-			console.log('selectedQuestionNum ineffect statae ', selectedQuestionNum);
+			// console.log('selectedQuestionNum length is greater than 0', selectedQuestionNum);
+			// console.log('selectedQuestionNum ineffect statae ', selectedQuestionNum);
 			handleUpdateselectedObj(selectedQuestionNum);
 		}
 
 		if (resetState != false) {
-			console.log('inside reset State');
+			// console.log('inside reset State');
 			handleResetMultipleStates();
 		}
 
@@ -442,7 +442,7 @@
 				document.body.removeChild(link);
 
 				// Optional: Add analytics or tracking
-				console.log('Report downloaded');
+				// console.log('Report downloaded');
 			} else {
 				console.error('Failed to generate the PDF:', response.statusText);
 			}

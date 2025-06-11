@@ -31,7 +31,7 @@
 		const IntervalId = setInterval(() => {
 			if (indexTonOn < tonOnTextData.length) {
 				avatarScriptTonText += tonOnTextData.charAt(indexTonOn);
-				console.log('avatarScriptTonText', avatarScriptTonText);
+				// console.log('avatarScriptTonText', avatarScriptTonText);
 
 				indexTonOn++;
 			} else {
@@ -70,12 +70,12 @@
 			});
 
 			const result = await response.json();
-			console.log('result', result);
+			// console.log('result', result);
 
 			if (result.success) {
 				audioUrl = await result.audioUrl;
 				if (audioUrl) {
-					console.log('result', result);
+					// console.log('result', result);
 					getWaveaudiAuto(audioUrl);
 				}
 			}
@@ -94,7 +94,7 @@
 				.load('https://prod.spline.design/3uYTYJgFlEMs1RGK/scene.splinecode')
 				.finally(() => {
 					const obj = app.findObjectByName('brunov1');
-					console.log('obj', obj);
+					// console.log('obj', obj);
 
 					loading = false;
 					textState = true;
@@ -109,14 +109,14 @@
 			const updatedText = `Super, danke! dass Sie den Ton eingeschaltet haben! Willkommen bei der Scanlytics Conversational AI Assistant Demo-Applikation. Mein Name ist Bruno und Ich bin Ihr AI-Assistent und begleite Sie durch die Anwendung.
 						Bitte klicken Sie als Erstes auf den Start-Button, um zu beginnen.`;
 
-			console.log('triggert in showTonOnTextState if condition');
+			// console.log('triggert in showTonOnTextState if condition');
 			handleTonOnUpdateText(updatedText);
 			handleTTSReq(updatedText);
 		}
 	});
 
 	const handleToneOn = () => {
-		console.log('tone is on ');
+		// console.log('tone is on ');
 
 		ToneBtnState = !ToneBtnState;
 		const updatedText = `Ah, super – danke, dass Sie den Ton eingeschaltet haben!
@@ -204,7 +204,7 @@
 			<div class="loadingArea" hidden>
 				<!-- <Pulse size="90"  unit="px" /> -->
 
-				<GuideWavesurfer />
+				<!-- <GuideWavesurfer /> -->
 			</div>
 
 			<div class="startBtnArea">
