@@ -357,6 +357,10 @@ on:ended={handleAudioEnd}
 		height: 70%;
 	}
 
+	.btnstring{
+		/* background-color: #fff; */
+		cursor: pointer;
+	}
 	.micIconPauseSection{
 		width: 100%;
 		height: 100%;

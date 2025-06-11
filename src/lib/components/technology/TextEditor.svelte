@@ -5,6 +5,7 @@
 	let answeredObjectData = $state({});
 	let callFetch =  $state(false);
 	import * as scanQuestionObj from '../../../../static/scanQuestion.json';
+	
 
 
 
@@ -53,13 +54,21 @@
 	import '@gembox/pdfviewer/dist/es/pdfviewer.css';
 	import * as scanQuestion from '../../../../static/scanQuestion.json';
 	import { Circle2 } from 'svelte-loading-spinners';
-	
 
+	let avatarScriptText: string = $state('');
+	let openeningText: string = `In der oberen Leiste finden Sie alle Reiter, die Sie benötigen, 
+								um den Befund herunterzuladen, zu drucken oder die Befundart zu ändern. 
+								Die verfügbaren Befundarten sind:`;
+	import { Application } from '@splinetool/runtime';
 	let viewerElement: any;
 	let ReportData = $state(scanQuestion);
 	let pdfUrl = $state('');
 	let ReportToggle = $state(false);
 	let StructuredReportCall  = $state(false);
+	let index =  $state(0);
+	let canvas: any;
+	let loading: boolean = true;
+	let showdefaultTextBruno =  $state(false);
 
 
 
@@ -155,6 +164,19 @@
 		}
 	};
 
+	
+	const handleAutoTextFillOut = () => {
+		const IntervalId = setInterval(() => {
+			if (index < openeningText.length) {
+				avatarScriptText += openeningText.charAt(index);
+
+				index++;
+			} else {
+				clearInterval(IntervalId);
+			}
+		}, 20);
+	};
+
 	$effect(() => {
 		const callPdfDok = async () => {
 
@@ -210,10 +232,32 @@
 		 }, 50)
 		}
 
+		const handleSHowBruno = () => {
+
+			let app = new Application(canvas);
+
+			loading = true;
+
+			const splineobj = app
+			.load('https://prod.spline.design/gHGa7XTERPOXgvOV/scene.splinecode')
+			.then(() => {
+				const obj = app.findObjectByName('brunov1');
+				
+
+				loading = false
+				showdefaultTextBruno = true
+				handleAutoTextFillOut();
+			});
+		}
+	
 		if(StructuredReportCall){
+			
 			handleUpdateUploadToStrucutred()
+			handleSHowBruno()
 		}else{
+			
 			handleUploadData()
+			handleSHowBruno()
 		}
 		
 	});
@@ -240,9 +284,79 @@
 		
 		 
 		<div bind:this={viewerElement} style="width: 100%; height: 100%;"></div>
+
+		<!-- {#if !ReportToggle}
+			<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
+			
+		{/if} -->
+		
+		<div class="avatarcanvas">
+			{#if  callFetch && ReportToggle}
+			<div class="avatarTextSection">
+				<div class="textContent" >
+					{avatarScriptText}
+					 
+				</div>
+
+					
+				<div class="showExample">
+					<!-- Structured Report Example -->
+					<div class="showExampleTabelle">
+						<div class="showExampleTabelleIcon">
+							<img src="diam.png" alt="tabellepdf" class="tabelleIconInShow">
+						</div>
+						<div class="showExampleTabelleDescription">
+							Strukturierter Befund
+						</div>
+					</div>
+
+					<!-- FließTextExample -->
+					<div class="showExampleFließ"> 
+						<div class="showExampleFließIcon">	
+							<img src="flText.png" alt="fließTextpdf" class="fließTextIconInShow">
+						</div>
+						
+						<div class="showExampleTabelleDescription">
+							Freitextbefund
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+			{/if}
+
+	
+		<div class="aibotAvatar">
+
+			<canvas bind:this={canvas} class="avater" />
+		</div>
+		
+
+		
+
+
+	    </div>
+	
+
+		{#if !ReportToggle}
+		<div class="defaultInformationPopUp">
+			
+		<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
+
+		<p>Bitte füllen Sie den Befund zusammen mit Bruno aus, um einen Einblick in Ihr Dokument zu erhalten.</p>
+		
+
+	
+		</div>
+
+	
+
+		{/if}
+
 	{:else}
 
-		<Circle2 size="150" colorOuter="blue" unit="px" durationInner="1s" />
+		
 		<!-- {:else}
 			<textarea bind:value={text}></textarea>
 		{/if}
@@ -284,6 +398,206 @@
 		align-items: center;
 	}
 
+	.defaultInformationPopUp{
+		/* background-color: pink; */
+		width: 70%;
+		height: 40%;  
+		
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		gap: 15%;
+		color: white;
+		font-family: system-ui;
+	}
+
+	/* Avatar Section */
+
+	.avatarcanvas {
+		/* background-color: pink; */
+		position: absolute;
+		height: 30%;
+		width: 19%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		top: 75%;
+		left: 85%;
+		z-index: 5;
+	}
+	
+	@keyframes upDown {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-10px);
+		}
+	}
+
+	.avatarTextSection {
+		width: 100%;
+		height: 99%;
+		background-color: rgb(3, 32, 68);
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+		border-radius: 7px;
+		font-family: system-ui;
+		color: white;
+		font-size: 15px;
+		position: absolute;
+		top: -73%;
+		left: -25%;
+		z-index: 5;
+		/* padding: 1%; */
+		animation: upDown 2s ease-in-out infinite;
+	}
+
+	.textContent{
+		/* background-color: #fff; */
+		width: 100%;
+		height: 70%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 5%;
+
+	}
+	.showExample{
+
+		/* background-color: #fcb1b1; */
+		width: 100%;
+		height: 30%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		border-top: 1px solid rgba(255, 255, 255, 0.175);
+	}
+
+
+	.showExampleTabelle{
+		width: 50%;
+		height: 100%;
+		/* background-color: green; */
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+
+
+	}
+
+	.showExampleTabelleIcon{
+		/* background-color: blue; */
+		display: flex;
+		width: 100%;
+		height: 60%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+	}
+
+	.showExampleFließIcon{
+		display: flex;
+		width: 100%;
+		height: 60%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	
+	.showExampleTabelleDescription{
+		/* background-color: rgb(245, 245, 245); */
+		display: flex;
+		width: 100%;
+		height: 40%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 10.5px;
+		padding: 1%;
+
+	}
+
+	.showExampleTabelleDescription{
+		display: flex;
+		width: 100%;
+		height: 40%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 10.5px;
+		padding: 1%;
+	}
+	.tabelleIconInShow{
+		width: 30%;
+		height: 60%;
+	}
+
+	.fließTextIconInShow{
+		width: 30%;
+		height: 60%;
+	}	
+
+	.showExampleFließ{
+		width: 50%;
+		height: 100%;
+		/* background-color: orange; */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		border-left: 1px solid rgba(255, 255, 255, 0.175);
+	}
+
+	.avatarTextMinute{
+		width: 100%;
+		height: 65%;
+		background-color: rgb(3, 32, 68);
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid rgba(255, 255, 255, 0.175);
+		border-radius: 7px;
+		font-family: system-ui;
+		color: white;
+		font-size: 15px;
+		position: absolute;
+		top: -33%;
+		left: -25%;
+		z-index: 5;
+		padding: 1%;
+		animation: upDown 2s ease-in-out infinite;
+	}
+
+	.aibotAvatar {
+		/* background-color: rgba(226, 17, 52, 0.619); */
+		width: 100%;
+		height: 90%;
+		margin-top: 5%;
+		/* position: absolute; */
+		top: 0%;
+		/* left: 70%; */
+		z-index: 5;
+		
+	}
+
+/* Small */
 	@media (min-width: 1280px){
 		.fileTexttablleArea{
 		position: absolute;
@@ -347,6 +661,43 @@
 		height: 85%;
 	}
 	
+	.textContent{
+		/* background-color: #fff; */
+		width: 100%;
+		height: 70%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 5%;
+		font-size: 11px;
+
+	}
+	
+	
+	.showExampleTabelleDescription{
+		/* background-color: rgb(245, 245, 245); */
+		display: flex;
+		width: 100%;
+		height: 40%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 8px;
+		padding: 1%;
+
+	}
+
+	.showExampleTabelleDescription{
+		display: flex;
+		width: 100%;
+		height: 40%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 8px;
+		padding: 1%;
+	}
+
 	
 	}
 
@@ -414,7 +765,45 @@
 		width: 50%;
 		height: 70%;
 	}
+	.textContent{
+		/* background-color: #fff; */
+		width: 100%;
+		height: 70%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 5%;
+		font-size: 11px;
+
 	}
+	
+	
+	.showExampleTabelleDescription{
+		/* background-color: rgb(245, 245, 245); */
+		display: flex;
+		width: 100%;
+		height: 40%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 10px;
+		padding: 1%;
+
+	}
+
+	.showExampleTabelleDescription{
+		display: flex;
+		width: 100%;
+		height: 40%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 10px;
+		padding: 1%;
+	}
+
+	}
+
 
 	/* Mid laptops (your 1807px screen) */
 	@media (min-width: 1900px){
@@ -479,6 +868,44 @@
 		width: 50%;
 		height: 63%;
 	}
+
+	.textContent{
+		/* background-color: #fff; */
+		width: 100%;
+		height: 70%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 5%;
+		font-size: 13px;
+
+	}
+	
+	
+	.showExampleTabelleDescription{
+		/* background-color: rgb(245, 245, 245); */
+		display: flex;
+		width: 100%;
+		height: 40%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 11px;
+		padding: 1%;
+
+	}
+
+	.showExampleTabelleDescription{
+		display: flex;
+		width: 100%;
+		height: 40%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 11px;
+		padding: 1%;
+	}
+
 	}
 
 

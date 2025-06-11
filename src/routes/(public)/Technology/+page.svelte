@@ -205,7 +205,7 @@
 					const handlePatientInformation = (labelPatientInfo: any) => {
 						if (labelPatientInfo == 'Patient Name') {
 							// console.log('side');
-							isCheckInputData[labelPatientInfo] = 'Tom Müller';
+							isCheckInputData[labelPatientInfo] = 'Ben Krause';
 						} else if (labelPatientInfo == 'Patient ID') {
 							isCheckInputData[labelPatientInfo] = 'DKU2324342';
 						} else if (labelPatientInfo == 'Date of Birth') {
@@ -626,20 +626,22 @@
 														<div class="optionTitle">
 															<p>Header</p>
 														</div>
-														<div class="OptionToggleContent">
+														<div class="OptionToggleContent"
+														on:click={() => handleUpdateOption('DescriptionHeader')}
+														>
 															{#if OptionStateDes}
 																<img
 																	src="mminus.png"
 																	alt="widget"
 																	class="minusBtnIcon"
-																	on:click={() => handleUpdateOption('DescriptionHeader')}
+																	
 																/>
 															{:else}
 																<img
 																	src="pplus.png"
 																	alt="widget"
 																	class="minusBtnIcon"
-																	on:click={() => handleUpdateOption('DescriptionHeader')}
+																
 																/>
 															{/if}
 														</div>
@@ -647,20 +649,22 @@
 													<!--Patient  -->
 													<div class="MenuSelectionOptionItem">
 														<div class="optionTitle">Patient</div>
-														<div class="OptionToggleContent">
+														<div class="OptionToggleContent"
+														on:click={() => handleUpdateOption('patient')}
+														>
 															{#if OptPatientStateToggle}
 																<img
 																	src="pplus.png"
 																	alt="widget"
 																	class="minusBtnIcon"
-																	on:click={() => handleUpdateOption('patient')}
+																
 																/>
 															{:else}
 																<img
 																	src="mminus.png"
 																	alt="widget"
 																	class="minusBtnIcon"
-																	on:click={() => handleUpdateOption('patient')}
+																
 																/>
 															{/if}
 														</div>
@@ -669,20 +673,22 @@
 													<!-- Study Information -->
 													<div class="MenuSelectionOptionItem">
 														<div class="optionTitle">Study Information</div>
-														<div class="OptionToggleContent">
+														<div class="OptionToggleContent"
+														on:click={() => handleUpdateOption('StudyInformation')}
+														>
 															{#if optionStudyInfoToggle}
 																<img
 																	src="pplus.png"
 																	alt="widget"
 																	class="minusBtnIcon"
-																	on:click={() => handleUpdateOption('StudyInformation')}
+																
 																/>
 															{:else}
 																<img
 																	src="mminus.png"
 																	alt="widget"
 																	class="minusBtnIcon"
-																	on:click={() => handleUpdateOption('StudyInformation')}
+																	
 																/>
 															{/if}
 														</div>
@@ -691,20 +697,22 @@
 													<!-- Examination -->
 													<div class="MenuSelectionOptionItem">
 														<div class="optionTitle">Examination</div>
-														<div class="OptionToggleContent">
+														<div class="OptionToggleContent"
+														on:click={() => handleUpdateOption('Examination')}
+														>
 															{#if optionExamToggle}
 																<img
 																	src="pplus.png"
 																	alt="widget"
 																	class="minusBtnIcon"
-																	on:click={() => handleUpdateOption('Examination')}
+																	
 																/>
 															{:else}
 																<img
 																	src="mminus.png"
 																	alt="widget"
 																	class="minusBtnIcon"
-																	on:click={() => handleUpdateOption('Examination')}
+																	
 																/>
 															{/if}
 														</div>

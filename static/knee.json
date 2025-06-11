@@ -1,13 +1,13 @@
 {
-    "title": "Knee Radiograph Report",
-    "description": "Comprehensive template for standardized knee X-ray reporting",
+    "title": "Prostata-MRT Befundvorlage",
+    "description": "Standardisierte Vorlage zur Beurteilung der Prostata mit Fokus auf Prostatakrebs.",
     "metadata": {
       "identifier": "knee-xray-report-template",
       "language": "de",
       "publisher": "Scanlytics",
       "rights": "May be used freely, subject to license agreement",
       "license": "http://www.scanlytics.de/license.pdf",
-      "date": "2025-03-16",
+      "date": "2025-06-11",
       "creator": "Philipp Gallaschik"
     },
     "sections": [

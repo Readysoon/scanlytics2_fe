@@ -256,7 +256,8 @@
 		align-items: center;
 		color: white;
 		font-family: sans-serif;
-
+		cursor: pointer;
+		/* background-color: pink; */
 		gap: 8%;
 		font-size: 10px;
 	}

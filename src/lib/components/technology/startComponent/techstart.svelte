@@ -587,6 +587,7 @@
 			left: 5%;
 			z-index: -0;
 			display: none;
+			
 		}
 
 		.avatarTextContent {
@@ -743,6 +744,7 @@
 			top: 40%;
 			left: 5%;
 			z-index: -0;
+			animation: upDown 2s ease-in-out infinite;
 		}
 
 		.avatarTextContent {
@@ -872,6 +874,7 @@
 			top: 40%;
 			left: 20%;
 			z-index: -0;
+			animation: upDown 2s ease-in-out infinite;
 		}
 
 		.avatarTextContent {
@@ -1004,6 +1007,7 @@
 			top: 40%;
 			left: 20%;
 			z-index: -0;
+			animation: upDown 2s ease-in-out infinite;
 		}
 
 		.avatarTextContent {
@@ -1136,6 +1140,7 @@
 			top: 40%;
 			left: 20%;
 			z-index: -0;
+			animation: upDown 2s ease-in-out infinite;
 		}
 
 		.avatarTextContent {

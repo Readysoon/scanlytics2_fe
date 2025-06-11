@@ -9,7 +9,10 @@
 	let imgfileData: File | null = null;
 	let currentStep: number = 1;
 	let imgPreview = $state('');
-	let openeningText: string = `Tippen Sie auf die Mikrofontaste rechts, um das Gespräch zu beginnen, und sagen Sie „Hallo Bruno“.`;
+	let openeningText: string = `Tippen Sie einmal auf das Mikrofon, 
+								sagen Sie „Hallo Bruno“ und sprechen Sie dann einfach weiter. 
+								Das Mikrofon müssen Sie nicht mehr berühren. Ich freue mich auf unser Gespräch!
+								`;
 	let index = 0;
 	let avatarScriptText: string = $state('');
 	let brunoTextLoadingState = $state(false);
@@ -327,7 +330,7 @@
 			border-radius: 7px;
 			font-family: system-ui;
 			color: white;
-			font-size: 13px;
+			font-size: 11px;
 			position: absolute;
 			top: -35%;
 			left: 7%;
