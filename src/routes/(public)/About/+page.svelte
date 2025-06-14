@@ -44,7 +44,7 @@
 			<h2>Partners In  Coming ;)</h2>
 		</div>
 
-		<div class="PartnerContent">Partners In  Coming</div>
+		<div class="PartnerContent">Partners are coming</div>
 	</div>
 	<Footer />
 </main>
