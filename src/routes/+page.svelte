@@ -98,9 +98,10 @@
 				<div class="mainSectionLeftTextTitle">Revolutionizing Medical Reporting with AI</div>
 
 				<div class="mainSectionLeftTextSubtext">
-					Building the future of structured reporting with our conversational AI. 
-					<br>
-					Visit our Technology Page to try yourself or book directly a Call with us. 
+					At Scanlytics, we believe that true innovation arises from a continuous cycle of iteration and integration, driven by constructive feedback and creative ideation. 
+					To better understand the real-world challenges of medical reporting, we interviewed several physicians who handle patient cases and documentation on a daily basis. 
+					One recurring theme emerged: the process of report creation is often time-consuming and inefficient. After multiple rounds of ideation, we developed a Conversational AI Assistant as a Service solution, built on the concept of structured reporting. 
+					Our approach not only simplifies the reporting workflow and enhances productivity, but also creates a broader scope for customization. Feel free to visit our Technology page for a brief introduction to our demo conversational AI assistant, Bruno.
 				</div>
 
 			</div>
@@ -167,6 +168,7 @@
 		right: 0%;
 		opacity: 0.8;
 		z-index: 1;
+		
 	}
 
 	.brain-gif {
@@ -383,7 +385,7 @@
 			height: auto;
 			padding: 0;
 			margin-top: 20px;
-			font-size: 20px;
+			font-size: 10px;
 			line-height: 1.5;
 		}
 
@@ -425,4 +427,17 @@
 		}
 	}
 
+
+
+	/* Mid laptops (your 1807px screen) */
+	@media (min-width: 1700px) {
+		.mainSectionLeftTextSubtext {
+			width: 80%;
+			height: auto;
+			padding: 0;
+			margin-top: 20px;
+			font-size: 14px;
+			line-height: 1.5;
+		}
+	}
 </style>
