@@ -98,10 +98,9 @@
 				<div class="mainSectionLeftTextTitle">Revolutionizing Medical Reporting with AI</div>
 
 				<div class="mainSectionLeftTextSubtext">
-					At Scanlytics, we believe that true innovation arises from a continuous cycle of iteration and integration, driven by constructive feedback and creative ideation. 
-					To better understand the real-world challenges of medical reporting, we interviewed several physicians who handle patient cases and documentation on a daily basis. 
-					One recurring theme emerged: the process of report creation is often time-consuming and inefficient. After multiple rounds of ideation, we developed a Conversational AI Assistant as a Service solution, built on the concept of structured reporting. 
-					Our approach not only simplifies the reporting workflow and enhances productivity, but also creates a broader scope for customization. Feel free to visit our Technology page for a brief introduction to our demo conversational AI assistant, Bruno.
+					Scanlytics’ conversational AI assistant redefines structured reporting by combining advanced image analysis for measurement detection with customized contextual questionnaires for physicians. 
+					Our technology introduces a transformative approach that balances efficiency with quality, enhancing both the accuracy and scalability of reporting.
+					Feel free to visit our Technology page for a brief introduction to our demo conversational AI assistant, Bruno.
 				</div>
 
 			</div>
