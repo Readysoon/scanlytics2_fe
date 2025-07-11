@@ -3,8 +3,9 @@
 
 	import Footer from '../../Footer.svelte';
 	import Header from '../../Header.svelte';
-
 	import { isMobile } from '../../../stores/device.js';
+	import Partner from '$lib/components/about/partnerSection/partner.svelte';
+	import Vision from '$lib/components/about/visionSection/vision.svelte';
 </script>
 
 <main>
@@ -13,38 +14,9 @@
 	<div class="page_container">
 		
 
-		<div class="Vision">
-			<div class="Text-container">
-				<div class="Text-container-content">
-					<div class="Text-container-content-header">
-						<h2>Team</h2>
-					</div>
-					<div class="Text-container-content-Text">
-						<p>
-							At Scanlytics, we want to write the next chapter in medical reporting. We are a team
-							of students currently exploring the medical landscape in Germany. With our
-							conversational AI solution, we aim to support radiology from the ground up. We are
-							dreaming of a world where technological advancement meets human imagination. We focus
-							on improving repetitive workflows, enabling opportunities, and unlocking potential
-							areas for advancement. We are Scanlytics.
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="image-container">
-                <div class="imageItem">
-                    <img src="/ScanlyticsGroupImage4.jpg" alt="Group Image" class="image-content" />
-                </div>
-				<!-- <img src="/HighTechVision.png" alt="Group Image" /> -->
-				
-			</div>
-		</div>
-
-		<div class="PartnerHeader">
-			<h2>Partners In  Coming ;)</h2>
-		</div>
-
-		<div class="PartnerContent">Partners are coming</div>
+	 
+		<Vision/>
+		<Partner/>
 	</div>
 	<Footer />
 </main>
