@@ -87,7 +87,10 @@
 
 		<!-- Gif Image - Positioned differently on mobile vs desktop -->
 		<div class="mainSectionRight" class:mobile-image={isMobile}>
-			<img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" class="brain-gif"   />
+			<!-- Brain Gif -->
+			<!-- <img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" class="brain-gif"   /> -->
+			<img src="7ZN3.gif" alt="Brain GIF" class="voice-gif"   />
+			<!-- <img src="LCPT.gif" alt="Brain GIF" class="brain-gif"   /> -->
 		</div>
 
 		<div class="mainSectionLeft" class:mobile-content={isMobile}>
@@ -175,6 +178,12 @@
 		height: auto;
 		margin-left: 15%;
 		
+	}
+
+	.voice-gif{
+		width: 60%;
+		height: auto;
+		margin-left: 25%;
 	}
 
 	.mainSectionLeftHeader {
@@ -373,6 +382,12 @@
 		}
 
 		.mobile-image .brain-gif {
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+			margin-left: 0%;
+		}
+		.mobile-image .voice-gif {
 			width: 100%;
 			height: auto;
 			object-fit: cover;
