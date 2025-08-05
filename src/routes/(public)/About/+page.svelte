@@ -21,12 +21,9 @@
 					</div>
 					<div class="Text-container-content-Text">
 						<p>
-							At Scanlytics, we want to write the next chapter in medical reporting. We are a team
-							of students currently exploring the medical landscape in Germany. With our
-							conversational AI solution, we aim to support radiology from the ground up. We are
-							dreaming of a world where technological advancement meets human imagination. We focus
-							on improving repetitive workflows, enabling opportunities, and unlocking potential
-							areas for advancement. We are Scanlytics.
+							We are Scanlytics. Our vision is to write the next chapter in medical reporting.
+							With our conversational AI assistant, we aim to enhance the communication between humans and their technological tools.
+							Our focus is on improving repetitive workflows, enabling new opportunities, and unlocking untapped areas for progress.
 						</p>
 					</div>
 				</div>
@@ -201,6 +198,7 @@
 
 	.image-content {
 		/* background-color: green; */
+		margin-bottom: 30%;
 	}
 
 	.GroupImage {
