@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Footer from './Footer.svelte';
 	import Header from './Header.svelte';
+	import HeroExperience from '../lib/components/technology/HeroModels/HeroExperience.svelte';
 	import { redirect } from '@sveltejs/kit';
 	import { onMount, onDestroy } from 'svelte';
 
@@ -17,7 +18,7 @@
 		checkIfMobile();
 	});
 
-	
+
 	// Server initialization
 	// onMount(async () => {
 	// 	try {
@@ -56,14 +57,14 @@
 		checkIfMobile();
 	}
 
-	function redirectUser(){ 
+	function redirectUser() {
 		window.location.href = 'https://calendly.com/tobias-wedel-code/30min';
 	}
 
-	function redirectTechnologyPage (){
+	function redirectTechnologyPage() {
 		window.location.href = '/Technology/';
 	}
-	
+
 </script>
 
 <svelte:window bind:innerHeight={innerHeight} bind:innerWidth={innerWidth} />
@@ -79,31 +80,42 @@
 			<!-- <p class="AIaaS">Conversational AI Assistant</p> -->
 
 			{#if isMobile}
-			<p class="AIaaS">AI as a Service</p>
+				<p class="AIaaS">AI as a Service</p>
 
 			{/if}
 		</div>
 
 
 		<!-- Gif Image - Positioned differently on mobile vs desktop -->
-		<div class="mainSectionRight" class:mobile-image={isMobile}>
-			<!-- Brain Gif -->
-			<!-- <img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" class="brain-gif"   /> -->
-			<img src="7ZN3.gif" alt="Brain GIF" class="voice-gif"   />
-			<!-- <img src="LCPT.gif" alt="Brain GIF" class="brain-gif"   /> -->
-		</div>
+		<!--		<div class="mainSectionRight" class:mobile-image={isMobile}>-->
+		<!--			&lt;!&ndash; Brain Gif &ndash;&gt;-->
+		<!--			&lt;!&ndash; <img src="head-MRI-SCHWARZ.gif" alt="Brain GIF" class="brain-gif"   /> &ndash;&gt;-->
+		<!--			<img src="7ZN3.gif" alt="Brain GIF" class="voice-gif" />-->
+		<!--			&lt;!&ndash; <img src="LCPT.gif" alt="Brain GIF" class="brain-gif"   /> &ndash;&gt;-->
+		<!--		</div>-->
+
+		<!--3D Canvas - Shader -->
+		<figure class="shader-canvas">
+			<div class="mainSectionRight">
+				<HeroExperience />
+			</div>
+		</figure>
 
 		<div class="mainSectionLeft" class:mobile-content={isMobile}>
 
 			<!-- Middle Area -->
 			<div class="mainSectionLeftText">
-				
+
 				<div class="mainSectionLeftTextTitle">Revolutionizing Medical Reporting with AI</div>
 
 				<div class="mainSectionLeftTextSubtext">
-					Scanlytics’ conversational AI assistant redefines communication between humans and technology by providing a realistic voice assistant that understands and supports human needs.
-			       Our technology introduces a transformative approach that balances efficiency with quality, enhancing both the accuracy and scalability of reporting.
-			    Feel free to visit our Technology page for a brief introduction to our conversational AI assistant, called Bruno, designed to improve the inefficient manual and click-heavy process currently used in structured reporting.
+					Scanlytics’ conversational AI assistant redefines communication between humans and technology by providing a
+					realistic voice assistant that understands and supports human needs.
+					Our technology introduces a transformative approach that balances efficiency with quality, enhancing both the
+					accuracy and scalability of reporting.
+					Feel free to visit our Technology page for a brief introduction to our conversational AI assistant, called
+					Bruno, designed to improve the inefficient manual and click-heavy process currently used in structured
+					reporting.
 				</div>
 
 			</div>
@@ -130,328 +142,326 @@
 
 
 <style>
-	main {
-		background-color: rgb(0, 0, 0);
-		height: 100vh;
-		overflow-y: auto;
+    main {
+        background-color: rgb(0, 0, 0);
+        height: 100vh;
+        overflow-y: auto;
         scrollbar-width: none; /* Firefox */
         -ms-overflow-style: none; /* IE and Edge */
-	}
+    }
 
-	a {
-		text-decoration: none;
-		color: rgb(77, 77, 77);
-		font-weight: 500;
-		font-family: system-ui;
-	}
+    a {
+        text-decoration: none;
+        color: rgb(77, 77, 77);
+        font-weight: 500;
+        font-family: system-ui;
+    }
 
-	.mainSection {
-		height: 77%;
-		margin-top: 26px;
-		position: relative;
-	}
+    .mainSection {
+        height: 77%;
+        margin-top: 26px;
+        position: relative;
+    }
 
-	.mainSectionLeft {
-		display: flex;
-		flex-direction: column;
-		width: 70%;
-		min-height: 100%;
-		position: relative;
-		z-index: 2;
-		justify-content: space-between;
-		/* background-color: pink; */
-		margin-top: 2%;
-	}
+    .mainSectionLeft {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        min-height: 100%;
+        position: relative;
+        z-index: 2;
+        justify-content: space-between;
+        /* background-color: pink; */
+        margin-top: 2%;
+    }
 
-	.mainSectionRight {
-		width: 55%;
-		position: absolute;
-		top: 3%;
-		right: 0%;
-		opacity: 0.8;
-		z-index: 1;
-		
-	}
+    .mainSectionRight {
+        position: absolute;
+        width: 55%;
+        height: 100%;
+        right: 3%;
+        opacity: 0.8;
+    }
 
-	.brain-gif {
-		width: 70%;
-		height: auto;
-		margin-left: 15%;
-		
-	}
+    .brain-gif {
+        width: 70%;
+        height: auto;
+        margin-left: 15%;
 
-	.voice-gif{
-		width: 60%;
-		height: auto;
-		margin-left: 25%;
-	}
+    }
 
-	.mainSectionLeftHeader {
-		display: flex;
-		justify-content: flex-start;
-		width: 100%;
-		position: relative;
-		z-index: 3;
-	}
+    .voice-gif {
+        width: 60%;
+        height: auto;
+        margin-left: 25%;
+    }
 
-	.mainSectionLeftHeader .Best{
-		background-color: rgb(255, 255, 255);
-		width: 300px;
-		height: 40px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: 1px solid black;
-		border-radius: 40px;
-		color: black;
-		margin-left: 0.5%;
-		font-family: system-ui;
+    .mainSectionLeftHeader {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        position: relative;
+        z-index: 3;
+    }
 
-	}
+    .mainSectionLeftHeader .Best {
+        background-color: rgb(255, 255, 255);
+        width: 300px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+        border-radius: 40px;
+        color: black;
+        margin-left: 0.5%;
+        font-family: system-ui;
 
-	.mainSectionLeftHeader .AIaaS{
-		background-color: rgb(70, 102, 135);
-		width: auto;
-		padding: 0 20px;
-		height: 40px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: 1px solid rgb(155, 197, 234);
-		border-radius: 40px;
-		color: rgb(255, 255, 255);
-		margin-right: 5%;
-		margin-left: 1%;
-		font-family: system-ui;
+    }
 
-	}
+    .mainSectionLeftHeader .AIaaS {
+        background-color: rgb(70, 102, 135);
+        width: auto;
+        padding: 0 20px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid rgb(155, 197, 234);
+        border-radius: 40px;
+        color: rgb(255, 255, 255);
+        margin-right: 5%;
+        margin-left: 1%;
+        font-family: system-ui;
 
-	.mainSectionLeftText{
-		width: 100%;
-		height: 86%;
-	}
-	
-	.mainSectionLeftTextTitle {
-		width: 70%;
-		height: 100%;
-		font-size: clamp(6vw, 6vw, 6vw);
-		text-align: left;
-		font-family: system-ui;
-		color: white;
-	}
+    }
 
-	.mainSectionLeftTextSubtext {
-		width: 70%;
-		height: 20%;
-		color: white;
-		padding: 1%;
-		font-family: system-ui;
-	}
+    .mainSectionLeftText {
+        width: 100%;
+        height: 86%;
+    }
 
-	.mainSectionButtons {
-		width: 70%;
-		height: 7%;
-		color: rgb(48, 48, 48);
-		padding: 1%;
-		display: flex;
-		flex-direction: row;
-	}
+    .mainSectionLeftTextTitle {
+        width: 70%;
+        height: 100%;
+        font-size: clamp(6vw, 6vw, 6vw);
+        text-align: left;
+        font-family: system-ui;
+        color: white;
+    }
 
-	.mainSectionButtons.mobile-buttons{
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
+    .mainSectionLeftTextSubtext {
+        width: 70%;
+        height: 20%;
+        color: white;
+        padding: 1%;
+        font-family: system-ui;
+    }
 
-	.ButtonSection {
-		width: 70%;
-		height: 100%;
-		color: rgb(48, 48, 48);
-		display: flex;
-		align-items: center;
-		flex-direction: row;
-		justify-content: flex-start;
-		gap: 5%;
-	}
+    .mainSectionButtons {
+        width: 70%;
+        height: 7%;
+        color: rgb(48, 48, 48);
+        padding: 1%;
+        display: flex;
+        flex-direction: row;
+    }
 
-	.Button {
-		width: 200px;
-		height: 30px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-radius: 40px;
-		color: black;
-		cursor: pointer;
-		text-align: center;
-	}
+    .mainSectionButtons.mobile-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-	.Button.call {
-		background-color: black;
-		border: 1px solid white;
-	}
+    .ButtonSection {
+        width: 70%;
+        height: 100%;
+        color: rgb(48, 48, 48);
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 5%;
+    }
 
-	.Button.tech {
-		background-color: rgb(255, 255, 255);
-		border: 1px solid black;
-	}
+    .Button {
+        width: 200px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 40px;
+        color: black;
+        cursor: pointer;
+        text-align: center;
+    }
 
-	.buttontechtext, .buttoncalltext {
-		text-align: center;
-		display: block;
-		font-size: 16px;
-		font-weight: 400;
-		font-family: system-ui;  
-	}
+    .Button.call {
+        background-color: black;
+        border: 1px solid white;
+    }
 
-	.buttontechtext {
-		color: rgb(0, 0, 0);
-	}
-	
-	.buttoncalltext {
-		color: rgb(255, 255, 255);
-	}
+    .Button.tech {
+        background-color: rgb(255, 255, 255);
+        border: 1px solid black;
+    }
 
-	/* Mobile styles */
-	.mobile-buttons {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		gap: 15px;
-		margin-top: 30px;
-		padding: 0 20px;
-	}
+    .buttontechtext, .buttoncalltext {
+        text-align: center;
+        display: block;
+        font-size: 16px;
+        font-weight: 400;
+        font-family: system-ui;
+    }
 
-	@media (max-width: 1024px) {
-		/* Force content to be scrollable */
-		:global(body) {
-			overflow-y: auto !important;
-		}
-		
-		main {
-			height: auto !important;
-			min-height: 100vh;
-			overflow-y: auto !important;
-			width: 100%;
-			display: flex;
-			flex-direction: column;
+    .buttontechtext {
+        color: rgb(0, 0, 0);
+    }
 
-		}
+    .buttoncalltext {
+        color: rgb(255, 255, 255);
+    }
 
-		.mainSection {
-			height: auto !important;
-			overflow: visible !important;
-			min-height: 80vh;
-			display: flex;
-			flex-direction: column;
-			/* align-items: center; */
-			/* background-color: pink; */
-			width: 100%;
-		}
+    /* Mobile styles */
+    .mobile-buttons {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 30px;
+        padding: 0 20px;
+    }
 
-		.mobile-content {
-			width: 100%;
-			padding: 10px;
-			position: relative;
-			z-index: 5;
-		}
+    @media (max-width: 1024px) {
+        /* Force content to be scrollable */
+        :global(body) {
+            overflow-y: auto !important;
+        }
 
-		.mainSectionLeftHeader {
-			justify-content: flex-end;
-			padding-right: 0px;
-			/* background-color: rgb(58, 242, 16) */
+        main {
+            height: auto !important;
+            min-height: 100vh;
+            overflow-y: auto !important;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
 
-		}
+        }
 
-		.mainSectionLeftHeader .Best {
-			display: none;
-		}
+        .mainSection {
+            height: auto !important;
+            overflow: visible !important;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            /* align-items: center; */
+            /* background-color: pink; */
+            width: 100%;
+        }
 
-		.mobile-image {
-			width: 100%;
-			height: 100%;
-			position: absolute;
-			top: 0;
-			left: 0;
-			opacity: 0.4;
-			z-index: 1;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
+        .mobile-content {
+            width: 100%;
+            padding: 10px;
+            position: relative;
+            z-index: 5;
+        }
 
-		.mobile-image .brain-gif {
-			width: 100%;
-			height: auto;
-			object-fit: cover;
-			margin-left: 0%;
-		}
-		.mobile-image .voice-gif {
-			width: 100%;
-			height: auto;
-			object-fit: cover;
-			margin-left: 0%;
-		}
+        .mainSectionLeftHeader {
+            justify-content: flex-end;
+            padding-right: 0px;
+            /* background-color: rgb(58, 242, 16) */
 
-		.mainSectionLeftTextSubtext {
-			width: 100%;
-			height: auto;
-			padding: 0;
-			margin-top: 20px;
-			font-size: 10px;
-			line-height: 1.5;
-		}
+        }
 
-		.mainSectionLeftTextTitle {
-			width: 100%;
-			height: auto;
-			font-size: 50px;
-			text-align: left;
-			font-family: system-ui;
-			color: white;
-		}
+        .mainSectionLeftHeader .Best {
+            display: none;
+        }
 
-		.mainSectionLeftText {
-			height: auto;
-		}
+        .mobile-image {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.4;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-		.ButtonSection {
-			flex-direction: column;
-		}
+        .mobile-image .brain-gif {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            margin-left: 0%;
+        }
 
-		.Button.call {
-			margin-bottom: 20px;
-		}
+        .mobile-image .voice-gif {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            margin-left: 0%;
+        }
 
+        .mainSectionLeftTextSubtext {
+            width: 100%;
+            height: auto;
+            padding: 0;
+            margin-top: 20px;
+            font-size: 10px;
+            line-height: 1.5;
+        }
 
-		.Button {
-			height: 40px;
-			width: 300px;
-			display: flex;
-			flex-direction: column;
-		}
+        .mainSectionLeftTextTitle {
+            width: 100%;
+            height: auto;
+            font-size: 50px;
+            text-align: left;
+            font-family: system-ui;
+            color: white;
+        }
 
-		.buttoncalltext {
-			text-align: center;
-		}
+        .mainSectionLeftText {
+            height: auto;
+        }
 
-		.buttontechtext {
-			text-align: center;
-		}
-	}
+        .ButtonSection {
+            flex-direction: column;
+        }
+
+        .Button.call {
+            margin-bottom: 20px;
+        }
 
 
+        .Button {
+            height: 40px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
 
-	/* Mid laptops (your 1807px screen) */
-	@media (min-width: 1700px) {
-		.mainSectionLeftTextSubtext {
-			width: 80%;
-			height: auto;
-			padding: 0;
-			margin-top: 20px;
-			font-size: 14px;
-			line-height: 1.5;
-		}
-	}
+        .buttoncalltext {
+            text-align: center;
+        }
+
+        .buttontechtext {
+            text-align: center;
+        }
+    }
+
+
+    /* Mid laptops (your 1807px screen) */
+    @media (min-width: 1700px) {
+        .mainSectionLeftTextSubtext {
+            width: 80%;
+            height: auto;
+            padding: 0;
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    }
 </style>
